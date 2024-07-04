@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alpha.aoom.user.service.UserMapper">
+	
+	<!-- 회원가입 -->
+	<insert id="userInsert" parameterType="com.alpha.aoom.user.dto.User">
+		INSERT INTO USERS VALUES(#{userId}, #{userPw}, TO_DATE(#{userBirth}, 'YYYY-MM-DD'),
+                        #{userName}, #{userPhone}, 'ust01', SYSDATE, SYSDATE, 'usa01', '이미지 경로')
+	</insert>
+	
+	<!-- 마리아 db test -->
+	<insert id="yanameInsert">
+		INSERT INTO yaya VALUES(#{userId})
+	</insert>
+</mapper>
