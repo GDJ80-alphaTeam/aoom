@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
-public class UserController {
+public class UserController{
 	
 	@Autowired
 	UserService userService;
@@ -31,15 +31,9 @@ public class UserController {
 		System.out.println("디버깅 : " + user);
 	}
 	
-	// 마리아 db 연결 test
-	@GetMapping("/ya")
-	@ResponseBody
-	public void addyaname() {
-		User yauser = new User();
-		yauser.setUserId("손지원");
-		
-		userService.addyaname(yauser);
-		System.out.println("디버깅 : " + yauser);
+	@GetMapping("/login")
+	public String login() {
+		return "login";
 	}
-	
+	    
 }

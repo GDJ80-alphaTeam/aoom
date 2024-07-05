@@ -8,6 +8,4 @@ import com.alpha.aoom.user.dto.User;
 public interface UserMapper {
 	// 회원가입
 	int userInsert(User user);
-	// 마리아 db test
-	int yanameInsert(User yauser);
 }

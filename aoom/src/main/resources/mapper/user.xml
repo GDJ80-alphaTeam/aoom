@@ -8,8 +8,4 @@
                         #{userName}, #{userPhone}, 'ust01', SYSDATE, SYSDATE, 'usa01', '이미지 경로')
 	</insert>
 	
-	<!-- 마리아 db test -->
-	<insert id="yanameInsert">
-		INSERT INTO yaya VALUES(#{userId})
-	</insert>
 </mapper>

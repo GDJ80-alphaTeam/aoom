@@ -24,13 +24,4 @@ public class UserService {
 		}
 	}
 	
-	public void addyaname(User yauser) {
-		int row = userMapper.yanameInsert(yauser);
-		
-		if(row != 1) {
-			throw new RuntimeException();
-		}
-		
-	}
-	
 }
