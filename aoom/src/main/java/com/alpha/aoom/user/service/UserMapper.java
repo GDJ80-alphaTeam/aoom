@@ -1,5 +1,7 @@
 package com.alpha.aoom.user.service;
 
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.alpha.aoom.user.dto.User;
@@ -8,4 +10,6 @@ import com.alpha.aoom.user.dto.User;
 public interface UserMapper {
 	// 회원가입
 	int userInsert(User user);
+	// 로그인
+	Map<String, Object> userSelect(Map<String, Object> user);
 }

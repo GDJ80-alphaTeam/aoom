@@ -8,4 +8,22 @@
                         #{userName}, #{userPhone}, 'ust01', SYSDATE, SYSDATE, 'usa01', '이미지 경로')
 	</insert>
 	
+	<!-- 로그인 -->
+	<select id="userSelect" parameterType="map" resultType="map">
+		SELECT
+			USER_ID AS userId,
+			USER_PW AS userPw,
+			USER_BIRTH AS userBirth,
+			USER_NAME AS userName,
+			USER_PHONE AS userPhone,
+			USERSTAT_CODE AS userstatCode,
+			CREATE_DATE AS createDate,
+			UPDATE_DATE AS updateDate,
+			USERAUTH_CODE AS userauthCode,
+			USER_IMAGE AS userImage
+		FROM 
+			USERS
+		WHERE 
+			USER_ID = #{userId} AND USER_PW = #{userPw}
+	</select>
 </mapper>

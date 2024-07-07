@@ -1,13 +1,18 @@
 package com.alpha.aoom.user.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alpha.aoom.user.dto.User;
 import com.alpha.aoom.user.service.UserService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -17,23 +22,36 @@ public class UserController{
 	@Autowired
 	UserService userService;
 
-	@GetMapping
-	@ResponseBody
-	public void addUser() {
-		User user = new User();
-		user.setUserId("test@google.com");
-		user.setUserPw("1234");
-		user.setUserBirth("1999-07-15");
-		user.setUserName("오승엽");
-		user.setUserPhone("010-9876-5432");
-		
-		userService.addUser(user);
-		System.out.println("디버깅 : " + user);
+	@GetMapping("/signin")
+	public String signin() {
+		return "signin";
 	}
 	
-	@GetMapping("/login")
-	public String login() {
-		return "login";
+	@PostMapping("/signinAction")
+	public String signinAction(@RequestParam("userId") String userId, @RequestParam("userPw") String userPw, HttpSession session) {
+		
+		Map<String, Object> userInput = new HashMap<>();
+		userInput.put("userId", userId);
+		userInput.put("userPw", userPw);
+		
+		Map<String, Object> userInfo = userService.signinUser(userInput);
+		
+		// 세션에 담기
+		session.setAttribute("userInfo", userInfo);
+		
+		return "redirect:/main";
+	}
+	
+	@GetMapping("/main")
+	@ResponseBody
+	public Map<String, Object> main(HttpSession session) {
+		return (Map<String, Object>) session.getAttribute("userInfo");
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/main";
 	}
 	    
 }
