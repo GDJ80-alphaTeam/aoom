@@ -3,9 +3,20 @@
 <mapper namespace="com.alpha.aoom.user.service.UserMapper">
 	
 	<!-- 회원가입 -->
-	<insert id="userInsert" parameterType="com.alpha.aoom.user.dto.User">
-		INSERT INTO USERS VALUES(#{userId}, #{userPw}, TO_DATE(#{userBirth}, 'YYYY-MM-DD'),
-                        #{userName}, #{userPhone}, 'ust01', SYSDATE, SYSDATE, 'usa01', '이미지 경로')
+	<insert id="userInsert" parameterType="map">
+		INSERT INTO USERS(
+			USER_ID,
+			USER_PW,
+			USER_BIRTH,
+			USER_NAME,
+			USER_PHONE
+		) VALUES(
+			#{userId}, 
+			#{userPw}, 
+			TO_DATE(#{userBirth}, 'YYYY-MM-DD'),
+			#{userName}, 
+			#{userPhone}
+		)
 	</insert>
 	
 	<!-- 로그인 -->

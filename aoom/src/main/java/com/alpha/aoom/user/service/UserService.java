@@ -17,15 +17,7 @@ public class UserService {
 	
 	@Autowired
 	UserMapper userMapper;
-	
-	public void addUser(User user) {
-		int row = userMapper.userInsert(user);
-		
-		if(row != 1) {
-			throw new RuntimeException();
-		}
-	}
-	
+
 	// 로그인
 	public Map<String, Object> signinUser(Map<String, Object> userInput) {
 		Map<String, Object> userInfo = userMapper.userSelect(userInput);
@@ -35,5 +27,13 @@ public class UserService {
 		}
 		
 		return userInfo;
+	}
+	
+	// 회원가입
+	public void signupUser(Map<String , Object> signupUser) {
+		int row = userMapper.userInsert(signupUser);
+		if(row != 1) {
+			throw new RuntimeException();
+		}
 	}
 }

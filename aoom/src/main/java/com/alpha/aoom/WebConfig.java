@@ -14,8 +14,7 @@ public class WebConfig implements WebMvcConfigurer{
 	public void addInterceptors(InterceptorRegistry registry) {
 
 		// 로그인이 안 되어있을 때 실행되는 인터셉터
-		// 숙소 상세보기도 추가해야함
-		registry.addInterceptor(new SigninInterceptor()).order(1).addPathPatterns("/**").excludePathPatterns("/main", "/signin", "/signinAction", "/logout");
+		registry.addInterceptor(new SigninInterceptor()).order(1).addPathPatterns("/**").excludePathPatterns("/main", "/signin", "/signinAction", "/logout", "/signup", "/signupAction");
 		
 		// 로그인이 되어있을 때 실행되는 인터셉터		
 		registry.addInterceptor(new SignedinInterceptor()).order(2).addPathPatterns("/signin", "/signinAction", "signup", "signupAction");

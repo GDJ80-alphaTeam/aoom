@@ -9,7 +9,8 @@ import com.alpha.aoom.user.dto.User;
 @Mapper
 public interface UserMapper {
 	// 회원가입
-	int userInsert(User user);
+	int userInsert(Map<String, Object> signupUser);
 	// 로그인
-	Map<String, Object> userSelect(Map<String, Object> user);
+	Map<String, Object> userSelect(Map<String, Object> userInput);
+	
 }

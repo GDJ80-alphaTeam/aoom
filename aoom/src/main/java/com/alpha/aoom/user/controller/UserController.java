@@ -53,5 +53,34 @@ public class UserController{
 		session.invalidate();
 		return "redirect:/main";
 	}
+	
+	@GetMapping("/signup")
+	public String signup() {
+		return "signup";
+	}
+	
+//	@PostMapping("signupAction")
+//	public String signupAction(@RequestParam("userId") String userId,
+//							   @RequestParam("userPw") String userPw,
+//							   @RequestParam("userBirth") String userBirth,
+//							   @RequestParam("userName") String userName,
+//							   @RequestParam("userPhone") String userPhone ) {
+//		
+//		Map<String, Object> newUser = new HashMap<>();
+//		
+//		
+//		return "redirect:/signin";
+//		
+//	}
+	
+	@PostMapping("signupAction")
+	public String signupAction(@RequestParam Map<String, Object> allParams) {
+		
+		Map<String, Object> newUser = allParams;
+		userService.signupUser(newUser);
+
+		return "redirect:/signin";
+		
+	}
 	    
 }
