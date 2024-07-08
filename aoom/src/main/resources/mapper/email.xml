@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alpha.aoom.util.email.EmailMapper">
+	<insert id="insertAuthNo" parameterType="map">
+		INSERT INTO USER_AUTH_NO(
+			USER_ID,
+			AUTH_NO
+		) VALUES(
+			#{userId},
+			#{authNo}
+		)
+	</insert>
+	
+	<select id="selectAuthNo" parameterType="String" resultType="int">
+		SELECT
+			AUTH_NO
+		FROM 
+			USER_AUTH_NO
+		WHERE USER_ID = #{userId}
+	</select>
+</mapper>

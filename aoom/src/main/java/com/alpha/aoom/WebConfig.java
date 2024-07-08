@@ -17,7 +17,7 @@ public class WebConfig implements WebMvcConfigurer{
 		registry.addInterceptor(new SigninInterceptor())
 				.order(1)	// 적용할 필터 순서 설정
 				.addPathPatterns("/**")
-				.excludePathPatterns("/main", "/signin", "/signinAction", "/logout", "/signup", "/signupAction");	// 제외할 경로 패턴
+				.excludePathPatterns("/main", "/signin", "/signinAction", "/logout", "/signup", "/signupAction", "/send");	// 제외할 경로 패턴
 		
 		// 로그인이 되어있을 때 접근 불가능한 경로		
 		registry.addInterceptor(new SignedinInterceptor())

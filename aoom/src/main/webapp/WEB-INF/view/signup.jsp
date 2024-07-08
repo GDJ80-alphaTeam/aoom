@@ -8,11 +8,20 @@
 	<meta charset="UTF-8">
 	<title>회원가입</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
 	<form action="/signupAction" method="post">
 		<div>
 			이메일: <input type="text" name="userId" maxlength="50" placeholder="이메일을 입력해주세요" id="userId" required="required">
+			<button type="button" id="authBtn">인증하기</button>
+			<span id="spinner"></span>
+		</div>
+		<div>
+			인증번호 : <input type="text" name="authNo" id="authNo" required="required">
+			<button type="button" id="authCheck">인증번호 확인</button>
+			<span id="authMsg"></span>
 		</div>
 		<div>
 			비밀번호 : <input type="text" name="userPw" id="userPw" id="userPw" required="required">
@@ -58,6 +67,36 @@
 				$("#" + id).val(value.replace(regexp, ''));
 			}
 		}
+		
+		$('#authBtn').click(function(){
+			$("#authBtn").hide();
+			$("#spinner").html('<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>')
+			$.ajax({
+				url:'/send',
+				method:'post',
+				data:{'userId':$('#userId').val()},
+				success:function(authNo){
+					$("#authBtn").show();
+					$("#spinner").html('');
+				}	
+			})
+		})
+		
+		$('#authCheck').click(function() {
+			$.ajax({
+				url:'/authCheck',
+				method:'post',
+				data:{'authNo':$('#authNo').val()},
+				success:function(result){
+					if(result){
+						$('#authNo').attr('disabled', true);
+						alert('인증 완료');
+					} else {
+						alert('인증번호가 일치하지 않습니다.');
+					}
+				}
+			});	
+		})
 	</script>
 	
 </body>

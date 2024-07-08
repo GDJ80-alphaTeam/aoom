@@ -9,6 +9,6 @@
       <!-- <setting name="mapUnderscoreToCamelCase" value="true"/> -->
    </settings>
    <typeAliases>
-      <typeAlias alias="camelCaseMap" type="com.alpha.aoom.util.CamelCaseMap"/>
+      <typeAlias alias="camelCaseMap" type="com.alpha.aoom.util.map.CamelCaseMap"/>
    </typeAliases>
 </configuration>
