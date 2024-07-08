@@ -1,4 +1,4 @@
-package com.alpha.aoom.util;
+package com.alpha.aoom.util.map;
 
 import java.util.HashMap;
 

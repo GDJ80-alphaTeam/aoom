@@ -1,4 +1,4 @@
-package com.alpha.aoom.util;
+package com.alpha.aoom.util.mail;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
