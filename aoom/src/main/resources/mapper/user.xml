@@ -20,18 +20,18 @@
 	</insert>
 	
 	<!-- 로그인 -->
-	<select id="userSelect" parameterType="map" resultType="map">
+	<select id="userSelect" parameterType="map" resultType="camelCaseMap" >
 		SELECT
-			USER_ID AS userId,
-			USER_PW AS userPw,
-			USER_BIRTH AS userBirth,
-			USER_NAME AS userName,
-			USER_PHONE AS userPhone,
-			USERSTAT_CODE AS userstatCode,
-			CREATE_DATE AS createDate,
-			UPDATE_DATE AS updateDate,
-			USERAUTH_CODE AS userauthCode,
-			USER_IMAGE AS userImage
+			USER_ID,
+			USER_PW,
+			USER_BIRTH,
+			USER_NAME,
+			USER_PHONE,
+			USERSTAT_CODE,
+			CREATE_DATE,
+			UPDATE_DATE,
+			USERAUTH_CODE,
+			USER_IMAGE
 		FROM 
 			USERS
 		WHERE 

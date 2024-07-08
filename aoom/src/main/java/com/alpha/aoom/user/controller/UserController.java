@@ -35,7 +35,7 @@ public class UserController{
 		userInput.put("userPw", userPw);
 		
 		Map<String, Object> userInfo = userService.signinUser(userInput);
-		
+		System.out.println(userInfo.toString());
 		// 세션에 담기
 		session.setAttribute("userInfo", userInfo);
 		
