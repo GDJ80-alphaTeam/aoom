@@ -30,10 +30,9 @@ public class UserService {
 	}
 	
 	// 회원가입
-	public void signupUser(Map<String , Object> paramMap) {
+	public int signupUser(Map<String , Object> paramMap) {
 		int row = userMapper.userInsert(paramMap);
-		if(row != 1) {
-			throw new RuntimeException();
-		}
+		
+		return row;
 	}
 }

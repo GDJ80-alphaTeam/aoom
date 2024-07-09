@@ -71,8 +71,12 @@
 				method:'post',
 				async:false,
 				data: $('#signup').serialize(),
-				success: function(){
-					
+				success: function(response){
+					if (response === "success") {
+						window.location.href = '/signin';
+					} else {
+						alert('회원가입에 실패하였습니다. 다시 시도해 주십시오.');
+					}
 				}
 			})
 		})

@@ -74,12 +74,18 @@ public class UserController{
 	
 	// paramMap : userId , userPw , userBirth , userName , userPhone
 	@PostMapping("/signupAction")
+	@ResponseBody
 	public String signupAction(@RequestParam Map<String, Object> paramMap) {
 		System.out.println(paramMap);
-		userService.signupUser(paramMap);
+		// 회원가입
+		int row = userService.signupUser(paramMap);
 		
-		return "redirect:/signin";
-		
+		// 회원가입 성공 분기
+		if (row == 1) {
+			return "success";
+		} else {
+			return "fail";
+		}
 	}
-	    
+	
 }
