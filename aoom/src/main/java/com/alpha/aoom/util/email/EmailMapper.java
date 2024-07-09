@@ -11,4 +11,8 @@ public interface EmailMapper {
 	int insertAuthNo(Map<String, Object> paramMap);
 	// 인증번호 조회
 	int selectAuthNo(Map<String, Object> paramMap);
+	// 인증이력 조회
+	int authRecord(Map<String, Object> paramMap);
+	// 인증번호 업데이트
+	int updateAuthNo(Map<String, Object> paramMap);
 }

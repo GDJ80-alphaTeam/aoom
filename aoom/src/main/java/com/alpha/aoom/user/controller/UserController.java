@@ -27,6 +27,7 @@ public class UserController{
 		return "signin";
 	}
 	
+	// paramMap : userId , userPw
 	@PostMapping("/signinAction")
 	public String signinAction(@RequestParam Map<String, Object> paramMap, HttpSession session) {
 		
@@ -37,6 +38,7 @@ public class UserController{
 		
 		return "redirect:/main";
 	}
+	
 	
 	@GetMapping("/main")
 	@ResponseBody
@@ -69,6 +71,7 @@ public class UserController{
 //		
 //	}
 	
+	// paramMap : userId , userPw , userBirth , userName , userPhone
 	@PostMapping("signupAction")
 	public String signupAction(@RequestParam Map<String, Object> paramMap) {
 		

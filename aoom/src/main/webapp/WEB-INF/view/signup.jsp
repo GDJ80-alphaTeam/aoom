@@ -69,6 +69,7 @@
 		}
 		
 		$('#authBtn').click(function(){
+			console.log("test")
 			$("#authBtn").hide();
 			$("#spinner").html('<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>')
 			$.ajax({
@@ -91,7 +92,7 @@
 					'userId' : $('#userId').val()
 				},
 				success : function(response) {
-					console.log(response);
+					//console.log(response);
 					console.log('응답');
 					if (response.success == 1) {
 						$('#authNo').attr('disabled', true);

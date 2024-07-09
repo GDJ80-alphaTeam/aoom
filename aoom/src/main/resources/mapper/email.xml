@@ -13,9 +13,30 @@
 	
 	<select id="selectAuthNo" parameterType="camelCaseMap" resultType="int">
 		SELECT
-			AUTH_NO
+			COUNT(*) 
 		FROM 
 			USER_AUTH_NO
-		WHERE USER_ID = #{userId} AND AUTH_NO = #{authNo}
+		WHERE 
+			USER_ID = #{userId} AND AUTH_NO = #{authNo}
 	</select>
+	
+	<select id="authRecord" parameterType="camelCaseMap" resultType="int">
+		SELECT
+			COUNT(*) 
+		FROM 
+			USER_AUTH_NO
+		WHERE 
+			USER_ID = #{userId} 
+	</select>
+	
+	<update id="updateAuthNo" parameterType="map">
+		UPDATE
+			USER_AUTH_NO
+		SET
+			AUTH_NO = #{authNo},
+			CREATE_DATE = SYSDATE	
+		WHERE 
+			USER_ID = #{userId} 			
+	</update>
+	
 </mapper>

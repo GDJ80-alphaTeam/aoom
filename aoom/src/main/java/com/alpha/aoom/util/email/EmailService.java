@@ -3,6 +3,8 @@ package com.alpha.aoom.util.email;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.sound.sampled.ReverbType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
@@ -29,11 +31,13 @@ public class EmailService {
     }
     
     // 인증번호 전송
-	public void sendEmail(Map<String, Object> paramMap) {
+	public int sendEmail(Map<String, Object> paramMap) {
 		createNumber();
 		paramMap.put("authNo", authNo);
 		System.out.println(paramMap);
+		if(authRecord(paramMap) == 0) {
 		insertAuthNo(paramMap);
+		}
 		MimeMessage message = mailSender.createMimeMessage();
 
         try {
@@ -49,9 +53,11 @@ public class EmailService {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-
+        
 		mailSender.send(message);
+		return authNo;
 	}
+	
 	
 	// 인증번호 DB 저장
 	public void insertAuthNo(Map<String, Object> paramMap) {
@@ -66,4 +72,17 @@ public class EmailService {
 	public int checkAuthNo(Map<String, Object> paramMap) {
 		return emailMapper.selectAuthNo(paramMap);
 	}
+	
+	// 아이디 인증이력조회 
+	public int authRecord(Map<String,Object> paramMap) {		
+		return emailMapper.authRecord(paramMap);
+	}
+	
+	// 인증번호 업데이트
+	public int updateAuthNo(Map<String,Object> paramMap) {
+		int updataAuthNo = sendEmail(paramMap);
+		paramMap.put("authNo", updataAuthNo);
+		return emailMapper.updateAuthNo(paramMap);
+	}
+	
 }
