@@ -17,6 +17,7 @@
 			<div>
 				이메일: <input type="text" name="userId" maxlength="50" placeholder="이메일을 입력해주세요" id="userId"  required="required">
 				<button type="button" id="authBtn">인증하기</button>
+				<span id="userIdMsg"></span>
 				<span id="spinner"></span>
 			</div>
 			<div>
@@ -73,7 +74,7 @@
 				data: $('#signup').serialize(),
 				success: function(response){
 					if (response === "success") {
-						window.location.href = '/signin';
+						window.location.href = '/user/signin';
 					} else {
 						alert('회원가입에 실패하였습니다. 다시 시도해 주십시오.');
 					}
@@ -128,7 +129,12 @@
 				url:'/send',
 				method:'post',
 				data:{'userId':$('#userId').val()},
-				success:function(authNo){
+				success:function(response){
+					if(response == 'success'){
+						$("#userIdMsg").html('중복된 이메일 입니다.');
+					}else{
+						$("#userIdMsg").html('');
+					}
 					$("#authBtn").show();
 					$("#spinner").html('');
 				}	

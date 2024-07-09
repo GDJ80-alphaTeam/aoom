@@ -35,4 +35,13 @@ public class UserService {
 		
 		return row;
 	}
+	
+	// 아이디 중복 체크
+	public String userDuplicateCheck(Map<String , Object> paramMap) {
+		Map<String, Object> idcheck = userMapper.userDuplicateCheck(paramMap);
+		if(idcheck == null) {
+			return "fail";
+		}
+		return "success";
+	}
 }

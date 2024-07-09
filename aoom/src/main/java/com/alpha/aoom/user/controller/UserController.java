@@ -20,9 +20,9 @@ public class UserController{
 	@Autowired
 	UserService userService;
 
-	@RequestMapping("/signin")
+	@RequestMapping("/user/signin")
 	public String signin() {
-		return "signin";
+		return "/user/signin";
 	}
 	
 	// paramMap : userId , userPw
@@ -51,9 +51,9 @@ public class UserController{
 		return "redirect:/main";
 	}
 	
-	@RequestMapping("/signup")
+	@RequestMapping("/user/signup")
 	public String signup() {
-		return "signup";
+		return "/user/signup";
 	}
 	
 //	@PostMapping("signupAction")

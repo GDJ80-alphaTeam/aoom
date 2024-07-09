@@ -12,5 +12,6 @@ public interface UserMapper {
 	int userInsert(Map<String, Object> paramMap);
 	// 로그인
 	Map<String, Object> userSelect(Map<String, Object> paramMap);
-	
+	// 아이디 중복체크
+	Map<String, Object> userDuplicateCheck(Map<String, Object> paramMap);
 }

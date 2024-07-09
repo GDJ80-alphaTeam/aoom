@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alpha.aoom.user.service.EmailService;
+import com.alpha.aoom.user.service.UserService;
 import com.alpha.aoom.util.email.SendEmail;
 
 
@@ -24,23 +25,33 @@ public class EmailController {
 	private EmailService emailService;
 	@Autowired
 	private SendEmail sendEmail;
+	@Autowired
+	private UserService userService;
 	
 	// paramMap : userId  
 	@RequestMapping("/send")
-	public void getMethodName(@RequestParam Map<String, Object> paramMap) {
+	@ResponseBody
+	public String getMethodName(@RequestParam Map<String, Object> paramMap) {
 		System.out.println("userId : " + paramMap.get("userId"));
-		// 인증내역이 있으면 1 없으면 0
-		if(emailService.authRecord(paramMap) == 1) {
-			
-			int authNo = sendEmail.sendEmail(paramMap);
-			paramMap.put("authNo",authNo);
-			// 기존에 있던 인증번호 update
-			emailService.updateAuthNo(paramMap); 
-		} else {	
-			int authNo = sendEmail.sendEmail(paramMap);
-			paramMap.put("authNo",authNo);
-			emailService.insertAuthNo(paramMap);
-		}			
+		
+		String idCheck = userService.userDuplicateCheck(paramMap);
+		if(idCheck.equals("success")) {
+			return "success";
+		}else {
+			// 인증내역이 있으면 1 없으면 0
+			if(emailService.authRecord(paramMap) == 1) {
+				
+				int authNo = sendEmail.sendEmail(paramMap);
+				paramMap.put("authNo",authNo);
+				// 기존에 있던 인증번호 update
+				emailService.updateAuthNo(paramMap); 
+			} else {	
+				int authNo = sendEmail.sendEmail(paramMap);
+				paramMap.put("authNo",authNo);
+				emailService.insertAuthNo(paramMap);
+			}
+			return "fail";
+		}	
 	}
 	
 	// paramMap : userId , authNo
