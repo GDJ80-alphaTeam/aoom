@@ -69,6 +69,7 @@
 			$.ajax({
 				url:'/signupAction',
 				method:'post',
+				async:false,
 				data: $('#signup').serialize(),
 				success: function(){
 					

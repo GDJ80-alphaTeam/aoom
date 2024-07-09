@@ -77,7 +77,7 @@ public class UserController{
 	public String signupAction(@RequestParam Map<String, Object> paramMap) {
 		System.out.println(paramMap);
 		userService.signupUser(paramMap);
-
+		
 		return "redirect:/signin";
 		
 	}
