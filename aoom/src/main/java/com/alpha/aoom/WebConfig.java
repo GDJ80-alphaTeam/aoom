@@ -22,7 +22,7 @@ public class WebConfig implements WebMvcConfigurer{
 		// 로그인이 되어있을 때 접근 불가능한 경로		
 		registry.addInterceptor(new SignedinInterceptor())
 				.order(2)
-				.addPathPatterns("/signin", "/signinAction", "signup", "signupAction");
+				.addPathPatterns("/signin", "/signinAction", "/signup", "/signupAction");
 		
 		WebMvcConfigurer.super.addInterceptors(registry);
 	}

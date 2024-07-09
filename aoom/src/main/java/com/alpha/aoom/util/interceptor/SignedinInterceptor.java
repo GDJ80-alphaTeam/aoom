@@ -13,7 +13,8 @@ public class SignedinInterceptor implements HandlerInterceptor{
 			throws Exception {
 			
 		HttpSession session = request.getSession();
-		System.out.println("인터셉터 호출");
+		System.out.println(session.getAttribute("userInfo"));
+		System.out.println("로그인 되어있을때 인터셉터 호출");
 		
 		if(session.getAttribute("userInfo") != null) {
 			System.out.println("session 값 있음");

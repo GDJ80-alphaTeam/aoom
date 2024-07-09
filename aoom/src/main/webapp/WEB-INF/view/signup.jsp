@@ -12,39 +12,84 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
-	<form action="/signupAction" method="post">
-		<div>
-			이메일: <input type="text" name="userId" maxlength="50" placeholder="이메일을 입력해주세요" id="userId" required="required">
-			<button type="button" id="authBtn">인증하기</button>
-			<span id="spinner"></span>
-		</div>
-		<div>
-			인증번호 : <input type="text" name="authNo" id="authNo" required="required">
-			<button type="button" id="authCheck">인증번호 확인</button>
-			<span id="authMsg"></span>
-		</div>
-		<div>
-			비밀번호 : <input type="text" name="userPw" id="userPw" id="userPw" required="required">
-		</div>
-		<div>
-			비밀번호 확인 : <input type="text" name="userPwCheck" id="userPwCheck" required="required">
-			<div id="pwMsg"></div>
-		</div>
-		<div>
-			생년월일 : <input type="date" name="userBirth" id="userBirth" required="required">
-		</div>
-		<div>
-			이름 : <input type="text" name="userName" id="userName" required="required" onkeyup="chk_han('userName')">
-		</div>
-		<div>
-			전화번호 : <input type="tel" name="userPhone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" id="userPhone" required="required" placeholder="ex)010-1111-1111">
-		</div>
-		<button type="submit">회원가입</button>
-	</form>
-
+	
+		<form id="signup">
+			<div>
+				이메일: <input type="text" name="userId" maxlength="50" placeholder="이메일을 입력해주세요" id="userId"  required="required">
+				<button type="button" id="authBtn">인증하기</button>
+				<span id="spinner"></span>
+			</div>
+			<div>
+				인증번호 : <input type="text" name="authNo" id="authNo" required="required">
+				<button type="button" id="authCheck">인증번호 확인</button>
+				<span id="authMsg"></span>
+			</div>
+			<div>
+				비밀번호 : <input type="password" name="userPw" id="userPw" min="8" max="15" required="required">
+			</div>
+			<div>
+				비밀번호 확인 : <input type="password" name="userPwCheck" id="userPwCheck" required="required">
+				<div id="pwMsg"></div>
+			</div>
+			<div>
+				생년월일 : <input type="date" name="userBirth" id="userBirth" required="required">
+			</div>
+			<div>
+				이름 : <input type="text" name="userName" id="userName" minlength="2" required="required" onkeyup="chk_han('userName')">
+			</div>
+			<div>
+				전화번호 : <input type="tel" name="userPhone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" id="userPhone" required="required" placeholder="ex)010-1111-1111">
+			</div>
+			<button type="button" id="signupBtn" disabled="disabled">회원가입</button>
+		</form>
+	
 	<script type="text/javascript">
-
-		$('#userPwCheck').blur(function test() {
+		
+		// 비밀번호 양식
+		const PWCHECK = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+	
+		// 회원가입 버튼 클릭시 유효성 로직
+		$('#signupBtn').click(function(){
+			
+			// 비밀번호 유효성검사
+			if(!PWCHECK.test($('#userPw').val())){
+				alert('비밀번호는 영문자+숫자+특수문자 조합으로 8~25자리 사용해야 합니다.');
+				$('#userPw').focus();
+				return;
+			} 
+			
+			// 비밀번호 확인 유효성검사
+			if($('#userPw').val() != $('#userPwCheck').val()){
+				alert('비밀번호가 일치하지 않습니다.');
+				$('#userPwCheck').focus();
+				return;
+			}
+				
+			// 회원가입 정보 전송
+			$.ajax({
+				url:'/signupAction',
+				method:'post',
+				data: $('#signup').serialize(),
+				success: function(){
+					
+				}
+			})
+		})
+	
+		/* // 비밀번호 조합 확인
+		$('#userPw').blur(function test(){
+			const PWCHECK = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+			
+			if(!PWCHECK.test($('#userPw').val() )) {
+			    alert('비밀번호는 영문자+숫자+특수문자 조합으로 8~25자리 사용해야 합니다.');
+			    $('#userPw').focus();
+			    return;
+			    
+			}
+		}) */
+		
+		// 비밀번호 일치 확인 
+		/* $('#userPwCheck').blur(function test() {
 			var p1 = $('#userPw').val();
 			var p2 = $('#userPwCheck').val();
 			
@@ -57,7 +102,8 @@
 				$('#userBirth').focus();
 				return ;
 			}
-		});
+		}); */
+		
 		
 		// 한글을 제외한 값을 입력시 ''로교체
 		function chk_han(id) {
@@ -68,6 +114,7 @@
 			}
 		}
 		
+		// 이메일 인증번호 전송
 		$('#authBtn').click(function(){
 			console.log("test")
 			$("#authBtn").hide();
@@ -83,6 +130,7 @@
 			})
 		})
 		
+		// 이메일 인증번호 확인
 		$('#authCheck').click(function() {
 			$.ajax({
 				url:'/authCheck',
@@ -97,13 +145,19 @@
 					if (response.success == 1) {
 						$('#authNo').attr('disabled', true);
 						alert('인증 완료');
+						$('#signupBtn').attr('disabled', false);
+						$('#userId').attr('readonly', true);
 					} else {
 						alert('인증번호가 일치하지 않습니다.');
 					}
 				}
 			});
 		})
+		
+		
 	</script>
+	
+	
 	
 </body>
 </html>

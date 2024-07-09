@@ -34,6 +34,7 @@ public class UserController{
 		Map<String, Object> userInfo = userService.signinUser(paramMap);
 		System.out.println(userInfo.toString());
 		// 세션에 담기
+		//
 		session.setAttribute("userInfo", userInfo);
 		
 		return "redirect:/main";
@@ -72,9 +73,9 @@ public class UserController{
 //	}
 	
 	// paramMap : userId , userPw , userBirth , userName , userPhone
-	@PostMapping("signupAction")
+	@PostMapping("/signupAction")
 	public String signupAction(@RequestParam Map<String, Object> paramMap) {
-		
+		System.out.println(paramMap);
 		userService.signupUser(paramMap);
 
 		return "redirect:/signin";
