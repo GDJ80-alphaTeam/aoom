@@ -28,13 +28,9 @@ public class UserController{
 	}
 	
 	@PostMapping("/signinAction")
-	public String signinAction(@RequestParam("userId") String userId, @RequestParam("userPw") String userPw, HttpSession session) {
+	public String signinAction(@RequestParam Map<String, Object> paramMap, HttpSession session) {
 		
-		Map<String, Object> userInput = new HashMap<>();
-		userInput.put("userId", userId);
-		userInput.put("userPw", userPw);
-		
-		Map<String, Object> userInfo = userService.signinUser(userInput);
+		Map<String, Object> userInfo = userService.signinUser(paramMap);
 		System.out.println(userInfo.toString());
 		// 세션에 담기
 		session.setAttribute("userInfo", userInfo);
@@ -74,10 +70,9 @@ public class UserController{
 //	}
 	
 	@PostMapping("signupAction")
-	public String signupAction(@RequestParam Map<String, Object> allParams) {
+	public String signupAction(@RequestParam Map<String, Object> paramMap) {
 		
-		Map<String, Object> newUser = allParams;
-		userService.signupUser(newUser);
+		userService.signupUser(paramMap);
 
 		return "redirect:/signin";
 		

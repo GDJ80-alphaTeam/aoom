@@ -8,6 +8,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import jakarta.mail.Address;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 
@@ -20,28 +21,30 @@ public class EmailService {
 	@Autowired
 	private EmailMapper emailMapper;
 
-	private int number;
+	private int authNo;
 
     // 인증번호 생성
     public void createNumber() {
-        this.number = (int)(Math.random() * (90000)) + 100000;// (int) Math.random() * (최댓값-최소값+1) + 최소값
+        this.authNo = (int)(Math.random() * (90000)) + 100000;// (int) Math.random() * (최댓값-최소값+1) + 최소값
     }
     
     // 인증번호 전송
-	public void sendEmail(String toEmail) {
+	public void sendEmail(Map<String, Object> paramMap) {
 		createNumber();
-		insertAuthNo(toEmail, number);
+		paramMap.put("authNo", authNo);
+		System.out.println(paramMap);
+		insertAuthNo(paramMap);
 		MimeMessage message = mailSender.createMimeMessage();
 
         try {
             // 받는사람
-            message.setRecipients(MimeMessage.RecipientType.TO, toEmail);
+            message.setRecipients(MimeMessage.RecipientType.TO, (String) paramMap.get("userId"));
             // 제목
             message.setSubject("이메일 인증");
             // 내용
             String body = "";
             body += "<h3>" + "요청하신 인증 번호입니다." + "</h3>";
-            body += "<h1>" + number + "</h1>";
+            body += "<h1>" + authNo + "</h1>";
             message.setText(body,"UTF-8", "html");
         } catch (MessagingException e) {
             e.printStackTrace();
@@ -51,18 +54,16 @@ public class EmailService {
 	}
 	
 	// 인증번호 DB 저장
-	public void insertAuthNo(String toEmail, int number) {
-		Map<String, Object> authMap = new HashMap<>();
-		authMap.put("userId", toEmail);
-		authMap.put("authNo", number);
-		int result = emailMapper.insertAuthNo(authMap);
+	public void insertAuthNo(Map<String, Object> paramMap) {
+
+		int result = emailMapper.insertAuthNo(paramMap);
 		if(result != 1) {
 			throw new RuntimeException();
 		}
 	}
 	
 	// 인증번호 조회
-	public int getAuthNo(String userId) {
-		return emailMapper.selectAuthNo(userId);
+	public int checkAuthNo(Map<String, Object> paramMap) {
+		return emailMapper.selectAuthNo(paramMap);
 	}
 }

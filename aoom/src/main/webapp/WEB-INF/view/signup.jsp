@@ -86,16 +86,21 @@
 			$.ajax({
 				url:'/authCheck',
 				method:'post',
-				data:{'authNo':$('#authNo').val()},
-				success:function(result){
-					if(result){
+				data : {
+					'authNo' : $('#authNo').val(),
+					'userId' : $('#userId').val()
+				},
+				success : function(response) {
+					console.log(response);
+					console.log('응답');
+					if (response.success == 1) {
 						$('#authNo').attr('disabled', true);
 						alert('인증 완료');
 					} else {
 						alert('인증번호가 일치하지 않습니다.');
 					}
 				}
-			});	
+			});
 		})
 	</script>
 	

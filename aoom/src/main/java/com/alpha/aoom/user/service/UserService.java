@@ -19,8 +19,8 @@ public class UserService {
 	UserMapper userMapper;
 
 	// 로그인
-	public Map<String, Object> signinUser(Map<String, Object> userInput) {
-		Map<String, Object> userInfo = userMapper.userSelect(userInput);
+	public Map<String, Object> signinUser(Map<String, Object> paramMap) {
+		Map<String, Object> userInfo = userMapper.userSelect(paramMap);
 		
 		if(userInfo.isEmpty()) {
 			throw new RuntimeException();
@@ -30,8 +30,8 @@ public class UserService {
 	}
 	
 	// 회원가입
-	public void signupUser(Map<String , Object> signupUser) {
-		int row = userMapper.userInsert(signupUser);
+	public void signupUser(Map<String , Object> paramMap) {
+		int row = userMapper.userInsert(paramMap);
 		if(row != 1) {
 			throw new RuntimeException();
 		}

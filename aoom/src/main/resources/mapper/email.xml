@@ -11,11 +11,11 @@
 		)
 	</insert>
 	
-	<select id="selectAuthNo" parameterType="String" resultType="int">
+	<select id="selectAuthNo" parameterType="camelCaseMap" resultType="int">
 		SELECT
 			AUTH_NO
 		FROM 
 			USER_AUTH_NO
-		WHERE USER_ID = #{userId}
+		WHERE USER_ID = #{userId} AND AUTH_NO = #{authNo}
 	</select>
 </mapper>
