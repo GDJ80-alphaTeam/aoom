@@ -1,29 +1,23 @@
 package com.alpha.aoom.util.email;
 
-import java.util.HashMap;
 import java.util.Map;
-
-import javax.sound.sampled.ReverbType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import jakarta.mail.Address;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 
 @Component
 @Transactional
-public class EmailService {
-   
+public class SendEmail {
+	
 	@Autowired
 	private JavaMailSender mailSender;
-	@Autowired
-	private EmailMapper emailMapper;
-
-	private int authNo;
+	
+	private int authNo;	
 
     // 인증번호 생성
     public void createNumber() {
@@ -35,11 +29,7 @@ public class EmailService {
 		createNumber();
 		paramMap.put("authNo", authNo);
 		System.out.println(paramMap);
-		if(authRecord(paramMap) == 0) {
-		insertAuthNo(paramMap);
-		}
 		MimeMessage message = mailSender.createMimeMessage();
-
         try {
             // 받는사람
             message.setRecipients(MimeMessage.RecipientType.TO, (String) paramMap.get("userId"));
@@ -57,32 +47,4 @@ public class EmailService {
 		mailSender.send(message);
 		return authNo;
 	}
-	
-	
-	// 인증번호 DB 저장
-	public void insertAuthNo(Map<String, Object> paramMap) {
-
-		int result = emailMapper.insertAuthNo(paramMap);
-		if(result != 1) {
-			throw new RuntimeException();
-		}
-	}
-	
-	// 인증번호 조회
-	public int checkAuthNo(Map<String, Object> paramMap) {
-		return emailMapper.selectAuthNo(paramMap);
-	}
-	
-	// 아이디 인증이력조회 
-	public int authRecord(Map<String,Object> paramMap) {		
-		return emailMapper.authRecord(paramMap);
-	}
-	
-	// 인증번호 업데이트
-	public int updateAuthNo(Map<String,Object> paramMap) {
-		int updataAuthNo = sendEmail(paramMap);
-		paramMap.put("authNo", updataAuthNo);
-		return emailMapper.updateAuthNo(paramMap);
-	}
-	
 }

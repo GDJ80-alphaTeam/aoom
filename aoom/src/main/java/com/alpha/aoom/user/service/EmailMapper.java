@@ -1,4 +1,4 @@
-package com.alpha.aoom.util.email;
+package com.alpha.aoom.user.service;
 
 import java.util.Map;
 

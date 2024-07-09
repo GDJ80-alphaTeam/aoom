@@ -1,12 +1,10 @@
 package com.alpha.aoom.user.controller;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -22,13 +20,13 @@ public class UserController{
 	@Autowired
 	UserService userService;
 
-	@GetMapping("/signin")
+	@RequestMapping("/signin")
 	public String signin() {
 		return "signin";
 	}
 	
 	// paramMap : userId , userPw
-	@PostMapping("/signinAction")
+	@RequestMapping("/signinAction")
 	public String signinAction(@RequestParam Map<String, Object> paramMap, HttpSession session) {
 		
 		Map<String, Object> userInfo = userService.signinUser(paramMap);
@@ -41,19 +39,19 @@ public class UserController{
 	}
 	
 	
-	@GetMapping("/main")
+	@RequestMapping("/main")
 	@ResponseBody
 	public Map<String, Object> main(HttpSession session) {
 		return (Map<String, Object>) session.getAttribute("userInfo");
 	}
 	
-	@GetMapping("/logout")
+	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/main";
 	}
 	
-	@GetMapping("/signup")
+	@RequestMapping("/signup")
 	public String signup() {
 		return "signup";
 	}
@@ -73,7 +71,7 @@ public class UserController{
 //	}
 	
 	// paramMap : userId , userPw , userBirth , userName , userPhone
-	@PostMapping("/signupAction")
+	@RequestMapping("/signupAction")
 	@ResponseBody
 	public String signupAction(@RequestParam Map<String, Object> paramMap) {
 		System.out.println(paramMap);

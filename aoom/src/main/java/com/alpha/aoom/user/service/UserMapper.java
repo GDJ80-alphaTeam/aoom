@@ -2,9 +2,9 @@ package com.alpha.aoom.user.service;
 
 import java.util.Map;
 
+
 import org.apache.ibatis.annotations.Mapper;
 
-import com.alpha.aoom.user.dto.User;
 
 @Mapper
 public interface UserMapper {
