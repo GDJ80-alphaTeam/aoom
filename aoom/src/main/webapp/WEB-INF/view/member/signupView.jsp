@@ -68,13 +68,13 @@
 				
 			// 회원가입 정보 전송
 			$.ajax({
-				url:'/signupAction',
+				url:'/member/signup',
 				method:'post',
 				async:false,
 				data: $('#signup').serialize(),
 				success: function(response){
 					if (response === "success") {
-						window.location.href = '/user/signin';
+						window.location.href = '/member/signinView';
 					} else {
 						alert('회원가입에 실패하였습니다. 다시 시도해 주십시오.');
 					}

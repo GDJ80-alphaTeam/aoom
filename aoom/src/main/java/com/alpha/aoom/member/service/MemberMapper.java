@@ -1,4 +1,4 @@
-package com.alpha.aoom.user.service;
+package com.alpha.aoom.member.service;
 
 import java.util.Map;
 
@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 
 @Mapper
-public interface UserMapper {
+public interface MemberMapper {
 	// 회원가입
 	int userInsert(Map<String, Object> paramMap);
 	// 로그인

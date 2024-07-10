@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alpha.aoom.member.service.MemberService;
 import com.alpha.aoom.user.service.EmailService;
-import com.alpha.aoom.user.service.UserService;
 import com.alpha.aoom.util.email.SendEmail;
 
 
@@ -26,7 +26,7 @@ public class EmailController {
 	@Autowired
 	private SendEmail sendEmail;
 	@Autowired
-	private UserService userService;
+	private MemberService userService;
 	
 	// paramMap : userId  
 	@RequestMapping("/send")

@@ -12,6 +12,26 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
-
+	
+	<button type="button" id="signoutBtn">로그아웃</button>
+	
+	<script type="text/javascript">
+		
+		// 로그아웃 기능
+		$('#signoutBtn').click(function() {
+			
+			$.ajax({
+				url: '/member/signout',
+				method: 'post',
+				success: function(response){
+					if(response === "success") {
+						window.location.href = '/main';
+					}else{
+						alert('로그아웃에 실패하였습니다.');
+					}
+				}
+			})
+		})
+	</script>
 </body>
 </html>

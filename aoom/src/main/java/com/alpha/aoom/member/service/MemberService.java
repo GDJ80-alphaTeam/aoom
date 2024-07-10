@@ -1,4 +1,4 @@
-package com.alpha.aoom.user.service;
+package com.alpha.aoom.member.service;
 
 import java.util.Map;
 
@@ -7,20 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Transactional
 @Slf4j
-public class UserService {
+public class MemberService {
 	
 	@Autowired
-	UserMapper userMapper;
+	MemberMapper memberMapper;
 
 	// 로그인
 	public Map<String, Object> signinUser(Map<String, Object> paramMap) {
-		Map<String, Object> userInfo = userMapper.userSelect(paramMap);
+		Map<String, Object> userInfo = memberMapper.userSelect(paramMap);
 		
 		if(userInfo.isEmpty()) {
 			throw new RuntimeException();
@@ -31,14 +30,14 @@ public class UserService {
 	
 	// 회원가입
 	public int signupUser(Map<String , Object> paramMap) {
-		int row = userMapper.userInsert(paramMap);
+		int row = memberMapper.userInsert(paramMap);
 		
 		return row;
 	}
 	
 	// 아이디 중복 체크
 	public String userDuplicateCheck(Map<String , Object> paramMap) {
-		Map<String, Object> idcheck = userMapper.userDuplicateCheck(paramMap);
+		Map<String, Object> idcheck = memberMapper.userDuplicateCheck(paramMap);
 		if(idcheck == null) {
 			return "fail";
 		}
