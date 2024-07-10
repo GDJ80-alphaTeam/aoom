@@ -14,6 +14,8 @@
 <body>
 	<h1>AOOM 메인페이지</h1>
 	
+	<button onclick="location.href='${pageContext.request.contextPath}/host/main'">호스트모드</button>
+	
 	<table>
 		<tr>
 			<th>메인사진</th>
