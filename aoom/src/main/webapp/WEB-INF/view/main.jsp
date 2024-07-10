@@ -13,10 +13,24 @@
 </head>
 <body>
 	<h1>AOOM 메인페이지</h1>
-	<c:forEach var="r" items="${roomAllList}">
-		${r.roomId}
-	</c:forEach>
 	
+	<table>
+		<tr>
+			<th>메인사진</th>
+			<th>주소</th>
+			<th>숙소이름</th>
+			<th>기본가격</th>
+		</tr>
+		<c:forEach var="r" items="${roomAllList}">
+			<tr>
+				<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${r.roomId}">${r.mainImage}</a></td>
+				<td>${r.address}</td>
+				<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${r.roomId}">${r.roomName}</a></td>
+				<td>${r.defaultPrice}</td>
+			</tr>
+		</c:forEach>
+		
+	</table>
 	
 	<button type="button" id="signoutBtn">로그아웃</button>
 	
