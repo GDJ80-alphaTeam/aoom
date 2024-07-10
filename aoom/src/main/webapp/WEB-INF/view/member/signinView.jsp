@@ -14,10 +14,10 @@
 <body>
 	<form id="signin">
 		<div>
-			이메일 : <input type="email" name="userId" id="userId" placeholder="이메일을 입력해주세요" required="required">
+			이메일 : <input type="email" value="newlife5991@naver.com" name="userId" id="userId" placeholder="이메일을 입력해주세요" required="required">
 		</div>
 		<div>
-			비밀번호 : <input type="password" name="userPw" id="userPw" required="required">
+			비밀번호 : <input type="password" value="qwer1234!" name="userPw" id="userPw" required="required">
 		</div>
 		
 		<button type="button" id="signinBtn">로그인</button>
