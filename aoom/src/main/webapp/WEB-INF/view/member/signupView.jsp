@@ -131,7 +131,7 @@
 				data:{'userId':$('#userId').val()},
 				success:function(response){
 					if(response == 'success'){
-						$("#userIdMsg").html('');
+						alert('인증번호를 전송하였습니다.');
 					}else{
 						$("#userIdMsg").html('중복된 이메일 입니다.');
 					}

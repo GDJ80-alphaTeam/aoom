@@ -53,10 +53,10 @@ public class MemberService {
 	public String userDuplicateCheck(Map<String , Object> param) {
 		
 		// 아이디 중복 체크 결과 담기
-		Map<String, Object> idcheck = memberMapper.userDuplicateCheck(param);
+		Map<String, Object> idCheck = memberMapper.userDuplicateCheck(param);
 		
 		// 중복 체크 결과 분기문
-		if(idcheck == null) { // 중복되지 않았을 때
+		if(idCheck == null) { // 중복되지 않았을 때
 			return "success";
 		}
 		

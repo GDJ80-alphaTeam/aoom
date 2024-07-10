@@ -17,34 +17,28 @@ public class SendEmail {
 	@Autowired
 	private JavaMailSender mailSender;
 	
-	private int authNo;	
-
-    // 인증번호 생성
-    public void createNumber() {
-        this.authNo = (int)(Math.random() * (90000)) + 100000;// (int) Math.random() * (최댓값-최소값+1) + 최소값
-    }
-    
     // 인증번호 전송
-	public int sendEmail(Map<String, Object> param) {
-		createNumber();
-		param.put("authNo", authNo);
-		System.out.println(param);
+	public void sendEmail(String to, String title, String body) {
+		
+		System.out.println("받는사람 : " + to);
+		System.out.println("제목 : " + title);
+		System.out.println("내용 : " + body);
+		
+		// 보낼 메일 양식 만들기
 		MimeMessage message = mailSender.createMimeMessage();
+		
         try {
             // 받는사람
-            message.setRecipients(MimeMessage.RecipientType.TO, (String) param.get("userId"));
+            message.setRecipients(MimeMessage.RecipientType.TO, to);
             // 제목
-            message.setSubject("이메일 인증");
+            message.setSubject(title);
             // 내용
-            String body = "";
-            body += "<h3>" + "요청하신 인증 번호입니다." + "</h3>";
-            body += "<h1>" + authNo + "</h1>";
             message.setText(body,"UTF-8", "html");
         } catch (MessagingException e) {
             e.printStackTrace();
         }
         
+        // 메일 보내기
 		mailSender.send(message);
-		return authNo;
 	}
 }

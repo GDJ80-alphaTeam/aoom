@@ -31,26 +31,21 @@ public class UserAuthNoController {
 	@ResponseBody
 	public String send(@RequestParam Map<String, Object> param) {
 		System.out.println("인증번호 받을 이메일 : " + param.get("userId"));
-		
-		// 이메일 중복체크
-		String idCheck = memberService.userDuplicateCheck(param);
-		
-		// 이메일 중복체크 분기문
-		if(idCheck.equals("success")) { // 중복되지 않음
-			// 인증내역 분기문
-			if(userAuthNoService.authRecord(param) == 1) { // 인증이력 있음
-				int authNo = sendEmail.sendEmail(param); // 이메일 보내기
-				param.put("authNo",authNo);
-				userAuthNoService.updateAuthNo(param); // 기존에 있던 인증번호 update
-			} else { // 인증이력 없음
-				int authNo = sendEmail.sendEmail(param); // 이메일 보내기
-				param.put("authNo",authNo);
-				userAuthNoService.insertAuthNo(param); // 인증번호 insert
-			}
-			return "success"; // success 반환
-		}else { // 중복됨
-			return "fail"; // fail 반환
-		}	
+	   
+		return userAuthNoService.sendAuthNo(param);
+
+		/*
+		 * // 이메일 중복체크 String idCheck = memberService.userDuplicateCheck(param);
+		 * 
+		 * // 이메일 중복체크 분기문 if(idCheck.equals("success")) { // 중복되지 않음 // 인증내역 분기문
+		 * if(userAuthNoService.authRecord(param) == 1) { // 인증이력 있음 int authNo =
+		 * sendEmail.sendEmail(param); // 이메일 보내기 param.put("authNo",authNo);
+		 * userAuthNoService.updateAuthNo(param); // 기존에 있던 인증번호 update } else { // 인증이력
+		 * 없음 int authNo = sendEmail.sendEmail(param); // 이메일 보내기
+		 * param.put("authNo",authNo); userAuthNoService.insertAuthNo(param); // 인증번호
+		 * insert } return "success"; // success 반환 }else { // 중복됨 return "fail"; //
+		 * fail 반환 }
+		 */
 	}
 	
 	// 인증번호 확인
