@@ -25,14 +25,14 @@ public class SendEmail {
     }
     
     // 인증번호 전송
-	public int sendEmail(Map<String, Object> paramMap) {
+	public int sendEmail(Map<String, Object> param) {
 		createNumber();
-		paramMap.put("authNo", authNo);
-		System.out.println(paramMap);
+		param.put("authNo", authNo);
+		System.out.println(param);
 		MimeMessage message = mailSender.createMimeMessage();
         try {
             // 받는사람
-            message.setRecipients(MimeMessage.RecipientType.TO, (String) paramMap.get("userId"));
+            message.setRecipients(MimeMessage.RecipientType.TO, (String) param.get("userId"));
             // 제목
             message.setSubject("이메일 인증");
             // 내용

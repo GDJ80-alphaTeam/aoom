@@ -8,11 +8,11 @@ import org.apache.ibatis.annotations.Mapper;
 public interface EmailMapper {
 
 	// 인증번호 DB 저장
-	int insertAuthNo(Map<String, Object> paramMap);
+	int insertAuthNo(Map<String, Object> param);
 	// 인증번호 조회
-	int selectAuthNo(Map<String, Object> paramMap);
+	int selectAuthNo(Map<String, Object> param);
 	// 인증이력 조회
-	int authRecord(Map<String, Object> paramMap);
+	int authRecord(Map<String, Object> param);
 	// 인증번호 업데이트
-	int updateAuthNo(Map<String, Object> paramMap);
+	int updateAuthNo(Map<String, Object> param);
 }

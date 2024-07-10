@@ -28,9 +28,9 @@ public class MemberController{
 	
 	// paramMap : userId , userPw
 	@RequestMapping("/signin")
-	public String signin(@RequestParam Map<String, Object> paramMap, HttpSession session) {
+	public String signin(@RequestParam Map<String, Object> param, HttpSession session) {
 		
-		Map<String, Object> userInfo = memberService.signinUser(paramMap);
+		Map<String, Object> userInfo = memberService.signinUser(param);
 		System.out.println(userInfo.toString());
 		// 세션에 담기
 		//
@@ -55,10 +55,10 @@ public class MemberController{
 	// paramMap : userId , userPw , userBirth , userName , userPhone
 	@RequestMapping("/signup")
 	@ResponseBody
-	public String signup(@RequestParam Map<String, Object> paramMap) {
-		System.out.println(paramMap);
+	public String signup(@RequestParam Map<String, Object> param) {
+
 		// 회원가입
-		int row = memberService.signupUser(paramMap);
+		int row = memberService.signupUser(param);
 		
 		// 회원가입 성공 분기
 		if (row == 1) {

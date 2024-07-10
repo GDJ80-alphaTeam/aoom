@@ -18,8 +18,8 @@ public class MemberService {
 	MemberMapper memberMapper;
 
 	// 로그인
-	public Map<String, Object> signinUser(Map<String, Object> paramMap) {
-		Map<String, Object> userInfo = memberMapper.userSelect(paramMap);
+	public Map<String, Object> signinUser(Map<String, Object> param) {
+		Map<String, Object> userInfo = memberMapper.userSelect(param);
 		
 		if(userInfo.isEmpty()) {
 			throw new RuntimeException();
@@ -29,15 +29,15 @@ public class MemberService {
 	}
 	
 	// 회원가입
-	public int signupUser(Map<String , Object> paramMap) {
-		int row = memberMapper.userInsert(paramMap);
+	public int signupUser(Map<String , Object> param) {
+		int row = memberMapper.userInsert(param);
 		
 		return row;
 	}
 	
 	// 아이디 중복 체크
-	public String userDuplicateCheck(Map<String , Object> paramMap) {
-		Map<String, Object> idcheck = memberMapper.userDuplicateCheck(paramMap);
+	public String userDuplicateCheck(Map<String , Object> param) {
+		Map<String, Object> idcheck = memberMapper.userDuplicateCheck(param);
 		if(idcheck == null) {
 			return "fail";
 		}

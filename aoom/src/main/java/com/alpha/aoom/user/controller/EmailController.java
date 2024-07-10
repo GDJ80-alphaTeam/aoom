@@ -31,24 +31,24 @@ public class EmailController {
 	// paramMap : userId  
 	@RequestMapping("/send")
 	@ResponseBody
-	public String getMethodName(@RequestParam Map<String, Object> paramMap) {
-		System.out.println("userId : " + paramMap.get("userId"));
+	public String send(@RequestParam Map<String, Object> param) {
+		System.out.println("인증번호 받을 이메일 : " + param.get("userId"));
 		
-		String idCheck = userService.userDuplicateCheck(paramMap);
+		String idCheck = userService.userDuplicateCheck(param);
 		if(idCheck.equals("success")) {
 			return "success";
 		}else {
 			// 인증내역이 있으면 1 없으면 0
-			if(emailService.authRecord(paramMap) == 1) {
+			if(emailService.authRecord(param) == 1) {
 				
-				int authNo = sendEmail.sendEmail(paramMap);
-				paramMap.put("authNo",authNo);
+				int authNo = sendEmail.sendEmail(param);
+				param.put("authNo",authNo);
 				// 기존에 있던 인증번호 update
-				emailService.updateAuthNo(paramMap); 
+				emailService.updateAuthNo(param); 
 			} else {	
-				int authNo = sendEmail.sendEmail(paramMap);
-				paramMap.put("authNo",authNo);
-				emailService.insertAuthNo(paramMap);
+				int authNo = sendEmail.sendEmail(param);
+				param.put("authNo",authNo);
+				emailService.insertAuthNo(param);
 			}
 			return "fail";
 		}	
@@ -57,10 +57,10 @@ public class EmailController {
 	// paramMap : userId , authNo
 	@ResponseBody
 	@RequestMapping("/authCheck")
-	public Map<String, Object> authCheck(@RequestParam Map<String, Object> paramMap) {
+	public Map<String, Object> authCheck(@RequestParam Map<String, Object> param) {
 		Map<String, Object> response = new HashMap<>();
 		System.out.println("test");
-		int authNo = emailService.checkAuthNo(paramMap);
+		int authNo = emailService.checkAuthNo(param);
 		System.out.println("test"+authNo);
 		response.put("success", authNo);
 		return response;
