@@ -12,15 +12,37 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
-	<form action="/member/signin" method="post">
+	<form id="signin">
 		<div>
-			아이디 : <input type="text" name="userId" placeholder="이메일을 입력해주세요">
+			이메일 : <input type="email" name="userId" id="userId" placeholder="이메일을 입력해주세요" required="required">
 		</div>
 		<div>
-			비밀번호 : <input type="password" name="userPw">
+			비밀번호 : <input type="password" name="userPw" id="userPw" required="required">
 		</div>
 		
-		<button type="submit">로그인</button>
+		<button type="button" id="signinBtn">로그인</button>
 	</form>
+	
+	<script type="text/javascript">
+		
+		// 로그인 버튼 클릭시
+		$('#signinBtn').click(function(){
+			
+			$.ajax({
+				url:'/member/signin',
+				method: 'post',
+				data: $('#signin').serialize(),
+				success: function(response){
+					if (response === 'success'){
+						window.location.href = '/main';
+					} else {
+						alert('로그인에 실패하였습니다.');
+					}
+				}
+			})
+			
+		})
+		
+	</script>
 </body>
 </html>

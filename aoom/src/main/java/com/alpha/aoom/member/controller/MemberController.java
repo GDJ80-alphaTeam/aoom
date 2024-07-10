@@ -28,15 +28,21 @@ public class MemberController{
 	
 	// paramMap : userId , userPw
 	@RequestMapping("/signin")
+	@ResponseBody
 	public String signin(@RequestParam Map<String, Object> param, HttpSession session) {
 		
-		Map<String, Object> userInfo = memberService.signinUser(param);
-		System.out.println(userInfo.toString());
-		// 세션에 담기
-		//
-		session.setAttribute("userInfo", userInfo);
+		System.out.println("로그인 정보 : " + param);
 		
-		return "redirect:/main";
+		Map<String, Object> signinInfo = memberService.signinUser(param);
+		String result = (String) signinInfo.get("result");
+		
+		if(result.equals("success")) { // 로그인 성공
+			// 세션에 담기
+			session.setAttribute("userInfo", signinInfo.get("userInfo"));
+			return "success";
+		} else { // 로그인실패
+			return "fail";
+		}
 	}
 	
 	@RequestMapping("/signout")

@@ -74,6 +74,7 @@
 				data: $('#signup').serialize(),
 				success: function(response){
 					if (response === "success") {
+						alert('회원가입 성공');
 						window.location.href = '/member/signinView';
 					} else {
 						alert('회원가입에 실패하였습니다. 다시 시도해 주십시오.');

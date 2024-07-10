@@ -1,7 +1,7 @@
 package com.alpha.aoom.member.service;
 
+import java.util.HashMap;
 import java.util.Map;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,11 +21,16 @@ public class MemberService {
 	public Map<String, Object> signinUser(Map<String, Object> param) {
 		Map<String, Object> userInfo = memberMapper.userSelect(param);
 		
-		if(userInfo.isEmpty()) {
-			throw new RuntimeException();
+		Map<String, Object> signinInfo = new HashMap<>();
+		signinInfo.put("userInfo", userInfo);
+		
+		if(userInfo != null) {
+			signinInfo.put("result", "success");
+		} else {
+			signinInfo.put("result", "fail");
 		}
 		
-		return userInfo;
+		return signinInfo;
 	}
 	
 	// 회원가입

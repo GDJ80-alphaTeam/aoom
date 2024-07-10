@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 public class Main {
 	@RequestMapping("/main")
 	public String main(HttpSession session) {
-		return "/main";
+		
+		return "main";
 	}
 }

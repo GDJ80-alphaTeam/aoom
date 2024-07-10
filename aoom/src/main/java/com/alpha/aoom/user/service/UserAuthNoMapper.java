@@ -5,7 +5,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface EmailMapper {
+public interface UserAuthNoMapper {
 
 	// 인증번호 DB 저장
 	int insertAuthNo(Map<String, Object> param);

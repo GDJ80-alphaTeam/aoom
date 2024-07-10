@@ -8,17 +8,17 @@ import org.springframework.stereotype.Service;
 import com.alpha.aoom.util.email.SendEmail;
 
 @Service
-public class EmailService {
+public class UserAuthNoService {
 	
 	@Autowired
 	private SendEmail sendemail;
 	@Autowired
-	private EmailMapper emailMapper;
+	private UserAuthNoMapper userAuthNoMapper;
 	
 	// 인증번호 DB 저장
 	public void insertAuthNo(Map<String, Object> param) {
 
-		int result = emailMapper.insertAuthNo(param);
+		int result = userAuthNoMapper.insertAuthNo(param);
 		if(result != 1) {
 			throw new RuntimeException();
 		}
@@ -26,18 +26,18 @@ public class EmailService {
 	
 	// 인증번호 조회
 	public int checkAuthNo(Map<String, Object> param) {
-		return emailMapper.selectAuthNo(param);
+		return userAuthNoMapper.selectAuthNo(param);
 	}
 	
 	// 아이디 인증이력조회 
 	public int authRecord(Map<String,Object> param) {		
-		return emailMapper.authRecord(param);
+		return userAuthNoMapper.authRecord(param);
 	}
 	
 	// 인증번호 업데이트
 	public int updateAuthNo(Map<String,Object> param) {
 		int updataAuthNo = sendemail.sendEmail(param);
 		param.put("authNo", updataAuthNo);
-		return emailMapper.updateAuthNo(param);
+		return userAuthNoMapper.updateAuthNo(param);
 	}
 }
