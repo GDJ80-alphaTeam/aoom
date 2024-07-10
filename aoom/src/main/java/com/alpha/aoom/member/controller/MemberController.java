@@ -21,11 +21,13 @@ public class MemberController{
 	@Autowired
 	MemberService memberService;
 
+	// 로그인화면 호출
 	@RequestMapping("/signinView")
 	public String signinView() {
 		return "/member/signinView";
 	}
 	
+	// 로그인기능 호출
 	// paramMap : userId , userPw
 	@RequestMapping("/signin")
 	@ResponseBody
@@ -33,9 +35,13 @@ public class MemberController{
 		
 		System.out.println("로그인 정보 : " + param);
 		
+		// 서비스에서 로그인정보와 로그인 결과 호출
 		Map<String, Object> signinInfo = memberService.signinUser(param);
+		
+		// 로그인 결과
 		String result = (String) signinInfo.get("result");
 		
+		// 로그인 결과 분기문
 		if(result.equals("success")) { // 로그인 성공
 			// 세션에 담기
 			session.setAttribute("userInfo", signinInfo.get("userInfo"));
@@ -45,19 +51,24 @@ public class MemberController{
 		}
 	}
 	
+	// 로그아웃 기능 호출
 	@RequestMapping("/signout")
 	@ResponseBody
 	public String logout(HttpSession session) {
+		
+		// 세션 비우기
 		session.invalidate();
 		
-		return "success";
+		return "success"; // 로그아웃 ajax에 전달
 	}
 	
+	// 회원가입 호출
 	@RequestMapping("/signupView")
 	public String signupView() {
 		return "/member/signupView";
 	}
 	
+	// 회원가입 기능 호출
 	// paramMap : userId , userPw , userBirth , userName , userPhone
 	@RequestMapping("/signup")
 	@ResponseBody

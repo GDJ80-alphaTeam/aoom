@@ -11,34 +11,24 @@ public class CamelCaseMap extends HashMap<String, Object> {
 
 	private String convertToCamelCase(String input) {
 		
+		// 조작이 유용한 String으로 선언
 		StringBuilder result = new StringBuilder();
 
         boolean nextUpperCase = false;
+        // 언더바를 찾아서 언더바인 다음 문자를 대문자로 변경 그렇지 않은 것은 다 소문자로 변경
         for (char c : input.toCharArray()) {
-            if (c == '_') {
+            if (c == '_') { // 언더바 찾기
                 nextUpperCase = true;
             } else {
                 if (nextUpperCase) {
-                    result.append(Character.toUpperCase(c));
+                    result.append(Character.toUpperCase(c)); // 대문자로변경
                     nextUpperCase = false;
                 } else {
-                    result.append(Character.toLowerCase(c));
+                    result.append(Character.toLowerCase(c)); // 소문자로 변경
                 }
             }
         }
         
-		// 람다식 내부에서는 외부의 지역변수(stack 에 저장)를 변경할수 가 없음
-		// java8 이상에서는 final 또는 effectively final 인 변수 변경가능
-//		boolean[] nextUpperCase = { false }; // 배열로 감싸서 람다식 내부에서 값을 변경할 수 있도록 함
-//		input.chars().forEach(c -> {
-//			if (c == '_') {
-//				nextUpperCase[0] = true;
-//			} else {
-//				result.append(nextUpperCase[0] ? Character.toUpperCase((char) c) : Character.toLowerCase((char) c));
-//				nextUpperCase[0] = false;
-//			}
-//		});
-
 		return result.toString();
 	}
 

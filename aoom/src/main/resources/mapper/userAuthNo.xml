@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.alpha.aoom.user.service.UserAuthNoMapper">
+
+	<!-- 인증번호 DB 저장 -->
 	<insert id="insertAuthNo" parameterType="map">
 		INSERT INTO USER_AUTH_NO(
 			USER_ID,
@@ -11,6 +13,7 @@
 		)
 	</insert>
 	
+	<!-- 인증번호 일치여부 확인 -->
 	<select id="selectAuthNo" parameterType="camelCaseMap" resultType="int">
 		SELECT
 			COUNT(*) 
@@ -20,6 +23,7 @@
 			USER_ID = #{userId} AND AUTH_NO = #{authNo}
 	</select>
 	
+	<!-- 인증이력 조회 -->
 	<select id="authRecord" parameterType="camelCaseMap" resultType="int">
 		SELECT
 			COUNT(*) 
@@ -29,6 +33,7 @@
 			USER_ID = #{userId} 
 	</select>
 	
+	<!-- 인증번호 업데이트 -->
 	<update id="updateAuthNo" parameterType="map">
 		UPDATE
 			USER_AUTH_NO

@@ -15,9 +15,6 @@ import com.alpha.aoom.member.service.MemberService;
 import com.alpha.aoom.user.service.UserAuthNoService;
 import com.alpha.aoom.util.email.SendEmail;
 
-
-
-
 @Controller
 public class UserAuthNoController {
 	
@@ -28,44 +25,49 @@ public class UserAuthNoController {
 	@Autowired
 	private MemberService memberService;
 	
+	// 인증번호 보내기
 	// paramMap : userId  
 	@RequestMapping("/send")
 	@ResponseBody
 	public String send(@RequestParam Map<String, Object> param) {
 		System.out.println("인증번호 받을 이메일 : " + param.get("userId"));
 		
+		// 이메일 중복체크
 		String idCheck = memberService.userDuplicateCheck(param);
-		if(idCheck.equals("success")) {
-			return "success";
-		}else {
-			// 인증내역이 있으면 1 없으면 0
-			if(userAuthNoService.authRecord(param) == 1) {
-				
-				int authNo = sendEmail.sendEmail(param);
+		
+		// 이메일 중복체크 분기문
+		if(idCheck.equals("success")) { // 중복되지 않음
+			// 인증내역 분기문
+			if(userAuthNoService.authRecord(param) == 1) { // 인증이력 있음
+				int authNo = sendEmail.sendEmail(param); // 이메일 보내기
 				param.put("authNo",authNo);
-				// 기존에 있던 인증번호 update
-				userAuthNoService.updateAuthNo(param); 
-			} else {	
-				int authNo = sendEmail.sendEmail(param);
+				userAuthNoService.updateAuthNo(param); // 기존에 있던 인증번호 update
+			} else { // 인증이력 없음
+				int authNo = sendEmail.sendEmail(param); // 이메일 보내기
 				param.put("authNo",authNo);
-				userAuthNoService.insertAuthNo(param);
+				userAuthNoService.insertAuthNo(param); // 인증번호 insert
 			}
-			return "fail";
+			return "success"; // success 반환
+		}else { // 중복됨
+			return "fail"; // fail 반환
 		}	
 	}
 	
+	// 인증번호 확인
 	// paramMap : userId , authNo
 	@ResponseBody
 	@RequestMapping("/authCheck")
-	public Map<String, Object> authCheck(@RequestParam Map<String, Object> param) {
+	public String authCheck(@RequestParam Map<String, Object> param) {
 		
-		Map<String, Object> response = new HashMap<>();
+		// 인증번호 일치여부 확인
+		int result = userAuthNoService.checkAuthNo(param);
 		
-		int authNo = userAuthNoService.checkAuthNo(param);
-		
-		response.put("success", authNo);
-		
-		return response;
+		// 인증번호 일치 분기문
+		if(result == 1) { // 인증번호 일치
+			return "success";
+		}else { // 인증번호 불일치
+			return "fail";
+		}
 	}
 	
 }

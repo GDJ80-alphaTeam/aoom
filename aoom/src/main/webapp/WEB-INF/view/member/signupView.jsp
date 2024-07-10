@@ -23,7 +23,6 @@
 			<div>
 				인증번호 : <input type="text" name="authNo" id="authNo" required="required">
 				<button type="button" id="authCheck">인증번호 확인</button>
-				<span id="authMsg"></span>
 			</div>
 			<div>
 				비밀번호 : <input type="password" name="userPw" id="userPw" min="8" max="15" required="required">
@@ -132,9 +131,9 @@
 				data:{'userId':$('#userId').val()},
 				success:function(response){
 					if(response == 'success'){
-						$("#userIdMsg").html('중복된 이메일 입니다.');
-					}else{
 						$("#userIdMsg").html('');
+					}else{
+						$("#userIdMsg").html('중복된 이메일 입니다.');
 					}
 					$("#authBtn").show();
 					$("#spinner").html('');
@@ -152,11 +151,9 @@
 					'userId' : $('#userId').val()
 				},
 				success : function(response) {
-					//console.log(response);
-					console.log('응답');
-					if (response.success == 1) {
-						$('#authNo').attr('disabled', true);
+					if (response === 'success') {
 						alert('인증 완료');
+						$('#authNo').attr('disabled', true);
 						$('#signupBtn').attr('disabled', false);
 						$('#userId').attr('readonly', true);
 					} else {

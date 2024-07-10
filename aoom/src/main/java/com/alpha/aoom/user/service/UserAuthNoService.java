@@ -15,16 +15,19 @@ public class UserAuthNoService {
 	@Autowired
 	private UserAuthNoMapper userAuthNoMapper;
 	
-	// 인증번호 DB 저장
+	// 인증번호 DB에 저장
 	public void insertAuthNo(Map<String, Object> param) {
-
+		
+		// 인증번호 DB에 저장
 		int result = userAuthNoMapper.insertAuthNo(param);
+		
+		// 인증번호가 DB에 저장되지 않을때
 		if(result != 1) {
-			throw new RuntimeException();
+			throw new RuntimeException(); 
 		}
 	}
 	
-	// 인증번호 조회
+	// 인증번호 일치여부 확인
 	public int checkAuthNo(Map<String, Object> param) {
 		return userAuthNoMapper.selectAuthNo(param);
 	}
@@ -36,8 +39,6 @@ public class UserAuthNoService {
 	
 	// 인증번호 업데이트
 	public int updateAuthNo(Map<String,Object> param) {
-		int updataAuthNo = sendemail.sendEmail(param);
-		param.put("authNo", updataAuthNo);
 		return userAuthNoMapper.updateAuthNo(param);
 	}
 }

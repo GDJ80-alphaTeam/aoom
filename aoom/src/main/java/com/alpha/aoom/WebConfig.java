@@ -15,10 +15,11 @@ public class WebConfig implements WebMvcConfigurer{
 		// 세션 체크 인터셉터
 		registry.addInterceptor(new SessionCheckInterceptor())
 				.order(1)	// 적용할 필터 순서 설정
-				.addPathPatterns("/**")
+				.addPathPatterns("/**") // 적용할 호출명 설정
+				// 제외 할 호출명 설정
 				.excludePathPatterns("/main", "/member/signupView", "/member/signup", "/member/signout", "/member/signinView", "/member/signin", "/send", "/authCheck");
 		
-		
+		// 위 설정을 인터셉터에 적용
 		WebMvcConfigurer.super.addInterceptors(registry);
 
 	}
