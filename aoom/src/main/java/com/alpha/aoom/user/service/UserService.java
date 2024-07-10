@@ -1,4 +1,4 @@
-package com.alpha.aoom.member.service;
+package com.alpha.aoom.user.service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,18 +10,18 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
-@Transactional
 @Slf4j
-public class MemberService {
+@Transactional
+public class UserService {
 	
 	@Autowired
-	MemberMapper memberMapper;
+	UserMapper userMapper;
 
 	// 로그인
 	public Map<String, Object> signinUser(Map<String, Object> param) {
 		
 		// 유효한 userID인지 확인 후 유효하면 정보 담기
-		Map<String, Object> userInfo = memberMapper.userSelect(param);
+		Map<String, Object> userInfo = userMapper.select(param);
 		
 		// 로그인 정보 담기
 		Map<String, Object> signinInfo = new HashMap<>();
@@ -43,7 +43,7 @@ public class MemberService {
 	public int signupUser(Map<String , Object> param) {
 		
 		// 회원가입 결과 받기(성공 : 1 , 실패 : 0)
-		int row = memberMapper.userInsert(param);
+		int row = userMapper.insert(param);
 		
 		// 회원가입 결과 반환
 		return row;
@@ -53,7 +53,7 @@ public class MemberService {
 	public String userDuplicateCheck(Map<String , Object> param) {
 		
 		// 아이디 중복 체크 결과 담기
-		Map<String, Object> idCheck = memberMapper.userDuplicateCheck(param);
+		Map<String, Object> idCheck = userMapper.duplicateCheck(param);
 		
 		// 중복 체크 결과 분기문
 		if(idCheck == null) { // 중복되지 않았을 때

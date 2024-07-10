@@ -1,12 +1,11 @@
-package com.alpha.aoom.user.service;
+package com.alpha.aoom.userAuthNo.service;
 
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.alpha.aoom.member.service.MemberMapper;
-import com.alpha.aoom.member.service.MemberService;
+import com.alpha.aoom.user.service.UserService;
 import com.alpha.aoom.util.email.SendEmail;
 
 @Service
@@ -17,26 +16,26 @@ public class UserAuthNoService {
 	@Autowired
 	private UserAuthNoMapper userAuthNoMapper;
 	@Autowired
-	MemberService memberService;
+	UserService userService;
 	
 	// 인증번호 DB에 저장
 	public void insertAuthNo(Map<String, Object> param) {
-		int result = userAuthNoMapper.insertAuthNo(param);
+		userAuthNoMapper.insert(param);
 	}
 	
 	// 인증번호 일치여부 확인
 	public int checkAuthNo(Map<String, Object> param) {
-		return userAuthNoMapper.selectAuthNo(param);
+		return userAuthNoMapper.select(param);
 	}
 	
 	// 아이디 인증이력조회 
 	public int authRecord(Map<String,Object> param) {		
-		return userAuthNoMapper.authRecord(param);
+		return userAuthNoMapper.recordCheck(param);
 	}
 	
 	// 인증번호 업데이트
 	public int updateAuthNo(Map<String,Object> param) {
-		return userAuthNoMapper.updateAuthNo(param);
+		return userAuthNoMapper.update(param);
 	}
 	
     // 인증번호 생성
@@ -48,7 +47,7 @@ public class UserAuthNoService {
     public String sendAuthNo(Map<String,Object> param) {
     	
 		// 아이디 중복 체크 결과 담기
-		String idCheck = memberService.userDuplicateCheck(param);
+		String idCheck = userService.userDuplicateCheck(param);
 		int createNumber = createNumber();
 		param.put("authNo", createNumber);
 		
@@ -72,20 +71,3 @@ public class UserAuthNoService {
 		
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

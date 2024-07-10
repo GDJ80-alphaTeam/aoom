@@ -126,7 +126,7 @@
 			$("#authBtn").hide();
 			$("#spinner").html('<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>')
 			$.ajax({
-				url:'/send',
+				url:'/userAuthNo/send',
 				method:'post',
 				data:{'userId':$('#userId').val()},
 				success:function(response){
@@ -144,7 +144,7 @@
 		// 이메일 인증번호 확인
 		$('#authCheck').click(function() {
 			$.ajax({
-				url:'/authCheck',
+				url:'/userAuthNo/authCheck',
 				method:'post',
 				data : {
 					'authNo' : $('#authNo').val(),
@@ -165,8 +165,6 @@
 		
 		
 	</script>
-	
-	
 	
 </body>
 </html>

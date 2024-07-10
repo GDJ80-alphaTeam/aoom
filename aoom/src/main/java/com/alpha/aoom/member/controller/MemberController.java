@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alpha.aoom.member.service.MemberService;
+import com.alpha.aoom.user.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberController{
 	
 	@Autowired
-	MemberService memberService;
+	UserService userService;
 
 	// 로그인화면 호출
 	@RequestMapping("/signinView")
@@ -36,7 +36,7 @@ public class MemberController{
 		System.out.println("로그인 정보 : " + param);
 		
 		// 서비스에서 로그인정보와 로그인 결과 호출
-		Map<String, Object> signinInfo = memberService.signinUser(param);
+		Map<String, Object> signinInfo = userService.signinUser(param);
 		
 		// 로그인 결과
 		String result = (String) signinInfo.get("result");
@@ -58,6 +58,7 @@ public class MemberController{
 		
 		// 세션 비우기
 		session.invalidate();
+		System.out.println("로그아웃성공");
 		
 		return "success"; // 로그아웃 ajax에 전달
 	}
@@ -75,7 +76,7 @@ public class MemberController{
 	public String signup(@RequestParam Map<String, Object> param) {
 
 		// 회원가입
-		int row = memberService.signupUser(param);
+		int row = userService.signupUser(param);
 		
 		// 회원가입 성공 분기
 		if (row == 1) {
