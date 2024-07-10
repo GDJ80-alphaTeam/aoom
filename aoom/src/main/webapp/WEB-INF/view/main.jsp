@@ -46,7 +46,8 @@
 				method: 'post',
 				success: function(response){
 					if(response === "success") {
-						window.location.href = '/main';
+						alert('로그아웃 되었습니다.');
+						window.location.href = '/member/signinView';
 					}else{
 						alert('로그아웃에 실패하였습니다.');
 					}

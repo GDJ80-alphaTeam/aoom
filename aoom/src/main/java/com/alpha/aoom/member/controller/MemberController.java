@@ -58,7 +58,7 @@ public class MemberController{
 		
 		// 세션 비우기
 		session.invalidate();
-		System.out.println("로그아웃성공");
+		log.info("로그아웃성공");
 		
 		return "success"; // 로그아웃 ajax에 전달
 	}
