@@ -5,11 +5,11 @@
 	<!-- 회원가입 -->
 	<insert id="insert" parameterType="map">
 		INSERT INTO USERS(
-			USER_ID,
-			USER_PW,
-			USER_BIRTH,
-			USER_NAME,
-			USER_PHONE
+			user_id,
+			user_pw,
+			user_birth,
+			user_name,
+			user_phone
 		) VALUES(
 			#{userId}, 
 			#{userPw}, 
@@ -22,29 +22,29 @@
 	<!-- 로그인 -->
 	<select id="select" parameterType="map" resultType="camelCaseMap" >
 		SELECT
-			USER_ID,
-			USER_PW,
-			USER_BIRTH,
-			USER_NAME,
-			USER_PHONE,
-			USERSTAT_CODE,
-			CREATE_DATE,
-			UPDATE_DATE,
-			USERAUTH_CODE,
-			USER_IMAGE
+			user_id,
+			user_pw,
+			user_birth,
+			user_name,
+			user_phone,
+			userstat_code,
+			create_date,
+			update_date,
+			userauth_code,
+			user_image
 		FROM 
 			USERS
 		WHERE 
-			USER_ID = #{userId} AND USER_PW = #{userPw}
+			user_id = #{userId} AND user_pw = #{userPw}
 	</select>
 	
 	<!-- 아이디 중복체크 -->
 	<select id="duplicateCheck" parameterType="map" resultType="camelCaseMap" >
 		SELECT
-			USER_ID
+			user_id
 		FROM
-			USERS
+			users
 		WHERE
-			USER_ID = #{userId}
+			user_id = #{userId}
 	</select>
 </mapper>

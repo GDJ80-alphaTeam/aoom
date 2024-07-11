@@ -4,29 +4,29 @@
 	
 	<!-- room테이블 컬럼 모음 sql조각 -->
 	<sql id="room_col">
-		R.room_id,
-		R.user_id,
-		R.room_name,
-		R.roomtype_code,
-		R.roomcate_code,
-		R.default_price,
-		R.start_date,
-		R.end_date,
-		R.address,
-		R.roomstat_code,
-		R.room_content,
-		R.reject_content,
-		R.max_people,
-		R.total_space,
-		R.total_bed,
-		R.total_bath,
-		R.create_date,
-		R.update_date,
-		R.main_image,
-		R.original_name,
-		R.bank_code,
-		R.account_no,
-		R.views
+		r.room_id,
+		r.user_id,
+		r.room_name,
+		r.roomtype_code,
+		r.roomcate_code,
+		r.default_price,
+		r.start_date,
+		r.end_date,
+		r.address,
+		r.roomstat_code,
+		r.room_content,
+		r.reject_content,
+		r.max_people,
+		r.total_space,
+		r.total_bed,
+		r.total_bath,
+		r.create_date,
+		r.update_date,
+		r.main_image,
+		r.original_name,
+		r.bank_code,
+		r.account_no,
+		r.views
 	</sql>	
 	
 	<!-- 숙소 전체 목록 조회 retrieveList -->
@@ -34,31 +34,41 @@
 		SELECT
 		    <include refid="room_col" />
 		FROM
-		    ROOM R
+		    ROOM r
 	</select>
 	
-	<select id="retrieveInfo" resultType="camelCaseMap">
-		SELECT
-			<include refid="room_col" />
+	<!-- 숙소 상세조회 retrieveInfo -->
+	<select id="retrieveInfo" parameterType="Map" resultType="camelCaseMap">
+		SELECT 
+			<include refid="room_col" />,
+			c.code_name
 		FROM 
-			ROOM R
+			room r
+		INNER JOIN 
+			amenities a
+		ON 
+			r.room_id = a.room_id
+		INNER JOIN 
+			code c
+		ON 
+			a.amenities_code = c.code_key 
 		WHERE 
-			room_id = #{roomId} 	
+			r.room_id = #{roomId} 			 
 	</select>
 	
 	<!-- 호스트가 호스팅 중인 숙소 목록 조회 retrieveList -->
 	<select id="hostRetriveList" parameterType="String" resultType="camelCaseMap">
 	    SELECT
 	        <include refid="room_col" />,
-	        C.code_name
+	        c.code_name
 	    FROM
-	        ROOM R
+	        room r
 	    INNER JOIN 
-	    	CODE C
+	    	code c
 	    ON 
-	    	R.roomstat_code = C.code_key 
+	    	r.roomstat_code = c.code_key 
         WHERE 
-        	USER_ID = #{userId}
+        	user_id = #{userId}
 	</select>
 	
 	<!-- 조회수 TOP4 숙소 조회 -->
@@ -69,10 +79,10 @@
 			SELECT
 				<include refid="room_col" />
 			FROM
-				ROOM R
+				room r
 			ORDER BY 
-				R.VIEWS DESC
-		) R
+				r.views DESC
+		) r
 		WHERE 
 			<![CDATA[ROWNUM <= 4]]>
 	</select>
@@ -82,7 +92,7 @@
 		SELECT
 			<include refid="room_col" />
 		FROM
-			room R
+			room r
 	    INNER JOIN 
 	        (SELECT 
 	            room_id
@@ -90,7 +100,7 @@
 	             SELECT
 	             	room_id,
 	             	AVG(rating) ratingAvg,
-	             	ROW_NUMBER() OVER (ORDER BY AVG(RATING) DESC) rn
+	             	ROW_NUMBER() OVER (ORDER BY AVG(rating) DESC) rn
 	             FROM 
 	             	review
 	             GROUP BY 
@@ -107,17 +117,17 @@
 		 <!-- ROOM INSERT 전 사용가능한 roomId가져와서 INSERT 쿼리에 적용 -->
 		 <selectKey keyProperty="roomId" resultType="String" order="BEFORE">
 	        SELECT 
-	        	'r' || TO_CHAR(SYSDATE, 'YYYYMMDD') || LPAD(NVL(MAX(SUBSTR(ROOM_ID, 10, 2)), 0) + 1, 2, '0') AS ROOM_ID
+	        	'r' || TO_CHAR(SYSDATE, 'YYYYMMDD') || LPAD(NVL(MAX(SUBSTR(room_id, 10, 2)), 0) + 1, 2, '0') AS room_id
 	        FROM 
-	        	ROOM
+	        	room
 	        WHERE 
-	        	ROOM_ID LIKE 'r' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '%'
+	        	room_id LIKE 'r' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '%'
 	    </selectKey>
 		
 		INSERT INTO ROOM(
-			ROOM_ID,
-			USER_ID,
-			ROOMSTAT_CODE
+			room_id,
+			user_id,
+			roomstat_code
 		) VALUES(
 			#{roomId},
 			#{userId},

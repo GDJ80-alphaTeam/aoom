@@ -4,9 +4,9 @@
 
 	<!-- 인증번호 DB 저장 -->
 	<insert id="insert" parameterType="map">
-		INSERT INTO USER_AUTH_NO(
-			USER_ID,
-			AUTH_NO
+		INSERT INTO user_auth_no(
+			user_id,
+			auth_no
 		) VALUES(
 			#{userId},
 			#{authNo}
@@ -18,9 +18,9 @@
 		SELECT
 			COUNT(*) 
 		FROM 
-			USER_AUTH_NO
+			user_auth_no
 		WHERE 
-			USER_ID = #{userId} AND AUTH_NO = #{authNo}
+			user_id = #{userId} AND auth_no = #{authNo}
 	</select>
 	
 	<!-- 인증이력 조회 -->
@@ -28,20 +28,20 @@
 		SELECT
 			COUNT(*) 
 		FROM 
-			USER_AUTH_NO
+			user_auth_no
 		WHERE 
-			USER_ID = #{userId} 
+			user_id = #{userId} 
 	</select>
 	
 	<!-- 인증번호 업데이트 -->
 	<update id="update" parameterType="map">
 		UPDATE
-			USER_AUTH_NO
+			user_auth_no
 		SET
-			AUTH_NO = #{authNo},
-			CREATE_DATE = SYSDATE	
+			auth_no = #{authNo},
+			create_date = SYSDATE	
 		WHERE 
-			USER_ID = #{userId} 			
+			user_id = #{userId} 			
 	</update>
 	
 </mapper>
