@@ -21,7 +21,7 @@ public class MemberController{
 	@Autowired
 	UserService userService;
 
-	// 로그인화면 호출
+	// 로그인 뷰페이지 호출
 	@RequestMapping("/signinView")
 	public String signinView() {
 		return "/member/signinView";
@@ -63,7 +63,7 @@ public class MemberController{
 		return "success"; // 로그아웃 ajax에 전달
 	}
 	
-	// 회원가입 호출
+	// 회원가입 뷰페이지 호출
 	@RequestMapping("/signupView")
 	public String signupView() {
 		return "/member/signupView";

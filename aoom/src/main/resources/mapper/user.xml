@@ -2,36 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.alpha.aoom.user.service.UserMapper">
 	
+	<!-- 컬럼 이름 sql조각 -->
+	<sql id="user_col">
+		 user_id
+		,user_pw
+		,user_birth
+		,user_name
+		,user_phone
+		,userstat_code
+		,create_date
+		,update_date
+		,userauth_code
+		,user_image
+	</sql>
+	
 	<!-- 회원가입 -->
 	<insert id="insert" parameterType="map">
 		INSERT INTO USERS(
-			user_id,
-			user_pw,
-			user_birth,
-			user_name,
-			user_phone
+			 user_id
+			,user_pw
+			,user_birth
+			,user_name
+			,user_phone
 		) VALUES(
-			#{userId}, 
-			#{userPw}, 
-			TO_DATE(#{userBirth}, 'YYYY-MM-DD'),
-			#{userName}, 
-			#{userPhone}
+		  	 #{userId}
+			,#{userPw} 
+			,TO_DATE(#{userBirth}, 'YYYY-MM-DD')
+			,#{userName}
+			,#{userPhone}
 		)
 	</insert>
 	
 	<!-- 로그인 -->
 	<select id="select" parameterType="map" resultType="camelCaseMap" >
 		SELECT
-			user_id,
-			user_pw,
-			user_birth,
-			user_name,
-			user_phone,
-			userstat_code,
-			create_date,
-			update_date,
-			userauth_code,
-			user_image
+			<include refid="user_col"/>
 		FROM 
 			USERS
 		WHERE 
@@ -39,7 +44,7 @@
 	</select>
 	
 	<!-- 아이디 중복체크 -->
-	<select id="duplicateCheck" parameterType="map" resultType="camelCaseMap" >
+	<select id="selectByUserId" parameterType="map" resultType="camelCaseMap" >
 		SELECT
 			user_id
 		FROM

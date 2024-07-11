@@ -30,7 +30,7 @@ public class UserAuthNoService {
 	
 	// 아이디 인증이력조회 
 	public int authRecord(Map<String,Object> param) {		
-		return userAuthNoMapper.recordCheck(param);
+		return userAuthNoMapper.selectByAuthNoCheck(param);
 	}
 	
 	// 인증번호 업데이트

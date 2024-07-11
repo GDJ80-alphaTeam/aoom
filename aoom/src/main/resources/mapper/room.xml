@@ -2,35 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.alpha.aoom.room.service.RoomMapper">
 	
-	<!-- room테이블 컬럼 모음 sql조각 -->
+	<!-- 컬럼 이름 sql조각 -->
 	<sql id="room_col">
-		r.room_id,
-		r.user_id,
-		r.room_name,
-		r.roomtype_code,
-		r.roomcate_code,
-		r.default_price,
-		r.start_date,
-		r.end_date,
-		r.address,
-		r.roomstat_code,
-		r.room_content,
-		r.reject_content,
-		r.max_people,
-		r.total_space,
-		r.total_bed,
-		r.total_bath,
-		r.create_date,
-		r.update_date,
-		r.main_image,
-		r.original_name,
-		r.bank_code,
-		r.account_no,
-		r.views
+		 r.room_id
+		,r.user_id
+		,r.room_name
+		,r.roomtype_code
+		,r.roomcate_code
+		,r.default_price
+		,r.start_date
+		,r.end_date
+		,r.address
+		,r.roomstat_code
+		,r.room_content
+		,r.reject_content
+		,r.max_people
+		,r.total_space
+		,r.total_bed
+		,r.total_bath
+		,r.create_date
+		,r.update_date
+		,r.main_image
+		,r.original_name
+		,r.bank_code
+		,r.account_no
+		,r.views
 	</sql>	
 	
 	<!-- 숙소 전체 목록 조회 retrieveList -->
-	<select id="retrieveList" resultType="camelCaseMap">
+	<select id="select" resultType="camelCaseMap">
 		SELECT
 		    <include refid="room_col" />
 		FROM
@@ -72,9 +72,9 @@
 	</select>
 	
 	<!-- 조회수 TOP4 숙소 조회 -->
-	<select id="viewsDesc" resultType="camelCaseMap">
+	<select id="selectByViews" resultType="camelCaseMap">
 		SELECT 
-			<include refid="room_col" />
+			*
 		FROM (
 			SELECT
 				<include refid="room_col" />
@@ -84,11 +84,11 @@
 				r.views DESC
 		) r
 		WHERE 
-			<![CDATA[ROWNUM <= 4]]>
+			ROWNUM <![CDATA[<=]]> 4
 	</select>
 	
 	<!-- 별점 TOP4 숙소 조회 -->
-	<select id="ratingDesc" resultType="camelCaseMap">
+	<select id="selectByRating" resultType="camelCaseMap">
 		SELECT
 			<include refid="room_col" />
 		FROM
@@ -98,40 +98,40 @@
 	            room_id
 	         FROM (
 	             SELECT
-	             	room_id,
-	             	ROW_NUMBER() OVER (ORDER BY AVG(rating) DESC) rn
+	             	 room_id
+	             	,ROW_NUMBER() OVER (ORDER BY AVG(rating) DESC) rn
 	             FROM 
 	             	review
 	             GROUP BY 
 	             	room_id
 	             ) ra
 	         WHERE 
-	         	<![CDATA[rn <= 4]]>
+	         	rn <![CDATA[<=]]> 4
 	         ) s
 	     ON r.room_id = s.room_id
 	</select>
 	
 	<!-- 예약 TOP4 숙소 조회 -->
-	<select id="bookingDesc" resultType="camelCaseMap">
+	<select id="selectByBooking" resultType="camelCaseMap">
 		SELECT
 			<include refid="room_col" />
 		FROM
 			room r
 		INNER JOIN(
 			SELECT	
-				bc.room_id,
-				bc.cnt
+				 bc.room_id
+				,bc.cnt
 			FROM(
 				SELECT
-					room_id,
-					count(*) cnt
+					 room_id
+					,count(*) cnt
 				FROM
 					booking
 				GROUP BY
 					room_id
 				) bc
 			WHERE
-				<![CDATA[ROWNUM <= 4]]>
+				ROWNUM <![CDATA[<=]]> 4
 			) bct
 		ON r.room_id = bct.room_id
 	</select>
@@ -149,13 +149,13 @@
 	    </selectKey>
 		
 		INSERT INTO ROOM(
-			room_id,
-			user_id,
-			roomstat_code
+			 room_id
+			,user_id
+			,roomstat_code
 		) VALUES(
-			#{roomId},
-			#{userId},
-			'rst06'
+			 #{roomId}
+			,#{userId}
+			,'rst06'
 		)
 	</insert>
 	

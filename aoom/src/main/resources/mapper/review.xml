@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.alpha.aoom.review.service.ReviewMapper">
+	<!-- 컬럼 이름 sql조각 -->
+	
 	<!-- 숙소 리뷰 목록 조회-->
 	<select id="list" parameterType="map" resultType="camelCaseMap">
 		SELECT 

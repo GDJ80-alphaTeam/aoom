@@ -11,5 +11,5 @@ public interface UserMapper {
 	// 로그인
 	Map<String, Object> select(Map<String, Object> param);
 	// 아이디 중복체크
-	Map<String, Object> duplicateCheck(Map<String, Object> param);
+	Map<String, Object> selectByUserId(Map<String, Object> param);
 }

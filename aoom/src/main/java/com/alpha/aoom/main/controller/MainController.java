@@ -25,16 +25,16 @@ public class MainController {
 	public String main(HttpSession session, ModelMap modelMap) {
 		
 		// 숙소 전체 목록 조회
-		List<Map<String, Object>> retrieveList = roomMapper.retrieveList();
+		List<Map<String, Object>> retrieveList = roomMapper.select();
 		
 		// 조회수 TOP4 숙소 조회
-		List<Map<String, Object>> viewsDesc = roomMapper.viewsDesc();
+		List<Map<String, Object>> viewsDesc = roomMapper.selectByViews();
 		
 		// 별점 TOP4 숙소 조회
-		List<Map<String, Object>> ratingDesc = roomMapper.ratingDesc();
+		List<Map<String, Object>> ratingDesc = roomMapper.selectByRating();
 		
 		// 예약 TOP4 숙소 조회
-		List<Map<String, Object>> bookingDesc = roomMapper.bookingDesc();
+		List<Map<String, Object>> bookingDesc = roomMapper.selectByBooking();
 		
 		// 위시리스트 TOP4 숙소 조회
 		

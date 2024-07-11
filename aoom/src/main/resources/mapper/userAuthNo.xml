@@ -2,14 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.alpha.aoom.userAuthNo.service.UserAuthNoMapper">
 
+	<!-- 컬럼 이름 sql조각 -->
+	<sql id="user_auth_no_col">
+		 user_id
+		,auth_no
+		,create_date
+	</sql>
+
 	<!-- 인증번호 DB 저장 -->
 	<insert id="insert" parameterType="map">
 		INSERT INTO user_auth_no(
-			user_id,
-			auth_no
+			 user_id
+			,auth_no
 		) VALUES(
-			#{userId},
-			#{authNo}
+			 #{userId}
+			,#{authNo}
 		)
 	</insert>
 	
@@ -24,7 +31,7 @@
 	</select>
 	
 	<!-- 인증이력 조회 -->
-	<select id="recordCheck" parameterType="camelCaseMap" resultType="int">
+	<select id="selectByAuthNoCheck" parameterType="camelCaseMap" resultType="int">
 		SELECT
 			COUNT(*) 
 		FROM 
@@ -38,8 +45,8 @@
 		UPDATE
 			user_auth_no
 		SET
-			auth_no = #{authNo},
-			create_date = SYSDATE	
+			 auth_no = #{authNo}
+			,create_date = SYSDATE	
 		WHERE 
 			user_id = #{userId} 			
 	</update>

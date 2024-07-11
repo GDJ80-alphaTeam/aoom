@@ -25,7 +25,7 @@ public class RoomController {
 	@Autowired
 	ReviewMapper reviewMapper;
 	
-	// 숙소상세보기 위치
+	// 숙소상세보기 뷰페이지 호출
 	// parameter: userId(get)
 	@RequestMapping("/roomInfo")
 	public String roomInfo(@RequestParam Map<String, Object> param , ModelMap modelMap) {

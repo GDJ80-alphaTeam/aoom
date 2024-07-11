@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface RoomMapper {
 	
 	// 숙소 전체 목록 조회
-	List<Map<String, Object>> retrieveList();
+	List<Map<String, Object>> select();
 	
 	//숙소 상세 조회
 	List<HashMap<String,Object>> retrieveInfo(Map<String,Object> param); 
@@ -19,16 +19,16 @@ public interface RoomMapper {
 	List<Map<String, Object>> hostRetriveList(String userId);
 	
 	// 조회수 TOP4 숙소 조회
-	List<Map<String, Object>> viewsDesc();
+	List<Map<String, Object>> selectByViews();
 	
 	// 별점 TOP4 숙소 조회
-	List<Map<String, Object>> ratingDesc();
+	List<Map<String, Object>> selectByRating();
 	
 	// 예약 TOP4 숙소 조회
-	List<Map<String, Object>> bookingDesc();
+	List<Map<String, Object>> selectByBooking();
 	
 	// 위시리스트 TOP4 숙소 조회
-	List<Map<String, Object>> wishDesc();
+	List<Map<String, Object>> selectByWishList();
 	
 	// 숙소 등록 - 숙소 등록 1단계 전 숙소 초기화
 	int insert(Map<String, Object> param);

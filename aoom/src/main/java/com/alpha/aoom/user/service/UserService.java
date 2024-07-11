@@ -53,7 +53,7 @@ public class UserService {
 	public String userDuplicateCheck(Map<String , Object> param) {
 		
 		// 아이디 중복 체크 결과 담기
-		Map<String, Object> idCheck = userMapper.duplicateCheck(param);
+		Map<String, Object> idCheck = userMapper.selectByUserId(param);
 		
 		// 중복 체크 결과 분기문
 		if(idCheck == null) { // 중복되지 않았을 때

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alpha.aoom.code.service.CodeMapper">
+	
+	<!-- 컬럼 이름 sql조각 -->
+	<sql id="code_col">
+		 c.code_key
+		,c.group_key
+		,c.code_name
+		,c.code_desc
+		,c.use_yn
+		,c.create_date
+	</sql>
+	
+</mapper>
