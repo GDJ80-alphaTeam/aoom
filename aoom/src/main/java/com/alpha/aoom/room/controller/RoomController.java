@@ -32,14 +32,17 @@ public class RoomController {
 		
 		
 		List<HashMap<String,Object>> roomInfo = roomService.retriveRoomInfo(param);
-		log.info("숙소상세보기 불러온값" + roomInfo);
+		
+		//log.info("숙소상세보기 호출값" + roomInfo);
 		modelMap.addAttribute("roomInfo",roomInfo);
 		
 		int beginRow = 0;
-		
-		//List<Map<String,Object>> review = reviewMapper.list();
-		//log.info("숙소리뷰 불러온값" + review);
-		//modelMap.addAttribute("roomInfo",roomInfo);
+		int rowPerPage = 6;		
+		param.put("beginRow", beginRow);
+		param.put("rowPerPage", rowPerPage);
+		List<Map<String,Object>> reviewList = reviewMapper.list(param);
+		log.info("리뷰목록 호출값"+reviewList);		
+		modelMap.addAttribute("reviewList",reviewList);
 		return "/room/roomInfo";
 	}
 
