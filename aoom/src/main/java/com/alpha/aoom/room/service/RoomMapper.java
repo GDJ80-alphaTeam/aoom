@@ -17,4 +17,17 @@ public interface RoomMapper {
 	
 	// 호스트가 호스팅하고있는 숙소 목록 조회
 	List<Map<String, Object>> hostRetriveList(String userId);
+	
+	// 조회수 TOP4 숙소 조회
+	List<Map<String, Object>> viewsDesc();
+	
+	// 별점 TOP4 숙소 조회
+	List<Map<String, Object>> ratingDesc();
+	
+	// 예약 TOP4 숙소 조회
+	List<Map<String, Object>> bookingDesc();
+	
+	// 위시리스트 TOP4 숙소 조회
+	List<Map<String, Object>> wishDesc();
+	
 }

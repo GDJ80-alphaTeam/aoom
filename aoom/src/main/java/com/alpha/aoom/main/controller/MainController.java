@@ -27,8 +27,12 @@ public class MainController {
 		// 숙소 전체 목록 조회
 		List<Map<String, Object>> retrieveList = roomMapper.retrieveList();
 		
+		// 조회수 TOP4 숙소 조회
+		List<Map<String, Object>> viewsDesc = roomMapper.viewsDesc();
+		
 		// model에 숙소 전체 목록 조회한 값 넣기
-		modelMap.addAttribute("roomAllList", retrieveList);		
+		modelMap.addAttribute("roomAllList", retrieveList);
+		modelMap.addAttribute("viewsDesc", viewsDesc);
 		
 		return "main";
 	}

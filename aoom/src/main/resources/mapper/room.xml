@@ -69,4 +69,20 @@
         WHERE 
         	USER_ID = #{userId}
 	</select>
+	
+	<!-- 조회수 TOP4 숙소 조회 -->
+	<select id="viewsDesc" resultType="camelCaseMap">
+		SELECT 
+			<include refid="room_col" />
+		FROM (
+			SELECT
+				<include refid="room_col" />
+			FROM
+				ROOM R
+			ORDER BY 
+				R.VIEWS DESC
+		) R
+		WHERE 
+			<![CDATA[ROWNUM <= 4]]>
+	</select>
 </mapper>
