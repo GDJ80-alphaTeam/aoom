@@ -53,11 +53,10 @@
 				method: 'post',
 				data: {'userId': '${sessionScope.userInfo.userId}'},
 				success: function(response) {
-					if(response == 'success'){
-						console.log("숙소 생성");
-						window.location.href = '/host/registRoom/basicInfo';
+					if(response.result == 'success'){
+						window.location.href = '/host/registRoom/'+ response.roomId + '/basicInfo';
 					}else{
-						console.log("숙소 생성 실패")
+						alert("숙소 등록 실패");
 					}
 				}
 				

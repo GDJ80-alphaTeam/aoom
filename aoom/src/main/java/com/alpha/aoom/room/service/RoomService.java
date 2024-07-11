@@ -25,14 +25,23 @@ public class RoomService {
 	}
 	
 	// 숙소 등록 - 숙소 등록 1단계 전 숙소 초기화
-	public int registRoom(Map<String, Object> param) {
+	// param : userId
+	public Map<String, Object> registRoom(Map<String, Object> param) {
+		
+		// param에 roomId 추가됨
 		// 숙소 등록 결과 - 성공 : 1 / 실패 : 0
 		int result = roomMapper.insert(param);
-		if(result != 1) {
-			throw new RuntimeException();
+		
+		// result 값에 따른 분기문
+		if(result == 1) { // 숙소 등록 성공
+			param.put("result", "success");
+		} else { // 숙소 등록 실패
+			param.put("result", "fail");
 		}
 		
-		return result;
+		log.info(param.toString());
+		
+		return param;
 	}
 	
 }
