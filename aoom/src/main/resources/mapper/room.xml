@@ -112,6 +112,31 @@
 	     ON r.room_id = s.room_id
 	</select>
 	
+	<!-- 예약 TOP4 숙소 조회 -->
+	<select id="bookingDesc" resultType="camelCaseMap">
+		SELECT
+			<include refid="room_col" />
+		FROM
+			room r
+		INNER JOIN(
+			SELECT	
+				bc.room_id,
+				bc.cnt
+			FROM(
+				SELECT
+					room_id,
+					count(*) cnt
+				FROM
+					booking
+				GROUP BY
+					room_id
+				) bc
+			WHERE
+				<![CDATA[ROWNUM <= 4]]>
+			) bct
+		ON r.room_id = bct.room_id
+	</select>
+	
 	<!-- 숙소 등록 - 숙소 등록 1단계 전 숙소 초기화 -->
 	<insert id="insert" parameterType="map">
  		 <!-- ROOM INSERT 전 사용가능한 roomId가져와서 param에 추가후, INSERT 쿼리에 적용 -->

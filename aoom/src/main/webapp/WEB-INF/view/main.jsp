@@ -86,6 +86,26 @@
 	</table>
 	
 	<h5>예약</h5>
+	<table>
+		<thead>
+			<tr>
+				<th>메인사진</th>
+				<th>주소</th>
+				<th>숙소이름</th>
+				<th>기본가격</th>
+			</tr>
+		</thead>
+		<c:forEach var="b" items="${bookingDesc}">
+			<tbody>
+				<tr>
+					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${b.roomId}">${b.mainImage}</a></td>
+					<td>${b.address}</td>
+					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${b.roomId}">${b.roomName}</a></td>
+					<td>${b.defaultPrice}</td>
+				</tr>
+			</tbody>
+		</c:forEach>
+	</table>
 	
 	<h5>위시리스트</h5>
 	

@@ -34,6 +34,7 @@ public class MainController {
 		List<Map<String, Object>> ratingDesc = roomMapper.ratingDesc();
 		
 		// 예약 TOP4 숙소 조회
+		List<Map<String, Object>> bookingDesc = roomMapper.bookingDesc();
 		
 		// 위시리스트 TOP4 숙소 조회
 		
@@ -41,6 +42,7 @@ public class MainController {
 		modelMap.addAttribute("roomAllList", retrieveList);
 		modelMap.addAttribute("viewsDesc", viewsDesc);
 		modelMap.addAttribute("starDesc", ratingDesc);
+		modelMap.addAttribute("bookingDesc", bookingDesc);
 		
 		return "main";
 	}
