@@ -30,4 +30,7 @@ public interface RoomMapper {
 	// 위시리스트 TOP4 숙소 조회
 	List<Map<String, Object>> wishDesc();
 	
+	// 숙소 등록 - 숙소 등록 1단계 전 숙소 초기화
+	int insert(Map<String, Object> param);
+
 }
