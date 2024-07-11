@@ -99,7 +99,6 @@
 	         FROM (
 	             SELECT
 	             	room_id,
-	             	AVG(rating) ratingAvg,
 	             	ROW_NUMBER() OVER (ORDER BY AVG(rating) DESC) rn
 	             FROM 
 	             	review

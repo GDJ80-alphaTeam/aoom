@@ -9,5 +9,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface ReviewMapper {
 	
 	// 리뷰리스트 조회  
-	List<Map<String,Object>> list (String beginRow , String rowPerPage);
+	List<Map<String,Object>> list (Map<String,Object> param);
 }

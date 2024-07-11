@@ -11,11 +11,11 @@
 		    FROM 
 		    	review
 		    WHERE 
-		    	room_id = 'r2024070504'
+		    	room_id = #{roomId}
 		    ORDER BY 
 		    	create_date DESC
 		) 
 		WHERE			
-			ROWNUM <![CDATA[>]]>  #{beginRow} and ROWNUM <![CDATA[<]]>  #{beginRow} +#{rowPerPage} ;
+			ROWNUM <![CDATA[>]]>  #{beginRow} and ROWNUM <![CDATA[<]]>  #{beginRow} +#{rowPerPage} 
 	</select>
 </mapper>
