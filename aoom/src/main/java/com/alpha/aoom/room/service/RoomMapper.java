@@ -14,4 +14,7 @@ public interface RoomMapper {
 	
 	//숙소 상세 조회
 	List<HashMap<String,Object>> retrieveInfo(Map<String,Object> param); 
+	
+	// 호스트가 호스팅하고있는 숙소 목록 조회
+	List<Map<String, Object>> hostRetriveList(String userId);
 }

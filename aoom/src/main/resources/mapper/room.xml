@@ -29,6 +29,15 @@
 		R.views
 	</sql>	
 	
+	<sql id="code_col">
+		C.CODE_KEY
+		C.GROUP_KEY
+		C.CODE_NAME
+		C.CODE_DESC
+		C.USE_YN
+		C.CREATE_DATE
+	</sql>
+	
 	<!-- 숙소 전체 목록 조회 retrieveList -->
 	<select id="retrieveList" resultType="camelCaseMap">
 		SELECT
@@ -43,5 +52,21 @@
 		FROM 
 			ROOM R
 		WHERE room_id = #{roomId}
+	</select>
+	
+	<!-- 호스트가 호스팅 중인 숙소 목록 조회 retrieveList -->
+	<select id="hostRetriveList" parameterType="String" resultType="camelCaseMap">
+	
+	    SELECT
+	        <include refid="room_col" />,
+	        C.code_name
+	    FROM
+	        ROOM R
+	    INNER JOIN 
+	    	CODE C
+	    ON 
+	    	R.roomstat_code = C.code_key 
+        WHERE 
+        	USER_ID = #{userId}
 	</select>
 </mapper>
