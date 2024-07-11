@@ -37,4 +37,11 @@
 		    ROOM R
 	</select>
 	
+	<select id="retrieveInfo" resultType="camelCaseMap">
+		SELECT 
+			<include refid="room_col" />
+		FROM 
+			ROOM R
+		WHERE room_id = #{roomId}
+	</select>
 </mapper>

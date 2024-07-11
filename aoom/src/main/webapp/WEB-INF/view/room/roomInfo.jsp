@@ -15,8 +15,8 @@
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
 </head>
 <body>
-	<div style="width:1000px; margin: 0 auto ;  ">
-		<h1>숙소이름 들어갈곳</h1>
+	<div style="width:1000px; margin: 0 auto ;">
+		<h1>${roomInfo[0].roomName}</h1>
 		
 		<div style="margin-bottom:100px;height:500px; background-color: green" >
 			이미지 들어갈곳
@@ -30,25 +30,37 @@
 		<div id="map" style="width:500px;height:400px;"></div>
 		
 		<h3>숙소 편의시설</h3>
-		<div style="margin-bottom:100px; display: flex;justify-content: space-between; ">
-			<div>
+		<div style="flex-wrap: wrap; margin-bottom:100px; display: flex;justify-content: space-between; ">
+			<div style="width: 50%">
 				content1			
 			</div>
-			<div>
+			<div style="width: 50%">
 				content2
+			</div>
+			<div style="width: 50%">
+				content3
+			</div>
+			<div style="width: 50%">
+				content4
 			</div>				
 		</div>
 		
 		<h3>별점 + 후기개수</h3>
-		<div style="margin-bottom:100px; display: flex;justify-content: space-between; ">
-			<div>
+		<div style="flex-wrap: wrap;margin-bottom:100px; display: flex;">
+			<div style="width: 50%;">
 				프로필1
 			</div>
-			<div>
+			<div style="width: 50%;">
 				프로필2
 			</div>
+			<div style="width: 50%;">
+				프로필3
+			</div>
+			<div style="width: 50%;">
+				프로필4
+			</div>
 		</div>
-		<h3>페이징</h3>
+		<h4>프로필 페이징</h4>
 		<div style="margin-bottom:100px;display: flex;justify-content: space-between; ">
 			<div>
 				프로필 상세보기
@@ -63,11 +75,11 @@
 </body>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d0bb47f44ed3984ece34abf9d6054796"></script>
 	<script>
-		var container = document.getElementById('map');
-		var options = {
+		let container = document.getElementById('map');
+		let options = {
 			center: new kakao.maps.LatLng(33.450701, 126.570667),
 			level: 3
 		};
-		var map = new kakao.maps.Map(container, options);
+		let map = new kakao.maps.Map(container, options);
 	</script>
 </html>
