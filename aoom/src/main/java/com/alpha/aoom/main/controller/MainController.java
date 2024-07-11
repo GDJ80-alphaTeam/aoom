@@ -30,9 +30,17 @@ public class MainController {
 		// 조회수 TOP4 숙소 조회
 		List<Map<String, Object>> viewsDesc = roomMapper.viewsDesc();
 		
+		// 별점 TOP4 숙소 조회
+		List<Map<String, Object>> ratingDesc = roomMapper.ratingDesc();
+		
+		// 예약 TOP4 숙소 조회
+		
+		// 위시리스트 TOP4 숙소 조회
+		
 		// model에 숙소 전체 목록 조회한 값 넣기
 		modelMap.addAttribute("roomAllList", retrieveList);
 		modelMap.addAttribute("viewsDesc", viewsDesc);
+		modelMap.addAttribute("starDesc", ratingDesc);
 		
 		return "main";
 	}

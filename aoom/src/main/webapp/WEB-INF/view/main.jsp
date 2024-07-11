@@ -64,6 +64,26 @@
 	</table>
 		
 	<h5>별점</h5>
+	<table>
+		<thead>
+			<tr>
+				<th>메인사진</th>
+				<th>주소</th>
+				<th>숙소이름</th>
+				<th>기본가격</th>
+			</tr>
+		</thead>
+		<c:forEach var="s" items="${starDesc}">
+			<tbody>
+				<tr>
+					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${s.roomId}">${s.mainImage}</a></td>
+					<td>${s.address}</td>
+					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${s.roomId}">${s.roomName}</a></td>
+					<td>${s.defaultPrice}</td>
+				</tr>
+			</tbody>
+		</c:forEach>
+	</table>
 	
 	<h5>예약</h5>
 	
