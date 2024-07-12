@@ -12,7 +12,7 @@ public interface RoomMapper {
 	List<Map<String, Object>> select();
 	
 	//숙소 상세 조회
-	List<Map<String, Object>> selectOne(Map<String,Object> param);
+	Map<String, Object> selectOne(Map<String,Object> param);
 	
 	// 어메니티 목록 조회
 	List<Map<String, Object>> selectByAmenities(Map<String,Object> param);

@@ -30,11 +30,11 @@ public class RoomController {
 	public String roomInfo(@RequestParam Map<String, Object> param , ModelMap modelMap) {
 		
 		// 숙소정보 조회
-		List<Map<String, Object>> roomInfo = roomService.retriveRoomInfo(param);
+		Map<String, Object> roomInfo = roomService.retriveRoomInfo(param);
 		// 숙소 어메니티 조회
 		List<Map<String, Object>> roomAmenities = roomService.retriveRoomAmenities(param);
-		//log.info("숙소상세보기 호출값" + roomInfo);
-		//log.info("숙소편의시설 호출값" + roomAmenities);
+		log.info("숙소상세보기 호출값" + roomInfo);
+		log.info("숙소편의시설 호출값" + roomAmenities);
 		modelMap.addAttribute("roomInfo",roomInfo);
 		modelMap.addAttribute("roomAmenities",roomAmenities);
 		

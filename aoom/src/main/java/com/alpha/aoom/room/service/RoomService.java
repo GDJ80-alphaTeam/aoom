@@ -19,7 +19,7 @@ public class RoomService {
 		
 	// 숙소 상세보기 조회
 	// param: room_id
-	public List<Map<String, Object>> retriveRoomInfo(Map<String,Object> param) {
+	public Map<String, Object> retriveRoomInfo(Map<String,Object> param) {
 		return roomMapper.selectOne(param);
 	}
 	

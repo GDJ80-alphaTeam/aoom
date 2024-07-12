@@ -11,10 +11,11 @@
        ,original_name
        ,create_date
 	</sql>
+	
 	<!-- 숙소 리뷰 목록 조회-->
 	<select id="list" parameterType="map" resultType="camelCaseMap">
 		SELECT 
-			<include refid="review_col"/>
+			*
 		FROM (
 		    SELECT 
 		    	<include refid="review_col"/> 

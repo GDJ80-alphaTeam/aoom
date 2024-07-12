@@ -57,7 +57,7 @@
 			code c
 		ON 
 			a.amenities_code = c.code_key
-		where 
+		WHERE 
 			room_id = #{roomId} 	
 	</select>
 	
