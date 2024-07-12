@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alpha.aoom.user.service.UserService;
 import com.alpha.aoom.userAuthNo.service.UserAuthNoService;
-import com.alpha.aoom.util.email.SendEmail;
 
 @Controller
 @RequestMapping("/userAuthNo")
@@ -21,7 +19,7 @@ public class UserAuthNoController {
 	
 	// 인증번호 보내기
 	// paramMap : userId  
-	@RequestMapping("/send")
+	@RequestMapping("/ajaxSend")
 	@ResponseBody
 	public String send(@RequestParam Map<String, Object> param) {
 		System.out.println("인증번호 받을 이메일 : " + param.get("userId"));
@@ -32,7 +30,7 @@ public class UserAuthNoController {
 	// 인증번호 확인
 	// paramMap : userId , authNo
 	@ResponseBody
-	@RequestMapping("/authCheck")
+	@RequestMapping("/ajaxAuthCheck")
 	public String authCheck(@RequestParam Map<String, Object> param) {
 		
 		// 인증번호 일치여부 확인

@@ -22,14 +22,14 @@ public class MemberController{
 	UserService userService;
 
 	// 로그인 뷰페이지 호출
-	@RequestMapping("/signinView")
+	@RequestMapping("/signin")
 	public String signinView() {
-		return "/member/signinView";
+		return "/member/signin";
 	}
 	
 	// 로그인기능 호출
 	// paramMap : userId , userPw
-	@RequestMapping("/signin")
+	@RequestMapping("/ajaxSignin")
 	@ResponseBody
 	public String signin(@RequestParam Map<String, Object> param, HttpSession session) {
 		
@@ -52,7 +52,7 @@ public class MemberController{
 	}
 	
 	// 로그아웃 기능 호출
-	@RequestMapping("/signout")
+	@RequestMapping("/ajaxSignout")
 	@ResponseBody
 	public String logout(HttpSession session) {
 		
@@ -64,14 +64,14 @@ public class MemberController{
 	}
 	
 	// 회원가입 뷰페이지 호출
-	@RequestMapping("/signupView")
+	@RequestMapping("/signup")
 	public String signupView() {
-		return "/member/signupView";
+		return "/member/signup";
 	}
 	
 	// 회원가입 기능 호출
 	// paramMap : userId , userPw , userBirth , userName , userPhone
-	@RequestMapping("/signup")
+	@RequestMapping("/ajaxSignup")
 	@ResponseBody
 	public String signup(@RequestParam Map<String, Object> param) {
 

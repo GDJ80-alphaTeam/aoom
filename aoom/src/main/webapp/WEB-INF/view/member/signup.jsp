@@ -67,14 +67,14 @@
 				
 			// 회원가입 정보 전송
 			$.ajax({
-				url:'/member/signup',
+				url:'/member/ajaxSignup',
 				method:'post',
 				async:false,
 				data: $('#signup').serialize(),
 				success: function(response){
 					if (response === "success") {
 						alert('회원가입 성공');
-						window.location.href = '/member/signinView';
+						window.location.href = '/member/signin';
 					} else {
 						alert('회원가입에 실패하였습니다. 다시 시도해 주십시오.');
 					}
@@ -126,7 +126,7 @@
 			$("#authBtn").hide();
 			$("#spinner").html('<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>')
 			$.ajax({
-				url:'/userAuthNo/send',
+				url:'/userAuthNo/ajaxSend',
 				method:'post',
 				data:{'userId':$('#userId').val()},
 				success:function(response){
@@ -144,7 +144,7 @@
 		// 이메일 인증번호 확인
 		$('#authCheck').click(function() {
 			$.ajax({
-				url:'/userAuthNo/authCheck',
+				url:'/userAuthNo/ajaxAuthCheck',
 				method:'post',
 				data : {
 					'authNo' : $('#authNo').val(),

@@ -115,12 +115,12 @@
 		$('#signoutBtn').click(function() {
 			
 			$.ajax({
-				url: '/member/signout',
+				url: '/member/ajaxSignout',
 				method: 'post',
 				success: function(response){
 					if(response === "success") {
 						alert('로그아웃 되었습니다.');
-						window.location.href = '/member/signinView';
+						window.location.href = '/member/signin';
 					}else{
 						alert('로그아웃에 실패하였습니다.');
 					}

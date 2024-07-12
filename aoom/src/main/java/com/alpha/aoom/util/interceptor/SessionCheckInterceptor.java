@@ -16,7 +16,7 @@ public class SessionCheckInterceptor implements HandlerInterceptor{
 		
 		if(session == null || session.getAttribute("userInfo") == null) {
 			System.out.println("인터셉터 조건문 걸림");
-			response.sendRedirect(request.getContextPath() + "/member/signinView");
+			response.sendRedirect(request.getContextPath() + "/member/signin");
 			return false;
 		}
 		

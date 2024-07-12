@@ -29,7 +29,7 @@
 		$('#signinBtn').click(function(){
 			
 			$.ajax({
-				url:'/member/signin',
+				url:'/member/ajaxSignin',
 				method: 'post',
 				data: $('#signin').serialize(),
 				success: function(response){

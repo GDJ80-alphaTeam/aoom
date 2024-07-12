@@ -26,7 +26,7 @@
 			</button>
 		</h1>
 		
-		<div style="margin-bottom:100px;height:500px; background-color: green" >
+		<div style="margin-bottom:100px; height:500px; background-color: green" >
 			이미지 들어갈곳
 		</div>
 		
@@ -48,9 +48,9 @@
 		</div>
 		
 		<h3>별점 + 후기개수</h3>
-		<div style="flex-wrap: wrap;margin-bottom:100px; display: flex;">
+		<div style="flex-wrap: wrap; margin-bottom:100px; display: flex;">
 			<c:forEach var="r" items="${reviewList}">
-				<div style="width: 45%;margin-right: 30px;margin-bottom: 30px;display: flex;">					
+				<div style="width: 45%; margin-right: 30px;margin-bottom: 30px;display: flex;">					
 					<img alt="#" src="" style="width:20%;background-color: green">					
 					<div style="width: 80%">
 						${r.reviewContent}

@@ -49,7 +49,7 @@
 		$('#registRoomBtn').click(function() {
 			
 			$.ajax({
-				url: '/host/registRoom',
+				url: '/host/ajaxRegistRoom',
 				method: 'post',
 				data: {'userId': '${sessionScope.userInfo.userId}'},
 				success: function(response) {

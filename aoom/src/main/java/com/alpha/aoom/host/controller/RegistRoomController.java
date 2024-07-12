@@ -24,7 +24,7 @@ public class RegistRoomController {
 	
 	// 숙소 등록 - 숙소 등록 1단계 전 숙소 초기화
 	// param : userId
-	@RequestMapping("/registRoom")
+	@RequestMapping("/ajaxRegistRoom")
 	@ResponseBody
 	public Map<String, Object> registRoom(@RequestParam Map<String, Object> param) {
 		log.info("param={}", param);
