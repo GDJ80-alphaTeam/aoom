@@ -1,5 +1,6 @@
 package com.alpha.aoom.room.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,23 +31,20 @@ public class RoomService {
 	}
 	
 	// 숙소 등록 - 숙소 등록 1단계 전 숙소 초기화
-	// param : userId
-	public Map<String, Object> registRoom(Map<String, Object> param) {
+	public Map<String, Object> setupRoom(String userId) {
 		
-		// param에 roomId 추가됨
+		// selectKey를 이용해 roomId를 생성 후 가져오기 위해 map으로 선언
+		Map<String, Object> setupRoomInfo = new HashMap<>();
+		setupRoomInfo.put("userId", userId);
+		
+		// setupRoomInfo에 roomId 추가됨
 		// 숙소 등록 결과 - 성공 : 1 / 실패 : 0
-		int result = roomMapper.insert(param);
+		roomMapper.insert(setupRoomInfo);
 		
-		// result 값에 따른 분기문
-		if(result == 1) { // 숙소 등록 성공
-			param.put("result", "success");
-		} else { // 숙소 등록 실패
-			param.put("result", "fail");
-		}
+		// setupRoomInfo에 roomId가 들어갔는지 확인
+		log.info("setupRoomInfo={}", setupRoomInfo);
 		
-		log.info(param.toString());
-		
-		return param;
+		return setupRoomInfo;
 	}
 	
 	// 숙소 전체 목록 조회

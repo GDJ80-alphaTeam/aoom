@@ -11,7 +11,9 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <body>
-	<button type="button" id="registRoomBtn">숙소등록</button>
+	<form action="/host/roomManage/setupRoom" method="post">
+		<button type="submit">숙소등록</button>
+	</form>
 	
 	<table>
 		<thead>
@@ -45,23 +47,14 @@
 	
 	<script type="text/javascript">
 	
-		// 숙소 등록 - 숙소 등록 1단계 전 숙소 초기화 ajax
-		$('#registRoomBtn').click(function() {
+		// 숙소 등록 - 숙소 초기화 및 숙소 등록 1단계 페이지로 이동
+// 		$('#registRoomBtn').click(function() {
 			
-			$.ajax({
-				url: '/host/ajaxRegistRoom',
-				method: 'post',
-				data: {'userId': '${sessionScope.userInfo.userId}'},
-				success: function(response) {
-					if(response.result == 'success'){
-						window.location.href = '/host/registRoom/'+ response.roomId + '/basicInfo';
-					}else{
-						alert("숙소 등록 실패");
-					}
-				}
-				
-			})
-		})
+// 			$.ajax({
+// 				url: '/host/roomManage/setupRoom',
+// 				method: 'post'
+// 			})
+// 		})
 	</script>
 </body>
 </html>

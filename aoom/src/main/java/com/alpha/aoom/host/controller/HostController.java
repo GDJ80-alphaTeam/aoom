@@ -29,6 +29,7 @@ public class HostController {
 	// 호스트 모드 숙소 관리 화면 호출
 	@RequestMapping("/roomManage")
 	public String roomManage(HttpSession session, ModelMap modelMap) {
+		
 		// 세션에서 user정보 가져오기
 		Map<String, Object> userInfo = (HashMap<String, Object>)session.getAttribute("userInfo");
 		

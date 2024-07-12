@@ -34,28 +34,32 @@
 		
 		<!-- 숙소 위치 입력 -->
 		<div>
-			주소 : <input type="text" id="address" placeholder="주소" style="width: 300px;" readonly="readonly">
+			주소 : <input type="text" id="address" placeholder="주소" style="width: 300px;" readonly="readonly" required="required">
 			<button type="button" onclick="searchAddress()">주소 찾기</button><br>
 			상세 주소 : <input type="text" id="detailAddress" placeholder="상세주소">
 		</div>
 		
 		<!-- 최대 인원 입력 -->
 		<div>
-			최대 인원 : <input type="number">
+			최대 인원 : <input type="number" min="1" required="required">
 		</div>
 		
 		<!-- 숙소 운영일 설정 -->
 		<div>
-			시작일 : <input type="date">
-			종료일 : <input type="date">
+			시작일 : <input type="date" id="startDate" required="required">
+			종료일 : <input type="date" id="endDate" disabled="disabled">
 		</div>
 		<!-- 방, 침대, 욕실 수 설정 -->
 		<div>
-			방 수 : <input type="number">
-			침대 수 : <input type="number">
-			욕실 수 : <input type="number">
+			방 수 : <input type="number" min="1" required="required">
+			침대 수 : <input type="number" min="0" required="required">
+			욕실 수 : <input type="number" min="0" required="required">
 		</div>
+		
+		<button id="nextBtn">다음</button>
 	</form>
+	
+	<!-- 카카오 주소 찾기 API -->
 	<script>
 	    function searchAddress() {
 	        new daum.Postcode({
@@ -79,6 +83,38 @@
 	            }
 	        }).open();
 	    }
+	</script>
+	
+	<!-- 숙소 운영 시작일 날짜 제한 -->
+	<script type="text/javascript">
+		// 영국시간과의 차이(ms단위);
+		let offset = 1000 * 60 * 60 * 9;
+		
+		// Date.now() - 오늘 날짜(ms단위) + 영국시간과 차이(ms단위) = 한국 날짜(ms단위)
+		// toISOString() : Date 를 ISOString(yyyy-mm-ddThh:mm:ss) 형식의 문자열로 변환
+		let today = new Date(Date.now() + offset).toISOString().substring(0, 10);
+		console.log(today);
+		
+		// 숙소 운영 시작일 min값을 오늘로 설정
+		$('#startDate').attr('min', today);
+		
+		// 숙소 운영 종료일을 시작일 이후로 설정
+		$('#startDate').blur(function() {
+			// 숙소 운영 시작일의 value값 가져오기
+			let startDate = $('#startDate').val(); 
+
+			// 숙소 운영 종료일에 min값을 숙소 운영 시작일로 설정
+			$('#endDate').attr('min', startDate);
+			
+			// 숙소 운영 시작일을 선택했을 경우 숙소 운영 종료일을 선택할 수 있도록 설정
+			$('#endDate').attr('disabled', false);
+		});
+	</script>
+	
+	<script type="text/javascript">
+		$('#nextBtn').click(function() {
+			
+		});
 	</script>
 </body>
 </html>

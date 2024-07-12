@@ -1,5 +1,6 @@
 package com.alpha.aoom.host.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,27 +28,29 @@ public class RegistRoomController {
 	@Autowired
 	CodeService codeService;
 	
-	// 숙소 등록 - 숙소 등록 1단계 전 숙소 초기화
-	// param : userId
-	@RequestMapping("/ajaxRegistRoom")
-	@ResponseBody
-	public Map<String, Object> registRoom(@RequestParam Map<String, Object> param) {
-		log.info("param={}", param);
+	// 숙소 등록 - 숙소 초기화 및 숙소 등록 1단계 페이지로 이동
+	@RequestMapping("/roomManage/setupRoom")
+	public String registRoom(HttpSession session, ModelMap modelMap) {
+		// 세션에서 user정보 가져오기
+		Map<String, Object> userInfo = (HashMap<String, Object>)session.getAttribute("userInfo");
+		
+		// 세션에서 가져온 user정보에서 userId 가져오기
+		String userId = (String)userInfo.get("userId");
 		
 		// 숙소 등록 
-		// result : roomId, userId, result
-		Map<String, Object> result = roomService.registRoom(param);
-		return result;
-	}
-	
-	// 숙소 등록 클릭해서 테이블에 숙소 생성 된 후 숙소등록 1단계 페이지 호출
-	// param : roomId
-	@RequestMapping("/registRoom/{roomId}/basicInfo")
-	public String registRoomBasicInfo(@PathVariable("roomId") String roomId, HttpSession session, ModelMap modelMap) {
+		// setupRoomInfo : roomId, userId
+		Map<String, Object> setupRoomInfo = roomService.setupRoom(userId);
+		if(setupRoomInfo.get("roomId") == null) {
+			return "redirect:/host/roomManage";
+		}
+		
+		// 숙소 등록 1단계 페이지에 roomId를 넘겨주기 위해 modelMap에 추가
+		modelMap.addAttribute("setupRoomInfo", setupRoomInfo);
 		
 		// amenities 목록
 		List<Map<String, Object>> roomcate = codeService.retriveCode("roomcate");
 		log.info("roomcate={}", roomcate);
+		
 		// roomtype 목록
 		List<Map<String, Object>> roomtype = codeService.retriveCode("roomtype");
 		log.info("roomtype={}", roomtype);
@@ -55,6 +58,7 @@ public class RegistRoomController {
 		// modelMap에 amenities, roomtype 목록 추가
 		modelMap.put("roomcate", roomcate);
 		modelMap.put("roomtype", roomtype);
+		
 		return "/host/regist/basicInfo";
 	}
 }
