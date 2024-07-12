@@ -75,4 +75,10 @@ public class RoomService {
 	public List<Map<String, Object>> retrieveListByUserId(String userId){
 		return roomMapper.selectByUserId(userId);
 	}
+	
+	// 숙소 등록 - 숙소 등록 1단계에서 입력한 정보 DB에 추가
+	public int addBasicInfo(Map<String, Object> param) {
+		
+		return roomMapper.updateBasicInfo(param);
+	}
 }

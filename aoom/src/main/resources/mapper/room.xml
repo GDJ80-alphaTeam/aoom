@@ -200,4 +200,22 @@
 		)
 	</insert>
 	
+	<!-- 숙소 등록 - 숙소 등록 1단계에서 입력한 정보 DB에 추가 -->
+	<insert id="updateBasicInfo" parameterType="map">
+		UPDATE
+			room
+		SET
+			 roomtype_code = #{roomtypeCode}
+			,roomcate_code = #{roomcateCode}
+			,start_date = #{startDate}
+			,end_date = #{endDate}
+			,address = #{address}
+			,max_people = #{maxPeople}
+			,total_space = #{totalSpace}
+			,total_bed = #{totalBed}
+			,total_bath = #{totalBath}
+			,update_date = SYSDATE
+		WHERE
+			room_id = #{roomId}
+	</insert>
 </mapper>

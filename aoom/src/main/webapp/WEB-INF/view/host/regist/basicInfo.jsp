@@ -13,9 +13,13 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
-	<form id="basicInfoForm">
+	<form action="/host/roomManage/registRoom/paymentInfo">
+		<!-- roomId -->
+		<input type="hidden" name="roomId" value="${roomId }">
+		
 		<!-- 숙소 카테고리 설정 -->
 		<div>
+			
 			카테고리 : 
 			<c:forEach var="cate" items="${roomcate }">
 				<label for="${cate.codeKey }">${cate.codeName }</label>
@@ -28,35 +32,37 @@
 			유형 :
 			<c:forEach var="type" items="${roomtype }">
 				<label for="${type.codeKey }">${type.codeName }</label>
-				<input type="radio" id="${type.codeKey }" name="roomcateCode" value="${type.codeKey }" required="required">
+				<input type="radio" id="${type.codeKey }" name="roomtypeCode" value="${type.codeKey }" required="required">
 			</c:forEach>
 		</div>
 		
 		<!-- 숙소 위치 입력 -->
 		<div>
-			주소 : <input type="text" id="address" placeholder="주소" style="width: 300px;" readonly="readonly" required="required">
+			주소 : <input type="text" id="frontAddress" placeholder="주소" style="width: 300px;" readonly="readonly" required="required">
 			<button type="button" onclick="searchAddress()">주소 찾기</button><br>
 			상세 주소 : <input type="text" id="detailAddress" placeholder="상세주소">
+			<input type="hidden" name="address" id="address">
 		</div>
 		
 		<!-- 최대 인원 입력 -->
 		<div>
-			최대 인원 : <input type="number" min="1" required="required">
+			최대 인원 : <input type="number" name="maxPeople" min="1" required="required">
 		</div>
 		
 		<!-- 숙소 운영일 설정 -->
 		<div>
-			시작일 : <input type="date" id="startDate" required="required">
-			종료일 : <input type="date" id="endDate" disabled="disabled">
-		</div>
-		<!-- 방, 침대, 욕실 수 설정 -->
-		<div>
-			방 수 : <input type="number" min="1" required="required">
-			침대 수 : <input type="number" min="0" required="required">
-			욕실 수 : <input type="number" min="0" required="required">
+			시작일 : <input type="date" name="startDate" id="startDate" required="required">
+			종료일 : <input type="date" name="endDate" id="endDate" disabled="disabled">
 		</div>
 		
-		<button id="nextBtn">다음</button>
+		<!-- 방, 침대, 욕실 수 설정 -->
+		<div>
+			방 수 : <input type="number" name="totalSpace" min="1" required="required">
+			침대 수 : <input type="number" name="totalBed" min="0" required="required">
+			욕실 수 : <input type="number" name="totalBath" min="0" required="required">
+		</div>
+		
+		<button type="submit">다음</button>
 	</form>
 	
 	<!-- 카카오 주소 찾기 API -->
@@ -76,13 +82,22 @@
 	                    addr = data.jibunAddress;
 	                }
 					
-	                // 선택한 주소를 address에 값으로 주기
-	                $('#address').val(addr);
+	                // 선택한 주소를 frontAddress에 값으로 주기
+	                $('#frontAddress').val(addr);
+	                $('#address').val($('#frontAddress').val() + ' ' + $('#detailAddress').val())
 	                // 커서 상세주소 필드로 이동
 	                $('#detailAddress').focus();
 	            }
 	        }).open();
 	    }
+	</script>
+	
+	<!-- 주소 찾기한 주소와 상세 주소 더하기 -->
+	<script type="text/javascript">
+		$('#detailAddress').blur(function() {
+			$('#address').val($('#frontAddress').val() + ' ' + $('#detailAddress').val());
+			console.log($('#address').val());
+		});
 	</script>
 	
 	<!-- 숙소 운영 시작일 날짜 제한 -->
@@ -93,7 +108,6 @@
 		// Date.now() - 오늘 날짜(ms단위) + 영국시간과 차이(ms단위) = 한국 날짜(ms단위)
 		// toISOString() : Date 를 ISOString(yyyy-mm-ddThh:mm:ss) 형식의 문자열로 변환
 		let today = new Date(Date.now() + offset).toISOString().substring(0, 10);
-		console.log(today);
 		
 		// 숙소 운영 시작일 min값을 오늘로 설정
 		$('#startDate').attr('min', today);
@@ -111,10 +125,5 @@
 		});
 	</script>
 	
-	<script type="text/javascript">
-		$('#nextBtn').click(function() {
-			
-		});
-	</script>
 </body>
 </html>
