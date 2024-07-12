@@ -38,9 +38,10 @@ public class RoomController {
 		//숙소리뷰조회
 		List<Map<String, Object>> reviewList = reviewService.retriveReviewList(param);
 		
-		//숙소 평점 및 리뷰수 조회
+		//숙소 평점 및 리뷰수 조회 
 		Map<String,Object> reviewCntAvg = reviewService.retriveReviewAvgCnt(param);
 		
+		int currentPage = reviewService.currentPage(param);
 		//log.info("숙소상세보기 호출값" + roomInfo);
 		//log.info("숙소편의시설 호출값" + roomAmenities);
 		//log.info("리뷰목록 호출값"+reviewList);
@@ -49,7 +50,8 @@ public class RoomController {
 		modelMap.addAttribute("roomAmenities",roomAmenities);
 		modelMap.addAttribute("reviewList",reviewList);
 		modelMap.addAttribute("reviewCntAvg",reviewCntAvg);
-		
+		modelMap.addAttribute("currentPage",currentPage);
+			
 		return "/room/roomInfo";
 	}
 

@@ -68,20 +68,31 @@
 				</div>
 			</c:forEach>			
 		</div>		
+		<c:choose>
+			<c:when test="${reviewCntAvg.lastPage == 0 }">
+				
+			</c:when>
+			<c:otherwise>
+		      <nav>
+		        <ul class="pagination">
+		          <li class="page-item <c:if test="${currentPage == 1}">disabled</c:if>">
+		            <a class="page-link" href="?roomId=${roomInfo.roomId}&currentPage=${currentPage - 1}">이전</a>
+		          </li>
 		
-		<nav>
-		  <ul class="pagination">
-		    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-		    
-		    	<li class="page-item"><a class="page-link" href="#">1</a></li>
-		    
-		    <li class="page-item"><a class="page-link" href="#">2</a></li>
-		    <li class="page-item"><a class="page-link" href="#">3</a></li>
-		    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-		  </ul>
-		</nav>
+		          <c:forEach var="i" begin="1" end="${reviewCntAvg.lastPage}">
+		            <li class="page-item <c:if test="${currentPage == i}">active</c:if>">
+		              <a class="page-link" href="?roomId=${roomInfo.roomId}&currentPage=${i}">${i}</a>
+		            </li>
+		          </c:forEach>
 		
-		
+		          <li class="page-item <c:if test="${currentPage == reviewCntAvg.lastPage}">disabled</c:if>">
+		            <a class="page-link" href="?roomId=${roomInfo.roomId}&currentPage=${currentPage + 1}">다음</a>
+		          </li>
+		        </ul>
+		      </nav>
+		    </c:otherwise>			
+		</c:choose>
+						
 		<div style="margin-bottom:100px;display: flex;justify-content: space-between; ">
 			<div>
 				프로필 상세보기
@@ -134,7 +145,7 @@
 		
 		       // 인포윈도우로 장소에 대한 설명을 표시
 		       let infowindow = new kakao.maps.InfoWindow({							
-		           content: '<div style="width:150px;text-align:center;padding:6px 0;">숙소위치</div>'
+		           content: '<div style="width:150px;text-align:center;padding:6px 0;">숙소</div>'
 		       });
 		       infowindow.open(map, marker);
 		

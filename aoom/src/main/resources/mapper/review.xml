@@ -14,20 +14,25 @@
 	
 	<!-- 숙소 리뷰 목록 조회-->
 	<select id="selectByRoomList" parameterType="map" resultType="camelCaseMap">
-		SELECT 
-			*
-		FROM (
-		    SELECT 
-		    	<include refid="review_col"/> 
-		    FROM 
-		    	review
-		    WHERE 
-		    	room_id = #{roomId}
-		    ORDER BY 
-		    	create_date DESC
-		) 
-		WHERE			
-			ROWNUM <![CDATA[>]]> #{beginRow} and ROWNUM <![CDATA[<=]]> #{lastPage} 
+		SELECT
+            *
+        FROM
+        (
+            SELECT 
+                 ROWNUM as rn 
+                ,<include refid="review_col"/>
+            FROM (
+                SELECT 
+                    <include refid="review_col"/>
+                FROM 
+                    review
+                WHERE 
+                    room_id = #{roomId}		 
+                ORDER BY create_date DESC  
+            )  
+         )	
+         WHERE
+			rn <![CDATA[>]]> #{beginRow} and rn <![CDATA[<=]]> #{endRow} 
 	</select>
 	
 	<select id="selectByAverageCount" parameterType="map" resultType="camelCaseMap">
