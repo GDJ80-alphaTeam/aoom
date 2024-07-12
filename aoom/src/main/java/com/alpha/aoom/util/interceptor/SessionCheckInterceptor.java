@@ -8,6 +8,16 @@ import jakarta.servlet.http.HttpSession;
 
 public class SessionCheckInterceptor implements HandlerInterceptor{
 
+	/**
+	 * 날짜 : 2024.07.07
+	 * 작성자 : 손지원
+	 * 설명 : 로그인 인터셉터
+	 * =============== 개정이력 ===============
+	 *
+	 * 수정일       수정자       수정내용
+	 * ----------------------------------------
+	 * 0000.00.00   홍길동       내용
+	 */
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		

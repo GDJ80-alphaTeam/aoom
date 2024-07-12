@@ -17,7 +17,17 @@ public class SendEmail {
 	@Autowired
 	private JavaMailSender mailSender;
 	
-    // 인증번호 전송
+	/**
+	 * 날짜 : 2024.07.09
+	 * 작성자 : 오승엽
+	 * 설명 : 인증번호 전송
+	 * 매개변수설명 : 메일수신자, 제목, 내용
+	 * =============== 개정이력 ===============
+	 *
+	 * 수정일       수정자       수정내용
+	 * ----------------------------------------
+	 * 2024.07.09   오승엽       최초작성
+	 */
 	public void sendEmail(String to, String title, String body) {
 		
 		System.out.println("받는사람 : " + to);

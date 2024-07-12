@@ -9,6 +9,18 @@ public class CamelCaseMap extends HashMap<String, Object> {
 		return super.put(convertToCamelCase(key), value);
 	}
 
+	/**
+	 * 날짜 : 2024.07.08
+	 * 작성자 : 이용훈
+	 * 설명 : camelCase형식으로 반환
+	 * 매개변수설명 :mybatis resultType이 camelCaseMap인 쿼리 
+	 * 리턴값설명 : camelCase변환 된 String
+	 * =============== 개정이력 ===============
+	 *
+	 * 수정일       수정자       수정내용
+	 * ----------------------------------------
+	 * 2024.07.08   이용훈       최초작성
+	 */
 	private String convertToCamelCase(String input) {
 		
 		// 조작이 유용한 String으로 선언
