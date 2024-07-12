@@ -13,7 +13,7 @@
 	</sql>
 	
 	<!-- 숙소 리뷰 목록 조회-->
-	<select id="list" parameterType="map" resultType="camelCaseMap">
+	<select id="selectByRoomList" parameterType="map" resultType="camelCaseMap">
 		SELECT 
 			*
 		FROM (
@@ -27,6 +27,16 @@
 		    	create_date DESC
 		) 
 		WHERE			
-			ROWNUM <![CDATA[>]]> #{beginRow} and ROWNUM <![CDATA[<]]> #{beginRow} +#{rowPerPage} 
+			ROWNUM <![CDATA[>]]> #{beginRow} and ROWNUM <![CDATA[<=]]> #{lastPage} 
+	</select>
+	
+	<select id="selectByAverageCount" parameterType="map" resultType="camelCaseMap">
+		SELECT 
+			 count(*) AS cnt
+			,avg(rating) AS avg		
+		FROM 
+			review
+		WHERE 
+			room_id = #{roomId}	
 	</select>
 </mapper>

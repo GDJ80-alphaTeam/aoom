@@ -36,6 +36,8 @@
 		</div>
 		
 		<!-- 지도 -->
+		<h3>숙소위치</h3>
+		<h5>${roomInfo.address}</h5>
 		<div id="map" style="width:100%; height:400px;"></div>
 		
 		<h3>숙소 편의시설</h3>
@@ -46,8 +48,16 @@
 				</div>
 			</c:forEach>
 		</div>
+	
+		<c:choose>
+			<c:when test="${reviewCntAvg.cnt == 0 }">
+				<h3>숙소후기가 없습니다.</h3>
+			</c:when>
+			<c:otherwise>
+				<h3>별점${reviewCntAvg.avg} 후기${reviewCntAvg.cnt}개</h3>
+			</c:otherwise>			
+		</c:choose>
 		
-		<h3>별점 + 후기개수</h3>
 		<div style="flex-wrap: wrap; margin-bottom:100px; display: flex;">
 			<c:forEach var="r" items="${reviewList}">
 				<div style="width: 45%; margin-right: 30px;margin-bottom: 30px;display: flex;">					
@@ -57,65 +67,80 @@
 					</div>
 				</div>
 			</c:forEach>			
-		</div>
+		</div>		
 		
-		<h4>프로필 페이징</h4>
+		<nav>
+		  <ul class="pagination">
+		    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+		    
+		    	<li class="page-item"><a class="page-link" href="#">1</a></li>
+		    
+		    <li class="page-item"><a class="page-link" href="#">2</a></li>
+		    <li class="page-item"><a class="page-link" href="#">3</a></li>
+		    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+		  </ul>
+		</nav>
+		
+		
 		<div style="margin-bottom:100px;display: flex;justify-content: space-between; ">
 			<div>
 				프로필 상세보기
 			</div>
 			<div>
-				${roomInfo.address}
+				
 			</div>			
 		</div>
 		
 		
 	</div> <!-- 상세보기전체감싸는 div -->
 </body>
-	<!-- body 스크립트 -->
+		
+		
 	<script>
-	
-	</script>
-
-	<!-- 카카오지도 스크립트 -->
+		$.ajax({
+			url:,
+			method:,
+			success:
+		})
+	</script>	
+		
+		
 	<script>
 	 
-     
-	let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };  
-
-// 지도를 생성합니다    
-let map = new kakao.maps.Map(mapContainer, mapOption); 
-
-// 주소-좌표 변환 객체를 생성합니다
-let geocoder = new kakao.maps.services.Geocoder();
-
-// 주소로 좌표를 검색합니다		주소값 jstl로 받아왔음
-geocoder.addressSearch("${roomInfo.address}", function(result, status) {
-
-    // 정상적으로 검색이 완료됐으면 
-     if (status === kakao.maps.services.Status.OK) {
-
-        let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-        // 결과값으로 받은 위치를 마커로 표시합니다
-        let marker = new kakao.maps.Marker({
-            map: map,
-            position: coords
-        });
-
-        // 인포윈도우로 장소에 대한 설명을 표시합니다
-        let infowindow = new kakao.maps.InfoWindow({							//jstl로 바로 가격받아옴
-            content: '<div style="width:150px;text-align:center;padding:6px 0;">${roomInfo.defaultPrice}</div>'
-        });
-        infowindow.open(map, marker);
-
-        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-        map.setCenter(coords);
-    } 
-});    
+		let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = {
+	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	        level: 3 // 지도의 확대 레벨
+	    };  
+	
+		// 지도를 생성    
+		let map = new kakao.maps.Map(mapContainer, mapOption); 
+		
+		// 주소-좌표 변환 객체를 생성
+		let geocoder = new kakao.maps.services.Geocoder();
+		
+		// 주소로 좌표를 검색		주소값 jstl로 받아왔음
+		geocoder.addressSearch("${roomInfo.address}", function(result, status) {
+	    // 정상적으로 검색이 완료되면 
+		    if (status === kakao.maps.services.Status.OK) {
+		
+		       let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		
+		       // 결과값으로 받은 위치를 마커로 표시
+		       let marker = new kakao.maps.Marker({
+		           map: map,
+		           position: coords
+		       });
+		
+		       // 인포윈도우로 장소에 대한 설명을 표시
+		       let infowindow = new kakao.maps.InfoWindow({							
+		           content: '<div style="width:150px;text-align:center;padding:6px 0;">숙소위치</div>'
+		       });
+		       infowindow.open(map, marker);
+		
+		       // 지도의 중심을 결과값으로 받은 위치로 이동
+		       map.setCenter(coords);
+			} 
+		});    
 	</script>
 </html>

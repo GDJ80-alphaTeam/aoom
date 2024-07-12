@@ -31,22 +31,25 @@ public class RoomController {
 		
 		// 숙소정보 조회
 		Map<String, Object> roomInfo = roomService.retriveRoomInfo(param);
+		
 		// 숙소 어메니티 조회
 		List<Map<String, Object>> roomAmenities = roomService.retriveRoomAmenities(param);
-		log.info("숙소상세보기 호출값" + roomInfo);
-		log.info("숙소편의시설 호출값" + roomAmenities);
+					
+		//숙소리뷰조회
+		List<Map<String, Object>> reviewList = reviewService.retriveReviewList(param);
+		
+		//숙소 평점 및 리뷰수 조회
+		Map<String,Object> reviewCntAvg = reviewService.retriveReviewAvgCnt(param);
+		
+		//log.info("숙소상세보기 호출값" + roomInfo);
+		//log.info("숙소편의시설 호출값" + roomAmenities);
+		//log.info("리뷰목록 호출값"+reviewList);
+		//log.info("해당숙소의 리뷰 평점 및 리뷰값"+reviewCntAvg);
 		modelMap.addAttribute("roomInfo",roomInfo);
 		modelMap.addAttribute("roomAmenities",roomAmenities);
-		
-		// 리뷰조회 테스트용 임시데이터 model에넣음
-		int beginRow = 0;
-		int rowPerPage = 6;		
-		param.put("beginRow", beginRow);
-		param.put("rowPerPage", rowPerPage);
-		//숙소리뷰조회
-		List<Map<String, Object>> reviewList = reviewService.reviewList(param);
-		log.info("리뷰목록 호출값"+reviewList);		
 		modelMap.addAttribute("reviewList",reviewList);
+		modelMap.addAttribute("reviewCntAvg",reviewCntAvg);
+		
 		return "/room/roomInfo";
 	}
 
