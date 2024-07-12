@@ -25,7 +25,7 @@
 			</tr>
 		</thead>	
 		<tbody>
-			<c:forEach var="room" items="${hostRetriveList }">
+			<c:forEach var="room" items="${roomListByUser }">
 				<tr>
 					<td>${room.mainImage }</td>
 					<td>${room.address }</td>
@@ -45,16 +45,5 @@
 		</tbody>
 	</table>
 	
-	<script type="text/javascript">
-	
-		// 숙소 등록 - 숙소 초기화 및 숙소 등록 1단계 페이지로 이동
-// 		$('#registRoomBtn').click(function() {
-			
-// 			$.ajax({
-// 				url: '/host/roomManage/setupRoom',
-// 				method: 'post'
-// 			})
-// 		})
-	</script>
 </body>
 </html>

@@ -71,4 +71,8 @@ public class RoomService {
 		return roomMapper.selectByWishList();
 	}
 	
+	// user가 호스팅하고있는 숙소 목록 조회
+	public List<Map<String, Object>> retrieveListByUserId(String userId){
+		return roomMapper.selectByUserId(userId);
+	}
 }

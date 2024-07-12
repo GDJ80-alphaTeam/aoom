@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alpha.aoom.room.service.RoomMapper;
+import com.alpha.aoom.room.service.RoomService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -18,7 +19,7 @@ import jakarta.servlet.http.HttpSession;
 public class HostController {
 	
 	@Autowired
-	RoomMapper roomMapper;
+	RoomService roomService;
 
 	// 호스트 모드 메인화면 호출
 	@RequestMapping("/main")
@@ -37,10 +38,10 @@ public class HostController {
 		String userId = (String)userInfo.get("userId");
 		
 		// userId로 호스팅중인 숙소 목록 가져오기
-		List<Map<String, Object>> hostRetriveList = (List<Map<String, Object>>) roomMapper.hostRetriveList(userId);
+		List<Map<String, Object>> roomListByUser = (List<Map<String, Object>>) roomService.retrieveListByUserId(userId);
 		
 		// ModelMap에 담아 view로 넘겨주기
-		modelMap.addAttribute("hostRetriveList", hostRetriveList);		
+		modelMap.addAttribute("roomListByUser", roomListByUser);		
 		
 		return "/host/roomManage";
 	}

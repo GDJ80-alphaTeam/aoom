@@ -18,7 +18,7 @@ public interface RoomMapper {
 	List<Map<String, Object>> selectByAmenities(Map<String,Object> param);
 	
 	// user가 호스팅하고있는 숙소 목록 조회
-	List<Map<String, Object>> hostRetriveList(String userId);
+	List<Map<String, Object>> selectByUserId(String userId);
 	
 	// 조회수 TOP4 숙소 조회
 	List<Map<String, Object>> selectByViews();
