@@ -10,7 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d0bb47f44ed3984ece34abf9d6054796"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f0842831d9c350ed32adefb11b6cd5f6"></script>
 </head>
 <body>
 	<div style="width:1000px; margin: 0 auto ; min-width:600px" >
@@ -40,7 +40,7 @@
 		
 		<h3>숙소 편의시설</h3>
 		<div style="flex-wrap: wrap; margin-bottom:100px; display: flex;justify-content: space-between;">
-			<c:forEach var="r" items="${roomInfo}">
+			<c:forEach var="r" items="${roomAmenities}">
 				<div style="width: 50%">
 					${r.codeName}
 				</div>

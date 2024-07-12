@@ -29,12 +29,12 @@ public class UserAuthNoService {
 	}
 	
 	// 아이디 인증이력조회 
-	public int authRecord(Map<String,Object> param) {		
+	public int authRecord(Map<String, Object> param) {		
 		return userAuthNoMapper.selectByAuthNoCheck(param);
 	}
 	
 	// 인증번호 업데이트
-	public int updateAuthNo(Map<String,Object> param) {
+	public int updateAuthNo(Map<String, Object> param) {
 		return userAuthNoMapper.update(param);
 	}
 	
@@ -44,7 +44,7 @@ public class UserAuthNoService {
     }
     
     // 인증번호 보내기
-    public String sendAuthNo(Map<String,Object> param) {
+    public String sendAuthNo(Map<String, Object> param) {
     	
 		// 아이디 중복 체크 결과 담기
 		String idCheck = userService.userDuplicateCheck(param);

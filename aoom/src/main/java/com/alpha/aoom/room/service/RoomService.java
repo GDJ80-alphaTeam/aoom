@@ -1,6 +1,5 @@
 package com.alpha.aoom.room.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,11 +16,17 @@ public class RoomService {
 	
 	@Autowired
 	RoomMapper roomMapper ;
+		
+	// 숙소 상세보기 조회
+	// param: room_id
+	public List<Map<String, Object>> retriveRoomInfo(Map<String,Object> param) {
+		return roomMapper.selectOne(param);
+	}
 	
-	// parameter: room_id
-	//숙소 상세보기 조회
-	public List<HashMap<String,Object>> retriveRoomInfo(Map<String,Object> param) {
-		return roomMapper.retrieveInfo(param);
+	// 숙소 편의시설 조회
+	// param: room_id
+	public List<Map<String, Object>> retriveRoomAmenities(Map<String,Object> param){
+		return roomMapper.selectByAmenities(param);
 	}
 	
 	// 숙소 등록 - 숙소 등록 1단계 전 숙소 초기화

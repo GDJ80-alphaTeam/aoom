@@ -2,14 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.alpha.aoom.review.service.ReviewMapper">
 	<!-- 컬럼 이름 sql조각 -->
-	
+	<sql id="review_col">
+		booking_id
+       ,room_id
+       ,user_id
+       ,review_content
+       ,review_image
+       ,original_name
+       ,create_date
+	</sql>
 	<!-- 숙소 리뷰 목록 조회-->
 	<select id="list" parameterType="map" resultType="camelCaseMap">
 		SELECT 
-			review_content , create_date , rating , user_id , review_image
+			<include refid="review_col"/>
 		FROM (
 		    SELECT 
-		    	booking_id , review_content , create_date, room_id , rating , user_id , review_image 
+		    	<include refid="review_col"/> 
 		    FROM 
 		    	review
 		    WHERE 
@@ -18,6 +26,6 @@
 		    	create_date DESC
 		) 
 		WHERE			
-			ROWNUM <![CDATA[>]]>  #{beginRow} and ROWNUM <![CDATA[<]]>  #{beginRow} +#{rowPerPage} 
+			ROWNUM <![CDATA[>]]> #{beginRow} and ROWNUM <![CDATA[<]]> #{beginRow} +#{rowPerPage} 
 	</select>
 </mapper>
