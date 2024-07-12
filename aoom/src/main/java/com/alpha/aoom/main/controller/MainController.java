@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.alpha.aoom.room.service.RoomMapper;
+import com.alpha.aoom.room.service.RoomService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -18,25 +18,26 @@ import lombok.extern.slf4j.Slf4j;
 public class MainController {
 	
 	@Autowired
-	RoomMapper roomMapper;
+	RoomService roomService;
 	
 	// 메인페이지 호출
 	@RequestMapping("/main")
 	public String main(HttpSession session, ModelMap modelMap) {
 		
 		// 숙소 전체 목록 조회
-		List<Map<String, Object>> retrieveList = roomMapper.select();
+		List<Map<String, Object>> retrieveList = roomService.retrieveList();
 		
 		// 조회수 TOP4 숙소 조회
-		List<Map<String, Object>> viewsDesc = roomMapper.selectByViews();
+		List<Map<String, Object>> viewsDesc = roomService.viewsDesc();
 		
 		// 별점 TOP4 숙소 조회
-		List<Map<String, Object>> ratingDesc = roomMapper.selectByRating();
+		List<Map<String, Object>> ratingDesc = roomService.ratingDesc();
 		
 		// 예약 TOP4 숙소 조회
-		List<Map<String, Object>> bookingDesc = roomMapper.selectByBooking();
+		List<Map<String, Object>> bookingDesc = roomService.bookingDesc();
 		
 		// 위시리스트 TOP4 숙소 조회
+		// List<Map<String, Object>> wishListDesc = roomService.wishListDesc();
 		
 		// model에 숙소 전체 목록 조회한 값 넣기
 		modelMap.addAttribute("roomAllList", retrieveList);

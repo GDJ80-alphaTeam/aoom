@@ -44,4 +44,28 @@ public class RoomService {
 		return param;
 	}
 	
+	// 숙소 전체 목록 조회
+	public List<Map<String, Object>> retrieveList(){
+		return roomMapper.select();
+	}
+	// 조회수 TOP4 숙소 조회
+	public List<Map<String, Object>> viewsDesc(){
+		return roomMapper.selectByViews();
+	}
+	
+	// 별점 TOP4 숙소 조회
+	public List<Map<String, Object>> ratingDesc(){
+		return roomMapper.selectByRating();
+	}
+	
+	// 예약 TOP4 숙소 조회
+	public List<Map<String, Object>> bookingDesc(){
+		return roomMapper.selectByBooking();
+	}
+	
+	// 위시리스트 TOP4 숙소 조회
+	// public List<Map<String, Object>> wishListDesc(){
+	// 	  return roomMapper.selectByWishList();
+	// }
+	
 }
