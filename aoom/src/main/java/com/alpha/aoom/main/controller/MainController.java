@@ -37,13 +37,14 @@ public class MainController {
 		List<Map<String, Object>> bookingDesc = roomService.bookingDesc();
 		
 		// 위시리스트 TOP4 숙소 조회
-		// List<Map<String, Object>> wishListDesc = roomService.wishListDesc();
+		List<Map<String, Object>> wishListDesc = roomService.wishListDesc();
 		
 		// model에 숙소 전체 목록 조회한 값 넣기
 		modelMap.addAttribute("roomAllList", retrieveList);
 		modelMap.addAttribute("viewsDesc", viewsDesc);
 		modelMap.addAttribute("starDesc", ratingDesc);
 		modelMap.addAttribute("bookingDesc", bookingDesc);
+		modelMap.addAttribute("wishListDesc", wishListDesc);
 		
 		return "main";
 	}

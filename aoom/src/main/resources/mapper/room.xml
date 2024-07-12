@@ -150,6 +150,33 @@
 			roomstat_code = 'rst03'
 	</select>
 	
+	<!-- 위시리스트 TOP4 숙소 조회 -->
+	<select id="selectByWishList" resultType="camelCaseMap">
+		SELECT
+		    <include refid="room_col" />
+		FROM
+		    room r
+		INNER JOIN(
+		    SELECT
+		        w.room_id
+		    FROM(
+		        SELECT
+		             room_id
+		            ,count(*)
+		        FROM
+		            wishlist
+		        GROUP BY
+		            room_id
+		        ) w
+		    WHERE
+		        ROWNUM <![CDATA[<=]]> 4
+		    ) wr
+		ON
+		    r.room_id = wr.room_id
+		WHERE
+		    roomstat_code = 'rst03'
+	</select>
+	
 	<!-- 숙소 등록 - 숙소 등록 1단계 전 숙소 초기화 -->
 	<insert id="insert" parameterType="map">
  		 <!-- ROOM INSERT 전 사용가능한 roomId가져와서 param에 추가후, INSERT 쿼리에 적용 -->

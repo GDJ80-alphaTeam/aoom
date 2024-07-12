@@ -69,8 +69,8 @@ public class RoomService {
 	}
 	
 	// 위시리스트 TOP4 숙소 조회
-	// public List<Map<String, Object>> wishListDesc(){
-	// 	  return roomMapper.selectByWishList();
-	// }
+	public List<Map<String, Object>> wishListDesc(){
+		return roomMapper.selectByWishList();
+	}
 	
 }

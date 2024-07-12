@@ -108,6 +108,26 @@
 	</table>
 	
 	<h5>위시리스트</h5>
+	<table>
+		<thead>
+			<tr>
+				<th>메인사진</th>
+				<th>주소</th>
+				<th>숙소이름</th>
+				<th>기본가격</th>
+			</tr>
+		</thead>
+		<c:forEach var="w" items="${wishListDesc}">
+			<tbody>
+				<tr>
+					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${w.roomId}">${w.mainImage}</a></td>
+					<td>${w.address}</td>
+					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${w.roomId}">${w.roomName}</a></td>
+					<td>${w.defaultPrice}</td>
+				</tr>
+			</tbody>
+		</c:forEach>
+	</table>
 	
 	<script type="text/javascript">
 		
