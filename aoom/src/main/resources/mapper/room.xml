@@ -34,7 +34,9 @@
 		SELECT
 		    <include refid="room_col" />
 		FROM
-		    ROOM r
+		    room r
+		WHERE
+			roomstat_code = 'rst03'
 	</select>
 	
 	<!-- 숙소 상세조회 selectOne -->
@@ -89,7 +91,8 @@
 				r.views DESC
 		) r
 		WHERE 
-			ROWNUM <![CDATA[<=]]> 4
+			ROWNUM <![CDATA[<=]]> 4 AND
+			roomstat_code = 'rst03'
 	</select>
 	
 	<!-- 별점 TOP4 숙소 조회 -->
@@ -113,7 +116,10 @@
 	         WHERE 
 	         	rn <![CDATA[<=]]> 4
 	         ) s
-	     ON r.room_id = s.room_id
+	     ON
+	     	r.room_id = s.room_id
+	     WHERE
+			roomstat_code = 'rst03'
 	</select>
 	
 	<!-- 예약 TOP4 숙소 조회 -->
@@ -138,7 +144,10 @@
 			WHERE
 				ROWNUM <![CDATA[<=]]> 4
 			) bct
-		ON r.room_id = bct.room_id
+		ON
+			r.room_id = bct.room_id
+		WHERE
+			roomstat_code = 'rst03'
 	</select>
 	
 	<!-- 숙소 등록 - 숙소 등록 1단계 전 숙소 초기화 -->
