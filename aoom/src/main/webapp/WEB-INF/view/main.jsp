@@ -12,10 +12,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
-	<h1>AOOM 메인페이지</h1>
-	
-	<button onclick="location.href='${pageContext.request.contextPath}/host/main'">호스트모드</button>
-	<button type="button" id="signoutBtn">로그아웃</button>
+	<!-- AOOM 네비게이션 바 -->
+	<jsp:include page="/inc/navbar.jsp"></jsp:include>
 	
 	<h3>전체 숙소 목록</h3>
 	<table>
@@ -129,25 +127,5 @@
 		</c:forEach>
 	</table>
 	
-	<script type="text/javascript">
-		
-		// 로그아웃 기능
-		$('#signoutBtn').click(function() {
-			
-			$.ajax({
-				url: '/member/ajaxSignout',
-				method: 'post',
-				success: function(response){
-					if(response === "success") {
-						alert('로그아웃 되었습니다.');
-						window.location.href = '/member/signin';
-					}else{
-						alert('로그아웃에 실패하였습니다.');
-					}
-				}
-			})
-		})
-		
-	</script>
 </body>
 </html>

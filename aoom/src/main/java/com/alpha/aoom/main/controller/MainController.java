@@ -25,7 +25,7 @@ public class MainController {
 	public String main(HttpSession session, ModelMap modelMap) {
 		
 		// 숙소 전체 목록 조회
-		List<Map<String, Object>> retrieveList = roomService.retrieveList();
+		List<Map<String, Object>> roomAllList = roomService.retrieveList();
 		
 		// 조회수 TOP4 숙소 조회
 		List<Map<String, Object>> viewsDesc = roomService.viewsDesc();
@@ -40,7 +40,7 @@ public class MainController {
 		List<Map<String, Object>> wishListDesc = roomService.wishListDesc();
 		
 		// model에 숙소 전체 목록 조회한 값 넣기
-		modelMap.addAttribute("roomAllList", retrieveList);
+		modelMap.addAttribute("roomAllList", roomAllList);
 		modelMap.addAttribute("viewsDesc", viewsDesc);
 		modelMap.addAttribute("starDesc", ratingDesc);
 		modelMap.addAttribute("bookingDesc", bookingDesc);
