@@ -1,5 +1,6 @@
 package com.alpha.aoom.member.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alpha.aoom.user.service.UserService;
+import com.alpha.aoom.util.BaseController;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/member")
 @Slf4j
-public class MemberController{
+public class MemberController extends BaseController{
 	
 	@Autowired
 	UserService userService;
@@ -73,17 +75,22 @@ public class MemberController{
 	// paramMap : userId , userPw , userBirth , userName , userPhone
 	@RequestMapping("/ajaxSignup")
 	@ResponseBody
-	public String signup(@RequestParam Map<String, Object> param) {
-
+	public Map<String, Object> signup(@RequestParam Map<String, Object> param) {
+		Map<String, Object> model = new HashMap<String,Object>();
+		
 		// 회원가입
 		int row = userService.signupUser(param);
 		
 		// 회원가입 성공 분기
 		if (row == 1) {
-			return "success";
+			return getSuccessResult(model);
 		} else {
-			return "fail";
+			return getFailResult(model,"회원가입에 실패하였습니다. 다시 시도해 주십시오.");
 		}
 	}
 	
 }
+
+
+
+
