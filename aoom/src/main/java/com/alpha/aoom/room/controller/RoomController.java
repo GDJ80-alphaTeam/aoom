@@ -29,7 +29,7 @@ public class RoomController extends BaseController {
 	ReviewService reviewService;
 	
 	// 숙소상세보기 뷰페이지 호출
-	// parameter: userId(get)
+	// param: userId(get)
 	@RequestMapping("/roomInfo")
 	public String roomInfo(@RequestParam Map<String, Object> param , ModelMap modelMap) {
 		
@@ -40,10 +40,10 @@ public class RoomController extends BaseController {
 		List<Map<String, Object>> roomAmenities = roomService.retriveRoomAmenities(param);
 					
 		//숙소리뷰조회
-		List<Map<String, Object>> reviewList = reviewService.retriveReviewList(param);
+		List<Map<String, Object>> reviewList = reviewService.selectByList(param);
 		
 		//숙소 평점 및 리뷰수 조회 
-		Map<String,Object> reviewCntAvg = reviewService.retriveReviewAvgCnt(param);
+		Map<String,Object> reviewCntAvg = reviewService.selectByAvgCnt(param);
 		
 		int currentPage = reviewService.currentPage(param);
 		//log.info("숙소상세보기 호출값" + roomInfo);
@@ -57,12 +57,6 @@ public class RoomController extends BaseController {
 		modelMap.addAttribute("currentPage",currentPage);
 		
 		return "/room/roomInfo";
-	}
-
-	@RequestMapping("/ajaxRoomInfoPaging")
-	@ResponseBody
-	public void requestMethodName(@RequestParam Map<String, Object> param) {
-		System.out.println(param);
 	}
 	
 	@RequestMapping("/roomList")

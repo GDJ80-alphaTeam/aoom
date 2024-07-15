@@ -85,10 +85,10 @@
 		</c:choose>
 		
 		<div style="flex-wrap: wrap; margin-bottom:100px; display: flex;">
-			<c:forEach var="r" items="${reviewList}">
+			<c:forEach var="r" items="${reviewList}" varStatus="status">
 				<div style="width: 45%; margin-right: 30px;margin-bottom: 30px;display: flex;">					
 					<img alt="#" src="" style="width:20%;background-color: green">					
-					<div style="width: 80%">
+					<div style="width: 80%" id="reviewContent${status.count}">
 						${r.reviewContent}
 					</div>
 				</div>
@@ -99,27 +99,56 @@
 				
 			</c:when>
 			<c:otherwise>
-		      <nav>
-		        <ul class="pagination">
-		          <li class="page-item <c:if test="${currentPage == 1}">disabled</c:if>">
-		          	<button class="page-link" type="button" id="previous">이전</button>
-		           <%-- <a class="page-link" href="?roomId=${roomInfo.roomId}&currentPage=${currentPage - 1}">이전</a> --%>
-		          </li>
-		
-		          <c:forEach var="i" begin="1" end="${reviewCntAvg.lastPage}">
-		            <li class="page-item <c:if test="${currentPage == i}">active</c:if>">
-		            	<button id="pageNo" class="page-link" type="button" value="${i}">${i}</button>
-		              <%-- <a class="page-link" href="?roomId=${roomInfo.roomId}&currentPage=${i}">${i}</a> --%>
-		            </li>
-		          </c:forEach>
-		
-		          <li class="page-item <c:if test="${currentPage == reviewCntAvg.lastPage}">disabled</c:if>">
-		            <button class="page-link" type="button" id="next">다음</button>
-		            <%-- <a class="page-link" href="?roomId=${roomInfo.roomId}&currentPage=${currentPage + 1}">다음</a> --%>
-		          </li>
-		        </ul>
-		      </nav>
-		    </c:otherwise>			
+			  <nav>
+			    <ul class="pagination">
+			      <li class="page-item">
+			      <!-- paging 이전버튼 -->
+			        <c:choose>			        
+			          <c:when test="${currentPage == 1}">
+			            <button class="page-link disabled" type="button" id="previous">이전</button>
+			          </c:when>
+			          
+			          <c:otherwise>
+			            <button class="page-link" type="button" id="previous">이전</button>
+			          </c:otherwise>
+			          
+			        </c:choose>
+			      </li>
+				
+					<!-- paging 숫자버튼 -->
+			      <c:forEach var="i" begin="1" end="${reviewCntAvg.lastPage}">
+			        <li class="page-item">
+			          <c:choose>
+			          
+			            <c:when test="${currentPage == i}">
+			              <button class="page-link active" type="button" id="page${i}" value="${i}">${i}</button>
+			            </c:when>
+			            
+			            <c:otherwise>
+			              <button class="page-link " type="button" id="page${i}" value="${i}">${i}</button>
+			            </c:otherwise>
+			            
+			          </c:choose>
+			        </li>
+			      </c:forEach>
+			
+					<!-- paging 다음버튼 -->
+			      <li class="page-item">
+			        <c:choose>
+			        
+			          <c:when test="${currentPage == reviewCntAvg.lastPage}">
+			            <button class="page-link" type="button" id="next" disabled ="disabled">다음</button>
+			          </c:when>
+			          
+			          <c:otherwise>
+			            <button class="page-link" type="button" id="next">다음</button>
+			          </c:otherwise>
+			          
+			        </c:choose>
+			      </li>
+			    </ul>
+			  </nav>
+			</c:otherwise>
 		</c:choose>
 						
 		<div style="margin-bottom:100px;display: flex;justify-content: space-between; ">
@@ -136,16 +165,99 @@
 		
 	<script>
 	<!-- 페이징 -->
-		const currentPage = "${currentPage}"
-		console.log(currentPage);
-		$("#pageNo").click( function(){
+		// currentPage는 변경가능해야함 , lastPage는 중간에 리뷰가 추가될수있음
+	  let currentPage = parseInt("${currentPage}");
+	  let lastPage = parseInt("${reviewCntAvg.lastPage}");
+	  const roomId = "${roomInfo.roomId}";
+								// id가 page로 시작하는 모든태그
+		$(document).on('click', '[id^="page"], #previous, #next', function() {
+			let page = currentPage;
+			
+			// 페이지 번호 클릭
+		    if (this.id.startsWith('page')) {
+		    	// page에 클릭한 페이지 값 입력
+		      	page = $(this).val();
+		    	// 모든 번호페이지의 active상태 제거
+		      	$(".page-link.active").removeClass("active");
+		    	// 선택한 번호페이지의 active 추가
+		      	$(this).addClass("active")
+		      	$('#previous').removeClass("disabled");
+		      	$('#next').removeClass("disabled");
+		      
+		      	// 이전 and 다음 버튼 비활성화
+		      	if(page == 1){
+		    		$('#previous').addClass("disabled");
+		      	}
+		      	if(page == lastPage){
+		    		$('#next').addClass("disabled");
+		      	}
+		      
+		    }
+	
+		    // 이전 버튼 클릭
+		    if (this.id == 'previous' && currentPage > 1) {
+		      
+		    	// 이전 active상태 삭제
+		      	$('#page'+page).removeClass("active");		      		    	
+		    	page = currentPage - 1;
+		    	// 다음 버튼 active 상태 활성  
+		      	$('#page'+page).addClass("active");
+		      
+		      	
+		      	$('#previous').removeClass("disabled");
+		      	$('#next').removeClass("disabled");
+		      
+		      	// 이전버튼 비활성화
+		      	if(page == 1){
+		    		  $('#previous').addClass("disabled");
+		      	}
+		    }
+	
+		    // 다음 버튼 클릭
+		    if (this.id == 'next' && currentPage < lastPage) {
+		    	
+		   		$('#page'+page).removeClass("active");			    	
+		      	page = currentPage + 1;
+		      	$('#page'+page).addClass("active");
+		      
+		      	
+		      	$('#previous').removeClass("disabled");
+		      	$('#next').removeClass("disabled");
+		     	
+		      	// 다음버튼 비활성화		        
+		      	if(page == lastPage){
+		    		  $('#next').addClass("disabled");
+		      	}
+		   }
+				// page의 값에 변동이 생기면 ajax호출
+		    	if (page !== currentPage) {
+		    		reloadReivew(page);
+		    	}	
+			
+		})
+		
+		// ajax 호출 : 
+		function reloadReivew(page){
+			
 			$.ajax({
-				url:"/room/ajaxRoomInfoPaging",
+				url:"/room/ajaxRoomPaging",
 				method:"post",
-				data: {"currentPage":"${currentPage}" , "roomId":"${roomInfo.roomId}"},
-				success: console.log("success")
+				data: {"currentPage": page , "roomId":"${roomInfo.roomId}"},
+				success: function(response){
+					// currentpage값 바꿔줌
+					currentPage = page;
+					// id의값은 1부터 시작 , list는 [0]부터 시작함 그래서 response -1
+					for (let i = 1; i < response.length+1; i++) {
+						$('#reviewContent'+i).empty();
+						console.log(response.length);
+						$('#reviewContent'+i).append(response[i-1].reviewContent);
+						
+					}					
+				
+				}
 			})
-		})		
+		}									
+									
 		<!-- 카카오 지도api -->
 	 
 		let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
