@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.alpha.aoom.code.service.CodeService;
 import com.alpha.aoom.room.service.RoomService;
 
 import jakarta.servlet.http.HttpSession;
@@ -20,9 +21,18 @@ public class MainController {
 	@Autowired
 	RoomService roomService;
 	
+	@Autowired
+	CodeService codeService;
+	
 	// 메인페이지 호출
 	@RequestMapping("/main")
 	public String main(HttpSession session, ModelMap modelMap) {
+		
+		// 숙소 카테고리 조회
+		List<Map<String, Object>> roomCategory = codeService.selectCode("roomcate");
+
+		// 숙소 유형 조회(카테고리, 게스트하우스)
+		List<Map<String, Object>> roomType = codeService.selectCode("roomtype");
 		
 		// 숙소 전체 목록 조회
 		List<Map<String, Object>> roomAllList = roomService.retrieveList();
@@ -45,6 +55,8 @@ public class MainController {
 		modelMap.addAttribute("starDesc", ratingDesc);
 		modelMap.addAttribute("bookingDesc", bookingDesc);
 		modelMap.addAttribute("wishListDesc", wishListDesc);
+		modelMap.addAttribute("roomCategory", roomCategory);
+		modelMap.addAttribute("roomType", roomType);
 		
 		return "main";
 	}

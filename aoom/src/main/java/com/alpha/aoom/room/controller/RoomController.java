@@ -65,5 +65,12 @@ public class RoomController extends BaseController {
 		System.out.println(param);
 	}
 	
-	
+	@RequestMapping("/roomList")
+	@ResponseBody
+	public String roomList(@RequestParam Map<String, Object> param) {
+		
+		log.info("main에서 넘어온 param : "+ param);
+		
+		return "";
+	}
 }

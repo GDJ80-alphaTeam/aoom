@@ -36,7 +36,7 @@ public interface BaseConstant {
 	// 코드 값
 	final public static String CODE_RESULT_FAIL = "01";
 	final public static String CODE_RESULT_FAIL_02 = "02";
-	// 메세지 값
+	// 메세지 값(예시)
 	final public static String MASSAGE_RESULT_FAIL = "FAIL";
 	final public static String MASSAGE_RESULT_FAIL_02 = "데이터를 삽입하는데 실패하였습니다.";
 	
