@@ -33,6 +33,9 @@ public class MainController {
 
 		// 숙소 유형 조회(카테고리, 게스트하우스)
 		List<Map<String, Object>> roomType = codeService.selectCode("roomtype");
+
+		// 숙소 편의시설 목록 조회(카테고리, 게스트하우스)
+		List<Map<String, Object>> amenities = codeService.selectCode("amenities");
 		
 		// 숙소 전체 목록 조회
 		List<Map<String, Object>> roomAllList = roomService.retrieveList();
@@ -57,6 +60,7 @@ public class MainController {
 		modelMap.addAttribute("wishListDesc", wishListDesc);
 		modelMap.addAttribute("roomCategory", roomCategory);
 		modelMap.addAttribute("roomType", roomType);
+		modelMap.addAttribute("amenities", amenities);
 		
 		return "main";
 	}

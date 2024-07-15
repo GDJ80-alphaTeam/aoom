@@ -9,7 +9,7 @@
 		</a>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
-			<button onclick="location.href='${pageContext.request.contextPath}/host/main'">호스트모드</button>
+			<a class="me-3" href="${pageContext.request.contextPath}/host/main">호스트모드</a>
 			<form class="d-flex">
 				<div class="dropdown-center">
 					<button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
