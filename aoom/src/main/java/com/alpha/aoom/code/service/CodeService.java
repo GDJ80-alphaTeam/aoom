@@ -18,7 +18,7 @@ public class CodeService {
 	CodeMapper codeMapper;
 	
 	// group_key를 조건으로 code테이블의 컬럼 조회
-	public List<Map<String, Object>> retriveCode(String groupKey) {
+	public List<Map<String, Object>> selectCode(String groupKey) {
 		return codeMapper.selectByGroupKey(groupKey);
 	}
 }

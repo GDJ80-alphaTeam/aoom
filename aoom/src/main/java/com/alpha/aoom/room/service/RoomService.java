@@ -77,8 +77,8 @@ public class RoomService {
 	}
 	
 	// 숙소 등록 - 숙소 등록 1단계에서 입력한 정보 DB에 추가
-	public int addBasicInfo(Map<String, Object> param) {
+	public int addFirstInfo(Map<String, Object> param) {
 		
-		return roomMapper.updateBasicInfo(param);
+		return roomMapper.updateFisrtInfo(param);
 	}
 }

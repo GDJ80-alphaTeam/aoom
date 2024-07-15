@@ -36,5 +36,5 @@ public interface RoomMapper {
 	int insert(Map<String, Object> param);
 
 	// 숙소 등록 - 숙소 등록 1단계에서 입력한 정보 DB에 수정
-	int updateBasicInfo(Map<String, Object> param);
+	int updateFisrtInfo(Map<String, Object> param);
 }

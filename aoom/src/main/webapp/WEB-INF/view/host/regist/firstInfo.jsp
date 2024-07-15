@@ -6,18 +6,21 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>기본정보 등록</title>
+    <title>숙소 등록 1단계</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-</head>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <body>
-	<form action="/host/roomManage/registRoom/paymentInfo">
+	<form action="/host/roomManage/registRoom/registFirstInfo" method="post">
+	
 		<!-- roomId -->
 		<input type="hidden" name="roomId" value="${roomId }">
 		
-		<!-- 숙소 카테고리 설정 -->
+		<!-- 숙소 카테고리 선택 -->
 		<div>
 			
 			카테고리 : 
@@ -36,7 +39,7 @@
 			</c:forEach>
 		</div>
 		
-		<!-- 숙소 위치 입력 -->
+		<!-- 숙소 위치 설정 -->
 		<div>
 			주소 : <input type="text" id="frontAddress" placeholder="주소" style="width: 300px;" readonly="readonly" required="required">
 			<button type="button" onclick="searchAddress()">주소 찾기</button><br>
@@ -44,15 +47,17 @@
 			<input type="hidden" name="address" id="address">
 		</div>
 		
-		<!-- 최대 인원 입력 -->
+		<!-- 최대 인원 설정 -->
 		<div>
 			최대 인원 : <input type="number" name="maxPeople" min="1" required="required">
 		</div>
 		
 		<!-- 숙소 운영일 설정 -->
 		<div>
-			시작일 : <input type="date" name="startDate" id="startDate" required="required">
-			종료일 : <input type="date" name="endDate" id="endDate" disabled="disabled">
+			숙소 운영 기간 : 
+			<input type="text" id="roomOperationDate" placeholder="날짜를 선택해주세요" style="width: 300px;" autocomplete="off">
+			<input type="hidden" id="startDate" name="startDate">
+			<input type="hidden" id="endDate" name="endDate">
 		</div>
 		
 		<!-- 방, 침대, 욕실 수 설정 -->
@@ -100,7 +105,7 @@
 		});
 	</script>
 	
-	<!-- 숙소 운영 시작일 날짜 제한 -->
+	<!-- 숙소 운영 시작일 날짜 제한 및 Date Range Picker 설정-->
 	<script type="text/javascript">
 		// 영국시간과의 차이(ms단위);
 		let offset = 1000 * 60 * 60 * 9;
@@ -108,22 +113,41 @@
 		// Date.now() - 오늘 날짜(ms단위) + 영국시간과 차이(ms단위) = 한국 날짜(ms단위)
 		// toISOString() : Date 를 ISOString(yyyy-mm-ddThh:mm:ss) 형식의 문자열로 변환
 		let today = new Date(Date.now() + offset).toISOString().substring(0, 10);
-		
-		// 숙소 운영 시작일 min값을 오늘로 설정
-		$('#startDate').attr('min', today);
-		
-		// 숙소 운영 종료일을 시작일 이후로 설정
-		$('#startDate').blur(function() {
-			// 숙소 운영 시작일의 value값 가져오기
-			let startDate = $('#startDate').val(); 
 
-			// 숙소 운영 종료일에 min값을 숙소 운영 시작일로 설정
-			$('#endDate').attr('min', startDate);
-			
-			// 숙소 운영 시작일을 선택했을 경우 숙소 운영 종료일을 선택할 수 있도록 설정
-			$('#endDate').attr('disabled', false);
+		// Date Range Picker 설정
+		$('#roomOperationDate').daterangepicker({
+			minDate:today,
+		    showDropdowns: true,
+		    autoApply: false,
+			autoUpdateInput: false,
+			locale : {
+				"format" : "YYYY-MM-DD",
+				"separator" : " ~ ",
+				"applyLabel" : "적용",
+				"cancelLabel" : "취소",
+				"fromLabel" : "From",
+				"toLabel" : "To",
+				"customRangeLabel" : "Custom",
+				"daysOfWeek" : [ "일", "월", "화", "수", "목", "금", "토" ],
+				"monthNames" : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월" ]
+			},
+		},
+		
+		// 날짜 선택 시 input에 값 전달
+		function(start, end, label) {
+			console.log("시작일 : " + start.format('YYYY-MM-DD'));
+			console.log("종료일 : " + end.format('YYYY-MM-DD'));
+			$('#startDate').val(start.format('YYYY-MM-DD'));
+			$('#endDate').val(end.format('YYYY-MM-DD'));
+		});
+		
+		$('#roomOperationDate').on('apply.daterangepicker', function(ev, picker) {
+			$(this).val(picker.startDate.format('YYYY-MM-DD') + ' ~ ' + picker.endDate.format('YYYY-MM-DD'));
+		});
+
+		$('#roomOperationDate').on('cancel.daterangepicker', function(ev, picker) { 
+			$(this).val('');
 		});
 	</script>
-	
 </body>
 </html>

@@ -44,43 +44,93 @@ public class RegistRoomController {
 			return "redirect:/host/roomManage";
 		}
 		
-		return "redirect:/host/roomManage/registRoom/basicInfo?roomId=" + setupRoomInfo.get("roomId");
+		return "redirect:/host/roomManage/registRoom/firstInfo?roomId=" + setupRoomInfo.get("roomId");
 	}
 	
 	// 숙소 등록 - 숙소 등록 1단계 페이지 호출
-	@RequestMapping("/roomManage/registRoom/basicInfo")
-	public String registRoomBasicInfo(@RequestParam String roomId, ModelMap modelMap) {
+	@RequestMapping("/roomManage/registRoom/firstInfo")
+	public String firstInfoView(@RequestParam String roomId, ModelMap modelMap) {
+		
 		log.info("roomId={}", roomId);
+		
+		// modelMap에 roomId 추가
+		modelMap.put("roomId", roomId);
+		
+		// 숙소 category 목록
+		List<Map<String, Object>> roomcate = codeService.selectCode("roomcate");
+		log.info("roomcate={}", roomcate);
+		
+		// roomtype 목록
+		List<Map<String, Object>> roomtype = codeService.selectCode("roomtype");
+		log.info("roomtype={}", roomtype);
+		
+		// modelMap에 숙소 category, roomtype 목록 추가
+		modelMap.put("roomcate", roomcate);
+		modelMap.put("roomtype", roomtype);
+		
+		return "/host/regist/firstInfo";
+	}
+	
+	// 숙소 등록 - 숙소 등록 1단계 정보 DB 입력 및 숙소 등록 2단계 페이지 이동
+	@RequestMapping(value = "/roomManage/registRoom/registFirstInfo", method = RequestMethod.POST)
+	public String registRoomFirstInfo(@RequestParam Map<String, Object> param, ModelMap modelMap) {
+		
+		log.info("roomId={}", param.get("roomId"));
+		
+		// modelMap에 roomId 추가
+		modelMap.put("roomId", param.get("roomId"));
+		log.info("param={}", param);
+		
+		// 1단계 정보 없데이트
+		roomService.addFirstInfo(param);
+		
+		return "redirect:/host/roomManage/registRoom/secondInfo?roomId=" + param.get("roomId");
+	}
+	
+	// 숙소 등록 - 숙소 등록 2단계 페이지 호출
+	@RequestMapping("/roomManage/registRoom/secondInfo")
+	public String secondInfoView(@RequestParam String roomId, ModelMap modelMap) {
+		
+		log.info("roomId={}", roomId);
+		
 		// modelMap에 roomId 추가
 		modelMap.put("roomId", roomId);
 		
 		// amenities 목록
-		List<Map<String, Object>> roomcate = codeService.retriveCode("roomcate");
-		log.info("roomcate={}", roomcate);
+		List<Map<String, Object>> amenities = codeService.selectCode("amenities");
+		log.info("amenities={}", amenities);
 		
-		// roomtype 목록
-		List<Map<String, Object>> roomtype = codeService.retriveCode("roomtype");
-		log.info("roomtype={}", roomtype);
+		// modelMap에 amenities 목록 추가
+		modelMap.put("amenities", amenities);
 		
-		// modelMap에 amenities, roomtype 목록 추가
-		modelMap.put("roomcate", roomcate);
-		modelMap.put("roomtype", roomtype);
-		
-		return "/host/regist/basicInfo";
+		return "/host/regist/secondInfo";
 	}
 	
-	// 숙소 등록 - 숙소 등록 1단계 정보 DB 입력 및 숙소 등록 2단계 페이지 호출
-	@RequestMapping("/roomManage/registRoom/paymentInfo")
-	public String registRoomPaymentInfo(@RequestParam Map<String, Object> param, ModelMap modelMap) {
-		log.info("roomId={}", param.get("roomId"));
+	// 숙소 등록 - 숙소 등록 2단계 정보 DB 입력 및 숙소 등록 3단계 페이지 이동
+	@RequestMapping(value = "/roomManage/registRoom/registSecondInfo", method = RequestMethod.POST)
+	public String registRoomSecondInfo(@RequestParam Map<String, Object> param, 
+									   @RequestParam("amenities") List<String> amenities, 
+									   ModelMap modelMap) {
+		log.info("param={}", param);
+		log.info("amenities={}", amenities);
+		
+		param.put("amenities", amenities);
+		
 		log.info("param={}", param);
 		
 		// modelMap에 roomId 추가
 		modelMap.put("roomId", param.get("roomId"));
 		
-		// 1단계 정보 없데이트
-		roomService.addBasicInfo(param);
 		
-		return "/host/regist/paymentInfo";
+		return "redirect:/host/roomManage/registRoom/thirdInfo?roomId=" + param.get("roomId");
+	}
+	
+	// 숙소 등록 - 숙소 등록 3단계 페이지 호출
+	@RequestMapping("/roomManage/registRoom/thirdInfo")
+	public String thirdInfoView(@RequestParam String roomId, ModelMap modelMap) {
+		
+		log.info("roomId={}", roomId);
+		
+		return "/host/regist/thirdInfo";
 	}
 }
