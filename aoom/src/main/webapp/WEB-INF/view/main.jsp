@@ -48,19 +48,67 @@
 				</div>
 				<form action="${pageContext.request.contextPath}/room/roomList" method="get">
 					<div class="modal-body">
+					
 							<h3>가격</h3>
 							<input type="number" min="0" name="lowPrice" placeholder="최저"> ~ <input type="number" min="0" name="highPrice" placeholder="최고"> 
+							
 							<h3>숙소 유형</h3>
-					        <label>
-					        	<label for="roomTypeAll">전체</label>
-					            <input type="radio" id="roomTypeAll" name="roomtypeCode" value="all" checked>
-					        </label>
+				        	<label for="roomTypeAll">전체</label>
+				            <input type="radio" id="roomTypeAll" name="roomtypeCode" value="all" checked>
 							<c:forEach var="roomType" items="${roomType}">
 								<label for="${roomType.codeKey}">${roomType.codeName}</label>
 					            <input type="radio" id="${roomType.codeKey}" name="roomtypeCode" value="${roomType.codeKey}">
 							</c:forEach>
+							
 							<h3>침실과 침대 화장실</h3>
+							<label for="totalSpace">침실</label>
+							<input type="radio" id="totalSpace" name="totalSpace" value="1">1
+							<input type="radio" id="totalSpace" name="totalSpace" value="2">2
+							<input type="radio" id="totalSpace" name="totalSpace" value="3">3
+							<input type="radio" id="totalSpace" name="totalSpace" value="4">4
+							<input type="radio" id="totalSpace" name="totalSpace" value="5">5
+							<br>
+							<label for="totalBed">침대</label>
+							<input type="radio" id="totalBed" name="totalBed" value="1">1
+							<input type="radio" id="totalBed" name="totalBed" value="2">2
+							<input type="radio" id="totalBed" name="totalBed" value="3">3
+							<input type="radio" id="totalBed" name="totalBed" value="4">4
+							<input type="radio" id="totalBed" name="totalBed" value="5">5
+							<br>
+							<label for="totalBath">화장실</label>
+							<input type="radio" id="totalBath" name="totalBath" value="1">1
+							<input type="radio" id="totalBath" name="totalBath" value="2">2
+							<input type="radio" id="totalBath" name="totalBath" value="3">3
+							<input type="radio" id="totalBath" name="totalBath" value="4">4
+							<input type="radio" id="totalBath" name="totalBath" value="5">5
+							
 							<h3>편의 시설</h3>
+					        <input type="checkbox" name="amenities" value="ame01"> 와이파이<br>
+					        <input type="checkbox" name="amenities" value="ame02"> 주차장<br>
+					        <input type="checkbox" name="amenities" value="ame03"> 에어컨<br>
+					        <input type="checkbox" name="amenities" value="ame04"> 주방<br>
+					        <input type="checkbox" name="amenities" value="ame05"> 엘리베이터<br>
+					        <input type="checkbox" name="amenities" value="ame06"> 드라이기<br>
+					        <input type="checkbox" name="amenities" value="ame07"> 냉장고<br>
+					        <input type="checkbox" name="amenities" value="ame08"> ott<br><br>
+						<!--<input type="radio" id="ame01" name="ame01" value="ame01">와이파이
+							<input type="radio" id="ame02" name="ame02" value="ame02">주차장
+							<input type="radio" id="ame03" name="ame03" value="ame03">에어컨
+							<input type="radio" id="ame04" name="ame04" value="ame04">주방
+							<input type="radio" id="ame05" name="ame05" value="ame05">엘리베이터
+							<input type="radio" id="ame06" name="ame06" value="ame06">드라이기
+							<input type="radio" id="ame07" name="ame07" value="ame07">냉장고
+							<input type="radio" id="ame08" name="ame08" value="ame08">ott
+ 							<input type="checkbox" name="ame01" value="ame01">와이파이
+							<input type="checkbox" name="ame02" value="ame02">주차장
+							<input type="checkbox" name="ame03" value="ame03">에어컨
+							<input type="checkbox" name="ame04" value="ame04">주방
+							<input type="checkbox" name="ame05" value="ame05">엘리베이터
+							<input type="checkbox" name="ame06" value="ame06">드라이기
+							<input type="checkbox" name="ame07" value="ame07">냉장고
+							<input type="checkbox" name="ame08" value="ame08">ott -->
+							
+							
 							<h3>즉시 예약만</h3>
 					</div>
 					<div class="modal-footer">
@@ -203,6 +251,17 @@
 		myModal.addEventListener('shown.bs.modal', () => {
 			myInput.focus()
 		})
+		
+        // 편의시설 체크박스 배열로 보내기
+        document.getElementById('amenitiesForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // 폼 기본 동작 방지
+            const form = event.target;
+            const selectedAmenities = Array.from(form.elements['amenities'])
+                                          .filter(input => input.checked)
+                                          .map(input => input.value);
+            console.log('선택된 편의시설:', selectedAmenities);
+            // 여기서는 선택된 편의시설을 사용하여 검색을 처리하거나 다른 작업을 수행할 수 있습니다.
+        });
 	</script>
 </body>
 </html>
