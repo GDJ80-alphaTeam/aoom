@@ -26,8 +26,34 @@
 			</button>
 		</h1>
 		
-		<div style="margin-bottom:100px; height:500px; background-color: green" >
-			이미지 들어갈곳
+		<div>
+			<div id="carouselExampleIndicators" class="carousel slide"data-bs-ride="carousel">				
+				<div class="carousel-indicators">
+					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true"	aria-label="Slide 1"></button>
+					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+				</div>
+				
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img src="/image/room20240705/toben.jpg" class="d-block w-100" alt="#">
+					</div>
+					<div class="carousel-item">
+						<img src="" class="d-block w-100" alt="#">
+					</div>
+					<div class="carousel-item">
+						<img src="" class="d-block w-100" alt="#">
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button"	data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button"data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
 		</div>
 		
 		<h3>숙소설명</h3>
@@ -76,17 +102,20 @@
 		      <nav>
 		        <ul class="pagination">
 		          <li class="page-item <c:if test="${currentPage == 1}">disabled</c:if>">
-		            <a class="page-link" href="?roomId=${roomInfo.roomId}&currentPage=${currentPage - 1}">이전</a>
+		          	<button class="page-link" type="button" id="previous">이전</button>
+		           <%-- <a class="page-link" href="?roomId=${roomInfo.roomId}&currentPage=${currentPage - 1}">이전</a> --%>
 		          </li>
 		
 		          <c:forEach var="i" begin="1" end="${reviewCntAvg.lastPage}">
 		            <li class="page-item <c:if test="${currentPage == i}">active</c:if>">
-		              <a class="page-link" href="?roomId=${roomInfo.roomId}&currentPage=${i}">${i}</a>
+		            	<button id="pageNo" class="page-link" type="button" value="${i}">${i}</button>
+		              <%-- <a class="page-link" href="?roomId=${roomInfo.roomId}&currentPage=${i}">${i}</a> --%>
 		            </li>
 		          </c:forEach>
 		
 		          <li class="page-item <c:if test="${currentPage == reviewCntAvg.lastPage}">disabled</c:if>">
-		            <a class="page-link" href="?roomId=${roomInfo.roomId}&currentPage=${currentPage + 1}">다음</a>
+		            <button class="page-link" type="button" id="next">다음</button>
+		            <%-- <a class="page-link" href="?roomId=${roomInfo.roomId}&currentPage=${currentPage + 1}">다음</a> --%>
 		          </li>
 		        </ul>
 		      </nav>
@@ -100,23 +129,24 @@
 			<div>
 				
 			</div>			
-		</div>
-		
-		
+		</div>		
 	</div> <!-- 상세보기전체감싸는 div -->
 </body>
 		
 		
 	<script>
-		$.ajax({
-			url:,
-			method:,
-			success:
-		})
-	</script>	
-		
-		
-	<script>
+	<!-- 페이징 -->
+		const currentPage = "${currentPage}"
+		console.log(currentPage);
+		$("#pageNo").click( function(){
+			$.ajax({
+				url:"/room/ajaxRoomInfoPaging",
+				method:"post",
+				data: {"currentPage":"${currentPage}" , "roomId":"${roomInfo.roomId}"},
+				success: console.log("success")
+			})
+		})		
+		<!-- 카카오 지도api -->
 	 
 		let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = {

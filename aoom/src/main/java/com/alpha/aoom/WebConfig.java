@@ -17,7 +17,7 @@ public class WebConfig implements WebMvcConfigurer{
 				.order(1)	// 적용할 필터 순서 설정
 				.addPathPatterns("/**") // 적용할 호출명 설정
 				// 제외 할 호출명 설정
-				.excludePathPatterns("/main", "/member/signup", "/member/ajaxSignup", "/member/ajaxSignout", "/member/signin", "/member/ajaxSignin", "/userAuthNo/ajaxSend", "/userAuthNo/ajaxAuthCheck", "/room/roomInfo");
+				.excludePathPatterns("/main", "/member/signup", "/member/ajaxSignup", "/member/ajaxSignout", "/member/signin", "/member/ajaxSignin", "/userAuthNo/ajaxSend", "/userAuthNo/ajaxAuthCheck", "/room/roomInfo" ,"/image/**");
 		
 		// 위 설정을 인터셉터에 적용
 		WebMvcConfigurer.super.addInterceptors(registry);

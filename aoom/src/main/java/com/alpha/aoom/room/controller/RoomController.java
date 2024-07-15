@@ -8,16 +8,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alpha.aoom.review.service.ReviewService;
 import com.alpha.aoom.room.service.RoomService;
+import com.alpha.aoom.util.BaseController;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Slf4j
 @RequestMapping("/room")
 @Controller
-public class RoomController {
+public class RoomController extends BaseController {
 
 	@Autowired
 	RoomService roomService;
@@ -51,9 +55,15 @@ public class RoomController {
 		modelMap.addAttribute("reviewList",reviewList);
 		modelMap.addAttribute("reviewCntAvg",reviewCntAvg);
 		modelMap.addAttribute("currentPage",currentPage);
-			
+		
 		return "/room/roomInfo";
 	}
 
+	@RequestMapping("/ajaxRoomInfoPaging")
+	@ResponseBody
+	public void requestMethodName(@RequestParam Map<String, Object> param) {
+		System.out.println(param);
+	}
+	
 	
 }

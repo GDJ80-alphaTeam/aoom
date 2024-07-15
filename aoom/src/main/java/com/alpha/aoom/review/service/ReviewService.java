@@ -56,7 +56,7 @@ public class ReviewService {
 		if(totalRow % rowPerPage != 0) {
 			lastPage += 1; 
 		}
-	
+			
 		getPagingInfo.put("lastPage", lastPage);
 		//log.info(getPagingInfo.getClass().getCanonicalName());
 		return getPagingInfo;
