@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.alpha.aoom.amenities.service.AmenitiesMapper;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -17,7 +19,9 @@ public class RoomService {
 	
 	@Autowired
 	RoomMapper roomMapper ;
-		
+	
+	@Autowired
+	AmenitiesMapper amenitiesMapper;	
 	// 숙소 상세보기 조회
 	// param: room_id
 	public Map<String, Object> retriveRoomInfo(Map<String,Object> param) {
@@ -27,7 +31,7 @@ public class RoomService {
 	// 숙소 편의시설 조회
 	// param: room_id
 	public List<Map<String, Object>> retriveRoomAmenities(Map<String,Object> param){
-		return roomMapper.selectByAmenities(param);
+		return amenitiesMapper.selectByDetail(param);
 	}
 	
 	// 숙소 등록 - 숙소 등록 1단계 전 숙소 초기화

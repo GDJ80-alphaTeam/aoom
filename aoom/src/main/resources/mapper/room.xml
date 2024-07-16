@@ -48,21 +48,7 @@
 		WHERE 
 			r.room_id = #{roomId} 			 
 	</select>
-	
-	<!-- 숙소 편의시설목록 조회 -->
-	<select id="selectByAmenities" parameterType="map" resultType="camelCaseMap">
-		SELECT 
-			c.code_name
-		FROM 
-			amenities a
-		LEFT JOIN 
-			code c
-		ON 
-			a.amenities_code = c.code_key
-		WHERE 
-			room_id = #{roomId} 	
-	</select>
-	
+			
 	<!-- user가 호스팅 중인 숙소 목록 조회 retrieveList -->
 	<select id="selectByUserId" parameterType="String" resultType="camelCaseMap">
 	    SELECT
@@ -200,8 +186,8 @@
 		)
 	</insert>
 	
-	<!-- 숙소 등록 - 숙소 등록 1단계에서 입력한 정보 DB에 수정 -->
-	<update id="updateFisrtInfo" parameterType="map">
+	<!-- 숙소 등록 - 숙소 등록 1단계에서 입력한 정보 DB에 추가 -->
+	<insert id="updateBasicInfo" parameterType="map">
 		UPDATE
 			room
 		SET
@@ -217,19 +203,5 @@
 			,update_date = SYSDATE
 		WHERE
 			room_id = #{roomId}
-	</update>
-	
-	<!-- 숙소 등록 - 숙소 등록 2단계에서 입력한 정보 DB에 수정 -->
-	<update id="updateSecondInfo" parameterType="map">
-		UPDATE
-			room
-		SET
-			 room_name = #{roomName}
-			,room_content = #{roomContent}
-			,main_image = #{mainImage},
-			,original_name = #{originalName},
-			,update_date = SYSDATE
-		WHERE
-			room_id = #{roomId}
-	</update>
+	</insert>
 </mapper>

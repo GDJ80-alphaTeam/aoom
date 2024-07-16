@@ -13,10 +13,7 @@ public interface RoomMapper {
 	
 	//숙소 상세 조회
 	Map<String, Object> selectOne(Map<String,Object> param);
-	
-	// 어메니티 목록 조회
-	List<Map<String, Object>> selectByAmenities(Map<String,Object> param);
-	
+			
 	// user가 호스팅하고있는 숙소 목록 조회
 	List<Map<String, Object>> selectByUserId(String userId);
 	

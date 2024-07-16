@@ -24,7 +24,9 @@
 			</div>			
 			<!-- 위시리스트 버튼 -->
 			<button type="button" style="background-color: white ; border: 0">
-				&#128151;
+				<a>
+					&#128151;
+				</a>
 			</button>
 		</h1>
 		
@@ -38,7 +40,7 @@
 				
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img src="/image/room20240705/toben.jpg" class="d-block w-100" alt="#">
+						<img src="" class="d-block w-100" alt="/image/reviewDefault.png">
 					</div>
 					<div class="carousel-item">
 						<img src="" class="d-block w-100" alt="#">
