@@ -11,4 +11,19 @@
 		where 
 		    room_id = #{roomId}		
 	</select>
+	
+	<!-- 숙소등록 2단계에서 메인 이미지를 제외한 나머지 이미지들 INSERT -->
+	<insert id="insert" parameterType="map">
+		INSERT INTO room_image(
+			 image_no
+			,room_id
+			,image
+			,original_name
+		) VALUES(
+			 #{imageNo}
+			,#{roomId}
+			,#{image}
+			,#{originalName}
+		)	
+	</insert>
 </mapper>

@@ -12,7 +12,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
-	<form action="/host/roomManage/registRoom/registSecondInfo" method="post">
+	<form action="/host/roomManage/registRoom/registSecondInfo" enctype="multipart/form-data" method="post">
 		<!-- roomId -->
 		<input type="hidden" name="roomId" value="${roomId }">
 		
@@ -30,9 +30,10 @@
 		
 		<!-- 숙소 편의시설 설정 -->
 		<div>
-			<c:forEach var="amenitie" items="${amenities }">
-				<label for="${amenitie.codeKey }">${amenitie.codeName }</label>
-				<input type="checkbox" id="${amenitie.codeKey }" name="amenities" value="${amenitie.codeKey }">
+			편의시설 : 
+			<c:forEach var="amenity" items="${amenities }">
+				<label for="${amenity.codeKey }">${amenity.codeName }</label>
+				<input type="checkbox" id="${amenity.codeKey }" name="amenities" value="${amenity.codeKey }">
 			</c:forEach>
 		</div>
 		
@@ -49,21 +50,20 @@
 			    <div style="display: inline-block;">
 			    	<div style="display: inline-block;">
 			    		<img src="https://i0.wp.com/adventure.co.kr/wp-content/uploads/2020/09/no-image.jpg" style="width: 150px; height: 150px; display: block;" id="firstImageFile">
-						<input type="file" id="firstImage" name="firstImage" accept="image/*" required="required">
+						<input type="file" id="firstImage" name="images" accept="image/*" required="required">
 						
 						<img src="https://i0.wp.com/adventure.co.kr/wp-content/uploads/2020/09/no-image.jpg" style="width: 150px; height: 150px; display: block;" id="secondImageFile">
-						<input type="file" id="secondImage" name="secondImage" accept="image/*" required="required">
+						<input type="file" id="secondImage" name="images" accept="image/*" required="required">
 			    	</div>
 					
 					<div style="display: inline-block;">
 			    		<img src="https://i0.wp.com/adventure.co.kr/wp-content/uploads/2020/09/no-image.jpg" style="width: 150px; height: 150px; display: block;" id="thirdImageFile">
-						<input type="file" id="thirdImage" name="thirdImage" accept="image/*" required="required">
+						<input type="file" id="thirdImage" name="images" accept="image/*" required="required">
 						<img src="https://i0.wp.com/adventure.co.kr/wp-content/uploads/2020/09/no-image.jpg" style="width: 150px; height: 150px; display: block;" id="fourthImageFile">
-						<input type="file" id="fourthImage" name="fourthImage" accept="image/*" required="required">
+						<input type="file" id="fourthImage" name="images" accept="image/*" required="required">
 			    	</div>
 				</div>
 			</div>
-		    
 		</div>
 		
 		<button type="submit">다음</button>

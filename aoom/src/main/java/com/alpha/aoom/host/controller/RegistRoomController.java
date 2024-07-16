@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.alpha.aoom.code.service.CodeService;
 import com.alpha.aoom.room.service.RoomService;
@@ -49,12 +50,12 @@ public class RegistRoomController {
 	
 	// 숙소 등록 - 숙소 등록 1단계 페이지 호출
 	@RequestMapping("/roomManage/registRoom/firstInfo")
-	public String firstInfoView(@RequestParam String roomId, ModelMap modelMap) {
+	public String firstInfoView(@RequestParam Map<String, Object> param, ModelMap modelMap) {
 		
-		log.info("roomId={}", roomId);
+		log.info("roomId={}", param.get("roomId"));
 		
 		// modelMap에 roomId 추가
-		modelMap.put("roomId", roomId);
+		modelMap.put("roomId", param.get("roomId"));
 		
 		// 숙소 category 목록
 		List<Map<String, Object>> roomcate = codeService.selectCode("roomcate");
@@ -75,11 +76,10 @@ public class RegistRoomController {
 	@RequestMapping("/roomManage/registRoom/registFirstInfo")
 	public String registRoomFirstInfo(@RequestParam Map<String, Object> param, ModelMap modelMap) {
 		
-		log.info("roomId={}", param.get("roomId"));
+		log.info("param={}", param);
 		
 		// modelMap에 roomId 추가
 		modelMap.put("roomId", param.get("roomId"));
-		log.info("param={}", param);
 		
 		// 1단계 정보 없데이트
 		roomService.addFirstInfo(param);
@@ -89,12 +89,12 @@ public class RegistRoomController {
 	
 	// 숙소 등록 - 숙소 등록 2단계 페이지 호출
 	@RequestMapping("/roomManage/registRoom/secondInfo")
-	public String secondInfoView(@RequestParam String roomId, ModelMap modelMap) {
+	public String secondInfoView(@RequestParam Map<String, Object> param, ModelMap modelMap) {
 		
-		log.info("roomId={}", roomId);
+		log.info("roomId={}", param.get("roomId"));
 		
 		// modelMap에 roomId 추가
-		modelMap.put("roomId", roomId);
+		modelMap.put("roomId", param.get("roomId"));
 		
 		// amenities 목록
 		List<Map<String, Object>> amenities = codeService.selectCode("amenities");
@@ -111,13 +111,19 @@ public class RegistRoomController {
 	@RequestMapping("/roomManage/registRoom/registSecondInfo")
 	public String registRoomSecondInfo(@RequestParam Map<String, Object> param, 
 									   @RequestParam("amenities") List<String> amenities, 
+									   @RequestParam("mainImage") MultipartFile mainImage,
+									   @RequestParam("images") MultipartFile[] images,
 									   ModelMap modelMap) {
 		log.info("param={}", param);
 		log.info("amenities={}", amenities);
 		
-		// param에 amenities값(리스트) 추가
+		// param에 amenities값(리스트), mainImage, images 추가
 		param.put("amenities", amenities);
+		
 		log.info("param={}", param);
+		
+		// 입력한 정보 DB에 INSERT, UPDATE 및 이미지 저장
+		roomService.addSecondInfo(param, mainImage, images);
 		
 		// modelMap에 roomId 추가
 		modelMap.put("roomId", param.get("roomId"));
@@ -127,9 +133,9 @@ public class RegistRoomController {
 	
 	// 숙소 등록 - 숙소 등록 3단계 페이지 호출
 	@RequestMapping("/roomManage/registRoom/thirdInfo")
-	public String thirdInfoView(@RequestParam String roomId, ModelMap modelMap) {
+	public String thirdInfoView(@RequestParam Map<String, Object> param, ModelMap modelMap) {
 		
-		log.info("roomId={}", roomId);
+		log.info("roomId={}", param.get("roomId"));
 		
 		return "/host/regist/thirdInfo";
 	}

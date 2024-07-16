@@ -14,4 +14,15 @@
 		WHERE 
 			room_id = #{roomId} 	
 	</select>
+	
+	<!-- 숙소 등록 - 숙소등록 2단계에서 입력한 편의시설 DB에 추가 -->
+	<insert id="insert" parameterType="map">
+		INSERT INTO amenities(
+			 room_id
+			,amenities_code
+		) VALUES(
+			 #{roomId}
+			,#{amenitiesCode}
+		)
+	</insert>
 </mapper>
