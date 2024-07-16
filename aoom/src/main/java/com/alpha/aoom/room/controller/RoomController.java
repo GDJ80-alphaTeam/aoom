@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alpha.aoom.amenities.service.AmenitiesService;
 import com.alpha.aoom.review.service.ReviewService;
 import com.alpha.aoom.room.service.RoomService;
 import com.alpha.aoom.util.BaseController;
@@ -27,6 +28,9 @@ public class RoomController extends BaseController {
 	RoomService roomService;
 	@Autowired
 	ReviewService reviewService;
+	@Autowired
+	AmenitiesService amenitiesService;
+	
 	
 	// 숙소상세보기 뷰페이지 호출
 	// param: userId(get)
@@ -37,7 +41,7 @@ public class RoomController extends BaseController {
 		Map<String, Object> roomInfo = roomService.retriveRoomInfo(param);
 		
 		// 숙소 어메니티 조회
-		List<Map<String, Object>> roomAmenities = roomService.retriveRoomAmenities(param);
+		List<Map<String, Object>> roomAmenities = amenitiesService.retriveRoomAmenities(param);
 					
 		//숙소리뷰조회
 		List<Map<String, Object>> reviewList = reviewService.selectByList(param);

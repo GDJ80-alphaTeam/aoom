@@ -28,11 +28,7 @@ public class RoomService {
 		return roomMapper.selectOne(param);
 	}
 	
-	// 숙소 편의시설 조회
-	// param: room_id
-	public List<Map<String, Object>> retriveRoomAmenities(Map<String,Object> param){
-		return amenitiesMapper.selectByDetail(param);
-	}
+	
 	
 	// 숙소 등록 - 숙소 등록 1단계 전 숙소 초기화
 	public Map<String, Object> setupRoom(String userId) {
