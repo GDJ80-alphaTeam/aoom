@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alpha.aoom.amenities.service.AmenitiesService;
 import com.alpha.aoom.review.service.ReviewService;
 import com.alpha.aoom.room.service.RoomService;
+import com.alpha.aoom.roomImage.service.RoomImageMapper;
+import com.alpha.aoom.roomImage.service.RoomImageService;
 import com.alpha.aoom.util.BaseController;
 
 import lombok.extern.slf4j.Slf4j;
@@ -30,35 +32,46 @@ public class RoomController extends BaseController {
 	ReviewService reviewService;
 	@Autowired
 	AmenitiesService amenitiesService;
-	
+	@Autowired
+	RoomImageService roomImageService;
 	
 	// 숙소상세보기 뷰페이지 호출
 	// param: userId(get)
 	@RequestMapping("/roomInfo")
 	public String roomInfo(@RequestParam Map<String, Object> param , ModelMap modelMap) {
 		
-		// 숙소정보 조회
+		// 숙소정보 조회 + 숙소 주인정보 
 		Map<String, Object> roomInfo = roomService.retriveRoomInfo(param);
 		
 		// 숙소 어메니티 조회
 		List<Map<String, Object>> roomAmenities = amenitiesService.retriveRoomAmenities(param);
 					
-		//숙소리뷰조회
+		// 숙소리뷰조회
 		List<Map<String, Object>> reviewList = reviewService.selectByList(param);
 		
-		//숙소 평점 및 리뷰수 조회 
+		// 숙소 평점 및 리뷰수 조회 
 		Map<String,Object> reviewCntAvg = reviewService.selectByAvgCnt(param);
 		
+		// 숙소 이미지url 검색
+		List<Map<String, Object>> roomImages = roomImageService.selectByList(param);
+		
+		// 숙소 호스트가 받은 총합 후기수
+		Map<String,Object> hostReviewTotal = reviewService.selectByHostTotalCount(param);
+	
 		int currentPage = reviewService.currentPage(param);
+
 		//log.info("숙소상세보기 호출값" + roomInfo);
 		//log.info("숙소편의시설 호출값" + roomAmenities);
 		//log.info("리뷰목록 호출값"+reviewList);
 		//log.info("해당숙소의 리뷰 평점 및 리뷰값"+reviewCntAvg);
+		//log.info("해당숙소의 이미지 url 조회"+roomImages);
 		modelMap.addAttribute("roomInfo",roomInfo);
 		modelMap.addAttribute("roomAmenities",roomAmenities);
 		modelMap.addAttribute("reviewList",reviewList);
 		modelMap.addAttribute("reviewCntAvg",reviewCntAvg);
 		modelMap.addAttribute("currentPage",currentPage);
+		modelMap.addAttribute("roomImages",roomImages);
+		modelMap.addAttribute("hostReview",hostReviewTotal);
 		
 		return "/room/roomInfo";
 	}

@@ -42,8 +42,8 @@
 	<!-- 해당하는 숙소의 리뷰 총 개수 및 총개수rating 평균 -->
 	<select id="selectByAverageCount" parameterType="map" resultType="camelCaseMap">
 		SELECT 
-			 count(*) AS cnt
-			,avg(rating) AS avg		
+			 COUNT(*) AS cnt
+			,AVG(rating) AS avg		
 		FROM 
 			review
 		WHERE 
@@ -51,9 +51,10 @@
 	</select>
 	
 	<!-- 해당하는 숙소 주인이 받았던 후기 총 개수 -->
-	<select id="selectByUserCount" parameterType="map" resultType="int">
+	<select id="selectByHostTotalCount" parameterType="map" resultType="camelCaseMap">
 		SELECT 
-			count(*) AS cnt
+			 COUNT(*) AS cnt 
+		    ,avg(rating) AS avg
 		FROM
 			review
 		INNER JOIN

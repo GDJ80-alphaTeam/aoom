@@ -1,6 +1,7 @@
 package com.alpha.aoom.review.service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,4 +74,20 @@ public class ReviewService {
 		}
 		return currentPage;
 	}
+	
+	
+	// param: roomId
+	// 해당 숙소를 운영하는 유저의 총 후기수 
+	public Map<String,Object> selectByHostTotalCount(Map<String, Object> param){
+		
+		Map<String, Object> originalHostCount = reviewMapper.selectByHostTotalCount(param);
+		
+		Map<String, Object> hostCount = new HashMap<>(originalHostCount);
+		
+		
+		
+		return reviewMapper.selectByHostTotalCount(param);
+	
+	}
+
 }

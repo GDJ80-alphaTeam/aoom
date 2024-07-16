@@ -33,21 +33,22 @@
 		<div>
 			<div id="carouselExampleIndicators" class="carousel slide"data-bs-ride="carousel">				
 				<div class="carousel-indicators">
-					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true"	aria-label="Slide 1"></button>
-					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true"aria-label="Slide 1"></button>
+					<c:forEach var="image" items="${roomImages}" varStatus="status">
+						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${status.count}" aria-label="Slide 2"></button>
+					</c:forEach>
 				</div>
-				
+								
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img src="/image/reviewDefault.png" class="d-block w-100" alt="/image/reviewDefault.png">
+						<img src="${roomInfo.mainImage}" class="d-block w-100" alt="/image/reviewDefault.png">
 					</div>
-					<div class="carousel-item">
-						<img src="" class="d-block w-100" alt="#">
-					</div>
-					<div class="carousel-item">
-						<img src="" class="d-block w-100" alt="#">
-					</div>
+					
+					<c:forEach var="image" items="${roomImages}">
+						<div class="carousel-item">
+							<img src="${image.image}" class="d-block w-100" alt="/image/reviewDefault.png">
+						</div>
+					</c:forEach>					
 				</div>
 				<button class="carousel-control-prev" type="button"	data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
 					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -160,8 +161,31 @@
 						
 		<div style="margin-bottom:100px;display: flex;justify-content: space-between; ">
 			<div style="width: 50%; background-color: green" >
-				내용
-			</div>
+				
+					<div style="width:100%;height:150px; display:flex">
+						<div style="width: 70%;flex-wrap: wrap; display:flex">						
+													
+							<img style="width: 100%;height: 80%" src="${roomInfo.userImage}">					
+							<div style="width:100%;height:20%">
+							호스트:${roomInfo.userName}
+							</div>
+						</div>
+						
+						<div style="width: 30%">
+							<div>
+								후기수:${hostReview.cnt}
+							</div>
+								
+							<div>
+								평점:${hostReview.avg} 
+							</div>
+						</div>
+					</div>
+					<div style="width:30%">
+					
+					</div>
+				</div>
+			
 			<div style="width: 50% ; background-color: gray" >
 				내용2
 			</div>			
@@ -180,7 +204,7 @@
 		$(document).on('click', '[id^="page"], #previous, #next', function() {
 			let page = currentPage;
 			
-			// 페이지 번호 클릭
+			// 페이지 번호 클릭 this = 위에 on.click된 것들중 클릭이벤트가 일나면
 		    if (this.id.startsWith('page')) {
 		    	// page에 클릭한 페이지 값 입력
 		      	page = $(this).val();
@@ -254,22 +278,25 @@
 				data: {"currentPage": page , "roomId":"${roomInfo.roomId}"},
 				success: function(response){										
 					$('[id^="reviewContent"]').empty();
-					$('[id^="reviewImg"]').empty();
-					$('[id^="userImg"]').empty();
+					$('[id^="reviewImg"]').attr('src','');
+					$('[id^="userImg"]').attr('src','');
 					// currentpage값 바꿔줌
 					currentPage = page;
+					console.log(response);
 					// id의값은 1부터 시작 , list는 [0]부터 시작함 그래서 response -1
 					for (let i = 1; i < response.length+1; i++) {
 						$('#reviewContent'+i).append(response[i-1].reviewContent);
-						$('#reviewImg'+i).attr('src',response[i-1].reviewImg); // reviewImgUrl이 response에 포함되어 있다고 가정함
-		                $('#userImg'+i).attr('src',response[i-1].userImg); // userImgUrl이 response에 포함되어 있다고 가정함
-						// 사진도 넣어야함
+						$('#reviewImg'+i).attr('src',response[i-1].reviewImage); // reviewImgUrl이 response에 포함되어 있다고 가정함
+		                $('#userImg'+i).attr('src',response[i-1].userImage); // userImgUrl이 response에 포함되어 있다고 가정함
+						console.log(response[i-1].userImg);
 					}					
 				
 				}
 			})
 		}									
-									
+		
+		
+		
 		<!-- 카카오 지도api -->
 	 
 		let mapContainer = document.getElementById('map'), // 지도를 표시할 div 

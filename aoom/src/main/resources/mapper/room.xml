@@ -42,9 +42,15 @@
 	<!-- 숙소 상세조회 selectOne -->
 	<select id="selectOne" parameterType="Map" resultType="camelCaseMap">
 		SELECT 
-			<include refid="room_col" />
+			 <include refid="room_col" />
+			, u.user_name
+			, u.user_image
 		FROM 
-			room r							
+			room r	
+		LEFT JOIN
+			users u
+		ON
+			r.user_id = u.user_id							
 		WHERE 
 			r.room_id = #{roomId} 			 
 	</select>

@@ -15,5 +15,5 @@ public interface ReviewMapper {
 	Map<String, Object> selectByAverageCount (Map<String, Object> param);
 	
 	// 유저 한명의 받은리뷰수의 총합
-	Map<String, Object> selectByUserCount (Map<String, Object> param);
+	Map<String, Object> selectByHostTotalCount (Map<String, Object> param);
 }
