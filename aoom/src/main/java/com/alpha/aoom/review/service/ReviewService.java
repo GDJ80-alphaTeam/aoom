@@ -36,7 +36,7 @@ public class ReviewService {
 		param.put("beginRow", beginRow);
 		param.put("endRow", endRow);
 		
-		return reviewMapper.selectByRoomList(param);		
+		return reviewMapper.selectByList(param);		
 	}
 	
 	// param : room_id

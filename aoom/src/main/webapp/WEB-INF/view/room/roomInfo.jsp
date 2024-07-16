@@ -13,6 +13,8 @@
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f0842831d9c350ed32adefb11b6cd5f6&libraries=services"></script>
 </head>
 <body>
+	<jsp:include page="/inc/navbar.jsp"></jsp:include>
+	
 	<div style="width:1000px; margin: 0 auto ; min-width:600px" >
 			<!-- 숙소 이미지 -->
 		<h1 style="display:flex;justify-content: space-between; margin-top: 100px;">
@@ -86,8 +88,11 @@
 		
 		<div style="flex-wrap: wrap; margin-bottom:100px; display: flex;">
 			<c:forEach var="r" items="${reviewList}" varStatus="status">
-				<div style="width: 45%; margin-right: 30px;margin-bottom: 30px;display: flex;">					
-					<img alt="#" src="" style="width:20%;background-color: green">					
+				<div style="width: 45%; margin-right: 30px;margin-bottom: 30px;display: flex;">
+					<div style="height: 150px ;width: 20%;">										
+						<img id="reviewImg${status.count}" alt="" src="${r.reviewImage}" style="width:100%;height:50%;background-color: green">
+						<img id="userImg${status.count}" alt="" src="${r.userImage}" style="width:100%;height:50%;background-color: gray">
+					</div>						
 					<div style="width: 80%" id="reviewContent${status.count}">
 						${r.reviewContent}
 					</div>
@@ -152,11 +157,11 @@
 		</c:choose>
 						
 		<div style="margin-bottom:100px;display: flex;justify-content: space-between; ">
-			<div>
-				프로필 상세보기
+			<div style="width: 50%; background-color: green" >
+				내용
 			</div>
-			<div>
-				
+			<div style="width: 50% ; background-color: gray" >
+				내용2
 			</div>			
 		</div>		
 	</div> <!-- 상세보기전체감싸는 div -->
@@ -169,7 +174,7 @@
 	  let currentPage = parseInt("${currentPage}");
 	  let lastPage = parseInt("${reviewCntAvg.lastPage}");
 	  const roomId = "${roomInfo.roomId}";
-								// id가 page로 시작하는 모든태그
+								// id가 page로 시작하는 모든태그 
 		$(document).on('click', '[id^="page"], #previous, #next', function() {
 			let page = currentPage;
 			
@@ -181,10 +186,12 @@
 		      	$(".page-link.active").removeClass("active");
 		    	// 선택한 번호페이지의 active 추가
 		      	$(this).addClass("active")
+		      	
+		      	// 숫자가 선택되었을때 다음버튼과 이전버튼의 disabled 비활성화
 		      	$('#previous').removeClass("disabled");
 		      	$('#next').removeClass("disabled");
 		      
-		      	// 이전 and 다음 버튼 비활성화
+		      	// 이전 and 다음 버튼 비활성화 page값에따라 처리
 		      	if(page == 1){
 		    		$('#previous').addClass("disabled");
 		      	}
@@ -240,18 +247,21 @@
 		function reloadReivew(page){
 			
 			$.ajax({
-				url:"/room/ajaxRoomPaging",
+				url:"/review/ajaxReviewPaging",
 				method:"post",
 				data: {"currentPage": page , "roomId":"${roomInfo.roomId}"},
-				success: function(response){
+				success: function(response){										
+					$('[id^="reviewContent"]').empty();
+					$('[id^="reviewImg"]').empty();
+					$('[id^="userImg"]').empty();
 					// currentpage값 바꿔줌
 					currentPage = page;
 					// id의값은 1부터 시작 , list는 [0]부터 시작함 그래서 response -1
 					for (let i = 1; i < response.length+1; i++) {
-						$('#reviewContent'+i).empty();
-						console.log(response.length);
 						$('#reviewContent'+i).append(response[i-1].reviewContent);
-						
+						$('#reviewImg'+i).attr('src',response[i-1].reviewImg); // reviewImgUrl이 response에 포함되어 있다고 가정함
+		                $('#userImg'+i).attr('src',response[i-1].userImg); // userImgUrl이 response에 포함되어 있다고 가정함
+						// 사진도 넣어야함
 					}					
 				
 				}
