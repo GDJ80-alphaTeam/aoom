@@ -29,6 +29,9 @@ public interface RoomMapper {
 	// 위시리스트 TOP4 숙소 조회
 	List<Map<String, Object>> selectByWishList();
 	
+	// 검색, 필터, 카테고리 조건으로 조회
+	List<Map<String, Object>> selectBySearch(Map<String, Object> param);
+	
 	// 숙소 등록 - 숙소 등록 1단계 전 숙소 초기화
 	int insert(Map<String, Object> param);
 

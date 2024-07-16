@@ -124,16 +124,16 @@
 				<th>기본가격</th>
 			</tr>
 		</thead>
-		<c:forEach var="viewsDesc" items="${viewsDesc}">
-			<tbody>
+		<tbody>
+			<c:forEach var="viewsDesc" items="${viewsDesc}">
 				<tr>
 					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${viewsDesc.roomId}">${viewsDesc.mainImage}</a></td>
 					<td>${viewsDesc.address}</td>
 					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${viewsDesc.roomId}">${viewsDesc.roomName}</a></td>
 					<td>${viewsDesc.defaultPrice}</td>
 				</tr>
-			</tbody>
-		</c:forEach>
+			</c:forEach>
+		</tbody>
 	</table>
 		
 	<h5>별점</h5>

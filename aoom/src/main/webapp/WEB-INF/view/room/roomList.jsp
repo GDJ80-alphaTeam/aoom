@@ -26,13 +26,13 @@
 			<div class="col"></div>
 			<div class="col-10">
 				<!-- 검색 -->
-				<form action="${pageContext.request.contextPath}/room/roomList" method="get">
-					<input type="text" name="searchWord" id="searchWord" placeholder="여행지">
+				<form id="search">
+					<input type="text" name="address" id="address" placeholder="여행지">
 					<input type="text" id="daterange" placeholder="체크인 / 체크아웃" autocomplete="off">
 					<input type="hidden" id="startDate" name="startDate">
 					<input type="hidden" id="endDate" name="endDate">
 					<input type="number" name="usePeople" id="usePeople" min="0" placeholder="여행자">
-					<button type="submit">검색</button>
+					<button type="button" id="searchBtn">검색</button>
 				</form>
 				
 				<!-- 카테고리 -->
@@ -111,7 +111,47 @@
 		</div>
 	</div>
 
+	<h3 class="text-center">결과 출력</h3>
+	
+	<table class="table table-danger">
+		<thead>
+			<tr>
+				<th>메인사진</th>
+				<th>주소</th>
+				<th>숙소이름</th>
+				<th>기본가격</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="resultRoom" items="${resultRoom}">
+				<tr>
+					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${resultRoom.roomId}">${resultRoom.mainImage}</a></td>
+					<td>${resultRoom.address}</td>
+					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${resultRoom.roomId}">${resultRoom.roomName}</a></td>
+					<td>${resultRoom.defaultPrice}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+
 	<script>
+		// 검색버튼 클릭시 이벤트
+		$('#searchBtn').click(function() {
+			$.ajax({
+				url:'/room/ajaxResultRoom',
+				method:'post',
+				data: $('#search').serialize(),
+				success:function(response){
+					if(response.result == true){
+						alert(response.message);
+						console.log(response);
+					}else{
+						alert(response.message);
+					}
+				}	
+			})
+		})
+		
 		// Moment.js를 사용하여 오늘 날짜 문자열 생성
 		let today = moment().format("YYYY/MM/DD");
 	
@@ -169,3 +209,20 @@
 	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

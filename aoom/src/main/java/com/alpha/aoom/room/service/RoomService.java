@@ -71,6 +71,11 @@ public class RoomService {
 		return roomMapper.selectByWishList();
 	}
 	
+	// 숙소 검색, 필터, 카테고리 조건으로 조회
+	public List<Map<String, Object>> searchRoom(Map<String, Object> param){
+		return roomMapper.selectBySearch(param);
+	}
+	
 	// user가 호스팅하고있는 숙소 목록 조회
 	public List<Map<String, Object>> retrieveListByUserId(String userId){
 		return roomMapper.selectByUserId(userId);
@@ -85,4 +90,6 @@ public class RoomService {
 	public int addSecondInfo(Map<String, Object> param) {
 		return roomMapper.updateSecondInfo(param);
 	}
+	
+	
 }

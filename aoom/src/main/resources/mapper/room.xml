@@ -169,6 +169,16 @@
 		    roomstat_code = 'rst03'
 	</select>
 	
+	<!-- 검색, 필터, 카테고리 조건으로 조회 -->
+	<select id="selectBySearch" parameterType="map" resultType="camelCaseMap">
+		SELECT
+			room_id
+		FROM
+			room
+		WHERE
+			address LIKE #{address}
+	</select>
+	
 	<!-- 숙소 등록 - 숙소 등록 1단계 전 숙소 초기화 -->
 	<insert id="insert" parameterType="map">
  		 <!-- ROOM INSERT 전 사용가능한 roomId가져와서 param에 추가후, INSERT 쿼리에 적용 -->

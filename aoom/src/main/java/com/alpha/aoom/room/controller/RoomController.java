@@ -1,5 +1,6 @@
 package com.alpha.aoom.room.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,14 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alpha.aoom.amenities.service.AmenitiesService;
+import com.alpha.aoom.code.service.CodeService;
 import com.alpha.aoom.review.service.ReviewService;
 import com.alpha.aoom.room.service.RoomService;
-import com.alpha.aoom.roomImage.service.RoomImageMapper;
 import com.alpha.aoom.roomImage.service.RoomImageService;
 import com.alpha.aoom.util.BaseController;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Slf4j
@@ -34,6 +34,8 @@ public class RoomController extends BaseController {
 	AmenitiesService amenitiesService;
 	@Autowired
 	RoomImageService roomImageService;
+	@Autowired
+	CodeService codeService;
 	
 	// 숙소상세보기 뷰페이지 호출
 	// param: userId(get)
@@ -76,12 +78,41 @@ public class RoomController extends BaseController {
 		return "/room/roomInfo";
 	}
 	
+	// 숙소 목록 출력(검색, 필터, 카테고리 조건)
 	@RequestMapping("/roomList")
-	@ResponseBody
-	public String roomList(@RequestParam Map<String, Object> param) {
+	public String roomList(@RequestParam Map<String, Object> param, ModelMap modelMap) {
 		
 		log.info("main에서 넘어온 param : "+ param);
 		
-		return "";
+		// 숙소 카테고리 조회
+		List<Map<String, Object>> roomCategory = codeService.selectCode("roomcate");
+		
+		// modelMap에 데이터 추가
+		modelMap.addAttribute("roomCategory", roomCategory);
+		
+		return "/room/roomList";
+	}
+	
+	// 숙소 검색, 필터, 카테고리 조건 호출
+	@RequestMapping("/ajaxResultRoom")
+	@ResponseBody
+	public Map<String, Object> ajaxResultRoom(@RequestParam Map<String, Object> param, ModelMap modelMap) {
+		Map<String, Object> model = new HashMap<>();
+		
+		log.info("roomList aJax를 통해 넘어온 param : "+ param);
+		
+		// 숙소 검색, 필터, 카테고리 결과 조회
+		List<Map<String, Object>> searchRoom = roomService.searchRoom(param);
+		System.out.println("테스트" + searchRoom);
+		
+		// model에 숙소결과조회 값 넣기
+		model.put("data", searchRoom);
+		
+		if (searchRoom != null) {
+			return getSuccessResult(model);
+		} else {
+			return getFailResult(model,"조건에 부합하는 숙소가 없습니다.");
+		}
+		
 	}
 }

@@ -26,7 +26,7 @@ public class MainController {
 	
 	// 메인페이지 호출
 	@RequestMapping("/main")
-	public String main(HttpSession session, ModelMap modelMap) {
+	public String main(ModelMap modelMap) {
 		
 		// 숙소 카테고리 조회
 		List<Map<String, Object>> roomCategory = codeService.selectCode("roomcate");
@@ -52,7 +52,7 @@ public class MainController {
 		// 위시리스트 TOP4 숙소 조회
 		List<Map<String, Object>> wishListDesc = roomService.wishListDesc();
 		
-		// model에 숙소 전체 목록 조회한 값 넣기
+		// modelMap에 숙소 전체 목록 조회한 값 넣기
 		modelMap.addAttribute("roomAllList", roomAllList);
 		modelMap.addAttribute("viewsDesc", viewsDesc);
 		modelMap.addAttribute("starDesc", ratingDesc);
