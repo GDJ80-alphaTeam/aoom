@@ -200,8 +200,8 @@
 		)
 	</insert>
 	
-	<!-- 숙소 등록 - 숙소 등록 1단계에서 입력한 정보 DB에 추가 -->
-	<insert id="updateBasicInfo" parameterType="map">
+	<!-- 숙소 등록 - 숙소 등록 1단계에서 입력한 정보 DB에 수정 -->
+	<update id="updateFisrtInfo" parameterType="map">
 		UPDATE
 			room
 		SET
@@ -217,5 +217,19 @@
 			,update_date = SYSDATE
 		WHERE
 			room_id = #{roomId}
-	</insert>
+	</update>
+	
+	<!-- 숙소 등록 - 숙소 등록 2단계에서 입력한 정보 DB에 수정 -->
+	<update id="updateSecondInfo" parameterType="map">
+		UPDATE
+			room
+		SET
+			 room_name = #{roomName}
+			,room_content = #{roomContent}
+			,main_image = #{mainImage},
+			,original_name = #{originalName},
+			,update_date = SYSDATE
+		WHERE
+			room_id = #{roomId}
+	</update>
 </mapper>

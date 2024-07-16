@@ -14,14 +14,14 @@ public class FolderCreation {
 	private final String BASE_FOLDER_PATH = "src/main/webapp/image/";
 	
 	// 폴더 생성
-	public Path createImageFolder(String folderName) {
+	public String createImageFolder(String folderName) {
 	    
 	    // 이미지 폴더 생성 위치와 매개변수로 받은 폴더명을 더해 경로 지정
 	    Path path = Paths.get(BASE_FOLDER_PATH + folderName);
 		
 	    // 생성하려는 폴더가 존재하는지 확인
 		if(!checkFolderExist(path)) { // 존재한다면
-			return null;
+			return "";
 		}
 		
 		// 존재 하지 않으면
@@ -34,7 +34,7 @@ public class FolderCreation {
         }
 		
 		// 경로 값 반환
-		return path;
+		return path.toString();
     }
 	
 	// 생성하려는 폴더가 존재하는지 확인

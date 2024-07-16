@@ -14,6 +14,7 @@
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <body>
 	<form action="/host/roomManage/registRoom/registFirstInfo" method="post">
 	
@@ -107,12 +108,7 @@
 	
 	<!-- 숙소 운영 시작일 날짜 제한 및 Date Range Picker 설정-->
 	<script type="text/javascript">
-		// 영국시간과의 차이(ms단위);
-		let offset = 1000 * 60 * 60 * 9;
-		
-		// Date.now() - 오늘 날짜(ms단위) + 영국시간과 차이(ms단위) = 한국 날짜(ms단위)
-		// toISOString() : Date 를 ISOString(yyyy-mm-ddThh:mm:ss) 형식의 문자열로 변환
-		let today = new Date(Date.now() + offset).toISOString().substring(0, 10);
+		let today = moment().format("YYYY-MM-DD");
 
 		// Date Range Picker 설정
 		$('#roomOperationDate').daterangepicker({

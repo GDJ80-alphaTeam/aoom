@@ -72,7 +72,7 @@ public class RegistRoomController {
 	}
 	
 	// 숙소 등록 - 숙소 등록 1단계 정보 DB 입력 및 숙소 등록 2단계 페이지 이동
-	@RequestMapping(value = "/roomManage/registRoom/registFirstInfo", method = RequestMethod.POST)
+	@RequestMapping("/roomManage/registRoom/registFirstInfo")
 	public String registRoomFirstInfo(@RequestParam Map<String, Object> param, ModelMap modelMap) {
 		
 		log.info("roomId={}", param.get("roomId"));
@@ -108,7 +108,7 @@ public class RegistRoomController {
 	
 	// 편의시설 - checkbox 다중 값 선택시 배열로 넘어오기 때문에 @RequsetParam 따로 설정
 	// 숙소 등록 - 숙소 등록 2단계 정보 DB 입력 및 숙소 등록 3단계 페이지 이동
-	@RequestMapping(value = "/roomManage/registRoom/registSecondInfo", method = RequestMethod.POST)
+	@RequestMapping("/roomManage/registRoom/registSecondInfo")
 	public String registRoomSecondInfo(@RequestParam Map<String, Object> param, 
 									   @RequestParam("amenities") List<String> amenities, 
 									   ModelMap modelMap) {
