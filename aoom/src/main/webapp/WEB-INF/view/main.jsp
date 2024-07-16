@@ -28,7 +28,7 @@
 				<!-- 검색 -->
 				<form action="${pageContext.request.contextPath}/room/roomList" method="get">
 					<input type="text" name="searchWord" id="searchWord" placeholder="여행지">
-					<input type="text" id="daterange" placeholder="" autocomplete="off">
+					<input type="text" id="daterange" placeholder="체크인 / 체크아웃" autocomplete="off">
 					<input type="hidden" id="startDate" name="startDate">
 					<input type="hidden" id="endDate" name="endDate">
 					<input type="number" name="usePeople" id="usePeople" min="0" placeholder="여행자">
@@ -204,7 +204,6 @@
 	
 	
 	<script>
-		
 		// Moment.js를 사용하여 오늘 날짜 문자열 생성
 		let today = moment().format("YYYY/MM/DD");
 	
@@ -259,7 +258,6 @@
 		myModal.addEventListener('shown.bs.modal', () => {
 			myInput.focus()
 		})
-		
 	</script>
 </body>
 </html>
