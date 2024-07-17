@@ -30,6 +30,6 @@ public class ReviewController extends BaseController{
 	public List<Map<String, Object>> roomReviewPaging(@RequestParam Map<String, Object> param) {
 				
 		//log.info("parameter"+param);
-		return reviewService.selectByList(param);
+		return reviewService.selectList(param);
 	}
 }

@@ -58,11 +58,11 @@ public class RegistRoomController {
 		modelMap.put("roomId", param.get("roomId"));
 		
 		// 숙소 category 목록
-		List<Map<String, Object>> roomcate = codeService.selectCode("roomcate");
+		List<Map<String, Object>> roomcate = codeService.selectByGroupKey("roomcate");
 		log.info("roomcate={}", roomcate);
 		
 		// roomtype 목록
-		List<Map<String, Object>> roomtype = codeService.selectCode("roomtype");
+		List<Map<String, Object>> roomtype = codeService.selectByGroupKey("roomtype");
 		log.info("roomtype={}", roomtype);
 		
 		// modelMap에 숙소 category, roomtype 목록 추가
@@ -82,7 +82,7 @@ public class RegistRoomController {
 		modelMap.put("roomId", param.get("roomId"));
 		
 		// 1단계 정보 없데이트
-		roomService.addFirstInfo(param);
+		roomService.updateBasicInfo(param);
 		
 		return "redirect:/host/roomManage/registRoom/secondInfo?roomId=" + param.get("roomId");
 	}
@@ -97,7 +97,7 @@ public class RegistRoomController {
 		modelMap.put("roomId", param.get("roomId"));
 		
 		// amenities 목록
-		List<Map<String, Object>> amenities = codeService.selectCode("amenities");
+		List<Map<String, Object>> amenities = codeService.selectByGroupKey("amenities");
 		log.info("amenities={}", amenities);
 		
 		// modelMap에 amenities 목록 추가
@@ -123,7 +123,7 @@ public class RegistRoomController {
 		log.info("param={}", param);
 		
 		// 입력한 정보 DB에 INSERT, UPDATE 및 이미지 저장
-		roomService.addSecondInfo(param, mainImage, images);
+		roomService.updateDetailInfo(param, mainImage, images);
 		
 		// modelMap에 roomId 추가
 		modelMap.put("roomId", param.get("roomId"));

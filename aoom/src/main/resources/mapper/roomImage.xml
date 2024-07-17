@@ -2,10 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.alpha.aoom.roomImage.service.RoomImageMapper">
 
+	<!-- 컬럼 이름 sql조각 -->
+	<sql id="roomImage_col">
+		 image_no
+		,room_id
+		,image_path
+		,original_name
+		,create_date
+	</sql>
+
 	<!-- 해당숙소의 사진 출력 -->
-	<select id="selectByList" parameterType="map" resultType="camelCaseMap">
+	<select id="selectByRoomId" parameterType="map" resultType="camelCaseMap">
 		SELECT 
-	    	*
+	    	<include refid="roomImage_col"/>  
 		FROM
 		    room_image
 		where 

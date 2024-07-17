@@ -19,22 +19,22 @@ public class UserAuthNoService {
 	UserService userService;
 	
 	// 인증번호 DB에 저장
-	public void insertAuthNo(Map<String, Object> param) {
+	public void insert(Map<String, Object> param) {
 		userAuthNoMapper.insert(param);
 	}
 	
 	// 인증번호 일치여부 확인
-	public int checkAuthNo(Map<String, Object> param) {
+	public int select(Map<String, Object> param) {
 		return userAuthNoMapper.select(param);
 	}
 	
 	// 아이디 인증이력조회 
-	public int authRecord(Map<String, Object> param) {		
-		return userAuthNoMapper.selectByAuthNoCheck(param);
+	public int selectByUserId(Map<String, Object> param) {		
+		return userAuthNoMapper.selectByUserId(param);
 	}
 	
 	// 인증번호 업데이트
-	public int updateAuthNo(Map<String, Object> param) {
+	public int update(Map<String, Object> param) {
 		return userAuthNoMapper.update(param);
 	}
 	
@@ -59,10 +59,10 @@ public class UserAuthNoService {
 		if(idCheck.equals("success")) { // 중복되지 않을 때
 			sendEmail.sendEmail(to, title, body); // 이메일 전송
 			// 인증내역 여부 분기문
-			if(authRecord(param) == 1) { // 인증이력 있음
-				updateAuthNo(param); // 기존에 있던 인증번호 update
+			if(selectByUserId(param) == 1) { // 인증이력 있음
+				update(param); // 기존에 있던 인증번호 update
 			} else { // 인증이력 없음
-				insertAuthNo(param); // 인증번호 insert
+				insert(param); // 인증번호 insert
 			}
 			return "success";
 		} else {

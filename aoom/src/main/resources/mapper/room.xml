@@ -43,8 +43,8 @@
 	<select id="selectOne" parameterType="Map" resultType="camelCaseMap">
 		SELECT 
 			 <include refid="room_col" />
-			, u.user_name
-			, u.user_image
+			,u.user_name
+			,u.user_image
 		FROM 
 			room r	
 		LEFT JOIN
@@ -203,7 +203,7 @@
 	</insert>
 	
 	<!-- 숙소 등록 - 숙소 등록 1단계에서 입력한 정보 DB에 업데이트 -->
-	<update id="updateFisrtInfo" parameterType="map">
+	<update id="updateBasicInfo" parameterType="map">
 		UPDATE
 			room
 		SET
@@ -222,7 +222,7 @@
 	</update>
 	
 	<!-- 숙소 등록 - 숙소 등록 2단계에서 입력한 정보 DB에 업데이트 -->
-	<update id="updateSecondInfo" parameterType="map">
+	<update id="updateDetailInfo" parameterType="map">
 		UPDATE
 			room
 		SET

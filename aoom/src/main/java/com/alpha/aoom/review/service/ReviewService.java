@@ -24,7 +24,7 @@ public class ReviewService {
 	
 	// param : String room_id , int currentPage , int beginRow , int endRow
 	// 숙소리뷰 리스트
-	public List<Map<String, Object>> selectByList(Map<String, Object> param){
+	public List<Map<String, Object>> selectList(Map<String, Object> param){
 		
 		// currentPage 값 출력
 		int currentPage = currentPage(param);
@@ -37,7 +37,7 @@ public class ReviewService {
 		param.put("beginRow", beginRow);
 		param.put("endRow", endRow);
 		
-		return reviewMapper.selectByList(param);		
+		return reviewMapper.selectList(param);		
 	}
 	
 	// param : room_id
@@ -45,7 +45,7 @@ public class ReviewService {
 	public Map<String, Object> selectByAvgCnt(Map<String,Object> param){
 		
 		// reviewMapper에서 데이터 가져오기 + 카멜케이스맵으로 생성되어서 그대로 map에 put을하면 대문자가 소문자로 바뀌어버림
-        Map<String, Object> originalPagingInfo = reviewMapper.selectByAverageCount(param);
+        Map<String, Object> originalPagingInfo = reviewMapper.selectByAvgCnt(param);
 
         // totalRow 검색후 페이징에 필요한값 생성 , 위의 이유때문에 hashMap으로 타입변경 
         Map<String, Object> getPagingInfo = new HashMap<>(originalPagingInfo);
@@ -78,15 +78,15 @@ public class ReviewService {
 	
 	// param: roomId
 	// 해당 숙소를 운영하는 유저의 총 후기수 
-	public Map<String,Object> selectByHostTotalCount(Map<String, Object> param){
+	public Map<String,Object> selectByHostTotalCnt(Map<String, Object> param){
 		
-		Map<String, Object> originalHostCount = reviewMapper.selectByHostTotalCount(param);
+		Map<String, Object> originalHostCount = reviewMapper.selectByHostTotalCnt(param);
 		
 		Map<String, Object> hostCount = new HashMap<>(originalHostCount);
 		
 		
 		
-		return reviewMapper.selectByHostTotalCount(param);
+		return reviewMapper.selectByHostTotalCnt(param);
 	
 	}
 

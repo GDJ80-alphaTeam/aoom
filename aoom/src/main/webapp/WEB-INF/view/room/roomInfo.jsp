@@ -13,7 +13,7 @@
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f0842831d9c350ed32adefb11b6cd5f6&libraries=services"></script>
 </head>
 <body>
-	<jsp:include page="/inc/navbar.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/layout/navbar.jsp"></jsp:include>
 	
 	<div style="width:1000px; margin: 0 auto ; min-width:600px" >
 			<!-- 숙소 이미지 -->

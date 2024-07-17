@@ -13,8 +13,8 @@ public class RoomImageService {
 	RoomImageMapper roomImageMapper;
 	
 	// 해당 숙소의 사진 검색
-	public List<Map<String, Object>> selectByList(Map<String,Object> param) {
+	public List<Map<String, Object>> selectByRoomId(Map<String,Object> param) {
 		
-		return roomImageMapper.selectByList(param);
+		return roomImageMapper.selectByRoomId(param);
 	}
 }

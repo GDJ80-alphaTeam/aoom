@@ -40,8 +40,43 @@ public class RoomService {
 	
 	// 숙소 상세보기 조회
 	// param: room_id
-	public Map<String, Object> retriveRoomInfo(Map<String,Object> param) {
+	public Map<String, Object> selectOne(Map<String,Object> param) {
 		return roomMapper.selectOne(param);
+	}
+	
+	// 숙소 전체 목록 조회
+	public List<Map<String, Object>> select(){
+		return roomMapper.select();
+	}
+	
+	// user가 호스팅하고있는 숙소 목록 조회
+	public List<Map<String, Object>> selectByUserId(String userId){
+		return roomMapper.selectByUserId(userId);
+	}
+	
+	// 조회수 TOP4 숙소 조회
+	public List<Map<String, Object>> selectByViews(){
+		return roomMapper.selectByViews();
+	}
+	
+	// 별점 TOP4 숙소 조회
+	public List<Map<String, Object>> selectByRating(){
+		return roomMapper.selectByRating();
+	}
+	
+	// 예약 TOP4 숙소 조회
+	public List<Map<String, Object>> selectByBooking(){
+		return roomMapper.selectByBooking();
+	}
+	
+	// 위시리스트 TOP4 숙소 조회
+	public List<Map<String, Object>> selectByWishList(){
+		return roomMapper.selectByWishList();
+	}
+	
+	// 숙소 검색, 필터, 카테고리 조건으로 조회
+	public List<Map<String, Object>> selectBySearch(Map<String, Object> param){
+		return roomMapper.selectBySearch(param);
 	}
 	
 	// 숙소 등록 - 숙소 등록 1단계 전 숙소 초기화
@@ -61,47 +96,13 @@ public class RoomService {
 		return setupRoomInfo;
 	}
 	
-	// 숙소 전체 목록 조회
-	public List<Map<String, Object>> retrieveList(){
-		return roomMapper.select();
-	}
-	// 조회수 TOP4 숙소 조회
-	public List<Map<String, Object>> viewsDesc(){
-		return roomMapper.selectByViews();
-	}
-	
-	// 별점 TOP4 숙소 조회
-	public List<Map<String, Object>> ratingDesc(){
-		return roomMapper.selectByRating();
-	}
-	
-	// 예약 TOP4 숙소 조회
-	public List<Map<String, Object>> bookingDesc(){
-		return roomMapper.selectByBooking();
-	}
-	
-	// 위시리스트 TOP4 숙소 조회
-	public List<Map<String, Object>> wishListDesc(){
-		return roomMapper.selectByWishList();
-	}
-	
-	// 숙소 검색, 필터, 카테고리 조건으로 조회
-	public List<Map<String, Object>> searchRoom(Map<String, Object> param){
-		return roomMapper.selectBySearch(param);
-	}
-	
-	// user가 호스팅하고있는 숙소 목록 조회
-	public List<Map<String, Object>> retrieveListByUserId(String userId){
-		return roomMapper.selectByUserId(userId);
-	}
-	
 	// 숙소 등록 - 숙소 등록 1단계에서 입력한 정보 DB에 추가
-	public int addFirstInfo(Map<String, Object> param) {
-		return roomMapper.updateFisrtInfo(param);
+	public int updateBasicInfo(Map<String, Object> param) {
+		return roomMapper.updateBasicInfo(param);
 	}
 	
 	// 숙소 등록 - 숙소 등록 2단계에서 입력한 정보 DB에 ,INSERT, UPDATE 및 이미지 저장
-	public int addSecondInfo(Map<String, Object> param, MultipartFile mainImage, MultipartFile[] images) {
+	public int updateDetailInfo(Map<String, Object> param, MultipartFile mainImage, MultipartFile[] images) {
 		log.info("roomId={}", param.get("roomId"));
 		log.info("roomName={}", param.get("roomName"));
 		log.info("roomContent={}", param.get("roomContent"));
@@ -124,7 +125,7 @@ public class RoomService {
 		param.put("originalName", originalMainImage);
 		
 		// UPDATE(roomName, roomContent, mainImage, originalName)
-		roomMapper.updateSecondInfo(param);
+		roomMapper.updateDetailInfo(param);
 
 		// 나머지 숙소 이미지들 저장 및 INSERT(roomImage)
 		// 숙소 이미지들의 imageNo시퀀스를 위해 for문 사용

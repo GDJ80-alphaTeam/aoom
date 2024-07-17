@@ -31,7 +31,7 @@
 	</select>
 	
 	<!-- 인증이력 조회 -->
-	<select id="selectByAuthNoCheck" parameterType="camelCaseMap" resultType="int">
+	<select id="selectByUserId" parameterType="camelCaseMap" resultType="int">
 		SELECT
 			COUNT(*) 
 		FROM 

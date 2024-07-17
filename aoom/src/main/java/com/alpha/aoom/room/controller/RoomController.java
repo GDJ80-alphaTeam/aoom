@@ -43,22 +43,22 @@ public class RoomController extends BaseController {
 	public String roomInfo(@RequestParam Map<String, Object> param , ModelMap modelMap) {
 		
 		// 숙소정보 조회 + 숙소 주인정보 
-		Map<String, Object> roomInfo = roomService.retriveRoomInfo(param);
+		Map<String, Object> roomInfo = roomService.selectOne(param);
 		
 		// 숙소 어메니티 조회
-		List<Map<String, Object>> roomAmenities = amenitiesService.retriveRoomAmenities(param);
+		List<Map<String, Object>> roomAmenities = amenitiesService.selectByDetail(param);
 					
 		// 숙소리뷰조회
-		List<Map<String, Object>> reviewList = reviewService.selectByList(param);
+		List<Map<String, Object>> reviewList = reviewService.selectList(param);
 		
 		// 숙소 평점 및 리뷰수 조회 
 		Map<String,Object> reviewCntAvg = reviewService.selectByAvgCnt(param);
 		
 		// 숙소 이미지url 검색
-		List<Map<String, Object>> roomImages = roomImageService.selectByList(param);
+		List<Map<String, Object>> roomImages = roomImageService.selectByRoomId(param);
 		
 		// 숙소 호스트가 받은 총합 후기수
-		Map<String,Object> hostReviewTotal = reviewService.selectByHostTotalCount(param);
+		Map<String,Object> hostReviewTotal = reviewService.selectByHostTotalCnt(param);
 	
 		int currentPage = reviewService.currentPage(param);
 
@@ -85,7 +85,7 @@ public class RoomController extends BaseController {
 		log.info("main에서 넘어온 param : "+ param);
 		
 		// 숙소 카테고리 조회
-		List<Map<String, Object>> roomCategory = codeService.selectCode("roomcate");
+		List<Map<String, Object>> roomCategory = codeService.selectByGroupKey("roomcate");
 		
 		// modelMap에 데이터 추가
 		modelMap.addAttribute("roomCategory", roomCategory);
@@ -102,7 +102,7 @@ public class RoomController extends BaseController {
 		log.info("roomList aJax를 통해 넘어온 param : "+ param);
 		
 		// 숙소 검색, 필터, 카테고리 결과 조회
-		List<Map<String, Object>> searchRoom = roomService.searchRoom(param);
+		List<Map<String, Object>> searchRoom = roomService.selectBySearch(param);
 		System.out.println("테스트" + searchRoom);
 		
 		// model에 숙소결과조회 값 넣기

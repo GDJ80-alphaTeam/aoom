@@ -13,7 +13,7 @@
 	</sql>
 	
 	<!-- 숙소 리뷰 목록 조회-->
-	<select id="selectByList" parameterType="map" resultType="camelCaseMap">
+	<select id="selectList" parameterType="map" resultType="camelCaseMap">
 	 SELECT
         *
         FROM
@@ -40,7 +40,7 @@
 	</select>
 	
 	<!-- 해당하는 숙소의 리뷰 총 개수 및 총개수rating 평균 -->
-	<select id="selectByAverageCount" parameterType="map" resultType="camelCaseMap">
+	<select id="selectByAvgCnt" parameterType="map" resultType="camelCaseMap">
 		SELECT 
 			 COUNT(*) AS cnt
 			,AVG(rating) AS avg		
@@ -51,7 +51,7 @@
 	</select>
 	
 	<!-- 해당하는 숙소 주인이 받았던 후기 총 개수 -->
-	<select id="selectByHostTotalCount" parameterType="map" resultType="camelCaseMap">
+	<select id="selectByHostTotalCnt" parameterType="map" resultType="camelCaseMap">
 		SELECT 
 			 COUNT(*) AS cnt 
 		    ,avg(rating) AS avg

@@ -38,7 +38,7 @@ public class HostController {
 		String userId = (String)userInfo.get("userId");
 		
 		// userId로 호스팅중인 숙소 목록 가져오기
-		List<Map<String, Object>> roomListByUser = (List<Map<String, Object>>) roomService.retrieveListByUserId(userId);
+		List<Map<String, Object>> roomListByUser = (List<Map<String, Object>>) roomService.selectByUserId(userId);
 		
 		// ModelMap에 담아 view로 넘겨주기
 		modelMap.addAttribute("roomListByUser", roomListByUser);		

@@ -34,7 +34,7 @@ public class UserAuthNoController {
 	public String authCheck(@RequestParam Map<String, Object> param) {
 		
 		// 인증번호 일치여부 확인
-		int result = userAuthNoService.checkAuthNo(param);
+		int result = userAuthNoService.select(param);
 		
 		// 인증번호 일치 분기문
 		if(result == 1) { // 인증번호 일치

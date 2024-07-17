@@ -29,28 +29,28 @@ public class MainController {
 	public String main(ModelMap modelMap) {
 		
 		// 숙소 카테고리 조회
-		List<Map<String, Object>> roomCategory = codeService.selectCode("roomcate");
+		List<Map<String, Object>> roomCategory = codeService.selectByGroupKey("roomcate");
 
 		// 숙소 유형 조회(카테고리, 게스트하우스)
-		List<Map<String, Object>> roomType = codeService.selectCode("roomtype");
+		List<Map<String, Object>> roomType = codeService.selectByGroupKey("roomtype");
 
 		// 숙소 편의시설 목록 조회(카테고리, 게스트하우스)
-		List<Map<String, Object>> amenities = codeService.selectCode("amenities");
+		List<Map<String, Object>> amenities = codeService.selectByGroupKey("amenities");
 		
 		// 숙소 전체 목록 조회
-		List<Map<String, Object>> roomAllList = roomService.retrieveList();
+		List<Map<String, Object>> roomAllList = roomService.select();
 		
 		// 조회수 TOP4 숙소 조회
-		List<Map<String, Object>> viewsDesc = roomService.viewsDesc();
+		List<Map<String, Object>> viewsDesc = roomService.selectByViews();
 		
 		// 별점 TOP4 숙소 조회
-		List<Map<String, Object>> ratingDesc = roomService.ratingDesc();
+		List<Map<String, Object>> ratingDesc = roomService.selectByRating();
 		
 		// 예약 TOP4 숙소 조회
-		List<Map<String, Object>> bookingDesc = roomService.bookingDesc();
+		List<Map<String, Object>> bookingDesc = roomService.selectByBooking();
 		
 		// 위시리스트 TOP4 숙소 조회
-		List<Map<String, Object>> wishListDesc = roomService.wishListDesc();
+		List<Map<String, Object>> wishListDesc = roomService.selectByWishList();
 		
 		// modelMap에 숙소 전체 목록 조회한 값 넣기
 		modelMap.addAttribute("roomAllList", roomAllList);
