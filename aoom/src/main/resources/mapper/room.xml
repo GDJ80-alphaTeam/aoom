@@ -179,8 +179,14 @@
 		FROM
 			room
 		WHERE
-			address LIKE '%${address}%' AND
-			roomcate_code = #{category}
+			roomstat_code = 'rst03'
+	        <if test="address != null and address != ''">
+	            AND address LIKE '%' || #{address} || '%' 
+	        </if>
+	        <if test="selectedCategory != null">
+	            AND roomcate_code = #{selectedCategory}
+	        </if>
+			
 	</select>
 	
 	<!-- 숙소 등록 - 숙소 등록 1단계 전 숙소 초기화 -->

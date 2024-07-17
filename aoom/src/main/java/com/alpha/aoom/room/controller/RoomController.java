@@ -104,7 +104,7 @@ public class RoomController extends BaseController {
 		// 숙소 검색, 필터, 카테고리 결과 조회
 		List<Map<String, Object>> searchRoom = roomService.selectBySearch(param);
 		
-		log.info("searchRoom : "+searchRoom);
+		log.info("보낼 값 : "+searchRoom);
 		
 		// model에 숙소결과조회 값 넣기
 		model.put("data", searchRoom);

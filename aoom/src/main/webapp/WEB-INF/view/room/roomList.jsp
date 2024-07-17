@@ -15,6 +15,16 @@
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <style>
+        .category-link {
+            text-decoration: none;
+            color: black;
+        }
+        .active {
+        	background-color: #f0f0f0;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body class="container">
 	<!-- AOOM 네비게이션 바 -->
@@ -31,12 +41,12 @@
 					<input type="date" id="startDate" name="startDate" placeholder="체크인" autocomplete="off">
 					<input type="date" id="endDate" name="endDate" placeholder="체크아웃" autocomplete="off">
 					<input type="number" name="usePeople" id="usePeople" min="0" placeholder="여행자">
-					<button type="button" id="searchBtn">검색</button>
+					<button type="button" id="ajaxSearchBtn">검색</button>
 				</form>
 				
 				<!-- 카테고리 -->
 				<c:forEach var="roomCategory" items="${roomCategory}" varStatus="status">
-					<span><a id="rct${status.index + 1 < 10 ? '0' : ''}${status.index + 1}" href="${pageContext.request.contextPath}/room/roomList?category=${roomCategory.codeKey}">${roomCategory.codeName}</a></span>
+					<span><a class="category-link" id="rct${status.index + 1 < 10 ? '0' : ''}${status.index + 1}" data-category="${roomCategory.codeKey}" href="${pageContext.request.contextPath}/room/roomList?category=${roomCategory.codeKey}">${roomCategory.codeName}</a></span>
 				</c:forEach>
 				
 				<!-- 필터 -->
@@ -50,7 +60,7 @@
 					<div class="modal-dialog modal-dialog-scrollable">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h1 class="modal-title fs-5" id="exampleModalLabel">필터</h1>
+								<h1 class="modal-title fs-5" id="exampleModalLabel">필터 </h1>
 								<button type="button" class="btn-close" data-bs-dismiss="modal"	aria-label="Close"></button>
 							</div>
 							<form action="${pageContext.request.contextPath}/room/roomList" method="get">
@@ -126,49 +136,92 @@
 		</tbody>
 	</table>
 	
-	<script>
-		// 검색버튼 클릭시 이벤트
-		$('#searchBtn').click(function() {
-			$.ajax({
-				url:'/room/ajaxResultRoom',
-				method:'post',
-				data: $('#search').serialize(),
-				success:function(response){
-					
-					// 검색결과가 출력되어 있는 부분을 empty시킴
-					$('#result').empty();
-					
-					if(response.result == true){
-						alert(response.message);
-						console.log(response);
-						
-						// 반환된 검색결과 변수에 넣기
-						let roomResult = response.data;
-						let divResult = $('#result');
-						
-						// 검색결과 데이터를 반복해서 출력
-						$.each(roomResult, function(index, item){
-							let content = '<tr><td>'+item.mainImage+'</td><td>'+item.address+'</td><td>'+item.roomName+'</td><td>'+item.defaultPrice+'</td></tr>';
-							divResult.append(content);
-						});
-					}else{
-						alert(response.message);
-					}
-				}	
-			})
-		})
-		
-		// Moment.js를 사용하여 오늘 날짜 문자열 생성
-		let today = moment().format("YYYY/MM/DD");
-	
-		// 모달
-		const myModal = document.getElementById('myModal')
-		const myInput = document.getElementById('myInput')
-		
-		myModal.addEventListener('shown.bs.modal', () => {
-			myInput.focus()
-		})
-	</script>
+    <script>
+        $(document).ready(function() {
+            let selectedCategory = null;
+            
+            // 카테고리를 클릭할 때 active 클래스를 토글하고 선택한 카테고리를 저장하는 변수
+            $('.category-link').click(function(e) {
+                e.preventDefault();
+                
+                // 이미 active 클래스가 적용된 링크일 경우 active 클래스 제거
+                if ($(this).hasClass('active')) {
+                    $(this).removeClass('active');
+                    selectedCategory = null; // 선택한 카테고리 변수를 null로 초기화 또는 다른 로직에 맞게 처리
+                } else {
+                    // 다른 링크의 active 클래스 제거 후 현재 클릭한 링크에 active 클래스 추가
+                    $('.category-link').removeClass('active');
+                    $(this).addClass('active');
+                    selectedCategory = $(this).data('category');
+                }
+                $.ajax({
+                    url: '/room/ajaxResultRoom',
+                    method: 'post',
+                    data: $('#search').serialize() + '&selectedCategory=' + selectedCategory,
+                    success: function(response) {
+                        $('#result').empty();
+                        if (response.result == true) {
+                            alert(response.message);
+                            let roomResult = response.data;
+                            let divResult = $('#result');
+                            $.each(roomResult, function(index, item) {
+                                let content = '<tr><td>'+item.mainImage+'</td><td>'+item.address+'</td><td>'+item.roomName+'</td><td>'+item.defaultPrice+'</td></tr>';
+                                divResult.append(content);
+                            });
+                        } else {
+                            alert(response.message);
+                        }
+                    }	
+                });
+            });
+
+            // 검색 버튼 클릭 시 Ajax 요청
+            $('#ajaxSearchBtn').click(function() {
+                $.ajax({
+                    url: '/room/ajaxResultRoom',
+                    method: 'post',
+                    data: $('#search').serialize() + '&selectedCategory=' + selectedCategory,
+                    success: function(response) {
+                        $('#result').empty();
+                        if (response.result == true) {
+                            alert(response.message);
+                            let roomResult = response.data;
+                            let divResult = $('#result');
+                            $.each(roomResult, function(index, item) {
+                                let content = '<tr><td>'+item.mainImage+'</td><td>'+item.address+'</td><td>'+item.roomName+'</td><td>'+item.defaultPrice+'</td></tr>';
+                                divResult.append(content);
+                            });
+                        } else {
+                            alert(response.message);
+                        }
+                    }	
+                });
+            });
+
+            // 필터 버튼 클릭 시 Ajax 요청
+            $('#filterBtn').click(function() {
+                $.ajax({
+                    url: '/room/ajaxResultRoom',
+                    method: 'get', // 혹은 'post'로 변경하여 사용할 수 있습니다.
+                    data: $('#filterForm').serialize() + '&selectedCategory=' + selectedCategory,
+                    success: function(response) {
+                        $('#result').empty();
+                        if (response.result == true) {
+                            alert(response.message);
+                            let roomResult = response.data;
+                            let divResult = $('#result');
+                            $.each(roomResult, function(index, item) {
+                                let content = '<tr><td>'+item.mainImage+'</td><td>'+item.address+'</td><td>'+item.roomName+'</td><td>'+item.defaultPrice+'</td></tr>';
+                                divResult.append(content);
+                            });
+                        } else {
+                            alert(response.message);
+                        }
+                    }	
+                });
+            });
+        });
+    </script>
 </body>
 </html>
 
