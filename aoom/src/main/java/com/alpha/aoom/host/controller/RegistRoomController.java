@@ -26,6 +26,7 @@ public class RegistRoomController {
 
 	@Autowired
 	RoomService roomService;
+	
 	@Autowired
 	CodeService codeService;
 	
@@ -83,7 +84,7 @@ public class RegistRoomController {
 		modelMap.put("roomId", param.get("roomId"));
 		
 		// 1단계 정보 없데이트
-		roomService.updateBasicInfo(param);
+		roomService.update(param);
 		
 		return "redirect:/host/roomManage/registRoom/detailInfo?roomId=" + param.get("roomId");
 	}
@@ -126,7 +127,7 @@ public class RegistRoomController {
 		log.info("param={}", param);
 		
 		// 입력한 정보 DB에 INSERT, UPDATE 및 이미지 저장
-		roomService.updateDetailInfo(param, mainImage, images);
+		roomService.update(param, mainImage, images);
 		
 		// modelMap에 roomId 추가
 		modelMap.put("roomId", param.get("roomId"));
@@ -139,7 +140,48 @@ public class RegistRoomController {
 	public String paymentInfoView(@RequestParam Map<String, Object> param, ModelMap modelMap) {
 		
 		log.info("roomId={}", param.get("roomId"));
+		// modelMap에 roomId 추가
+		modelMap.put("roomId", param.get("roomId"));
+		
+		// refundme 목록
+		List<Map<String, Object>> refundme = codeService.selectByGroupKey("refundme");
+		log.info("refundme={}", refundme);
+		
+		// modelMap에 refundme 추가
+		modelMap.put("refundme", refundme);
+		
+		// bank 목록
+		List<Map<String, Object>> bank = codeService.selectByGroupKey("bank");
+		log.info("bank={}", bank);
+		
+		// modelMap에 bank 추가
+		modelMap.put("bank", bank);
+		
 		
 		return "/host/regist/paymentInfo";
+	}
+	
+	// 숙소 등록 - 숙소 등록 3단계 정보 DB 입력 및 숙소 등록 전 미리보기 페이지 이동
+	@RequestMapping("/roomManage/registRoom/registPaymentInfo")
+	public String registPaymentInfo(@RequestParam Map<String, Object> param, ModelMap modelMap) {
+		
+		log.info("param={}", param);
+		
+		// 3단계 정보 없데이트
+		roomService.update(param);
+		
+		// modelMap에 roomId 추가
+		modelMap.put("roomId", param.get("roomId"));
+		
+		return "redirect:/host/roomManage/registRoom/preview?roomId=" + param.get("roomId");
+	}
+	
+	// 숙소 등록 - 숙소 등록 미리보기 페이지
+	@RequestMapping("/roomManage/registRoom/preview")
+	public String previewView(@RequestParam Map<String, Object> param, ModelMap modelMap) {
+		
+		log.info("param={}", param);
+		
+		return "/host/regist/preview";
 	}
 }

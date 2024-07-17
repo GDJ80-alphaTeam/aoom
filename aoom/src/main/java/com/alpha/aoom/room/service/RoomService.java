@@ -97,12 +97,12 @@ public class RoomService {
 	}
 	
 	// 숙소 등록 - 숙소 등록 1단계에서 입력한 정보 DB에 추가
-	public int updateBasicInfo(Map<String, Object> param) {
-		return roomMapper.updateBasicInfo(param);
+	public int update(Map<String, Object> param) {
+		return roomMapper.update(param);
 	}
 	
 	// 숙소 등록 - 숙소 등록 2단계에서 입력한 정보 DB에 ,INSERT, UPDATE 및 이미지 저장
-	public int updateDetailInfo(Map<String, Object> param, MultipartFile mainImage, MultipartFile[] images) {
+	public int update(Map<String, Object> param, MultipartFile mainImage, MultipartFile[] images) {
 		log.info("roomId={}", param.get("roomId"));
 		log.info("roomName={}", param.get("roomName"));
 		log.info("roomContent={}", param.get("roomContent"));
@@ -125,7 +125,7 @@ public class RoomService {
 		param.put("originalName", originalMainImage);
 		
 		// UPDATE(roomName, roomContent, mainImage, originalName)
-		roomMapper.updateDetailInfo(param);
+		roomMapper.update(param);
 
 		// 나머지 숙소 이미지들 저장 및 INSERT(roomImage)
 		// 숙소 이미지들의 imageNo시퀀스를 위해 for문 사용

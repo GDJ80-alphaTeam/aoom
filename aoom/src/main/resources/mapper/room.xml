@@ -212,36 +212,65 @@
 		)
 	</insert>
 	
-	<!-- 숙소 등록 - 숙소 등록 1단계에서 입력한 정보 DB에 업데이트 -->
-	<update id="updateBasicInfo" parameterType="map">
+	<!-- 숙소 등록 - 숙소 등록 1,2,3단계에서 입력한 정보 DB에 업데이트 -->
+	<update id="update" parameterType="map">
 		UPDATE
 			room
 		SET
-			 roomtype_code = #{roomtypeCode}
-			,roomcate_code = #{roomcateCode}
-			,start_date = #{startDate}
-			,end_date = #{endDate}
-			,address = #{address}
-			,max_people = #{maxPeople}
-			,total_space = #{totalSpace}
-			,total_bed = #{totalBed}
-			,total_bath = #{totalBath}
-			,update_date = SYSDATE
+			update_date = SYSDATE
+			<!-- 1단계 입력 정보 -->
+			<if test='roomtypeCode != null and !roomtypeCode.equals("")'>
+				,roomtype_code = #{roomtypeCode}
+			</if>
+			<if test='roomcateCode != null and !roomcateCode.equals("")'>
+				,roomcate_code = #{roomcateCode}
+			</if>
+			<if test='startDate != null and !startDate.equals("")'>
+				,start_date = #{startDate}
+			</if>
+			<if test='endDate != null and !endDate.equals("")'>
+				,end_date = #{endDate}
+			</if>
+			<if test='address != null and !address.equals("")'>
+				,address = #{address}
+			</if>
+			<if test='maxPeople != null and !maxPeople.equals("")'>
+				,max_people = #{maxPeople}
+			</if>
+			<if test='totalSpace != null and !totalSpace.equals("")'>
+				,total_space = #{totalSpace}
+			</if>
+			<if test='totalBed != null and !totalBed.equals("")'>
+				,total_bed = #{totalBed}
+			</if>
+			<if test='totalBath != null and !totalBath.equals("")'>
+				,total_bath = #{totalBath}
+			</if>
+			<!-- 2단계 입력 정보 -->
+			<if test='roomName != null and !roomName.equals("")'>
+				,room_name = #{roomName}
+			</if>
+			<if test='roomContent != null and !roomContent.equals("")'>
+				,room_content = #{roomContent}
+			</if>
+			<if test='mainImage != null and !mainImage.equals("")'>
+				,main_Image = #{mainImage}
+			</if>
+			<if test='originalName != null and !originalName.equals("")'>
+				,original_name = #{originalName}
+			</if>
+			<!-- 3단계 입력 정보 -->
+			<if test='defaultPrice != null and !defaultPrice.equals("")'>
+				,default_price = #{defaultPrice}
+			</if>
+			<if test='bankCode != null and !bankCode.equals("")'>
+				,bank_code = #{bankCode}
+			</if>
+			<if test='accountNo != null and !accountNo.equals("")'>
+				,account_no = #{accountNo}
+			</if>
 		WHERE
 			room_id = #{roomId}
-	</update>
 	
-	<!-- 숙소 등록 - 숙소 등록 2단계에서 입력한 정보 DB에 업데이트 -->
-	<update id="updateDetailInfo" parameterType="map">
-		UPDATE
-			room
-		SET
-			 room_name = #{roomName}
-			,room_content = #{roomContent}
-			,main_Image = #{mainImage}
-			,original_name = #{originalName}
-			,update_date = SYSDATE
-		WHERE
-			room_id = #{roomId}
 	</update>
 </mapper>
