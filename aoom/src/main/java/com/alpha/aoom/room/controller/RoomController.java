@@ -99,11 +99,12 @@ public class RoomController extends BaseController {
 	public Map<String, Object> ajaxResultRoom(@RequestParam Map<String, Object> param, ModelMap modelMap) {
 		Map<String, Object> model = new HashMap<>();
 		
-		log.info("roomList aJax를 통해 넘어온 param : "+ param);
+		log.info("받은 값 : "+ param);
 		
 		// 숙소 검색, 필터, 카테고리 결과 조회
 		List<Map<String, Object>> searchRoom = roomService.selectBySearch(param);
-		System.out.println("테스트" + searchRoom);
+		
+		log.info("searchRoom : "+searchRoom);
 		
 		// model에 숙소결과조회 값 넣기
 		model.put("data", searchRoom);

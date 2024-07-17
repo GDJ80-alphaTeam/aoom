@@ -28,15 +28,15 @@
 				<!-- 검색 -->
 				<form id="search">
 					<input type="text" name="address" id="address" placeholder="여행지">
-					<input type="text" id="startDate" name="startDate" placeholder="체크인" autocomplete="off">
-					<input type="text" id="endDate" name="endDate" placeholder="체크아웃" autocomplete="off">
+					<input type="date" id="startDate" name="startDate" placeholder="체크인" autocomplete="off">
+					<input type="date" id="endDate" name="endDate" placeholder="체크아웃" autocomplete="off">
 					<input type="number" name="usePeople" id="usePeople" min="0" placeholder="여행자">
 					<button type="button" id="searchBtn">검색</button>
 				</form>
 				
 				<!-- 카테고리 -->
-				<c:forEach var="roomCategory" items="${roomCategory}">
-					<span><a href="${pageContext.request.contextPath}/room/roomList?category=${roomCategory.codeKey}">${roomCategory.codeName}</a></span>
+				<c:forEach var="roomCategory" items="${roomCategory}" varStatus="status">
+					<span><a id="rct${status.index + 1 < 10 ? '0' : ''}${status.index + 1}" href="${pageContext.request.contextPath}/room/roomList?category=${roomCategory.codeKey}">${roomCategory.codeName}</a></span>
 				</c:forEach>
 				
 				<!-- 필터 -->
@@ -121,11 +121,11 @@
 				<th>기본가격</th>
 			</tr>
 		</thead>
-		<tbody>
-		
+		<tbody id="result">
+			
 		</tbody>
 	</table>
-
+	
 	<script>
 		// 검색버튼 클릭시 이벤트
 		$('#searchBtn').click(function() {
@@ -134,9 +134,23 @@
 				method:'post',
 				data: $('#search').serialize(),
 				success:function(response){
+					
+					// 검색결과가 출력되어 있는 부분을 empty시킴
+					$('#result').empty();
+					
 					if(response.result == true){
 						alert(response.message);
 						console.log(response);
+						
+						// 반환된 검색결과 변수에 넣기
+						let roomResult = response.data;
+						let divResult = $('#result');
+						
+						// 검색결과 데이터를 반복해서 출력
+						$.each(roomResult, function(index, item){
+							let content = '<tr><td>'+item.mainImage+'</td><td>'+item.address+'</td><td>'+item.roomName+'</td><td>'+item.defaultPrice+'</td></tr>';
+							divResult.append(content);
+						});
 					}else{
 						alert(response.message);
 					}

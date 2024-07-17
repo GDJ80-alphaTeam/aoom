@@ -172,11 +172,15 @@
 	<!-- 검색, 필터, 카테고리 조건으로 조회 -->
 	<select id="selectBySearch" parameterType="map" resultType="camelCaseMap">
 		SELECT
-			room_id
+			 main_image
+			,address
+			,room_name
+			,default_price
 		FROM
 			room
 		WHERE
-			address LIKE #{address}
+			address LIKE '%${address}%' AND
+			roomcate_code = #{category}
 	</select>
 	
 	<!-- 숙소 등록 - 숙소 등록 1단계 전 숙소 초기화 -->

@@ -20,5 +20,7 @@
 			code c
 		WHERE
 			group_key = #{groupKey}
+		ORDER BY 
+  			code_key
 	</select>
 </mapper>

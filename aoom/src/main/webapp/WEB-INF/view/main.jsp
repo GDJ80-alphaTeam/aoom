@@ -28,10 +28,10 @@
 				<!-- 검색 -->
 				<form action="${pageContext.request.contextPath}/room/roomList" method="get">
 					<input type="text" name="address" id="address" placeholder="여행지">
-					<input type="text" id="startDate" name="startDate" placeholder="체크인" autocomplete="off">
-					<input type="text" id="endDate" name="endDate" placeholder="체크아웃" autocomplete="off">
+					<input type="date" id="startDate" name="startDate" placeholder="체크인" autocomplete="off">
+					<input type="date" id="endDate" name="endDate" placeholder="체크아웃" autocomplete="off">
 					<input type="number" name="usePeople" id="usePeople" min="0" placeholder="여행자">
-					<button type="button">검색</button>
+					<button type="submit">검색</button>
 				</form>
 				
 				<!-- 카테고리 -->
