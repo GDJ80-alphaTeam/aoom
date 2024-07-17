@@ -12,12 +12,36 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class ImageUpload {
 
-	// 이미지 이름으로 사용할 UUID 생성
+	/**
+	 * 날짜 : 2024.07.16
+	 * 작성자 : 오승엽
+	 * 설명 : UUID 생성
+	 * 리턴값 : String
+	 * 리턴값설명 : 생성된 UUID
+	 * =============== 개정이력 ===============
+	 *
+	 * 수정일       수정자       수정내용
+	 * ----------------------------------------
+	 * 2024.07.16   오승엽       최초작성
+	 */
 	public String createUUID() {
 		return UUID.randomUUID().toString().replace("-", "");
 	}
 	
-	// 업로드한 파일에서 확장자 가져오기
+	/**
+	 * 날짜 : 2024.07.16
+	 * 작성자 : 오승엽
+	 * 설명 : 업로드한 파일의 확장자를 구하는 메서드
+	 * 매개변수 : MultipartFile
+	 * 매개변수설명 : form에서 업로드한 파일
+	 * 리턴값 : String
+	 * 리턴값설명 : 업로드한 파일의 확장자
+	 * =============== 개정이력 ===============
+	 *
+	 * 수정일       수정자       수정내용
+	 * ----------------------------------------
+	 * 2024.07.16   오승엽       최초작성
+	 */
 	public String getSuffix(MultipartFile multipartFile) {
 		
 		// 업로드한 파일의 마지막.의 위치 구하기
@@ -30,8 +54,20 @@ public class ImageUpload {
 		return suffix;
 	}
 	
-	// 파일 저장
-	// 반환 값 : 파일 이름
+	/**
+	 * 날짜 : 2024.07.16
+	 * 작성자 : 오승엽
+	 * 설명 : 업로드한 파일을 저장하는 기능
+	 * 매개변수 : String, MultipartFile
+	 * 매개변수설명 : 파일을 저장할 경로, 업로드한 파일
+	 * 리턴값 : String
+	 * 리턴값설명 : 업로드한 파일의 전체 경로(폴더 경로 포함)
+	 * =============== 개정이력 ===============
+	 *
+	 * 수정일       수정자       수정내용
+	 * ----------------------------------------
+	 * 2024.07.16   오승엽       최초작성
+	 */
 	public String saveFile(String folderPath, MultipartFile multipartFile) {
 		String prefix = createUUID();
 		String suffix = getSuffix(multipartFile);

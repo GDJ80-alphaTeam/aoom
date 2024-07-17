@@ -45,12 +45,12 @@ public class RegistRoomController {
 			return "redirect:/host/roomManage";
 		}
 		
-		return "redirect:/host/roomManage/registRoom/firstInfo?roomId=" + setupRoomInfo.get("roomId");
+		return "redirect:/host/roomManage/registRoom/basicInfo?roomId=" + setupRoomInfo.get("roomId");
 	}
 	
 	// 숙소 등록 - 숙소 등록 1단계 페이지 호출
-	@RequestMapping("/roomManage/registRoom/firstInfo")
-	public String firstInfoView(@RequestParam Map<String, Object> param, ModelMap modelMap) {
+	@RequestMapping("/roomManage/registRoom/basicInfo")
+	public String basicInfoView(@RequestParam Map<String, Object> param, ModelMap modelMap) {
 		
 		log.info("roomId={}", param.get("roomId"));
 		
@@ -69,12 +69,12 @@ public class RegistRoomController {
 		modelMap.put("roomcate", roomcate);
 		modelMap.put("roomtype", roomtype);
 		
-		return "/host/regist/firstInfo";
+		return "/host/regist/basicInfo";
 	}
 	
 	// 숙소 등록 - 숙소 등록 1단계 정보 DB 입력 및 숙소 등록 2단계 페이지 이동
-	@RequestMapping("/roomManage/registRoom/registFirstInfo")
-	public String registRoomFirstInfo(@RequestParam Map<String, Object> param, ModelMap modelMap) {
+	@RequestMapping("/roomManage/registRoom/registBasicInfo")
+	public String registRoomBasicInfo(@RequestParam Map<String, Object> param, ModelMap modelMap) {
 		
 		log.info("param={}", param);
 		
@@ -84,12 +84,12 @@ public class RegistRoomController {
 		// 1단계 정보 없데이트
 		roomService.updateBasicInfo(param);
 		
-		return "redirect:/host/roomManage/registRoom/secondInfo?roomId=" + param.get("roomId");
+		return "redirect:/host/roomManage/registRoom/detailInfo?roomId=" + param.get("roomId");
 	}
 	
 	// 숙소 등록 - 숙소 등록 2단계 페이지 호출
-	@RequestMapping("/roomManage/registRoom/secondInfo")
-	public String secondInfoView(@RequestParam Map<String, Object> param, ModelMap modelMap) {
+	@RequestMapping("/roomManage/registRoom/detailInfo")
+	public String detailInfoView(@RequestParam Map<String, Object> param, ModelMap modelMap) {
 		
 		log.info("roomId={}", param.get("roomId"));
 		
@@ -103,13 +103,13 @@ public class RegistRoomController {
 		// modelMap에 amenities 목록 추가
 		modelMap.put("amenities", amenities);
 		
-		return "/host/regist/secondInfo";
+		return "/host/regist/detailInfo";
 	}
 	
 	// 편의시설 - checkbox 다중 값 선택시 배열로 넘어오기 때문에 @RequsetParam 따로 설정
 	// 숙소 등록 - 숙소 등록 2단계 정보 DB 입력 및 숙소 등록 3단계 페이지 이동
-	@RequestMapping("/roomManage/registRoom/registSecondInfo")
-	public String registRoomSecondInfo(@RequestParam Map<String, Object> param, 
+	@RequestMapping("/roomManage/registRoom/registDetailInfo")
+	public String registRoomDetailInfo(@RequestParam Map<String, Object> param, 
 									   @RequestParam("amenities") List<String> amenities, 
 									   @RequestParam("mainImage") MultipartFile mainImage,
 									   @RequestParam("images") MultipartFile[] images,
@@ -128,15 +128,15 @@ public class RegistRoomController {
 		// modelMap에 roomId 추가
 		modelMap.put("roomId", param.get("roomId"));
 		
-		return "redirect:/host/roomManage/registRoom/thirdInfo?roomId=" + param.get("roomId");
+		return "redirect:/host/roomManage/registRoom/paymentInfo?roomId=" + param.get("roomId");
 	}
 	
 	// 숙소 등록 - 숙소 등록 3단계 페이지 호출
-	@RequestMapping("/roomManage/registRoom/thirdInfo")
-	public String thirdInfoView(@RequestParam Map<String, Object> param, ModelMap modelMap) {
+	@RequestMapping("/roomManage/registRoom/paymentInfo")
+	public String paymentInfoView(@RequestParam Map<String, Object> param, ModelMap modelMap) {
 		
 		log.info("roomId={}", param.get("roomId"));
 		
-		return "/host/regist/thirdInfo";
+		return "/host/regist/paymentInfo";
 	}
 }

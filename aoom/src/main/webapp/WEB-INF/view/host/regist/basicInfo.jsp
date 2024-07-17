@@ -16,7 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <body>
-	<form action="/host/roomManage/registRoom/registFirstInfo" method="post">
+	<form action="/host/roomManage/registRoom/registBasicInfo" method="post">
 	
 		<!-- roomId -->
 		<input type="hidden" name="roomId" value="${roomId }">
