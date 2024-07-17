@@ -84,10 +84,11 @@ public class ReviewService {
 		
 		Map<String, Object> hostCount = new HashMap<>(originalHostCount);
 		
-		
-		
-		return reviewMapper.selectByHostTotalCnt(param);
-	
+		double roundedValue = Math.round((((BigDecimal)(hostCount).get("avg")).doubleValue()) * 10) / 10.0;
+		//log.info(roundedValue);
+		hostCount.put("avg", roundedValue);
+		return hostCount;
+					
 	}
 
 }

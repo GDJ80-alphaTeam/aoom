@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alpha.aoom.amenities.service.AmenitiesService;
 import com.alpha.aoom.code.service.CodeService;
+import com.alpha.aoom.onedayPrice.service.OnedayPriceMapper;
+import com.alpha.aoom.onedayPrice.service.OnedayPriceService;
 import com.alpha.aoom.review.service.ReviewService;
 import com.alpha.aoom.room.service.RoomService;
 import com.alpha.aoom.roomImage.service.RoomImageService;
@@ -36,6 +38,8 @@ public class RoomController extends BaseController {
 	RoomImageService roomImageService;
 	@Autowired
 	CodeService codeService;
+	@Autowired
+	OnedayPriceService onedayPriceService;
 	
 	// 숙소상세보기 뷰페이지 호출
 	// param: userId(get)
@@ -52,14 +56,17 @@ public class RoomController extends BaseController {
 		List<Map<String, Object>> reviewList = reviewService.selectList(param);
 		
 		// 숙소 평점 및 리뷰수 조회 
-		Map<String,Object> reviewCntAvg = reviewService.selectByAvgCnt(param);
+		Map<String, Object> reviewCntAvg = reviewService.selectByAvgCnt(param);
 		
 		// 숙소 이미지url 검색
 		List<Map<String, Object>> roomImages = roomImageService.selectByRoomId(param);
 		
 		// 숙소 호스트가 받은 총합 후기수
-		Map<String,Object> hostReviewTotal = reviewService.selectByHostTotalCnt(param);
-	
+		Map<String, Object> hostReviewTotal = reviewService.selectByHostTotalCnt(param);
+		
+		// 예약불가능한 날짜목록
+		List<Map<String, Object>> disableDate = onedayPriceService.selectByDisabled(param);
+		
 		int currentPage = reviewService.currentPage(param);
 
 		//log.info("숙소상세보기 호출값" + roomInfo);
@@ -67,6 +74,7 @@ public class RoomController extends BaseController {
 		//log.info("리뷰목록 호출값"+reviewList);
 		//log.info("해당숙소의 리뷰 평점 및 리뷰값"+reviewCntAvg);
 		//log.info("해당숙소의 이미지 url 조회"+roomImages);
+		log.info("예약불가능한날짜" + disableDate);
 		modelMap.addAttribute("roomInfo",roomInfo);
 		modelMap.addAttribute("roomAmenities",roomAmenities);
 		modelMap.addAttribute("reviewList",reviewList);
@@ -74,6 +82,7 @@ public class RoomController extends BaseController {
 		modelMap.addAttribute("currentPage",currentPage);
 		modelMap.addAttribute("roomImages",roomImages);
 		modelMap.addAttribute("hostReview",hostReviewTotal);
+		modelMap.addAttribute("disableDate",disableDate);
 		
 		return "/room/roomInfo";
 	}

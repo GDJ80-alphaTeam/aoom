@@ -11,9 +11,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f0842831d9c350ed32adefb11b6cd5f6&libraries=services"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+	
 </head>
 <body>
-	<jsp:include page="/WEB-INF/view/layout/navbar.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
 	
 	<div style="width:1000px; margin: 0 auto ; min-width:600px" >
 			<!-- 숙소 이미지 -->
@@ -187,7 +192,9 @@
 				</div>
 			
 			<div style="width: 50% ; background-color: gray" >
-				내용2
+				 <input type="text" id="roomOperationDate" placeholder="날짜를 선택해주세요" style="width: 300px;" autocomplete="off">
+				<input type="hidden" id="startDate" name="startDate">
+				<input type="hidden" id="endDate" name="endDate">
 			</div>			
 		</div>		
 	</div> <!-- 상세보기전체감싸는 div -->
@@ -195,11 +202,63 @@
 		
 		
 	<script>
+	<!-- 숙소 운영 시작일 날짜 제한 및 Date Range Picker 설정-->
+		let today = moment().format("YYYY-MM-DD");
+		// 이용불가능한 날짜데이터 
+		let disableDate = "${disableDate}";
+		
+		// 마지막날+1 
+		let endDate = moment("${roomInfo.endDate}", "YYYY-MM-DD").add(1, 'days').format("YYYY-MM-DD");
+        
+		
+		// Date Range Picker 설정		
+		$('#roomOperationDate').daterangepicker({
+			minDate: today,
+			maxDate: endDate,
+		    showDropdowns: true,
+		    autoApply: false,
+			autoUpdateInput: false,
+			// 날짜값 disabled 해주는곳 true값이 반환되면 해당날짜는 false가됨
+		 	isInvalidDate: function(date) {
+            	const formattedDate = date.format('YYYY-MM-DD');
+            	// disabledate에 fromatteDate날짜와 비교해서 해당날짜가 있으면 true를 반환후 해당날짜 비활성화
+            	return disableDate.includes(formattedDate);
+           	},
+			locale : {
+				"format" : "YYYY-MM-DD",
+				"separator" : " ~ ",
+				"applyLabel" : "적용",
+				"cancelLabel" : "취소",
+				"fromLabel" : "From",
+				"toLabel" : "To",
+				"customRangeLabel" : "Custom",
+				"daysOfWeek" : [ "일", "월", "화", "수", "목", "금", "토" ],
+				"monthNames" : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월" ]
+			},
+		},
+		
+		// 날짜 선택 시 input에 값 전달
+		function(start, end, label) {
+			console.log("시작일 : " + start.format('YYYY-MM-DD'));
+			console.log("종료일 : " + end.format('YYYY-MM-DD'));
+			$('#startDate').val(start.format('YYYY-MM-DD'));
+			$('#endDate').val(end.format('YYYY-MM-DD'));
+		});
+		
+		$('#roomOperationDate').on('apply.daterangepicker', function(ev, picker) {
+			$(this).val(picker.startDate.format('YYYY-MM-DD') + ' ~ ' + picker.endDate.format('YYYY-MM-DD'));
+		});
+
+		$('#roomOperationDate').on('cancel.daterangepicker', function(ev, picker) { 
+			$(this).val('');
+		});	
+		
+
 	<!-- 페이징 -->
-		// currentPage는 변경가능해야함 , lastPage는 중간에 리뷰가 추가될수있음
-	  let currentPage = parseInt("${currentPage}");
-	  let lastPage = parseInt("${reviewCntAvg.lastPage}");
-	  const roomId = "${roomInfo.roomId}";
+	 	// currentPage는 변경가능해야함 , lastPage는 중간에 리뷰가 추가될수있음
+	  	let currentPage = parseInt("${currentPage}");
+	  	let lastPage = parseInt("${reviewCntAvg.lastPage}");
+	  	const roomId = "${roomInfo.roomId}";
 								// id가 page로 시작하는 모든태그 
 		$(document).on('click', '[id^="page"], #previous, #next', function() {
 			let page = currentPage;

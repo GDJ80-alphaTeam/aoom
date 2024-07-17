@@ -6,7 +6,7 @@
 	<sql id="roomImage_col">
 		 image_no
 		,room_id
-		,image_path
+		,image
 		,original_name
 		,create_date
 	</sql>
