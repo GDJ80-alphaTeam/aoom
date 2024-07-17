@@ -176,17 +176,17 @@
 			,address
 			,room_name
 			,default_price
+			,roomcate_code
 		FROM
 			room
 		WHERE
 			roomstat_code = 'rst03'
 	        <if test="address != null and address != ''">
-	            AND address LIKE '%' || #{address} || '%' 
+				AND address LIKE '%${address}%'
 	        </if>
-	        <if test="selectedCategory != null">
+	        <if test="selectedCategory != null and selectedCategory != ''">
 	            AND roomcate_code = #{selectedCategory}
 	        </if>
-			
 	</select>
 	
 	<!-- 숙소 등록 - 숙소 등록 1단계 전 숙소 초기화 -->

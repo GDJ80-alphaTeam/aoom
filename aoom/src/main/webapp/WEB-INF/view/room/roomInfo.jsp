@@ -192,7 +192,7 @@
 				</div>
 			
 			<div style="width: 50% ; background-color: gray" >
-				 <input type="text" id="roomOperationDate" placeholder="날짜를 선택해주세요" style="width: 300px;" autocomplete="off">
+				<input type="text" id="bookingDate" placeholder="날짜를 선택해주세요" style="width: 300px;" autocomplete="off">
 				<input type="hidden" id="startDate" name="startDate">
 				<input type="hidden" id="endDate" name="endDate">
 			</div>			
@@ -212,7 +212,7 @@
         
 		
 		// Date Range Picker 설정		
-		$('#roomOperationDate').daterangepicker({
+		$('#bookingDate').daterangepicker({
 			minDate: today,
 			maxDate: endDate,
 		    showDropdowns: true,
@@ -245,11 +245,11 @@
 			$('#endDate').val(end.format('YYYY-MM-DD'));
 		});
 		
-		$('#roomOperationDate').on('apply.daterangepicker', function(ev, picker) {
+		$('#bookingDate').on('apply.daterangepicker', function(ev, picker) {
 			$(this).val(picker.startDate.format('YYYY-MM-DD') + ' ~ ' + picker.endDate.format('YYYY-MM-DD'));
 		});
 
-		$('#roomOperationDate').on('cancel.daterangepicker', function(ev, picker) { 
+		$('#bookingDate').on('cancel.daterangepicker', function(ev, picker) { 
 			$(this).val('');
 		});	
 		

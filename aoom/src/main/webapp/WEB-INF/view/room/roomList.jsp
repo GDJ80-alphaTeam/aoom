@@ -38,8 +38,9 @@
 				<!-- 검색 -->
 				<form id="search">
 					<input type="text" name="address" id="address" placeholder="여행지">
-					<input type="date" id="startDate" name="startDate" placeholder="체크인" autocomplete="off">
-					<input type="date" id="endDate" name="endDate" placeholder="체크아웃" autocomplete="off">
+					<input type="text" id="daterange" placeholder="" autocomplete="off">
+					<input type="hidden" id="startDate" name="startDate">
+					<input type="hidden" id="endDate" name="endDate">
 					<input type="number" name="usePeople" id="usePeople" min="0" placeholder="여행자">
 					<button type="button" id="ajaxSearchBtn">검색</button>
 				</form>
@@ -137,90 +138,122 @@
 	</table>
 	
     <script>
-        $(document).ready(function() {
-            let selectedCategory = null;
+    
+		// Moment.js를 사용하여 오늘 날짜 문자열 생성
+		let today = moment().format("YYYY/MM/DD");
+		
+ 		// 달력 API
+ 		$(document).ready(function() {
+	        $(function() {
+	            $('#daterange').daterangepicker({
+	            	minDate: today, // 오늘날짜 이전 선택불가
+	            	showDropdowns: true, // 연도와 월을 선택할 수 있는 드롭다운 생성
+	       		    autoApply: false, // 적용버튼 누르기 전 까지 적용 안되게
+	                autoUpdateInput: false, // 날짜 범위도 적용 누르기 전까지 적용 안 되게
+	                locale: {
+	                    "format" : "YYYY/MM/DD", // 연월일 포맷설정
+	                    "separator" : " ~ ", // 캘린더 우측아래 범위 표현
+	                    "applyLabel" : "적용", // 적용버튼 스트링값
+	                    "cancelLabel" : "비우기", // 취소버튼 스트링값
+	                    "customRangeLabel" : "Custom", // 커스텀방식
+	                    "daysOfWeek" : [ "일", "월", "화", "수", "목", "금", "토" ], // 요일표시방식
+	                    "monthNames" : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월" ] // 월 표시방식
+	                }
+	            });
+	            // 캘린더 '적용' 눌렀을 때 이벤트처리
+	            $('#daterange').on('apply.daterangepicker', function(ev, picker) {
+	                let startDate = picker.startDate; // 첫번째 선택날짜 선언
+	                let endDate = picker.endDate; // 두번째 선택날짜 선언
+	                // 선택날 두 날이 같을 시 조건문
+	                if (startDate.isSame(endDate, 'day')) { // 같을 때
+	                    alert("체크인과 체크아웃 날짜가 같을 수 없습니다.");
+	                    $('#daterange').val(''); // 비우기
+	                    $('#startDate').val('');
+	                    $('#endDate').val('');
+	                } else { // 그렇지 않은 모든경우에 : 선택한 첫날과 마지막날을 hidden안에 담는다 
+	                    $(this).val(startDate.format('MM/DD/YYYY') + ' - ' + endDate.format('MM/DD/YYYY'));
+	                    $('#startDate').val(startDate.format('YYYY/MM/DD'));
+	                    $('#endDate').val(endDate.format('YYYY/MM/DD'));
+	                }
+	            })
+ 			})
+ 		})
+		
+		
+		// 검색조건부여
+        let selectedCategory = null;
+        
+        // 카테고리를 클릭할 때 active 클래스를 토글하고 선택한 카테고리를 저장하는 변수
+        $('.category-link').click(function(e) {
+            e.preventDefault();
             
-            // 카테고리를 클릭할 때 active 클래스를 토글하고 선택한 카테고리를 저장하는 변수
-            $('.category-link').click(function(e) {
-                e.preventDefault();
-                
-                // 이미 active 클래스가 적용된 링크일 경우 active 클래스 제거
-                if ($(this).hasClass('active')) {
-                    $(this).removeClass('active');
-                    selectedCategory = null; // 선택한 카테고리 변수를 null로 초기화 또는 다른 로직에 맞게 처리
-                } else {
-                    // 다른 링크의 active 클래스 제거 후 현재 클릭한 링크에 active 클래스 추가
-                    $('.category-link').removeClass('active');
-                    $(this).addClass('active');
-                    selectedCategory = $(this).data('category');
-                }
-                $.ajax({
-                    url: '/room/ajaxResultRoom',
-                    method: 'post',
-                    data: $('#search').serialize() + '&selectedCategory=' + selectedCategory,
-                    success: function(response) {
-                        $('#result').empty();
-                        if (response.result == true) {
-                            alert(response.message);
-                            let roomResult = response.data;
-                            let divResult = $('#result');
-                            $.each(roomResult, function(index, item) {
-                                let content = '<tr><td>'+item.mainImage+'</td><td>'+item.address+'</td><td>'+item.roomName+'</td><td>'+item.defaultPrice+'</td></tr>';
-                                divResult.append(content);
-                            });
-                        } else {
-                            alert(response.message);
-                        }
-                    }	
-                });
-            });
-
-            // 검색 버튼 클릭 시 Ajax 요청
-            $('#ajaxSearchBtn').click(function() {
-                $.ajax({
-                    url: '/room/ajaxResultRoom',
-                    method: 'post',
-                    data: $('#search').serialize() + '&selectedCategory=' + selectedCategory,
-                    success: function(response) {
-                        $('#result').empty();
-                        if (response.result == true) {
-                            alert(response.message);
-                            let roomResult = response.data;
-                            let divResult = $('#result');
-                            $.each(roomResult, function(index, item) {
-                                let content = '<tr><td>'+item.mainImage+'</td><td>'+item.address+'</td><td>'+item.roomName+'</td><td>'+item.defaultPrice+'</td></tr>';
-                                divResult.append(content);
-                            });
-                        } else {
-                            alert(response.message);
-                        }
-                    }	
-                });
-            });
-
-            // 필터 버튼 클릭 시 Ajax 요청
-            $('#filterBtn').click(function() {
-                $.ajax({
-                    url: '/room/ajaxResultRoom',
-                    method: 'get', // 혹은 'post'로 변경하여 사용할 수 있습니다.
-                    data: $('#filterForm').serialize() + '&selectedCategory=' + selectedCategory,
-                    success: function(response) {
-                        $('#result').empty();
-                        if (response.result == true) {
-                            alert(response.message);
-                            let roomResult = response.data;
-                            let divResult = $('#result');
-                            $.each(roomResult, function(index, item) {
-                                let content = '<tr><td>'+item.mainImage+'</td><td>'+item.address+'</td><td>'+item.roomName+'</td><td>'+item.defaultPrice+'</td></tr>';
-                                divResult.append(content);
-                            });
-                        } else {
-                            alert(response.message);
-                        }
-                    }	
-                });
+            // 이미 active 클래스가 적용된 링크일 경우 active 클래스 제거
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('active');
+                selectedCategory = null; // 선택한 카테고리 변수를 null로 초기화 또는 다른 로직에 맞게 처리
+            } else {
+                // 다른 링크의 active 클래스 제거 후 현재 클릭한 링크에 active 클래스 추가
+                $('.category-link').removeClass('active');
+                $(this).addClass('active');
+                selectedCategory = $(this).data('category');
+            }
+            
+        	// 폼 데이터 가져오기
+            let formData = $('#search').serializeArray();
+            // 추가 데이터 설정
+            formData.push({ name: 'selectedCategory', value: selectedCategory });
+            
+            $.ajax({
+                url: '/room/ajaxResultRoom',
+                method: 'post',
+                data: formData,
+                success: function(response) {
+                    $('#result').empty();
+                    if (response.result == true) {
+                        alert(response.message);
+                        let roomResult = response.data;
+                        let divResult = $('#result');
+                        $.each(roomResult, function(index, item) {
+                            let content = '<tr><td>'+item.mainImage+'</td><td>'+item.address+'</td><td>'+item.roomName+'</td><td>'+item.defaultPrice+'</td></tr>';
+                            divResult.append(content);
+                        });
+                    } else {
+                        alert(response.message);
+                    }
+                }	
             });
         });
+
+        // 검색 버튼 클릭 시 Ajax 요청
+        $('#ajaxSearchBtn').click(function() {
+        	
+        	// 폼 데이터 가져오기
+            let formData = $('#search').serializeArray();
+            // 추가 데이터 설정
+            let selectedCategory = $('.category-link.active').data('category');
+            formData.push({ name: 'selectedCategory', value: selectedCategory });
+        	
+            $.ajax({
+                url: '/room/ajaxResultRoom',
+                method: 'post',
+                data: formData,
+                success: function(response) {
+                    $('#result').empty();
+                    if (response.result == true) {
+                        alert(response.message);
+                        let roomResult = response.data;
+                        let divResult = $('#result');
+                        $.each(roomResult, function(index, item) {
+                            let content = '<tr><td>'+item.mainImage+'</td><td>'+item.address+'</td><td>'+item.roomName+'</td><td>'+item.defaultPrice+'</td></tr>';
+                            divResult.append(content);
+                        });
+                    } else {
+                        alert(response.message);
+                    }
+                }	
+            });
+        });
+ 
     </script>
 </body>
 </html>
