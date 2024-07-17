@@ -1,5 +1,6 @@
 package com.alpha.aoom.host.controller;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -110,12 +111,14 @@ public class RegistRoomController {
 	// 숙소 등록 - 숙소 등록 2단계 정보 DB 입력 및 숙소 등록 3단계 페이지 이동
 	@RequestMapping("/roomManage/registRoom/registDetailInfo")
 	public String registRoomDetailInfo(@RequestParam Map<String, Object> param, 
-									   @RequestParam("amenities") List<String> amenities, 
 									   @RequestParam("mainImage") MultipartFile mainImage,
 									   @RequestParam("images") MultipartFile[] images,
 									   ModelMap modelMap) {
 		log.info("param={}", param);
-		log.info("amenities={}", amenities);
+		
+		// param에 담겨있는 amenities가 문자열이기 때문에 List로 파싱
+        String amenitiesStr = (String) param.get("amenities");
+        List<String> amenities = Arrays.asList(amenitiesStr.split(","));
 		
 		// param에 amenities값(리스트), mainImage, images 추가
 		param.put("amenities", amenities);

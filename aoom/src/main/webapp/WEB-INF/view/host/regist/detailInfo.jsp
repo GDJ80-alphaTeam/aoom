@@ -33,8 +33,9 @@
 			편의시설 : 
 			<c:forEach var="amenity" items="${amenities }">
 				<label for="${amenity.codeKey }">${amenity.codeName }</label>
-				<input type="checkbox" id="${amenity.codeKey }" name="amenities" value="${amenity.codeKey }">
+				<input type="checkbox" id="${amenity.codeKey }" name="checkAmenities" value="${amenity.codeKey }" >
 			</c:forEach>
+			<input type="hidden" name="amenities">
 		</div>
 		
 		<!-- 사진 등록 -->
@@ -69,6 +70,20 @@
 		<button type="submit">다음</button>
 	</form>
 	
+	<!-- amenities 선택 후 배열로 넘기기 -->
+	<script>
+		$(document).ready(function() {
+		    $('input[name="checkAmenities"]').change(function() {
+		        var selectedAmenities = $('input[name="checkAmenities"]:checked').map(function() {
+		            return this.value;
+		        }).get();
+		        
+		        // 숨겨진 입력 필드의 값을 쉼표로 구분된 문자열로 설정
+		        $('input[name="amenities"]').val(selectedAmenities.join(','));
+		    });
+		});
+	</script>
+
 	<!-- 이미지 등록 전 미리보기 기능 -->
 	<script type="text/javascript">
 		
