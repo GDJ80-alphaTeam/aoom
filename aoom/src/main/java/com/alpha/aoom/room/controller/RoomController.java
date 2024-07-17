@@ -65,7 +65,7 @@ public class RoomController extends BaseController {
 		Map<String, Object> hostReviewTotal = reviewService.selectByHostTotalCnt(param);
 		
 		// 예약불가능한 날짜목록
-		List<Map<String, Object>> disableDate = onedayPriceService.selectByDisabled(param);
+		List<Map<String, Object>> disableDate = onedayPriceService.selectByStatCode(param);
 		
 		int currentPage = reviewService.currentPage(param);
 

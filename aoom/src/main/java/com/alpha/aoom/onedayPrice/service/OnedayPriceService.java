@@ -18,11 +18,14 @@ public class OnedayPriceService {
 	@Autowired
 	OnedayPriceMapper onedayPriceMapper;
 	
-	public List<Map<String, Object>> selectByDisabled (Map<String, Object> param) {
-		
-		return onedayPriceMapper.selectByDisabled(param);
+	// param: roomId , onestateCode
+	// 예약 불가능한 숙소목록 출력
+	public List<Map<String, Object>> selectByStatCode (Map<String, Object> param) {
+			
+		param.put("onestateCode", "one02");
+		return onedayPriceMapper.selectByStatCode(param);
 	}
-	
+
 	// 숙소 등록시 운영일만큼 숙박 가격 추가
 	public void insert(Map<String, Object> param) {
 		log.info("param={}", param);

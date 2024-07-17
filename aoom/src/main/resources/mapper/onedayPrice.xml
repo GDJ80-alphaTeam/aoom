@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.alpha.aoom.onedayPrice.service.OnedayPriceMapper">
-	<!-- 달력에 비활성화할 리스트 검색 -->
-	<select id="selectByDisabled" parameterType="map" resultType="camelCaseMap">
-	SELECT 
-    	TO_CHAR(oneday, 'YYYY-MM-DD') AS oneday
-    FROM
-        oneday_price    
-    WHERE 
-        room_id = #{roomId} 
-    	AND onestat_code = 'one02'        
+	
+	
+	<!-- 컬럼 이름 sql조각 -->
+	<sql id="onedayPrice_col">
+		 oneday
+		,room_id
+		,oneday_price
+		,update_date
+		,left_people
+	</sql>
+	
+	<!-- onedayPrice의 예약상태의 따른 리스트 검색 -->
+	<select id="selectByStatCode" parameterType="map" resultType="camelCaseMap">
+		SELECT
+	    	TO_CHAR(oneday, 'YYYY-MM-DD') AS oneday
+	    FROM
+	        oneday_price    
+	    WHERE 
+	        room_id = #{roomId} 
+	    	AND onestat_code = #{onestateCode}        
     </select>
+
     
     <!-- 숙소 등록시 운영일만큼 숙박 가격 추가 -->
     <insert id="insert" parameterType="map">
