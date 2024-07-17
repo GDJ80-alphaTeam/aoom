@@ -31,10 +31,10 @@ public class MainController {
 		// 숙소 카테고리 조회
 		List<Map<String, Object>> roomCategory = codeService.selectByGroupKey("roomcate");
 
-		// 숙소 유형 조회(카테고리, 게스트하우스)
+		// 숙소 유형 조회(일반숙소, 게스트하우스)
 		List<Map<String, Object>> roomType = codeService.selectByGroupKey("roomtype");
 
-		// 숙소 편의시설 목록 조회(카테고리, 게스트하우스)
+		// 숙소 편의시설 목록 조회(와이파이, 주차장 등)
 		List<Map<String, Object>> amenities = codeService.selectByGroupKey("amenities");
 		
 		// 숙소 전체 목록 조회
@@ -53,14 +53,14 @@ public class MainController {
 		List<Map<String, Object>> wishListDesc = roomService.selectByWishList();
 		
 		// modelMap에 숙소 전체 목록 조회한 값 넣기
-		modelMap.addAttribute("roomAllList", roomAllList);
-		modelMap.addAttribute("viewsDesc", viewsDesc);
-		modelMap.addAttribute("starDesc", ratingDesc);
-		modelMap.addAttribute("bookingDesc", bookingDesc);
-		modelMap.addAttribute("wishListDesc", wishListDesc);
 		modelMap.addAttribute("roomCategory", roomCategory);
 		modelMap.addAttribute("roomType", roomType);
 		modelMap.addAttribute("amenities", amenities);
+		modelMap.addAttribute("roomAllList", roomAllList);
+		modelMap.addAttribute("viewsDesc", viewsDesc);
+		modelMap.addAttribute("ratingDesc", ratingDesc);
+		modelMap.addAttribute("bookingDesc", bookingDesc);
+		modelMap.addAttribute("wishListDesc", wishListDesc);
 		
 		return "main";
 	}

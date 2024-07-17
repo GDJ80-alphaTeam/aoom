@@ -145,13 +145,13 @@
 				<th>기본가격</th>
 			</tr>
 		</thead>
-		<c:forEach var="starDesc" items="${starDesc}">
+		<c:forEach var="ratingDesc" items="${ratingDesc}">
 			<tbody>
 				<tr>
-					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${starDesc.roomId}">${starDesc.mainImage}</a></td>
-					<td>${starDesc.address}</td>
-					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${starDesc.roomId}">${starDesc.roomName}</a></td>
-					<td>${starDesc.defaultPrice}</td>
+					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${ratingDesc.roomId}">${ratingDesc.mainImage}</a></td>
+					<td>${ratingDesc.address}</td>
+					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${ratingDesc.roomId}">${ratingDesc.roomName}</a></td>
+					<td>${ratingDesc.defaultPrice}</td>
 				</tr>
 			</tbody>
 		</c:forEach>

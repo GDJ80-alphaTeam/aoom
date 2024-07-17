@@ -96,8 +96,16 @@ public class RoomController extends BaseController {
 		// 숙소 카테고리 조회
 		List<Map<String, Object>> roomCategory = codeService.selectByGroupKey("roomcate");
 		
+		// 숙소 유형 조회(일반숙소, 게스트하우스)
+		List<Map<String, Object>> roomType = codeService.selectByGroupKey("roomtype");
+
+		// 숙소 편의시설 목록 조회(와이파이, 주차장 등)
+		List<Map<String, Object>> amenities = codeService.selectByGroupKey("amenities");
+		
 		// modelMap에 데이터 추가
 		modelMap.addAttribute("roomCategory", roomCategory);
+		modelMap.addAttribute("roomType", roomType);
+		modelMap.addAttribute("amenities", amenities);
 		
 		return "/room/roomList";
 	}
