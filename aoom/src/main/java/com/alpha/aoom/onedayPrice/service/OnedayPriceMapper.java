@@ -9,4 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface OnedayPriceMapper {
 		
 	List<Map<String, Object>> selectByDisabled(Map<String,Object> param); 
+	
+	// 숙소 등록시 운영일만큼 숙박 가격 추가
+	int insert(Map<String, Object> param);
 }

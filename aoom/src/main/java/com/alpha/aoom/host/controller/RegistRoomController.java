@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alpha.aoom.code.service.CodeService;
+import com.alpha.aoom.onedayPrice.service.OnedayPriceService;
 import com.alpha.aoom.room.service.RoomService;
 
 import jakarta.servlet.http.HttpSession;
@@ -29,6 +30,9 @@ public class RegistRoomController {
 	
 	@Autowired
 	CodeService codeService;
+	
+	@Autowired
+	OnedayPriceService onedayPriceService;
 	
 	// 숙소 등록 - 숙소 초기화 및 숙소 등록 1단계 페이지로 이동
 	@RequestMapping(value = "/roomManage/setupRoom", method = RequestMethod.POST)
@@ -169,6 +173,14 @@ public class RegistRoomController {
 		
 		// 3단계 정보 없데이트
 		roomService.update(param);
+		
+		// 하루 숙박 가격 등록을 위해 시작일, 종료일, 최대 수용 인원 가져와서 param에 추가
+		param.put("startDate", roomService.selectOne(param).get("startDate"));
+		param.put("endDate", roomService.selectOne(param).get("endDate"));
+		param.put("maxPeople", roomService.selectOne(param).get("maxPeople"));
+		
+		// 하루숙박 가격 DB에 추가
+		onedayPriceService.insert(param);
 		
 		// modelMap에 roomId 추가
 		modelMap.put("roomId", param.get("roomId"));

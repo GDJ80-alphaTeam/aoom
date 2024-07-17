@@ -11,4 +11,19 @@
         room_id = #{roomId} 
     	AND onestat_code = 'one02'        
     </select>
+    
+    <!-- 숙소 등록시 운영일만큼 숙박 가격 추가 -->
+    <insert id="insert" parameterType="map">
+		INSERT INTO oneday_price(
+			 room_id
+			,oneday
+			,oneday_price
+			,left_people
+		) VALUES(
+			 #{roomId}
+			,#{oneday}
+			,#{onedayPrice}
+			,#{leftPeople}
+		)
+    </insert>
 </mapper>
