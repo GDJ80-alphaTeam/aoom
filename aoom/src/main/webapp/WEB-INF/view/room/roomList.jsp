@@ -64,7 +64,7 @@
 								<h1 class="modal-title fs-5" id="exampleModalLabel">필터 </h1>
 								<button type="button" class="btn-close" data-bs-dismiss="modal"	aria-label="Close"></button>
 							</div>
-							<form action="${pageContext.request.contextPath}/room/roomList" method="get">
+							<form id="filter">
 								<div class="modal-body">
 								
 										<h3>가격</h3>
@@ -109,8 +109,8 @@
 										
 								</div>
 								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-									<button type="submit" class="btn btn-danger">필터링</button>
+									<button type="button" id="ajaxClearBtn" class="btn btn-secondary">초기화</button>
+									<button type="button" id="ajaxfilterBtn" class="btn btn-danger">필터링</button>
 								</div>
 							</form>
 						</div>
@@ -143,42 +143,39 @@
 		let today = moment().format("YYYY/MM/DD");
 		
  		// 달력 API
- 		$(document).ready(function() {
-	        $(function() {
-	            $('#daterange').daterangepicker({
-	            	minDate: today, // 오늘날짜 이전 선택불가
-	            	showDropdowns: true, // 연도와 월을 선택할 수 있는 드롭다운 생성
-	       		    autoApply: false, // 적용버튼 누르기 전 까지 적용 안되게
-	                autoUpdateInput: false, // 날짜 범위도 적용 누르기 전까지 적용 안 되게
-	                locale: {
-	                    "format" : "YYYY/MM/DD", // 연월일 포맷설정
-	                    "separator" : " ~ ", // 캘린더 우측아래 범위 표현
-	                    "applyLabel" : "적용", // 적용버튼 스트링값
-	                    "cancelLabel" : "비우기", // 취소버튼 스트링값
-	                    "customRangeLabel" : "Custom", // 커스텀방식
-	                    "daysOfWeek" : [ "일", "월", "화", "수", "목", "금", "토" ], // 요일표시방식
-	                    "monthNames" : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월" ] // 월 표시방식
-	                }
-	            });
-	            // 캘린더 '적용' 눌렀을 때 이벤트처리
-	            $('#daterange').on('apply.daterangepicker', function(ev, picker) {
-	                let startDate = picker.startDate; // 첫번째 선택날짜 선언
-	                let endDate = picker.endDate; // 두번째 선택날짜 선언
-	                // 선택날 두 날이 같을 시 조건문
-	                if (startDate.isSame(endDate, 'day')) { // 같을 때
-	                    alert("체크인과 체크아웃 날짜가 같을 수 없습니다.");
-	                    $('#daterange').val(''); // 비우기
-	                    $('#startDate').val('');
-	                    $('#endDate').val('');
-	                } else { // 그렇지 않은 모든경우에 : 선택한 첫날과 마지막날을 hidden안에 담는다 
-	                    $(this).val(startDate.format('MM/DD/YYYY') + ' - ' + endDate.format('MM/DD/YYYY'));
-	                    $('#startDate').val(startDate.format('YYYY/MM/DD'));
-	                    $('#endDate').val(endDate.format('YYYY/MM/DD'));
-	                }
-	            })
- 			})
- 		})
-		
+        $(function() {
+            $('#daterange').daterangepicker({
+            	minDate: today, // 오늘날짜 이전 선택불가
+            	showDropdowns: true, // 연도와 월을 선택할 수 있는 드롭다운 생성
+       		    autoApply: false, // 적용버튼 누르기 전 까지 적용 안되게
+                autoUpdateInput: false, // 날짜 범위도 적용 누르기 전까지 적용 안 되게
+                locale: {
+                    "format" : "YYYY/MM/DD", // 연월일 포맷설정
+                    "separator" : " ~ ", // 캘린더 우측아래 범위 표현
+                    "applyLabel" : "적용", // 적용버튼 스트링값
+                    "cancelLabel" : "비우기", // 취소버튼 스트링값
+                    "customRangeLabel" : "Custom", // 커스텀방식
+                    "daysOfWeek" : [ "일", "월", "화", "수", "목", "금", "토" ], // 요일표시방식
+                    "monthNames" : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월" ] // 월 표시방식
+                }
+            });
+            // 캘린더 '적용' 눌렀을 때 이벤트처리
+            $('#daterange').on('apply.daterangepicker', function(ev, picker) {
+                let startDate = picker.startDate; // 첫번째 선택날짜 선언
+                let endDate = picker.endDate; // 두번째 선택날짜 선언
+                // 선택날 두 날이 같을 시 조건문
+                if (startDate.isSame(endDate, 'day')) { // 같을 때
+                    alert("체크인과 체크아웃 날짜가 같을 수 없습니다.");
+                    $('#daterange').val(''); // 비우기
+                    $('#startDate').val('');
+                    $('#endDate').val('');
+                } else { // 그렇지 않은 모든경우에 : 선택한 첫날과 마지막날을 hidden안에 담는다 
+                    $(this).val(startDate.format('MM/DD/YYYY') + ' - ' + endDate.format('MM/DD/YYYY'));
+                    $('#startDate').val(startDate.format('YYYY/MM/DD'));
+                    $('#endDate').val(endDate.format('YYYY/MM/DD'));
+                }
+            })
+		})
 		
 		// 검색조건부여
         let selectedCategory = null;
@@ -253,6 +250,16 @@
                 }	
             });
         });
+        
+/*       // 필터링 버튼 클릭 시 Ajax 요청
+        $('#ajaxfilterBtn').click(function() {
+        	
+        }
+        
+        // 초기화 버튼 클릭 시 Ajax 요청
+        $('#ajaxClearBtn').click(function() {
+        	
+        } */
  
     </script>
 </body>
