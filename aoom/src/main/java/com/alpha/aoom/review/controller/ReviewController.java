@@ -27,7 +27,7 @@ public class ReviewController extends BaseController{
 	// param : roomId , currentPage
 	@ResponseBody
 	@RequestMapping("/ajaxReviewPaging")
-	public List<Map<String, Object>> roomReviewPaging(@RequestParam Map<String, Object> param) {
+	public Map<String, Object> roomReviewPaging(@RequestParam Map<String, Object> param) {
 				
 		//log.info("parameter"+param);
 		return reviewService.selectList(param);

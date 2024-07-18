@@ -95,11 +95,11 @@
 		</c:choose>
 		
 		<div style="flex-wrap: wrap; margin-bottom:100px; display: flex;">
-			<c:forEach var="r" items="${reviewList}" varStatus="status">
+			<c:forEach var="r" items="${reviewList.review}" varStatus="status">
 				<div style="width: 45%; margin-right: 30px;margin-bottom: 30px;display: flex;">
 					<div style="height: 150px ;width: 20%;">										
-						<img id="reviewImg${status.count}" alt="" src="${r.reviewImage}" style="width:100%;height:50%;background-color: green">
-						<img id="userImg${status.count}" alt="" src="${r.userImage}" style="width:100%;height:50%;background-color: gray">
+						<img id="reviewImg${status.count}"  src="${r.reviewImage}" style="width:100%;height:50%;"onerror="this.style.display='none'">
+						<img id="userImg${status.count}"  src="${r.userImage}" style="width:100%;height:50%;"onerror="this.style.display='none'">
 					</div>						
 					<div style="width: 80%" id="reviewContent${status.count}">
 						${r.reviewContent}
@@ -107,6 +107,7 @@
 				</div>
 			</c:forEach>			
 		</div>		
+		<!-- 페이징 총숫자에맞춰서 1~10 ,11~20이런식으로 만들어야됨  -->
 		<c:choose>
 			<c:when test="${reviewCntAvg.lastPage == 0 }">
 				
@@ -117,7 +118,7 @@
 			      <li class="page-item">
 			      <!-- paging 이전버튼 -->
 			        <c:choose>			        
-			          <c:when test="${currentPage == 1}">
+			          <c:when test="${reviewList.currentPage == 1}">
 			            <button class="page-link disabled" type="button" id="previous">이전</button>
 			          </c:when>
 			          
@@ -149,7 +150,7 @@
 			      <li class="page-item">
 			        <c:choose>
 			        
-			          <c:when test="${currentPage == reviewCntAvg.lastPage}">
+			          <c:when test="${reviewList.currentPage == reviewCntAvg.lastPage}">
 			            <button class="page-link" type="button" id="next" disabled ="disabled">다음</button>
 			          </c:when>
 			          
@@ -256,17 +257,20 @@
 
 	<!-- 페이징 -->
 	 	// currentPage는 변경가능해야함 , lastPage는 중간에 리뷰가 추가될수있음
-	  	let currentPage = parseInt("${currentPage}");
+	  	let currentPage = parseInt("${reviewList.currentPage}");
 	  	let lastPage = parseInt("${reviewCntAvg.lastPage}");
 	  	const roomId = "${roomInfo.roomId}";
+	  	
 								// id가 page로 시작하는 모든태그 
 		$(document).on('click', '[id^="page"], #previous, #next', function() {
 			let page = currentPage;
+		  		
 			
 			// 페이지 번호 클릭 this = 위에 on.click된 것들중 클릭이벤트가 일나면
 		    if (this.id.startsWith('page')) {
-		    	// page에 클릭한 페이지 값 입력
-		      	page = $(this).val();
+		    	// page에 클릭한 페이지 값 입력 , String으로 오기때문에 변환해줘야함
+		      	page = parseInt($(this).val());
+		    	
 		    	// 모든 번호페이지의 active상태 제거
 		      	$(".page-link.active").removeClass("active");
 		    	// 선택한 번호페이지의 active 추가
@@ -321,10 +325,12 @@
 		    		  $('#next').addClass("disabled");
 		      	}
 		   }
-				// page의 값에 변동이 생기면 ajax호출
-		    	if (page !== currentPage) {
-		    		reloadReivew(page);
-		    	}	
+				// page의 값에 변동이 생기면 ajax호출 
+		    if (page !== currentPage) {
+		    	console.log(currentPage)
+		    	console.log(page)
+		    	reloadReivew(page);
+		    }	
 			
 		})
 		
@@ -339,15 +345,18 @@
 					$('[id^="reviewContent"]').empty();
 					$('[id^="reviewImg"]').attr('src','');
 					$('[id^="userImg"]').attr('src','');
+					// onError일때 display가 none이된후 사라지지않음 그래서 다시 block처리후 src가없으면 다시 none으로 변경
+					$('[id^="reviewImg"]').css('display','block');
+					$('[id^="userImg"]').css('display','block');
 					// currentpage값 바꿔줌
 					currentPage = page;
-					console.log(response);
+										
 					// id의값은 1부터 시작 , list는 [0]부터 시작함 그래서 response -1
-					for (let i = 1; i < response.length+1; i++) {
-						$('#reviewContent'+i).append(response[i-1].reviewContent);
-						$('#reviewImg'+i).attr('src',response[i-1].reviewImage); // reviewImgUrl이 response에 포함되어 있다고 가정함
-		                $('#userImg'+i).attr('src',response[i-1].userImage); // userImgUrl이 response에 포함되어 있다고 가정함
-						console.log(response[i-1].userImg);
+					for (let i = 1; i < response.review.length+1; i++) {
+						$('#reviewContent'+i).append(response.review[i-1].reviewContent);
+						$('#reviewImg'+i).attr('src',response.review[i-1].reviewImage); // reviewImgUrl이 response에 포함되어 있다고 가정함
+		                $('#userImg'+i).attr('src',response.review[i-1].userImage); // userImgUrl이 response에 포함되어 있다고 가정함
+		                console.log(response.review[i-1]);	
 					}					
 				
 				}

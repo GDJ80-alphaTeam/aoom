@@ -1,7 +1,6 @@
 package com.alpha.aoom.review.service;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,11 +23,11 @@ public class ReviewService {
 	
 	// param : String room_id , int currentPage , int beginRow , int endRow
 	// 숙소리뷰 리스트
-	public List<Map<String, Object>> selectList(Map<String, Object> param){
+	public Map<String, Object> selectList(Map<String, Object> param){
 		
-		// currentPage 값 출력
-		int currentPage = currentPage(param);
-						
+		// currentPage가 param에 가지고있으면 param값 , 없으면 1
+		int currentPage = (String)param.get("currentPage") != null ? Integer.parseInt((String)param.get("currentPage")) : 1 ;  
+									
 		// startRow ~ endRow 사이의 값 조회  
 		int beginRow = (currentPage - 1) * rowPerPage;
 		// beginRow + rowPerPage 로우퍼페이지의 개수만큼 검색
@@ -37,7 +36,12 @@ public class ReviewService {
 		param.put("beginRow", beginRow);
 		param.put("endRow", endRow);
 		
-		return reviewMapper.selectList(param);		
+		// reviewList 와 currentPage 같이보내기위한 Map
+		Map<String, Object> selectList = new HashMap<String, Object>(); 
+		
+		selectList.put("review", reviewMapper.selectList(param));
+		selectList.put("currentPage", currentPage);
+		return selectList; 		
 	}
 	
 	// param : room_id
@@ -62,19 +66,6 @@ public class ReviewService {
 		//log.info(getPagingInfo.getClass().getCanonicalName());
 		return getPagingInfo;
 	}
-	
-	// param: currentPage
-	// currentPage 계산
-	public int currentPage(Map<String, Object> param) {
-		int currentPage = 1;
-		
-		// currentPage 값이 들어있으면 해당하는 currentPage값으로교체
-		if(param.get("currentPage") != null) {			
-			currentPage = Integer.parseInt((String)param.get("currentPage"));
-		}
-		return currentPage;
-	}
-	
 	
 	// param: roomId
 	// 해당 숙소를 운영하는 유저의 총 후기수 

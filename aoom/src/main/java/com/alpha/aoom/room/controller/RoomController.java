@@ -53,7 +53,7 @@ public class RoomController extends BaseController {
 		List<Map<String, Object>> roomAmenities = amenitiesService.selectByDetail(param);
 					
 		// 숙소리뷰조회
-		List<Map<String, Object>> reviewList = reviewService.selectList(param);
+		Map<String, Object> reviewList = reviewService.selectList(param);
 		
 		// 숙소 평점 및 리뷰수 조회 
 		Map<String, Object> reviewCntAvg = reviewService.selectByAvgCnt(param);
@@ -66,20 +66,17 @@ public class RoomController extends BaseController {
 		
 		// 예약불가능한 날짜목록
 		List<Map<String, Object>> disableDate = onedayPriceService.selectByStatCode(param);
-		
-		int currentPage = reviewService.currentPage(param);
-
+				
 		//log.info("숙소상세보기 호출값" + roomInfo);
 		//log.info("숙소편의시설 호출값" + roomAmenities);
 		//log.info("리뷰목록 호출값"+reviewList);
 		//log.info("해당숙소의 리뷰 평점 및 리뷰값"+reviewCntAvg);
 		//log.info("해당숙소의 이미지 url 조회"+roomImages);
-		log.info("예약불가능한날짜" + disableDate);
+		//log.info("예약불가능한날짜" + disableDate);
 		modelMap.addAttribute("roomInfo",roomInfo);
 		modelMap.addAttribute("roomAmenities",roomAmenities);
 		modelMap.addAttribute("reviewList",reviewList);
-		modelMap.addAttribute("reviewCntAvg",reviewCntAvg);
-		modelMap.addAttribute("currentPage",currentPage);
+		modelMap.addAttribute("reviewCntAvg",reviewCntAvg);		
 		modelMap.addAttribute("roomImages",roomImages);
 		modelMap.addAttribute("hostReview",hostReviewTotal);
 		modelMap.addAttribute("disableDate",disableDate);
