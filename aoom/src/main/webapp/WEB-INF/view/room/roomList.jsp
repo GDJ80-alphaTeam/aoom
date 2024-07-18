@@ -38,10 +38,10 @@
 				<!-- 검색 -->
 				<form id="search">
 					<input type="text" name="address" id="address" placeholder="여행지">
-					<input type="text" id="daterange" placeholder="" autocomplete="off">
+					<input type="text" id="daterange" placeholder="체크인 / 체크아웃" autocomplete="off">
 					<input type="hidden" id="startDate" name="startDate">
 					<input type="hidden" id="endDate" name="endDate">
-					<input type="number" name="usePeople" id="usePeople" min="0" placeholder="여행자">
+					<input type="number" name="usePeople" id="usePeople" min="1" placeholder="여행자">
 					<button type="button" id="ajaxSearchBtn">검색</button>
 				</form>
 				
