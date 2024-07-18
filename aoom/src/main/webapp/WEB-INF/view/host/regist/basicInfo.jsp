@@ -27,7 +27,12 @@
 			카테고리 : 
 			<c:forEach var="cate" items="${roomcate }">
 				<label for="${cate.codeKey }">${cate.codeName }</label>
-				<input type="radio" id="${cate.codeKey }" name="roomcateCode" value="${cate.codeKey }" required="required">
+				<c:if test="${roomInfo.roomcateCode != null && roomInfo.roomcateCode ne ''}">
+					<input type="radio" id="${cate.codeKey }" name="roomcateCode" value="${cate.codeKey }" checked="checked" required="required">
+				</c:if>
+				<c:if test="${roomInfo.roomcateCode == null || roomInfo.roomcateCode eq ''}">
+					<input type="radio" id="${cate.codeKey }" name="roomcateCode" value="${cate.codeKey }" required="required">
+				</c:if>
 			</c:forEach>
 		</div>
 		
@@ -36,39 +41,84 @@
 			유형 :
 			<c:forEach var="type" items="${roomtype }">
 				<label for="${type.codeKey }">${type.codeName }</label>
-				<input type="radio" id="${type.codeKey }" name="roomtypeCode" value="${type.codeKey }" required="required">
+				<c:if test="${roomInfo.roomtypeCode != null && roomInfo.roomtypeCode ne ''}">
+					<input type="radio" id="${type.codeKey }" name="roomtypeCode" value="${type.codeKey }" checked="checked" required="required">
+				</c:if>
+				<c:if test="${roomInfo.roomcateCode == null || roomInfo.roomcateCode eq ''}">
+					<input type="radio" id="${type.codeKey }" name="roomtypeCode" value="${type.codeKey }" required="required">
+				</c:if>
 			</c:forEach>
 		</div>
 		
 		<!-- 숙소 위치 설정 -->
 		<div>
-			주소 : <input type="text" id="frontAddress" placeholder="주소" style="width: 300px;" readonly="readonly" required="required">
+			주소 : 
+			<input type="text" id="frontAddress" placeholder="주소" style="width: 300px;" readonly="readonly" required="required">
 			<button type="button" onclick="searchAddress()">주소 찾기</button><br>
-			상세 주소 : <input type="text" id="detailAddress" placeholder="상세주소">
-			<input type="hidden" name="address" id="address">
+			상세 주소 : 
+			<input type="text" id="detailAddress" placeholder="상세주소">
+			<input type="hidden" name="address" id="address" required="required">
 		</div>
-		
+		<script type="text/javascript">
+			console.log($('#frontAddress').val());
+			console.log($('#detailAddress').val());
+			console.log($('#address').val());
+		</script>
 		<!-- 최대 인원 설정 -->
 		<div>
-			최대 인원 : <input type="number" name="maxPeople" min="1" required="required">
+			최대 인원 : 
+			<c:if test="${roomInfo.maxPeople != null && roomInfo.maxPeople ne ''}">
+				<input type="number" name="maxPeople" min="1" value="${roomInfo.maxPeople }" required="required">
+			</c:if>
+			<c:if test="${roomInfo.maxPeople == null || roomInfo.maxPeople eq ''}">
+				<input type="number" name="maxPeople" min="1" required="required">
+			</c:if>
 		</div>
 		
 		<!-- 숙소 운영일 설정 -->
 		<div>
 			숙소 운영 기간 : 
-			<input type="text" id="roomOperationDate" placeholder="날짜를 선택해주세요" style="width: 300px;" autocomplete="off">
-			<input type="hidden" id="startDate" name="startDate">
-			<input type="hidden" id="endDate" name="endDate">
+			<fmt:formatDate value="${roomInfo.startDate }" pattern="yyyy-MM-dd" var="startDateDB"/>
+			<fmt:formatDate value="${roomInfo.endDate }" pattern="yyyy-MM-dd" var="endDateDB"/>
+			<c:if test="${roomInfo.startDate != null && roomInfo.startDate ne ''}">
+				<input type="text" id="roomOperationDate" placeholder="날짜를 선택해주세요" value="${startDateDB }-${endDateDB }" style="width: 300px;" required="required" autocomplete="off">			
+			</c:if>
+			<c:if test="${roomInfo.startDate == null || roomInfo.startDate eq ''}">
+				<input type="text" id="roomOperationDate" placeholder="날짜를 선택해주세요" style="width: 300px;" required="required" autocomplete="off">
+			</c:if>
+
+			<input type="hidden" id="startDate" value="${startDateDB }" name="startDate">
+			<input type="hidden" id="endDate" value="${endDateDB }" name="endDate">
 		</div>
 		
 		<!-- 방, 침대, 욕실 수 설정 -->
 		<div>
-			방 수 : <input type="number" name="totalSpace" min="1" required="required">
-			침대 수 : <input type="number" name="totalBed" min="0" required="required">
-			욕실 수 : <input type="number" name="totalBath" min="0" required="required">
+			방 수 : 
+			<c:if test="${roomInfo.totalSpace != null && roomInfo.totalSpace ne ''}">
+				<input type="number" name="totalSpace" min="1" value="${roomInfo.totalSpace }" required="required">			
+			</c:if>
+			<c:if test="${roomInfo.totalSpace == null || roomInfo.totalSpace eq ''}">
+				<input type="number" name="totalSpace" min="1" required="required">
+			</c:if>
+			
+			침대 수 : 
+			<c:if test="${roomInfo.totalBed != null && roomInfo.totalBed ne ''}">
+				<input type="number" name="totalBed" min="0" value="${roomInfo.totalBed }" required="required">			
+			</c:if>
+			<c:if test="${roomInfo.totalBed == null || roomInfo.totalBed eq ''}">
+				<input type="number" name="totalBed" min="0" required="required">
+			</c:if>
+
+			욕실 수 : 
+			<c:if test="${roomInfo.totalBath != null && roomInfo.totalBath ne ''}">
+				<input type="number" name="totalBath" min="0" value="${roomInfo.totalBath }" required="required">			
+			</c:if>
+			<c:if test="${roomInfo.totalBath == null || roomInfo.totalBath eq ''}">
+				<input type="number" name="totalBath" min="0" required="required">
+			</c:if>
 		</div>
 		
-		<button type="submit">다음</button>
+		<button type="submit" id="nextBtn">다음</button>
 	</form>
 	
 	<!-- 카카오 주소 찾기 API -->
@@ -143,6 +193,20 @@
 
 		$('#roomOperationDate').on('cancel.daterangepicker', function(ev, picker) { 
 			$(this).val('');
+		});
+	</script>
+	
+	<!-- form 제출 전 주소값 유효성 검사 -->
+	<script type="text/javascript">
+		$('#nextBtn').click(function() {
+			if ($('#frontAddress').val() == null || $('#frontAddress').val() == '') {
+				$('#frontAddress').focus();
+				return false;
+			}
+			if ($('#detailAddress').val() == null || $('#detailAddress').val() == '') {
+				$('#detailAddress').focus();
+				return false;
+			}
 		});
 	</script>
 </body>

@@ -52,7 +52,7 @@
 						<td>${room.codeName }</td>
 					</c:if>
 					<td>
-						<button>수정</button>
+						<button onclick="location.replace('/host/roomManage/registRoom/basicInfo?roomId=${room.roomId}');">수정</button>
 						<button>삭제</button>
 						<button>비활성화</button>
 					</td>

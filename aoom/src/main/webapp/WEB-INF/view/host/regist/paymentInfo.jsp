@@ -32,7 +32,7 @@
 		<h4>기본 요금</h4>
 		<span>숙소 요금은 10원단위로 절사(내림)됩니다.</span>
 		<div>
-			<input type="number" id="defaultPrice" name="defaultPrice" min="30000" placeholder="금액을 입력해주세요" required="required">원
+			<input type="number" id="defaultPrice" name="defaultPrice" min="30000" value="${roomInfo.defaultPrice }" placeholder="금액을 입력해주세요" required="required">원
 		</div>
 		<br>
 		
@@ -53,12 +53,17 @@
 			<!-- 은행 선택 -->
 			<select name="bankCode" required="required">
 				<c:forEach var="b" items="${bank }">
-					<option value="${b.codeKey }">${b.codeName }</option>
+					<c:if test="${roomInfo.bankCode eq b.codeKey }">
+						<option value="${b.codeKey }" selected="selected">${b.codeName }</option>
+					</c:if>
+					<c:if test="${roomInfo.bankCode ne b.codeKey }">
+						<option value="${b.codeKey }">${b.codeName }</option>
+					</c:if>
 				</c:forEach>
 			</select>
 			
 			<!-- 계좌번호 정규식 적용 -->
-			<input type="text" id="accountNo" name="accountNo" placeholder="'-'를 포함하여 입력해주세요" required="required" pattern="^(\d{1,})(-(\d{1,})){1,}" style="width: 250px;">
+			<input type="text" id="accountNo" name="accountNo" placeholder="'-'를 포함하여 입력해주세요" required="required" value="${roomInfo.accountNo }" pattern="^(\d{1,})(-(\d{1,})){1,}" style="width: 250px;">
 		</div>
 		<br>
 		

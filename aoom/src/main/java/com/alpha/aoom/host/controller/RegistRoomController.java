@@ -76,6 +76,11 @@ public class RegistRoomController {
 		// modelMap에 roomId 추가
 		modelMap.put("roomId", param.get("roomId"));
 		
+		// 숙소 등록 시 이전에 저장됐던 값을 출력하기 위해 해당 숙소 데이터 가져오기
+		Map<String, Object> roomInfo = roomService.selectOne(param);
+		log.info("roomInfo={}", roomInfo);
+		modelMap.put("roomInfo", roomInfo);
+		
 		// 숙소 category 목록
 		List<Map<String, Object>> roomcate = codeService.selectByGroupKey("roomcate");
 		log.info("roomcate={}", roomcate);
@@ -114,6 +119,17 @@ public class RegistRoomController {
 		
 		// modelMap에 roomId 추가
 		modelMap.put("roomId", param.get("roomId"));
+		
+		// 숙소 등록 시 이전에 저장됐던 값을 출력하기 위해 해당 숙소, 편의시설, 사진 데이터 가져오기
+		Map<String, Object> roomInfo = new HashMap<>(roomService.selectOne(param));
+		List<Map<String, Object>> roomAmenities = amenitiesService.selectByDetail(param);
+		List<Map<String, Object>> roomImages = roomImageService.selectByRoomId(param);
+		
+		roomInfo.put("roomAmenities", roomAmenities);
+		roomInfo.put("roomImages", roomImages);
+		
+		log.info("roomInfo={}", roomInfo);
+		modelMap.put("roomInfo", roomInfo);
 		
 		// amenities 목록
 		List<Map<String, Object>> amenities = codeService.selectByGroupKey("amenities");
@@ -158,11 +174,21 @@ public class RegistRoomController {
 		// 입력한 정보 DB에 UPDATE 및 이미지 저장
 		roomService.update(param, mainImage);
 		
-		// 나머지 이미지들 저장 및 DB에 INSERT
-		roomImageService.insert(param, images);
+		// 편의시설, 숙소 이미지들이 이미 입력되어있는지 확인
+		List<Map<String, Object>> roomAmenities = amenitiesService.selectByDetail(param);
+		List<Map<String, Object>> roomImages = roomImageService.selectByRoomId(param);
 		
-		// 편의시설 DB에 INSERT
-		amenitiesService.insert(param);
+		// 입력 안되어있다면 -> INSERT
+		if (roomAmenities.isEmpty() && roomImages.isEmpty()) {
+			
+			// 나머지 이미지들 저장 및 DB에 INSERT
+			roomImageService.insert(param, images);
+			
+			// 편의시설 DB에 INSERT
+			amenitiesService.insert(param);
+		}
+		
+		// 입력되어있다면 -> UPDATE
 		
 		// modelMap에 roomId 추가
 		modelMap.put("roomId", param.get("roomId"));
@@ -175,8 +201,14 @@ public class RegistRoomController {
 	public String paymentInfoView(@RequestParam Map<String, Object> param, ModelMap modelMap) {
 		
 		log.info("roomId={}", param.get("roomId"));
+		
 		// modelMap에 roomId 추가
 		modelMap.put("roomId", param.get("roomId"));
+		
+		// 숙소 등록 시 이전에 저장됐던 값을 출력하기 위해 해당 숙소 데이터 가져오기
+		Map<String, Object> roomInfo = roomService.selectOne(param);
+		log.info("roomInfo={}", roomInfo);
+		modelMap.put("roomInfo", roomInfo);
 		
 		// refundme 목록
 		List<Map<String, Object>> refundme = codeService.selectByGroupKey("refundme");

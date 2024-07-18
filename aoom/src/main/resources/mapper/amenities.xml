@@ -4,7 +4,8 @@
 	<!-- 숙소 편의시설목록 조회 -->
 	<select id="selectByDetail" parameterType="map" resultType="camelCaseMap">
 		SELECT 
-			c.code_name
+			 c.code_key
+			,c.code_name
 		FROM 
 			amenities a
 		LEFT JOIN 
