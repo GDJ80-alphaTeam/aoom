@@ -7,7 +7,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class AmenitiesService {
 
 	@Autowired
@@ -25,6 +28,12 @@ public class AmenitiesService {
 		// INSERT(amenities)
 		for (String amenity : (List<String>) param.get("amenities")) {
 			
+			// amenity가 없을 경우 종료
+			if(amenity == null || amenity.equals("")) {
+				break ;
+			}
+			
+			log.info("for문 통과");
 			// 숙소 이미지와 마찬가지로 amenities도 반복 INSERT를 위한 map 선언
 			Map<String, Object> paramAmenity = new HashMap<>();
 			
@@ -33,7 +42,6 @@ public class AmenitiesService {
 			paramAmenity.put("amenitiesCode", amenity);
 			
 			amenitiesMapper.insert(paramAmenity);
-			
 		}
 	}
 }

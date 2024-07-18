@@ -13,7 +13,9 @@ import com.alpha.aoom.room.service.RoomMapper;
 import com.alpha.aoom.room.service.RoomService;
 
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequestMapping("/host")
 public class HostController {
@@ -23,7 +25,14 @@ public class HostController {
 
 	// 호스트 모드 메인화면 호출
 	@RequestMapping("/main")
-	public String main() {
+	public String main(HttpSession session, ModelMap modelMap) {
+		
+		// 세션에서 user정보 가져오기
+		Map<String, Object> userInfo = (HashMap<String, Object>)session.getAttribute("userInfo");
+		log.info("userInfo");
+		
+		modelMap.put("userInfo", userInfo);
+		
 		return "/host/main";
 	}
 	

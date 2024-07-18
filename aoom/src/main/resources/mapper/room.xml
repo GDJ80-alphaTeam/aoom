@@ -68,6 +68,8 @@
 	    	r.roomstat_code = c.code_key 
         WHERE 
         	user_id = #{userId}
+       	ORDER BY 
+       		create_date DESC
 	</select>
 	
 	<!-- 조회수 TOP4 숙소 조회 -->
