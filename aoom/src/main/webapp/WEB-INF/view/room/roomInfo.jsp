@@ -12,9 +12,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f0842831d9c350ed32adefb11b6cd5f6&libraries=services"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 	
 </head>
 <body>
@@ -134,7 +134,7 @@
 			        <li class="page-item">
 			          <c:choose>
 			          
-			            <c:when test="${currentPage == i}">
+			            <c:when test="${reviewList.currentPage == i}">
 			              <button class="page-link active" type="button" id="page${i}" value="${i}">${i}</button>
 			            </c:when>
 			            
@@ -203,6 +203,7 @@
 		
 		
 	<script>
+	
 	<!-- 숙소 운영 시작일 날짜 제한 및 Date Range Picker 설정-->
 		let today = moment().format("YYYY-MM-DD");
 		// 이용불가능한 날짜데이터 
@@ -254,10 +255,21 @@
 			$(this).val('');
 		});	
 		
+		$('#bookingDate').on('change.daterangepicker', function(ev, picker) {
+            const startDate = picker.startDate.format('YYYY-MM-DD');
+            const endDate = picker.endDate.format('YYYY-MM-DD');
 
+            console.log('시작일:', startDate);
+            console.log('종료일:', endDate);
+        });
+    
+ 
+
+ 
 	<!-- 페이징 -->
 	 	// currentPage는 변경가능해야함 , lastPage는 중간에 리뷰가 추가될수있음
 	  	let currentPage = parseInt("${reviewList.currentPage}");
+	 	console.log(currentPage);
 	  	let lastPage = parseInt("${reviewCntAvg.lastPage}");
 	  	const roomId = "${roomInfo.roomId}";
 	  	
@@ -327,8 +339,6 @@
 		   }
 				// page의 값에 변동이 생기면 ajax호출 
 		    if (page !== currentPage) {
-		    	console.log(currentPage)
-		    	console.log(page)
 		    	reloadReivew(page);
 		    }	
 			
@@ -341,24 +351,27 @@
 				url:"/review/ajaxReviewPaging",
 				method:"post",
 				data: {"currentPage": page , "roomId":"${roomInfo.roomId}"},
-				success: function(response){										
-					$('[id^="reviewContent"]').empty();
-					$('[id^="reviewImg"]').attr('src','');
-					$('[id^="userImg"]').attr('src','');
-					// onError일때 display가 none이된후 사라지지않음 그래서 다시 block처리후 src가없으면 다시 none으로 변경
-					$('[id^="reviewImg"]').css('display','block');
-					$('[id^="userImg"]').css('display','block');
-					// currentpage값 바꿔줌
-					currentPage = page;
-										
-					// id의값은 1부터 시작 , list는 [0]부터 시작함 그래서 response -1
-					for (let i = 1; i < response.review.length+1; i++) {
-						$('#reviewContent'+i).append(response.review[i-1].reviewContent);
-						$('#reviewImg'+i).attr('src',response.review[i-1].reviewImage); // reviewImgUrl이 response에 포함되어 있다고 가정함
-		                $('#userImg'+i).attr('src',response.review[i-1].userImage); // userImgUrl이 response에 포함되어 있다고 가정함
-		                console.log(response.review[i-1]);	
-					}					
-				
+				success: function(response){
+					if(response.code == 00){
+						$('[id^="reviewContent"]').empty();
+						$('[id^="reviewImg"]').attr('src','');
+						$('[id^="userImg"]').attr('src','');
+						// onError일때 display가 none이된후 사라지지않음 그래서 다시 block처리후 src가없으면 다시 none으로 변경
+						$('[id^="reviewImg"]').css('display','block');
+						$('[id^="userImg"]').css('display','block');
+						// currentpage값 바꿔줌
+						currentPage = page;
+											
+						// id의값은 1부터 시작 , list는 [0]부터 시작함 그래서 response -1
+						for (let i = 1; i < response.data.review.length+1; i++) {
+							$('#reviewContent'+i).append(response.data.review[i-1].reviewContent);
+							$('#reviewImg'+i).attr('src',response.data.review[i-1].reviewImage); // reviewImgUrl이 response에 포함되어 있다고 가정함
+			                $('#userImg'+i).attr('src',response.data.review[i-1].userImage); // userImgUrl이 response에 포함되어 있다고 가정함
+			                
+						}					
+					} else if(response.code == 01){
+						alert('후기를불러오는데 실패하였습니다.')
+					}
 				}
 			})
 		}									

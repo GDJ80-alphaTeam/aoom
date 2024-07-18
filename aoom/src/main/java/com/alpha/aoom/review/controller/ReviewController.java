@@ -1,6 +1,6 @@
 package com.alpha.aoom.review.controller;
 
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,18 @@ public class ReviewController extends BaseController{
 	@RequestMapping("/ajaxReviewPaging")
 	public Map<String, Object> roomReviewPaging(@RequestParam Map<String, Object> param) {
 				
-		//log.info("parameter"+param);
-		return reviewService.selectList(param);
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		Map<String, Object> reviewList = reviewService.selectList(param);
+		
+		model.put("data", reviewList);
+		// currentPage는 항상들어가기때문에 reviewList로 체크 
+		if(reviewList.get("review") != null) {
+			System.out.println(getSuccessResult(model));
+			return getSuccessResult(model);
+		} else {
+			return getFailResult(model);
+		}
+				
 	}
 }
