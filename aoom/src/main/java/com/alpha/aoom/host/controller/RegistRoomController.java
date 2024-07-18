@@ -1,5 +1,7 @@
 package com.alpha.aoom.host.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -9,13 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alpha.aoom.code.service.CodeService;
 import com.alpha.aoom.onedayPrice.service.OnedayPriceService;
 import com.alpha.aoom.room.service.RoomService;
+import com.alpha.aoom.roomImage.service.RoomImageService;
+import com.alpha.aoom.util.file.FolderCreation;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -34,8 +37,14 @@ public class RegistRoomController {
 	@Autowired
 	OnedayPriceService onedayPriceService;
 	
+	@Autowired
+	RoomImageService roomImageService;
+	
+	@Autowired
+	FolderCreation folderCreation;
+	
 	// 숙소 등록 - 숙소 초기화 및 숙소 등록 1단계 페이지로 이동
-	@RequestMapping(value = "/roomManage/setupRoom", method = RequestMethod.POST)
+	@RequestMapping("/roomManage/setupRoom")
 	public String setupRoom(HttpSession session) {
 		
 		// 세션에서 user정보 가져오기
@@ -127,11 +136,24 @@ public class RegistRoomController {
 		
 		// param에 amenities값(리스트), mainImage, images 추가
 		param.put("amenities", amenities);
+		// 숙소 이미지 폴더 생성 체크 후 이미지 파일 저장
+		// 폴더 이름 형식 지정(room + 오늘날짜)
+		String folderName = "room" + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+		
+		// 폴더 경로 : 자신의 프로젝트 경로(절대경로로 가져오고) + 프로젝트 경로
+		// 생성된 폴더의 경로
+		String folderPath = folderCreation.createImageFolder(folderName);
+		
+		// 이미지 저장시 사용할 폴더 경로 param에 추가
+		param.put("folderPath", folderPath);
 		
 		log.info("param={}", param);
 		
-		// 입력한 정보 DB에 INSERT, UPDATE 및 이미지 저장
-		roomService.update(param, mainImage, images);
+		// 입력한 정보 DB에 UPDATE 및 이미지 저장
+		roomService.update(param, mainImage);
+		
+		// 나머지 이미지들 저장 및 DB에 INSERT
+		roomImageService.insert(param, images);
 		
 		// modelMap에 roomId 추가
 		modelMap.put("roomId", param.get("roomId"));
