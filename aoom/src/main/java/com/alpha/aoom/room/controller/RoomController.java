@@ -88,7 +88,7 @@ public class RoomController extends BaseController {
 	@RequestMapping("/roomList")
 	public String roomList(@RequestParam Map<String, Object> param, ModelMap modelMap) {
 		
-		log.info("main에서 넘어온 param : "+ param);
+		log.info("받은 param : "+ param);
 		
 		// 숙소 카테고리 조회
 		List<Map<String, Object>> roomCategory = codeService.selectByGroupKey("roomcate");
@@ -108,27 +108,4 @@ public class RoomController extends BaseController {
 		return "/room/roomList";
 	}
 	
-	// 숙소 검색, 필터, 카테고리 조건 호출
-	@RequestMapping("/ajaxResultRoom")
-	@ResponseBody
-	public Map<String, Object> ajaxResultRoom(@RequestParam Map<String, Object> param, ModelMap modelMap) {
-		Map<String, Object> model = new HashMap<>();
-		
-		log.info("받은 값 : "+ param);
-		
-		// 숙소 검색, 필터, 카테고리 결과 조회
-		List<Map<String, Object>> searchRoom = roomService.selectBySearch(param);
-		
-		log.info("보낼 값 : "+searchRoom);
-		
-		// model에 숙소결과조회 값 넣기
-		model.put("data", searchRoom);
-		
-		if (searchRoom != null) {
-			return getSuccessResult(model);
-		} else {
-			return getFailResult(model,"조건에 부합하는 숙소가 없습니다.");
-		}
-		
-	}
 }
