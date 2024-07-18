@@ -33,7 +33,7 @@ public class RoomImageService {
 		for (int i = 0; i < images.length; i++) {
 			
 			// 이미지 저장 및 uuid 이름 반환
-			String uuidImage = imageUpload.saveFile((String) param.get("folderPath"), images[i]);
+			String uuidImage = imageUpload.saveFile(param.get("totalFolderPath").toString(), images[i]);
 			// 원본이미지 이름
 			String originalImage = images[i].getOriginalFilename();
 			
@@ -43,7 +43,7 @@ public class RoomImageService {
 			// INSERT에 필요한 컬럼들 map에 추가
 			imageMap.put("roomId", param.get("roomId"));
 			imageMap.put("imageNo", i + 1);
-			imageMap.put("image", uuidImage);
+			imageMap.put("image", param.get("imageFolderPath").toString() + "/" + uuidImage);
 			imageMap.put("originalName", originalImage);
 			
 			roomImageMapper.insert(imageMap);

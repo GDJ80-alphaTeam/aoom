@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.alpha.aoom.amenities.service.AmenitiesService;
 import com.alpha.aoom.code.service.CodeService;
 import com.alpha.aoom.onedayPrice.service.OnedayPriceService;
 import com.alpha.aoom.room.service.RoomService;
@@ -41,6 +42,9 @@ public class RegistRoomController {
 	RoomImageService roomImageService;
 	
 	@Autowired
+	AmenitiesService amenitiesService;
+	
+	@Autowired
 	FolderCreation folderCreation;
 	
 	// 숙소 등록 - 숙소 초기화 및 숙소 등록 1단계 페이지로 이동
@@ -51,7 +55,7 @@ public class RegistRoomController {
 		Map<String, Object> userInfo = (HashMap<String, Object>)session.getAttribute("userInfo");
 		
 		// 세션에서 가져온 user정보에서 userId 가져오기
-		String userId = (String)userInfo.get("userId");
+		String userId = userInfo.get("userId").toString();
 		
 		// 숙소 등록 - 숙소 초기화 
 		// setupRoomInfo : roomId, userId
@@ -60,7 +64,7 @@ public class RegistRoomController {
 			return "redirect:/host/roomManage";
 		}
 		
-		return "redirect:/host/roomManage/registRoom/basicInfo?roomId=" + setupRoomInfo.get("roomId");
+		return "redirect:/host/roomManage/registRoom/basicInfo?roomId=" + setupRoomInfo.get("roomId").toString();
 	}
 	
 	// 숙소 등록 - 숙소 등록 1단계 페이지 호출
@@ -99,7 +103,7 @@ public class RegistRoomController {
 		// 1단계 정보 없데이트
 		roomService.update(param);
 		
-		return "redirect:/host/roomManage/registRoom/detailInfo?roomId=" + param.get("roomId");
+		return "redirect:/host/roomManage/registRoom/detailInfo?roomId=" + param.get("roomId").toString();
 	}
 	
 	// 숙소 등록 - 숙소 등록 2단계 페이지 호출
@@ -121,7 +125,6 @@ public class RegistRoomController {
 		return "/host/regist/detailInfo";
 	}
 	
-	// 편의시설 - checkbox 다중 값 선택시 배열로 넘어오기 때문에 @RequsetParam 따로 설정
 	// 숙소 등록 - 숙소 등록 2단계 정보 DB 입력 및 숙소 등록 3단계 페이지 이동
 	@RequestMapping("/roomManage/registRoom/registDetailInfo")
 	public String registRoomDetailInfo(@RequestParam Map<String, Object> param, 
@@ -131,21 +134,24 @@ public class RegistRoomController {
 		log.info("param={}", param);
 		
 		// param에 담겨있는 amenities가 문자열이기 때문에 List로 파싱
-        String amenitiesStr = (String) param.get("amenities");
+        String amenitiesStr = param.get("amenities").toString();
         List<String> amenities = Arrays.asList(amenitiesStr.split(","));
 		
 		// param에 amenities값(리스트), mainImage, images 추가
 		param.put("amenities", amenities);
+		
 		// 숙소 이미지 폴더 생성 체크 후 이미지 파일 저장
 		// 폴더 이름 형식 지정(room + 오늘날짜)
 		String folderName = "room" + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 		
-		// 폴더 경로 : 자신의 프로젝트 경로(절대경로로 가져오고) + 프로젝트 경로
-		// 생성된 폴더의 경로
-		String folderPath = folderCreation.createImageFolder(folderName);
+		// 생성된 폴더의 경로(상대경로 - /image/roomYYYYMMDD/ 형식)
+		String imageFolderPath = folderCreation.createImageFolder(folderName);
 		
 		// 이미지 저장시 사용할 폴더 경로 param에 추가
-		param.put("folderPath", folderPath);
+		param.put("imageFolderPath", imageFolderPath);
+		
+		// 이미지 생성은 각자의 프로젝트 경로 + 이미지 폴더 경로 이므로 각자의 프로젝트 경로까지 포함하는 totalFolderPath로 param에 추가
+		param.put("totalFolderPath", folderCreation.BASE_FOLDER_PATH + imageFolderPath);
 		
 		log.info("param={}", param);
 		
@@ -155,10 +161,13 @@ public class RegistRoomController {
 		// 나머지 이미지들 저장 및 DB에 INSERT
 		roomImageService.insert(param, images);
 		
+		// 편의시설 DB에 INSERT
+		amenitiesService.insert(param);
+		
 		// modelMap에 roomId 추가
 		modelMap.put("roomId", param.get("roomId"));
 		
-		return "redirect:/host/roomManage/registRoom/paymentInfo?roomId=" + param.get("roomId");
+		return "redirect:/host/roomManage/registRoom/paymentInfo?roomId=" + param.get("roomId").toString();
 	}
 	
 	// 숙소 등록 - 숙소 등록 3단계 페이지 호출
@@ -207,7 +216,7 @@ public class RegistRoomController {
 		// modelMap에 roomId 추가
 		modelMap.put("roomId", param.get("roomId"));
 		
-		return "redirect:/host/roomManage/registRoom/preview?roomId=" + param.get("roomId");
+		return "redirect:/host/roomManage/registRoom/preview?roomId=" + param.get("roomId").toString();
 	}
 	
 	// 숙소 등록 - 숙소 등록 미리보기 페이지

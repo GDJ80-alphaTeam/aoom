@@ -61,14 +61,16 @@ public class ImageUpload {
 	 * 매개변수 : String, MultipartFile
 	 * 매개변수설명 : 파일을 저장할 경로, 업로드한 파일
 	 * 리턴값 : String
-	 * 리턴값설명 : 업로드한 파일의 전체 경로(폴더 경로 포함)
+	 * 리턴값설명 : 업로드한 파일의 이름
 	 * =============== 개정이력 ===============
 	 *
 	 * 수정일       수정자       수정내용
 	 * ----------------------------------------
 	 * 2024.07.16   오승엽       최초작성
+	 * 2024.07.18   오승엽      리턴값 변경
 	 */
 	public String saveFile(String folderPath, MultipartFile multipartFile) {
+		
 		String prefix = createUUID();
 		String suffix = getSuffix(multipartFile);
 		
@@ -81,6 +83,6 @@ public class ImageUpload {
 			e.printStackTrace();
 		}
 		
-		return emptyFile.getPath();
+		return emptyFile.getName();
 	}
 }

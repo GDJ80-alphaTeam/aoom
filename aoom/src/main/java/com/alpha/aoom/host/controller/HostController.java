@@ -35,7 +35,7 @@ public class HostController {
 		Map<String, Object> userInfo = (HashMap<String, Object>)session.getAttribute("userInfo");
 		
 		// 세션에서 가져온 user정보에서 userId 가져오기
-		String userId = (String)userInfo.get("userId");
+		String userId = userInfo.get("userId").toString();
 		
 		// userId로 호스팅중인 숙소 목록 가져오기
 		List<Map<String, Object>> roomListByUser = (List<Map<String, Object>>) roomService.selectByUserId(userId);

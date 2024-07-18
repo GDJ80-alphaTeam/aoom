@@ -9,9 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.alpha.aoom.amenities.service.AmenitiesMapper;
-import com.alpha.aoom.roomImage.service.RoomImageMapper;
-import com.alpha.aoom.util.file.FolderCreation;
 import com.alpha.aoom.util.file.ImageUpload;
 
 import lombok.extern.slf4j.Slf4j;
@@ -99,17 +96,16 @@ public class RoomService {
 		log.info("amenities={}", param.get("amenities"));
 			
 		// 숙소 메인 이미지 저장 및 uuid 파일명 반환
-		String uuidMainImage = imageUpload.saveFile((String) param.get("folderPath"), mainImage);
+		String uuidMainImage = imageUpload.saveFile(param.get("totalFolderPath").toString(), mainImage);
 		
 		// 숙소 메인 이미지 원본 이름
 		String originalMainImage = mainImage.getOriginalFilename();
 		
-		param.put("mainImage", uuidMainImage);
+		param.put("mainImage", param.get("imageFolderPath").toString() + "/" + uuidMainImage);
 		param.put("originalName", originalMainImage);
 		
 		// UPDATE(roomName, roomContent, mainImage, originalName)
 		roomMapper.update(param);
 	}
-	
 	
 }
