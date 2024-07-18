@@ -117,19 +117,23 @@
 	<table class="table table-danger" >
 		<thead>
 			<tr>
+				<th>숙소아이디</th>
 				<th>메인사진</th>
 				<th>주소</th>
 				<th>숙소이름</th>
 				<th>기본가격</th>
+				<th>평점</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="viewsDesc" items="${viewsDesc}">
 				<tr>
+					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${viewsDesc.roomId}">${viewsDesc.roomId}</a></td>
 					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${viewsDesc.roomId}">${viewsDesc.mainImage}</a></td>
 					<td>${viewsDesc.address}</td>
 					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${viewsDesc.roomId}">${viewsDesc.roomName}</a></td>
 					<td>${viewsDesc.defaultPrice}</td>
+					<td>${viewsDesc.avgRating}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -139,19 +143,23 @@
 	<table class="table table-danger" >
 		<thead>
 			<tr>
+				<th>숙소아이디</th>
 				<th>메인사진</th>
 				<th>주소</th>
 				<th>숙소이름</th>
 				<th>기본가격</th>
+				<th>평점</th>
 			</tr>
 		</thead>
 		<c:forEach var="ratingDesc" items="${ratingDesc}">
 			<tbody>
 				<tr>
+					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${ratingDesc.roomId}">${ratingDesc.roomId}</a></td>
 					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${ratingDesc.roomId}">${ratingDesc.mainImage}</a></td>
 					<td>${ratingDesc.address}</td>
 					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${ratingDesc.roomId}">${ratingDesc.roomName}</a></td>
 					<td>${ratingDesc.defaultPrice}</td>
+					<td>${ratingDesc.avgRating}</td>
 				</tr>
 			</tbody>
 		</c:forEach>
@@ -161,19 +169,23 @@
 	<table class="table table-danger" >
 		<thead>
 			<tr>
+				<th>숙소아이디</th>
 				<th>메인사진</th>
 				<th>주소</th>
 				<th>숙소이름</th>
 				<th>기본가격</th>
+				<th>평점</th>
 			</tr>
 		</thead>
 		<c:forEach var="bookingDesc" items="${bookingDesc}">
 			<tbody>
 				<tr>
+					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${bookingDesc.roomId}">${bookingDesc.roomId}</a></td>
 					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${bookingDesc.roomId}">${bookingDesc.mainImage}</a></td>
 					<td>${bookingDesc.address}</td>
 					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${bookingDesc.roomId}">${bookingDesc.roomName}</a></td>
 					<td>${bookingDesc.defaultPrice}</td>
+					<td>${bookingDesc.avgRating}</td>
 				</tr>
 			</tbody>
 		</c:forEach>
@@ -183,19 +195,23 @@
 	<table class="table table-danger" >	
 		<thead>
 			<tr>
+				<th>숙소아이디</th>
 				<th>메인사진</th>
 				<th>주소</th>
 				<th>숙소이름</th>
 				<th>기본가격</th>
+				<th>평점</th>
 			</tr>
 		</thead>
 		<c:forEach var="wishListDesc" items="${wishListDesc}">
 			<tbody>
 				<tr>
+					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${wishListDesc.roomId}">${wishListDesc.roomId}</a></td>
 					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${wishListDesc.roomId}">${wishListDesc.mainImage}</a></td>
 					<td>${wishListDesc.address}</td>
 					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${wishListDesc.roomId}">${wishListDesc.roomName}</a></td>
 					<td>${wishListDesc.defaultPrice}</td>
+					<td>${wishListDesc.avgRating}</td>
 				</tr>
 			</tbody>
 		</c:forEach>

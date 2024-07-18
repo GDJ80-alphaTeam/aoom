@@ -73,32 +73,45 @@
 	<!-- 조회수 TOP4 숙소 조회 -->
 	<select id="selectByViews" resultType="camelCaseMap">
 		SELECT 
-			*
+		     r.*
+		    ,COALESCE(TO_CHAR(ROUND(rv.avg_rating, 1)), '0') AS avg_rating
 		FROM (
-			SELECT
-				<include refid="room_col" />
-			FROM
-				room r
-			ORDER BY 
-				r.views DESC
+		    SELECT
+		        <include refid="room_col" />
+		    FROM
+		        room r
+		    ORDER BY 
+		        r.views DESC
 		) r
+		LEFT JOIN (
+		    SELECT
+		         room_id
+		        ,AVG(rating) AS avg_rating
+		    FROM
+		        review
+		    GROUP BY
+		        room_id
+		) rv ON r.room_id = rv.room_id
 		WHERE 
-			ROWNUM <![CDATA[<=]]> 4 AND
-			roomstat_code = 'rst03'
+		    ROWNUM <![CDATA[<=]]> 4 
+		    AND r.roomstat_code = 'rst03'
 	</select>
 	
 	<!-- 별점 TOP4 숙소 조회 -->
 	<select id="selectByRating" resultType="camelCaseMap">
 		SELECT
 			<include refid="room_col" />
+			,COALESCE(ROUND(s.avg_rating, 1), 0) AS avg_rating
 		FROM
 			room r
 	    INNER JOIN 
 	        (SELECT 
-	            room_id
+	             room_id
+                ,ra.avg_rating AS avg_rating
 	         FROM (
 	             SELECT
 	             	 room_id
+	             	,AVG(rating) AS avg_rating
 	             	,ROW_NUMBER() OVER (ORDER BY AVG(rating) DESC) rn
 	             FROM 
 	             	review
@@ -117,56 +130,77 @@
 	<!-- 예약 TOP4 숙소 조회 -->
 	<select id="selectByBooking" resultType="camelCaseMap">
 		SELECT
-			<include refid="room_col" />
+		     <include refid="room_col" />
+		    ,bct.cnt
+		    ,ROUND(COALESCE(rv.avg_rating, 0), 1) AS avg_rating
 		FROM
-			room r
-		INNER JOIN(
-			SELECT	
-				 bc.room_id
-				,bc.cnt
-			FROM(
-				SELECT
-					 room_id
-					,count(*) cnt
-				FROM
-					booking
-				GROUP BY
-					room_id
-				) bc
-			WHERE
-				ROWNUM <![CDATA[<=]]> 4
-			) bct
-		ON
-			r.room_id = bct.room_id
+		    room r
+		    INNER JOIN (
+		        SELECT	
+		             bc.room_id
+		            ,bc.cnt
+		        FROM (
+		            SELECT
+		                 room_id
+		                ,COUNT(*) AS cnt
+		            FROM
+		                booking
+		            GROUP BY
+		                room_id
+		        ) bc
+		        WHERE
+		            ROWNUM <![CDATA[<=]]> 4
+		    ) bct
+		    ON r.room_id = bct.room_id
+		    LEFT JOIN (
+		        SELECT
+		             room_id
+		            ,AVG(rating) AS avg_rating
+		        FROM
+		            review
+		        GROUP BY
+		            room_id
+		    ) rv
+		    ON r.room_id = rv.room_id
 		WHERE
-			roomstat_code = 'rst03'
+		    r.roomstat_code = 'rst03'
 	</select>
 	
 	<!-- 위시리스트 TOP4 숙소 조회 -->
 	<select id="selectByWishList" resultType="camelCaseMap">
-		SELECT
-		    <include refid="room_col" />
-		FROM
-		    room r
-		INNER JOIN(
-		    SELECT
-		        w.room_id
-		    FROM(
-		        SELECT
-		             room_id
-		            ,count(*)
-		        FROM
-		            wishlist
-		        GROUP BY
-		            room_id
-		        ) w
-		    WHERE
-		        ROWNUM <![CDATA[<=]]> 4
-		    ) wr
-		ON
-		    r.room_id = wr.room_id
-		WHERE
-		    roomstat_code = 'rst03'
+	SELECT
+	     <include refid="room_col" />
+	    ,ROUND(COALESCE(rv.avg_rating, 0), 1) AS avg_rating
+	FROM
+	    room r
+	    INNER JOIN (
+	        SELECT
+	            w.room_id
+	        FROM (
+	            SELECT
+	                 room_id
+	                ,COUNT(*) AS cnt
+	            FROM
+	                wishlist
+	            GROUP BY
+	                room_id
+	        ) w
+	        WHERE
+	            ROWNUM <![CDATA[<=]]> 4
+	    ) wr
+	    ON r.room_id = wr.room_id
+	    LEFT JOIN (
+	        SELECT
+	             room_id
+	            ,AVG(rating) AS avg_rating
+	        FROM
+	            review
+	        GROUP BY
+	            room_id
+	    ) rv
+	    ON r.room_id = rv.room_id
+	WHERE
+	    r.roomstat_code = 'rst03'
 	</select>
 	
 	<!-- 검색, 필터, 카테고리 조건으로 조회 -->
