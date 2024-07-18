@@ -27,17 +27,17 @@
 			<div class="col-10">
 				<!-- 검색 -->
 				<form action="${pageContext.request.contextPath}/room/roomList" method="get">
-					<input type="text" name="address" id="address" placeholder="여행지">
+					<input type="text" name="mainSendAddress" placeholder="여행지">
 					<input type="text" id="daterange" placeholder="체크인 / 체크아웃" autocomplete="off">
-					<input type="hidden" id="startDate" name="startDate">
-					<input type="hidden" id="endDate" name="endDate">
-					<input type="number" name="usePeople" id="usePeople" min="1" placeholder="여행자">
+					<input type="hidden" id="startDate" name="mainSendStartDate">
+					<input type="hidden" id="endDate" name="mainSendEndDate">
+					<input type="number" name="mainSendUsePeople" min="1" placeholder="여행자">
 					<button type="submit">검색</button>
 				</form>
 				
 				<!-- 카테고리 -->
 				<c:forEach var="roomCategory" items="${roomCategory}">
-					<span><a href="${pageContext.request.contextPath}/room/roomList?category=${roomCategory.codeKey}">${roomCategory.codeName}</a></span>
+					<span><a href="${pageContext.request.contextPath}/room/roomList?mainSendCategory=${roomCategory.codeKey}">${roomCategory.codeName}</a></span>
 				</c:forEach>
 				
 				<!-- 필터 -->
@@ -58,42 +58,42 @@
 								<div class="modal-body">
 								
 										<h3>가격</h3>
-										<input type="number" min="30000" value="30000" name="lowPrice" placeholder="최저"> ~ <input type="number" min="40000" value="200000" name="highPrice" placeholder="최고"> 
+										<input type="number" min="30000" value="30000" name="mainSendLowPrice" placeholder="최저"> ~ <input type="number" min="40000" value="200000" name="mainSendHighPrice" placeholder="최고"> 
 										
 										<h3>숙소 유형</h3>
 							        	<label for="roomTypeAll">전체</label>
-							            <input type="radio" id="roomTypeAll" name="roomtypeCode" value="all" checked>
+							            <input type="radio" id="roomTypeAll" name="mainSendRoomtypeCode" value="all" checked>
 										<c:forEach var="roomType" items="${roomType}">
 											<label for="${roomType.codeKey}">${roomType.codeName}</label>
-								            <input type="radio" id="${roomType.codeKey}" name="roomtypeCode" value="${roomType.codeKey}">
+								            <input type="radio" id="${roomType.codeKey}" name="mainSendRoomtypeCode" value="${roomType.codeKey}">
 										</c:forEach>
 										
 										<h3>침실과 침대 화장실</h3>
 										<label for="totalSpace">침실</label>
-										<input type="radio" id="totalSpace" name="totalSpace" value="1" checked>1
-										<input type="radio" id="totalSpace" name="totalSpace" value="2">2
-										<input type="radio" id="totalSpace" name="totalSpace" value="3">3
-										<input type="radio" id="totalSpace" name="totalSpace" value="4">4
-										<input type="radio" id="totalSpace" name="totalSpace" value="5">5+
+										<input type="radio" id="totalSpace" name="mainSendTotalSpace" value="1" checked>1
+										<input type="radio" id="totalSpace" name="mainSendTotalSpace" value="2">2
+										<input type="radio" id="totalSpace" name="mainSendTotalSpace" value="3">3
+										<input type="radio" id="totalSpace" name="mainSendTotalSpace" value="4">4
+										<input type="radio" id="totalSpace" name="mainSendTotalSpace" value="5">5+
 										<br>
 										<label for="totalBed">침대</label>
-										<input type="radio" id="totalBed" name="totalBed" value="1" checked>1
-										<input type="radio" id="totalBed" name="totalBed" value="2">2
-										<input type="radio" id="totalBed" name="totalBed" value="3">3
-										<input type="radio" id="totalBed" name="totalBed" value="4">4
-										<input type="radio" id="totalBed" name="totalBed" value="5">5+
+										<input type="radio" id="totalBed" name="mainSendTotalBed" value="1" checked>1
+										<input type="radio" id="totalBed" name="mainSendTotalBed" value="2">2
+										<input type="radio" id="totalBed" name="mainSendTotalBed" value="3">3
+										<input type="radio" id="totalBed" name="mainSendTotalBed" value="4">4
+										<input type="radio" id="totalBed" name="mainSendTotalBed" value="5">5+
 										<br>
 										<label for="totalBath">화장실</label>
-										<input type="radio" id="totalBath" name="totalBath" value="1" checked>1
-										<input type="radio" id="totalBath" name="totalBath" value="2">2
-										<input type="radio" id="totalBath" name="totalBath" value="3">3
-										<input type="radio" id="totalBath" name="totalBath" value="4">4
-										<input type="radio" id="totalBath" name="totalBath" value="5">5+
+										<input type="radio" id="totalBath" name="mainSendTotalBath" value="1" checked>1
+										<input type="radio" id="totalBath" name="mainSendTotalBath" value="2">2
+										<input type="radio" id="totalBath" name="mainSendTotalBath" value="3">3
+										<input type="radio" id="totalBath" name="mainSendTotalBath" value="4">4
+										<input type="radio" id="totalBath" name="mainSendTotalBath" value="5">5+
 										
 										<h3>편의 시설</h3>
 										<!-- 기본값 0(hidden), 선택시 1값이 submit되게. -->
 										<c:forEach var="amenitie" items="${amenities }">
-											<input type="checkbox" id="${amenitie.codeKey }" name="${amenitie.codeKey }" value="1">${amenitie.codeName }
+											<input type="checkbox" id="${amenitie.codeKey }" name="mainSend${amenitie.codeKey }" value="1">${amenitie.codeName }
 											<br>
 										</c:forEach>
 										

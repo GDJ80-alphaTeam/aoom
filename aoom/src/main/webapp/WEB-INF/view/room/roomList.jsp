@@ -15,20 +15,19 @@
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <style>
-        .category-link {
-            text-decoration: none;
-            color: black;
-        }
-        .active {
-        	background-color: #f0f0f0;
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body class="container">
 	<!-- AOOM 네비게이션 바 -->
 	<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
+	
+	<!-- 통합 조건 전달 폼 -->
+	<form>
+		<input type="hidden" name="sendCategory" value="">
+		<input type="hidden" name="sendAddress" value="">
+		<input type="hidden" name="sendStartDate" value="">
+		<input type="hidden" name="sendEndDate" value="">
+		<input type="hidden" name="sendUsePeople" value="">
+	</form>
 	
 	<!-- 그리드 -->
 	<div class="container text-center">
@@ -36,23 +35,24 @@
 			<div class="col"></div>
 			<div class="col-10">
 				<!-- 검색 -->
-				<form id="search">
+				<form id="search" action="${pageContext.request.contextPath}/room/roomList" method="get">
 					<input type="text" name="address" id="address" placeholder="여행지">
 					<input type="text" id="daterange" placeholder="체크인 / 체크아웃" autocomplete="off">
 					<input type="hidden" id="startDate" name="startDate">
 					<input type="hidden" id="endDate" name="endDate">
 					<input type="number" name="usePeople" id="usePeople" min="1" placeholder="여행자">
-					<button type="button" id="ajaxSearchBtn">검색</button>
+					<button type="submit" id="ajaxSearchBtn">검색</button>
 				</form>
+				<br>
 				
 				<!-- 카테고리 -->
 				<c:forEach var="roomCategory" items="${roomCategory}" varStatus="status">
-					<span><a class="category-link" id="rct${status.index + 1 < 10 ? '0' : ''}${status.index + 1}" data-category="${roomCategory.codeKey}" href="${pageContext.request.contextPath}/room/roomList?category=${roomCategory.codeKey}">${roomCategory.codeName}</a></span>
+					<button type="button" name="" id="${roomCategory.codeKey}" class="btn btn-danger btn-sm" value="${roomCategory.codeKey}">${roomCategory.codeName}</button>
 				</c:forEach>
-				
+
 				<!-- 필터 -->
 				<!-- Button trigger modal -->
-				<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+				<button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
 					필터
 				</button>
 			
@@ -120,6 +120,7 @@
 			<div class="col"></div>
 		</div>
 	</div>
+	<br>
 
 	<h3 class="text-center">결과 출력</h3>
 	
@@ -176,108 +177,7 @@
                 }
             })
 		})
-		
-		// 검색조건부여
-        let selectedCategory = null;
-        
-        // 카테고리를 클릭할 때 active 클래스를 토글하고 선택한 카테고리를 저장하는 변수
-        $('.category-link').click(function(e) {
-            e.preventDefault();
-            
-            // 이미 active 클래스가 적용된 링크일 경우 active 클래스 제거
-            if ($(this).hasClass('active')) {
-                $(this).removeClass('active');
-                selectedCategory = null; // 선택한 카테고리 변수를 null로 초기화 또는 다른 로직에 맞게 처리
-            } else {
-                // 다른 링크의 active 클래스 제거 후 현재 클릭한 링크에 active 클래스 추가
-                $('.category-link').removeClass('active');
-                $(this).addClass('active');
-                selectedCategory = $(this).data('category');
-            }
-            
-        	// 폼 데이터 가져오기
-            let formData = $('#search').serializeArray();
-            // 추가 데이터 설정
-            formData.push({ name: 'selectedCategory', value: selectedCategory });
-            
-            $.ajax({
-                url: '/room/ajaxResultRoom',
-                method: 'post',
-                data: formData,
-                success: function(response) {
-                    $('#result').empty();
-                    if (response.result == true) {
-                        alert(response.message);
-                        let roomResult = response.data;
-                        let divResult = $('#result');
-                        $.each(roomResult, function(index, item) {
-                            let content = '<tr><td>'+item.mainImage+'</td><td>'+item.address+'</td><td>'+item.roomName+'</td><td>'+item.defaultPrice+'</td></tr>';
-                            divResult.append(content);
-                        });
-                    } else {
-                        alert(response.message);
-                    }
-                }	
-            });
-        });
-
-        // 검색 버튼 클릭 시 Ajax 요청
-        $('#ajaxSearchBtn').click(function() {
-        	
-        	// 폼 데이터 가져오기
-            let formData = $('#search').serializeArray();
-            // 추가 데이터 설정
-            let selectedCategory = $('.category-link.active').data('category');
-            formData.push({ name: 'selectedCategory', value: selectedCategory });
-        	
-            $.ajax({
-                url: '/room/ajaxResultRoom',
-                method: 'post',
-                data: formData,
-                success: function(response) {
-                    $('#result').empty();
-                    if (response.result == true) {
-                        alert(response.message);
-                        let roomResult = response.data;
-                        let divResult = $('#result');
-                        $.each(roomResult, function(index, item) {
-                            let content = '<tr><td>'+item.mainImage+'</td><td>'+item.address+'</td><td>'+item.roomName+'</td><td>'+item.defaultPrice+'</td></tr>';
-                            divResult.append(content);
-                        });
-                    } else {
-                        alert(response.message);
-                    }
-                }	
-            });
-        });
-        
-/*       // 필터링 버튼 클릭 시 Ajax 요청
-        $('#ajaxfilterBtn').click(function() {
-        	
-        }
-        
-        // 초기화 버튼 클릭 시 Ajax 요청
-        $('#ajaxClearBtn').click(function() {
-        	
-        } */
- 
+ 		
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

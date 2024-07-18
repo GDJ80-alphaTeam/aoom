@@ -99,10 +99,11 @@ public class RoomController extends BaseController {
 		// 숙소 편의시설 목록 조회(와이파이, 주차장 등)
 		List<Map<String, Object>> amenities = codeService.selectByGroupKey("amenities");
 		
-		// modelMap에 데이터 추가
+		// modelMap에 필요한 출력 데이터 추가
 		modelMap.addAttribute("roomCategory", roomCategory);
 		modelMap.addAttribute("roomType", roomType);
 		modelMap.addAttribute("amenities", amenities);
+		modelMap.addAttribute("selectedCategory", param.get("selectedCategory"));
 		
 		return "/room/roomList";
 	}
