@@ -50,7 +50,7 @@
 		
 		<!-- 이전페이지 버튼, 최종 등록 -->
 		<div class="d-flex">
-			<button id="BtnBefore" onclick="window.history.back();" class="btn btn-secondary ms-auto">이전</button>
+			<button id="BtnBefore" onclick="window.location.href = '/host/roomManage/registRoom/paymentInfo?roomId=${roomInfo.roomId}';" class="btn btn-secondary ms-auto">이전</button>
 			<button id="BtnFinalRegist" class="btn btn-primary">최종 등록</button>
 		</div>
 		

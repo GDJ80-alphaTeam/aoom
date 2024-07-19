@@ -30,7 +30,7 @@
 			<c:if test="${roomInfo.roomName != null && roomInfo.roomName ne ''}">
 				<input type="text" name="roomName" value="${roomInfo.roomName }" required="required">
 			</c:if>
-			<c:if test="${roomInfo.roomName == null && roomInfo.roomName eq ''}">
+			<c:if test="${roomInfo.roomName == null || roomInfo.roomName eq ''}">
 				<input type="text" name="roomName" required="required">
 			</c:if>
 		</div>
@@ -41,7 +41,7 @@
 			<c:if test="${roomInfo.roomContent != null && roomInfo.roomContent ne ''}">
 				<textarea rows="10" cols="50" name="roomContent" required="required">${roomInfo.roomContent }</textarea>
 			</c:if>
-			<c:if test="${roomInfo.roomContent == null && roomInfo.roomContent eq ''}">
+			<c:if test="${roomInfo.roomContent == null || roomInfo.roomContent eq ''}">
 				<textarea rows="10" cols="50" name="roomContent" required="required"></textarea>
 			</c:if>
 		</div>
@@ -123,8 +123,8 @@
 		<br>
 		<!-- 이전페이지 버튼, 다음 버튼-->
 		<div class="d-flex">
-			<button id="BtnBefore" onclick="window.history.back();" class="btn btn-secondary ms-auto">이전</button>
-			<button type="submit" class="btn btn-primary">다음</button>
+			<button type="button" id="BtnBefore" onclick="window.location.href = '/host/roomManage/registRoom/basicInfo?roomId=${roomInfo.roomId}';" class="btn btn-secondary ms-auto">이전</button>
+			<button type="submit" id="BtnNext" class="btn btn-primary">다음</button>
 		</div>
 	</form>
 
@@ -230,7 +230,7 @@
 
 	<!-- 폼 제출 전 이미지 파일 업로드 했는지 검사 -->
 	<script type="text/javascript">
-		$('#next').click(
+		$('#BtnNext').click(
 			function() {
 				if (($('#mainImage').val() == '') 
 						|| ($('#firstImage').val() == '')

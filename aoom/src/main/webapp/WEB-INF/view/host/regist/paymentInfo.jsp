@@ -76,7 +76,7 @@
 		
 		<!-- 이전페이지 버튼, 다음 버튼-->
 		<div class="d-flex">
-			<button id="BtnBefore" onclick="window.history.back();" class="btn btn-secondary ms-auto">이전</button>
+			<button type="button" id="BtnBefore" onclick="window.location.href = '/host/roomManage/registRoom/detailInfo?roomId=${roomInfo.roomId}';" class="btn btn-secondary ms-auto">이전</button>
 			<button type="submit" class="btn btn-primary">다음</button>
 		</div>
 	</form>
@@ -100,7 +100,7 @@
 	<script type="text/javascript">
 		$('#BtnQuit').click(function() {
 			if (confirm("나가실 경우 해당 페이지의 내용은 저장 되지않습니다")) {
-                window.location.href = "/host/roomManage"; // 원하는 URL로 변경
+                window.location.href = "/host/roomManage";
             }
 		});	
 	</script>

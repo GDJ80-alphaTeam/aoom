@@ -36,10 +36,10 @@
 			카테고리 : 
 			<c:forEach var="cate" items="${roomcate }">
 				<label for="${cate.codeKey }">${cate.codeName }</label>
-				<c:if test="${roomInfo.roomcateCode != null && roomInfo.roomcateCode ne ''}">
+				<c:if test="${cate.codeKey eq roomInfo.roomcateCode}">
 					<input type="radio" id="${cate.codeKey }" name="roomcateCode" value="${cate.codeKey }" checked="checked" required="required">
 				</c:if>
-				<c:if test="${roomInfo.roomcateCode == null || roomInfo.roomcateCode eq ''}">
+				<c:if test="${cate.codeKey ne roomInfo.roomcateCode}">
 					<input type="radio" id="${cate.codeKey }" name="roomcateCode" value="${cate.codeKey }" required="required">
 				</c:if>
 			</c:forEach>
@@ -50,10 +50,10 @@
 			유형 :
 			<c:forEach var="type" items="${roomtype }">
 				<label for="${type.codeKey }">${type.codeName }</label>
-				<c:if test="${roomInfo.roomtypeCode != null && roomInfo.roomtypeCode ne ''}">
+				<c:if test="${type.codeKey eq roomInfo.roomtypeCode}">
 					<input type="radio" id="${type.codeKey }" name="roomtypeCode" value="${type.codeKey }" checked="checked" required="required">
 				</c:if>
-				<c:if test="${roomInfo.roomcateCode == null || roomInfo.roomcateCode eq ''}">
+				<c:if test="${type.codeKey ne roomInfo.roomtypeCode}">
 					<input type="radio" id="${type.codeKey }" name="roomtypeCode" value="${type.codeKey }" required="required">
 				</c:if>
 			</c:forEach>
@@ -129,7 +129,7 @@
 		
 		<!-- 다음 버튼-->
 		<div class="d-flex">
-			<button type="submit" class="btn btn-primary">다음</button>
+			<button type="submit" id="BtnNext" class="btn btn-primary">다음</button>
 		</div>
 	</form>
 	
@@ -210,7 +210,7 @@
 	
 	<!-- form 제출 전 주소값 유효성 검사 -->
 	<script type="text/javascript">
-		$('#nextBtn').click(function() {
+		$('#BtnNext').click(function() {
 			if ($('#frontAddress').val() == null || $('#frontAddress').val() == '') {
 				$('#frontAddress').focus();
 				return false;
