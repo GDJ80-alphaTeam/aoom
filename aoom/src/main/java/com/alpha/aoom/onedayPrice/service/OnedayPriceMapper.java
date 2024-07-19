@@ -13,4 +13,7 @@ public interface OnedayPriceMapper {
 	
 	// 숙소 등록시 운영일만큼 숙박 가격 추가
 	int insert(Map<String, Object> param);
+	
+	// 해당 숙소의 하루 숙박 가격 삭제
+	int delete(Map<String, Object> param);
 }

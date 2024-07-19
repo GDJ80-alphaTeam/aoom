@@ -11,8 +11,15 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="container">
 
+	<h1>숙소 등록 2단계</h1>
+	
+	<!-- 나가기 버튼 -->
+	<div class="d-flex">
+		<button id="BtnQuit" class="btn btn-danger ms-auto">나가기</button>
+	</div>
+	
 	<form action="/host/roomManage/registRoom/registDetailInfo" enctype="multipart/form-data" method="post">
 		<!-- roomId -->
 		<input type="hidden" name="roomId" value="${roomId }">
@@ -114,7 +121,11 @@
 		</div>
 
 		<br>
-		<button type="submit" id="next">다음</button>
+		<!-- 이전페이지 버튼, 다음 버튼-->
+		<div class="d-flex">
+			<button id="BtnBefore" onclick="window.history.back();" class="btn btn-secondary ms-auto">이전</button>
+			<button type="submit" class="btn btn-primary">다음</button>
+		</div>
 	</form>
 
 	<!-- amenities 선택 후 배열로 넘기기 및 버튼 방식 기능 -->
@@ -231,6 +242,15 @@
 					return false;
 				}
 			});
+	</script>
+	
+	<!-- 나가기 버튼 클릭시 이벤트 -->
+	<script type="text/javascript">
+		$('#BtnQuit').click(function() {
+			if (confirm("나가실 경우 해당 페이지의 내용은 저장 되지않습니다")) {
+                window.location.href = "/host/roomManage"; // 원하는 URL로 변경
+            }
+		});	
 	</script>
 </body>
 </html>

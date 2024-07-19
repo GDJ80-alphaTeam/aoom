@@ -35,4 +35,11 @@
 			,#{originalName}
 		)	
 	</insert>
+	
+	<!-- 해당 숙소의 이미지들 삭제 -->
+	<delete id="delete" parameterType="map">
+		DELETE FROM room_image
+		WHERE
+			room_id = #{roomId}
+	</delete>
 </mapper>

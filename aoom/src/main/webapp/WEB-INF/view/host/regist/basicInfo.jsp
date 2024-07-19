@@ -15,7 +15,16 @@
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<body>
+</head>
+<body class="container">
+
+	<h1>숙소 등록 1단계</h1>
+	
+	<!-- 나가기 버튼 -->
+	<div class="d-flex">
+		<button id="BtnQuit" class="btn btn-danger ms-auto">나가기</button>
+	</div>
+	
 	<form action="/host/roomManage/registRoom/registBasicInfo" method="post">
 	
 		<!-- roomId -->
@@ -118,7 +127,10 @@
 			</c:if>
 		</div>
 		
-		<button type="submit" id="nextBtn">다음</button>
+		<!-- 다음 버튼-->
+		<div class="d-flex">
+			<button type="submit" class="btn btn-primary">다음</button>
+		</div>
 	</form>
 	
 	<!-- 카카오 주소 찾기 API -->
@@ -208,6 +220,15 @@
 				return false;
 			}
 		});
+	</script>
+	
+	<!-- 나가기 버튼 클릭시 이벤트 -->
+	<script type="text/javascript">
+		$('#BtnQuit').click(function() {
+			if (confirm("나가실 경우 해당 페이지의 내용은 저장 되지않습니다")) {
+                window.location.href = "/host/roomManage"; // 원하는 URL로 변경
+            }
+		});	
 	</script>
 </body>
 </html>

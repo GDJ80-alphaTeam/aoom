@@ -44,4 +44,9 @@ public class AmenitiesService {
 			amenitiesMapper.insert(paramAmenity);
 		}
 	}
+	
+	// 해당 숙소의 편의시설 삭제
+	public int delete(Map<String, Object> param) {
+		return amenitiesMapper.delete(param);
+	}
 }

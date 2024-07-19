@@ -10,7 +10,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.alpha.aoom.util.file.ImageUpload;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class RoomImageService {
 
 	@Autowired
@@ -48,5 +51,11 @@ public class RoomImageService {
 			
 			roomImageMapper.insert(imageMap);
 		}
+	}
+	
+	// 해당 숙소의 이미지들 삭제
+	public int delete(Map<String, Object> param) {
+		log.info("param={}", param);
+		return roomImageMapper.delete(param);
 	}
 }

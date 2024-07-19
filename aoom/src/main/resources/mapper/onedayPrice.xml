@@ -36,4 +36,11 @@
 			,#{leftPeople}
 		)
     </insert>
+    
+    <!-- 해당 숙소의 하루 숙박 가격 삭제 -->
+    <delete id="delete" parameterType="map">
+    	DELETE FROM oneday_price
+    	WHERE
+    		room_id = #{roomId}
+    </delete>
 </mapper>

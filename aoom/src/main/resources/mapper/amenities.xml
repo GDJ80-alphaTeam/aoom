@@ -26,4 +26,11 @@
 			,#{amenitiesCode}
 		)
 	</insert>
+	
+	<!-- 해당 숙소의 편의시설 삭제 -->
+	<delete id="delete" parameterType="map">
+		DELETE FROM amenities
+		WHERE
+			room_id = #{roomId}
+	</delete>
 </mapper>

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alpha.aoom.amenities.service.AmenitiesService;
@@ -19,6 +20,7 @@ import com.alpha.aoom.code.service.CodeService;
 import com.alpha.aoom.onedayPrice.service.OnedayPriceService;
 import com.alpha.aoom.room.service.RoomService;
 import com.alpha.aoom.roomImage.service.RoomImageService;
+import com.alpha.aoom.util.BaseController;
 import com.alpha.aoom.util.file.FolderCreation;
 
 import jakarta.servlet.http.HttpSession;
@@ -27,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 @RequestMapping("/host")
-public class RegistRoomController {
+public class RegistRoomController extends BaseController{
 
 	@Autowired
 	RoomService roomService;
@@ -174,22 +176,13 @@ public class RegistRoomController {
 		// 입력한 정보 DB에 UPDATE 및 이미지 저장
 		roomService.update(param, mainImage);
 		
-		// 편의시설, 숙소 이미지들이 이미 입력되어있는지 확인
-		List<Map<String, Object>> roomAmenities = amenitiesService.selectByDetail(param);
-		List<Map<String, Object>> roomImages = roomImageService.selectByRoomId(param);
+		// 숙소 이미지, 편의시설의 경우 row수가 달라질 수 있으므로 DELETE 후 INSERT 진행 
+		roomImageService.delete(param);
+		roomImageService.insert(param, images);
 		
-		// 입력 안되어있다면 -> INSERT
-		if (roomAmenities.isEmpty() && roomImages.isEmpty()) {
-			
-			// 나머지 이미지들 저장 및 DB에 INSERT
-			roomImageService.insert(param, images);
-			
-			// 편의시설 DB에 INSERT
-			amenitiesService.insert(param);
-		}
-		
-		// 입력되어있다면 -> UPDATE
-		
+		amenitiesService.delete(param);
+		amenitiesService.insert(param);
+	
 		// modelMap에 roomId 추가
 		modelMap.put("roomId", param.get("roomId"));
 		
@@ -242,7 +235,8 @@ public class RegistRoomController {
 		param.put("endDate", roomService.selectOne(param).get("endDate"));
 		param.put("maxPeople", roomService.selectOne(param).get("maxPeople"));
 		
-		// 하루숙박 가격 DB에 추가
+		// 하루숙박 가격 DB에 추가(숙소 등록 3단계를 진행했던 상태에서는 하루숙박 가격이 존재하므로 삭제 후 DB에 추가)
+		onedayPriceService.delete(param);
 		onedayPriceService.insert(param);
 		
 		// modelMap에 roomId 추가
@@ -257,6 +251,32 @@ public class RegistRoomController {
 		
 		log.info("param={}", param);
 		
+		// 최종등록 전 숙소 정보 보여주기 위해 숙소 정보 가져오기
+		Map<String, Object> roomInfo = roomService.selectOne(param);
+		
+		modelMap.put("roomInfo", roomInfo);
+		
 		return "/host/regist/preview";
+	}
+	
+	// 숙소 최종 등록 - 숙소 상태 변경(등록중 -> 승인 대기)
+	@ResponseBody
+	@RequestMapping("/roomManage/registRoom/ajaxFinalRegist")
+	public Map<String, Object> ajaxFinalRegist(@RequestParam Map<String, Object> param) {
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		log.info(param.toString());
+		
+		// 숙소의 상태를 등록중에서 승인 대기로 변경
+		int row = roomService.update(param);
+		
+		// 숙소 상태 update 성공 시 
+		if(row == 1) {
+			log.info(getSuccessResult(model).toString());
+			return getSuccessResult(model);
+		} else {
+			return getFailResult(model);
+		}
 	}
 }

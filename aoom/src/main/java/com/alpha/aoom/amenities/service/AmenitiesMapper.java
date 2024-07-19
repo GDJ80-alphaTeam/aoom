@@ -13,4 +13,7 @@ public interface AmenitiesMapper {
 	
 	// 해당숙소의 어메니티 목록 조회
 	List<Map<String, Object>> selectByDetail(Map<String,Object> param);
+	
+	// 해당 숙소의 편의시설 삭제
+	int delete(Map<String, Object> param);
 }

@@ -13,4 +13,7 @@ public interface RoomImageMapper {
 	
 	// 숙소 등록 2단계 - 메인 이미지 제외 나머지 이미지 INSERT
 	int insert(Map<String, Object> param);
+	
+	// 해당 숙소의 이미지들 삭제
+	int delete(Map<String, Object> param);
 }

@@ -57,4 +57,8 @@ public class OnedayPriceService {
 		}
 	}
 	
+	// 해당 숙소의 하루 숙박 가격 삭제
+	public int delete(Map<String, Object> param) {
+		return onedayPriceMapper.delete(param);
+	}
 }
