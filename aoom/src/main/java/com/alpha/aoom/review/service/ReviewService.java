@@ -76,7 +76,8 @@ public class ReviewService {
 		Map<String, Object> hostCount = new HashMap<>(originalHostCount);
 		
 		double roundedValue = 0; 
-		if(hostCount.get(hostCount) != null) {
+		
+		if(hostCount.get("avg") != null) {
 			roundedValue = Math.round((((BigDecimal)(hostCount).get("avg")).doubleValue()) * 10) / 10.0;
 		}
 		//log.info(roundedValue);

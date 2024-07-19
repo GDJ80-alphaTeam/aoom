@@ -11,10 +11,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f0842831d9c350ed32adefb11b6cd5f6&libraries=services"></script>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 	
 </head>
 <body>
@@ -193,9 +193,7 @@
 				</div>
 			
 			<div style="width: 50% ; background-color: gray" >
-				<input type="text" id="bookingDate" placeholder="날짜를 선택해주세요" style="width: 300px;" autocomplete="off">
-				<input type="hidden" id="startDate" name="startDate">
-				<input type="hidden" id="endDate" name="endDate">
+				<input type="text" id="datepicker" style="width: 300px;">
 			</div>			
 		</div>		
 	</div> <!-- 상세보기전체감싸는 div -->
@@ -203,69 +201,45 @@
 		
 		
 	<script>
-	
-	<!-- 숙소 운영 시작일 날짜 제한 및 Date Range Picker 설정-->
-		let today = moment().format("YYYY-MM-DD");
-		// 이용불가능한 날짜데이터 
-		let disableDate = "${disableDate}";
+								
+		flatpickr("#datepicker", {			
+			mode: "range",
+			dateFormat: "Y-m-d",		       		         
+			minDate: 'today',        // 오늘 이전 날짜 선택 비활성화
+			maxDate: '2024-12-31',   // 특정 날짜까지 선택 가능
+			defaultDate: 'today',    // 초기 날짜 설정 (현재 날짜와 시간)		
+			showMonths: 2,
+			locale: "ko",			   
+			onOpen: function(selectedDates, dateStr, instance) {
+				$.ajax({
+		            url: '/onedayPrice/ajaxValidDate',
+		            method: 'post',
+		            data: {"roomId":"${roomInfo.roomId}"},
+		            dataType: 'json',
+		            success: function(response) {
+		            	
+		            	console.log(response)
+		                // 서버에서 받은 비활성화할 날짜 배열
+		                let disableDates = response.data.map(item => item.oneday);
 		
+		                // Flatpickr 인스턴스 업데이트
+		            	instance.set('disable', disableDates);
+		            }
+		           
+		        });		
+			}
+			,
+			onChange: function(selectedDates, dateStr, instance) {
+				console.log("Selected range: ", selectedDates);
+			  }
+			});
+ 
+	<!-- 숙소 운영 시작일 날짜 제한 및 Date Range Picker 설정-->							
 		// 마지막날+1 
 		let endDate = moment("${roomInfo.endDate}", "YYYY-MM-DD").add(1, 'days').format("YYYY-MM-DD");
         
 		
-		// Date Range Picker 설정		
-		$('#bookingDate').daterangepicker({
-			minDate: today,
-			maxDate: endDate,
-		    showDropdowns: true,
-		    autoApply: false,
-			autoUpdateInput: false,
-			// 날짜값 disabled 해주는곳 true값이 반환되면 해당날짜는 false가됨
-		 	isInvalidDate: function(date) {
-            	const formattedDate = date.format('YYYY-MM-DD');
-            	// disabledate에 fromatteDate날짜와 비교해서 해당날짜가 있으면 true를 반환후 해당날짜 비활성화
-            	return disableDate.includes(formattedDate);
-           	},
-			locale : {
-				"format" : "YYYY-MM-DD",
-				"separator" : " ~ ",
-				"applyLabel" : "적용",
-				"cancelLabel" : "취소",
-				"fromLabel" : "From",
-				"toLabel" : "To",
-				"customRangeLabel" : "Custom",
-				"daysOfWeek" : [ "일", "월", "화", "수", "목", "금", "토" ],
-				"monthNames" : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월" ]
-			},
-		},
-		
-		// 날짜 선택 시 input에 값 전달
-		function(start, end, label) {
-			console.log("시작일 : " + start.format('YYYY-MM-DD'));
-			console.log("종료일 : " + end.format('YYYY-MM-DD'));
-			$('#startDate').val(start.format('YYYY-MM-DD'));
-			$('#endDate').val(end.format('YYYY-MM-DD'));
-		});
-		
-		$('#bookingDate').on('apply.daterangepicker', function(ev, picker) {
-			$(this).val(picker.startDate.format('YYYY-MM-DD') + ' ~ ' + picker.endDate.format('YYYY-MM-DD'));
-		});
-
-		$('#bookingDate').on('cancel.daterangepicker', function(ev, picker) { 
-			$(this).val('');
-		});	
-		
-		$('#bookingDate').on('change.daterangepicker', function(ev, picker) {
-            const startDate = picker.startDate.format('YYYY-MM-DD');
-            const endDate = picker.endDate.format('YYYY-MM-DD');
-
-            console.log('시작일:', startDate);
-            console.log('종료일:', endDate);
-        });
-    
- 
-
- 
+			
 	<!-- 페이징 -->
 	 	// currentPage는 변경가능해야함 , lastPage는 중간에 리뷰가 추가될수있음
 	  	let currentPage = parseInt("${reviewList.currentPage}");
