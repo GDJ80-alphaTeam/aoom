@@ -42,8 +42,17 @@
 		<tbody>
 			<c:forEach var="room" items="${roomListByUser }">
 				<tr>
-					<td>${room.roomId }</td>
-					<td>${room.mainImage }</td>
+					<td>
+						${room.roomId }
+					</td>
+					<td>
+						<c:if test="${room.mainImage != null && room.mainImage ne ''}">
+							<img alt="" src="${room.mainImage }" style="width: 150px; height: 120px;">
+						</c:if>
+						<c:if test="${room.mainImage == null || room.mainImage eq ''}">
+							<img alt="" src="/image/etc/reviewDefault.png" style="width: 150px; height: 120px;">
+						</c:if>
+					</td>
 					<td>${room.address }</td>
 					<c:if test="${room.codeName == '반려'}">
 						<td><a href="#">${room.codeName }</a></td>
@@ -52,14 +61,34 @@
 						<td>${room.codeName }</td>
 					</c:if>
 					<td>
-						<button onclick="location.replace('/host/roomManage/registRoom/basicInfo?roomId=${room.roomId}');">수정</button>
-						<button>삭제</button>
-						<button>비활성화</button>
+						<button type="button" onclick="location.replace('/host/roomManage/registRoom/basicInfo?roomId=${room.roomId}');">수정</button>
+						<button type="button" name="BtnDeleteRoom" data-room-id="${room.roomId }">삭제</button>
+						<button type="button" name="BtnDisableRoom">비활성화</button>
 					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+	<!-- 숙소 삭제 버튼(roomstatCode를 삭제로 변경하는 것, DELETE 아님) -->
+	<script type="text/javascript">
 	
+		$('button[name="BtnDeleteRoom"]').click(function() {
+			$.ajax({
+				url: '/host/roomManage/ajaxDeleteRoom',
+				method: 'post',
+				data: {'roomId' : $(this).data('room-id'), 'roomstatCode' : 'rst05'},
+				success: function(response) {
+					if(response.code == 00){
+						alert("숙소가 삭제되었습니다.");
+		                window.location.href = "/host/roomManage";
+					} else if(response.code == 01){
+						alert("숙소가 삭제되지않았습니다. 다시 시도해주세요.");
+					}
+				}
+			});
+		});
+		
+		
+	</script>
 </body>
 </html>

@@ -68,6 +68,7 @@
 	    	r.roomstat_code = c.code_key 
         WHERE 
         	user_id = #{userId}
+        	AND roomstat_code !='rst05'
        	ORDER BY 
        		create_date DESC
 	</select>
@@ -262,6 +263,9 @@
 			<if test='roomcateCode != null and !roomcateCode.equals("")'>
 				,roomcate_code = #{roomcateCode}
 			</if>
+			<if test='roomstatCode != null and !roomstatCode.equals("")'>
+				,roomstat_code = #{roomstatCode}
+			</if>
 			<if test='startDate != null and !startDate.equals("")'>
 				,start_date = #{startDate}
 			</if>
@@ -308,6 +312,5 @@
 			</if>
 		WHERE
 			room_id = #{roomId}
-	
 	</update>
 </mapper>

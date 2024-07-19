@@ -60,7 +60,7 @@
 	<script type="text/javascript">
 		$('#BtnQuit').click(function() {
 			if (confirm("나가실 경우 해당 페이지의 내용은 저장 되지않습니다")) {
-                window.location.href = "/host/roomManage"; // 원하는 URL로 변경
+                window.location.href = "/host/roomManage";
             }
 		});	
 	</script>
@@ -75,7 +75,7 @@
 				success: function(response) {
 					if(response.code == 00){
 						alert("숙소가 등록되었습니다. 승인을 기다려 주세요!");
-		                window.location.href = "/host/roomManage"; // 원하는 URL로 변경
+		                window.location.href = "/host/roomManage";
 					} else if(response.code == 01){
 						alert("숙소 등록에 실패하였습니다. 다시 등록해주세요");
 					}

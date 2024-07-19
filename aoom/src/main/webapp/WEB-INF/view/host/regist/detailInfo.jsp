@@ -248,7 +248,7 @@
 	<script type="text/javascript">
 		$('#BtnQuit').click(function() {
 			if (confirm("나가실 경우 해당 페이지의 내용은 저장 되지않습니다")) {
-                window.location.href = "/host/roomManage"; // 원하는 URL로 변경
+                window.location.href = "/host/roomManage";
             }
 		});	
 	</script>

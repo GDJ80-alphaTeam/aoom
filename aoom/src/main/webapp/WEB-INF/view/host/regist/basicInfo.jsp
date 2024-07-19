@@ -129,7 +129,7 @@
 		
 		<!-- 다음 버튼-->
 		<div class="d-flex">
-			<button type="submit" id="BtnNext" class="btn btn-primary">다음</button>
+			<button type="submit" id="BtnNext" class="btn btn-primary ms=">다음</button>
 		</div>
 	</form>
 	
@@ -226,7 +226,7 @@
 	<script type="text/javascript">
 		$('#BtnQuit').click(function() {
 			if (confirm("나가실 경우 해당 페이지의 내용은 저장 되지않습니다")) {
-                window.location.href = "/host/roomManage"; // 원하는 URL로 변경
+                window.location.href = "/host/roomManage";
             }
 		});	
 	</script>
