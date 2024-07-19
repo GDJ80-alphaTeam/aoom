@@ -1,6 +1,5 @@
 package com.alpha.aoom.room.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,11 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alpha.aoom.amenities.service.AmenitiesService;
 import com.alpha.aoom.code.service.CodeService;
-import com.alpha.aoom.onedayPrice.service.OnedayPriceMapper;
 import com.alpha.aoom.onedayPrice.service.OnedayPriceService;
 import com.alpha.aoom.review.service.ReviewService;
 import com.alpha.aoom.room.service.RoomService;
@@ -88,22 +85,23 @@ public class RoomController extends BaseController {
 	@RequestMapping("/roomList")
 	public String roomList(@RequestParam Map<String, Object> param, ModelMap modelMap) {
 		
-		log.info("받은 param : "+ param);
+		log.info("받은 조건 : "+ param);
 		
-		// 숙소 카테고리 조회
+		// 숙소 출력 조건 아이템(카테고리, 숙소유형, 편의시설)
 		List<Map<String, Object>> roomCategory = codeService.selectByGroupKey("roomcate");
-		
-		// 숙소 유형 조회(일반숙소, 게스트하우스)
 		List<Map<String, Object>> roomType = codeService.selectByGroupKey("roomtype");
-
-		// 숙소 편의시설 목록 조회(와이파이, 주차장 등)
 		List<Map<String, Object>> amenities = codeService.selectByGroupKey("amenities");
+		
+		// 숙소 검색, 필터, 카테고리 조건으로 조회
+		List<Map<String, Object>> searchResult = roomService.selectBySearch(param);
+
+		log.info("보낼 결과 : "+ searchResult);
 		
 		// modelMap에 필요한 출력 데이터 추가
 		modelMap.addAttribute("roomCategory", roomCategory);
 		modelMap.addAttribute("roomType", roomType);
 		modelMap.addAttribute("amenities", amenities);
-		modelMap.addAttribute("selectedCategory", param.get("selectedCategory"));
+		modelMap.addAttribute("searchResult", searchResult);
 		
 		return "/room/roomList";
 	}

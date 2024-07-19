@@ -44,7 +44,7 @@
                 <c:forEach var="roomCategory" items="${roomCategory}" varStatus="status">
                     <button type="button" id="btn${roomCategory.codeKey}" data-category="${roomCategory.codeKey}" class="btn btn-danger btn-sm category-btn">${roomCategory.codeName}</button>
                 </c:forEach>
-
+                
                 <!-- 필터 -->
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -122,16 +122,30 @@
     <table class="table table-danger">
         <thead>
             <tr>
+                <th>숙소아이디</th>
                 <th>메인사진</th>
                 <th>주소</th>
                 <th>숙소이름</th>
                 <th>기본가격</th>
+                <th>평점</th>
             </tr>
         </thead>
         <tbody id="result">
-
+		    <!-- 검색 결과 -->
+		    <c:forEach var="searchResult" items="${searchResult}">
+				<tr>
+					<td>${searchResult.roomId}</td>
+					<td>${searchResult.mainImage}</td>
+					<td>${searchResult.address}</td>
+					<td>${searchResult.roomName}</td>
+					<td>${searchResult.defaultPrice}</td>
+					<td>작업중</td>
+				</tr>
+		    </c:forEach>
         </tbody>
     </table>
+ 
+    
 
     <script>
         // Moment.js를 사용하여 오늘 날짜 문자열 생성

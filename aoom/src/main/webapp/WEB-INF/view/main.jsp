@@ -260,7 +260,7 @@
             })
         });
     
-		// 버튼 클릭 이벤트 통합
+		// 필터링 버튼을 눌렀을 때
 		$('#filterBtn').click(function() {
 		    let baseUrl = "${pageContext.request.contextPath}/room/roomList?";
 		    let params = $('#filterForm').serializeArray();

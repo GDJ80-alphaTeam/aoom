@@ -208,7 +208,8 @@
 	<!-- 검색, 필터, 카테고리 조건으로 조회 -->
 	<select id="selectBySearch" parameterType="map" resultType="camelCaseMap">
 		SELECT
-			 main_image
+			 room_id
+			,main_image
 			,address
 			,room_name
 			,default_price
@@ -221,7 +222,7 @@
 				AND address LIKE '%${address}%'
 	        </if>
 	        <if test="selectedCategory != null and selectedCategory != ''">
-	            AND roomcate_code = #{selectedCategory}
+	            AND roomcate_code = #{category}
 	        </if>
 	</select>
 	
