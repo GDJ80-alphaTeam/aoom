@@ -14,8 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class BookingController {
 
-	@RequestMapping("")
+	@RequestMapping("book")
 	public String booking(@RequestParam Map<String, Object> param, ModelMap modelMap) {
-		return "/book/booking";
+		return "/booking/book";
 	}
 }
