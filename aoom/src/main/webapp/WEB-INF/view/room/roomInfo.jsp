@@ -198,6 +198,7 @@
 					<input type="number" id="usePeople" value="1" name="usePeople" min="1" max="9">
 					<input type="hidden" id="startDate" value="가" name="startDate">
 					<input type="hidden" id="endDate" value="나" name="endDate">
+					<input type="hidden"  value="${roomInfo.roomId}" name="roomId">
 					<button type="submit">예약하기</button>
 				</div>
 			</form>			
