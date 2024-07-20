@@ -46,6 +46,7 @@ public class onedayPriceController extends BaseController {
 	  @ResponseBody
 	  public Map<String, Object> selectDay(@RequestParam Map<String, Object> param){
 		  		 	  
+		  
 		  Map<String, Object> model = new HashMap<String, Object>();
 		  
 		  model.put("data", onedayPriceService.selectByOneday(param));

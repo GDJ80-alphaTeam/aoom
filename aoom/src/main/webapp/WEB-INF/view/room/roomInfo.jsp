@@ -15,6 +15,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
 	
 </head>
 <body>
@@ -191,10 +192,15 @@
 					
 					</div>
 				</div>
-			
-			<div style="width: 50% ; background-color: gray" >
-				<input type="text" id="datepicker" style="width: 300px;">
-			</div>			
+			<form action="${pageContext.request.contextPath}/booking/book" method="get">
+				<div style="width: 50% ; background-color: gray" >
+					<input type="text" id="datepicker" style="width: 300px;">
+					<input type="number" id="usePeople" value="1" name="usePeople" min="1" max="9">
+					<input type="hidden" id="startDate" value="가" name="startDate">
+					<input type="hidden" id="endDate" value="나" name="endDate">
+					<button type="submit">예약하기</button>
+				</div>
+			</form>			
 		</div>		
 	</div> <!-- 상세보기전체감싸는 div -->
 </body>
@@ -209,7 +215,7 @@
 			mode: "range",
 			dateFormat: "Y-m-d",		       		         
 			minDate: 'today',        // 오늘 이전 날짜 선택 비활성화
-			maxDate: '2024-12-31',   // 특정 날짜까지 선택 가능
+			//maxDate: '2024-12-31',   // 특정 날짜까지 선택 가능
 			//defaultDate: 'today',    // 초기 날짜 설정 (현재 날짜와 시간)		
 			showMonths: 2,
 			locale: "ko",			   
@@ -229,10 +235,10 @@
 		            success: function(response) {
 		            	
 		            	instance.set('disable', []);
-		            	console.log(response)
+		            	
 		                // 서버에서 받은 비활성화할 날짜 배열
 		                let disableDate = response.data.map(item => item.oneday);
-						console.log(disableDate)
+						
 		                // Flatpickr 인스턴스 업데이트
 		            	instance.set('enable', disableDate);
 		            },
@@ -247,13 +253,13 @@
 				console.log("Selected range: ", selectedDates);
 				
 				// 날짜형식 변경 yyyy/mm/dd
-            	let formattedDates = moment(selectedDates[0]).format('YYYY-MM-DD');
+            	let formattedDates = moment(selectedDates[0]).format('YYYY/MM/DD');
                 console.log("Selected range (formatted): ", formattedDates);
-				
+				console.log( $("#usePeople").val());
 				$.ajax({
 		            url: '/onedayPrice/ajaxSelectDay',
 		            method: 'post',
-		            data: {"roomId":"${roomInfo.roomId}" , "selectedDate" : formattedDates },
+		            data: {"roomId":"${roomInfo.roomId}" , "selectedDate" : formattedDates ,"usePeople" : $("#usePeople").val()},
 		            dataType: 'json',
 		            success: function(response) {
 		            			            			                
@@ -262,26 +268,23 @@
 		                // Flatpickr 인스턴스 업데이트
 		            	instance.set('enable', disableDates);
 		                
-		            	console.log(disableDates);
+		            	
 		            }
 		           
 		        });		
-			  }
+			  },
+			onClose: function(selectedDates, dateStr, instance) {
+				
+				let startDate = moment(selectedDates[0]).format('YYYY/MM/DD');
+				let endDate = moment(selectedDates[1]).format('YYYY/MM/DD');
+				console.log("startDate" , startDate);
+				console.log("endDate" , endDate);
+				
+				$("#startDate").val(startDate);
+				$("#endDate").val(endDate);
+			}
 			});
  	
-		// 비활성화된 날짜를 초기화하는 함수
-        function resetDisableDates() {
-            fp.set('disable', []); // 모든 날짜를 활성화
-        }
-
-        
-		
-	<!-- 숙소 운영 시작일 날짜 제한 및 Date Range Picker 설정-->							
-		// 마지막날+1 
-		let endDate = moment("${roomInfo.endDate}", "YYYY-MM-DD").add(1, 'days').format("YYYY-MM-DD");
-        
-		
-			
 	<!-- 페이징 -->
 	 	// currentPage는 변경가능해야함 , lastPage는 중간에 리뷰가 추가될수있음
 	  	let currentPage = parseInt("${reviewList.currentPage}");
