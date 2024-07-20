@@ -113,115 +113,104 @@
         </div>
     </div>
     <br>
-
-    <h3 class="text-center">오늘의 인기 숙소 TOP 4</h3>
+	
+	<!-- 조회수 TOP 4 -->
+   	<div class="row row-cols-1 row-cols-md-4 g-4">
+		<c:forEach var="viewsDesc" items="${viewsDesc}">
+			<div class="col">
+				<div class="card h-100">
+					<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
+					<div class="card-body">	
+						<h5 class="card-text">
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${viewsDesc.roomId}">${viewsDesc.roomName}</a>
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${viewsDesc.roomId}">${viewsDesc.avgRating} 점</a>
+						</h5>
+						<p class="card-text">
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${viewsDesc.roomId}">${viewsDesc.roomId}</a>
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${viewsDesc.roomId}">${viewsDesc.defaultPrice} 원</a>
+						</p>
+						<p class="card-text">
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${viewsDesc.roomId}">${viewsDesc.address}</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</c:forEach>
+	</div>
     
-    <h5>조회수</h5>
-    <table class="table table-danger" >
-        <thead>
-            <tr>
-                <th>숙소아이디</th>
-                <th>메인사진</th>
-                <th>주소</th>
-                <th>숙소이름</th>
-                <th>기본가격</th>
-                <th>평점</th>
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach var="viewsDesc" items="${viewsDesc}">
-                <tr>
-                    <td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${viewsDesc.roomId}">${viewsDesc.roomId}</a></td>
-                    <td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${viewsDesc.roomId}">${viewsDesc.mainImage}</a></td>
-                    <td>${viewsDesc.address}</td>
-                    <td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${viewsDesc.roomId}">${viewsDesc.roomName}</a></td>
-                    <td>${viewsDesc.defaultPrice}</td>
-                    <td>${viewsDesc.avgRating}</td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
-        
-    <h5>별점</h5>
-    <table class="table table-danger" >
-        <thead>
-            <tr>
-                <th>숙소아이디</th>
-                <th>메인사진</th>
-                <th>주소</th>
-                <th>숙소이름</th>
-                <th>기본가격</th>
-                <th>평점</th>
-            </tr>
-        </thead>
-        <c:forEach var="ratingDesc" items="${ratingDesc}">
-            <tbody>
-                <tr>
-                    <td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${ratingDesc.roomId}">${ratingDesc.roomId}</a></td>
-                    <td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${ratingDesc.roomId}">${ratingDesc.mainImage}</a></td>
-                    <td>${ratingDesc.address}</td>
-                    <td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${ratingDesc.roomId}">${ratingDesc.roomName}</a></td>
-                    <td>${ratingDesc.defaultPrice}</td>
-                    <td>${ratingDesc.avgRating}</td>
-                </tr>
-            </tbody>
-        </c:forEach>
-    </table>
+	<!-- 예약 TOP 4 -->
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+		<c:forEach var="bookingDesc" items="${bookingDesc}">
+			<div class="col">
+				<div class="card h-100">
+					<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
+					<div class="card-body">	
+						<h5 class="card-text">
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${bookingDesc.roomId}">${bookingDesc.roomName}</a>
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${bookingDesc.roomId}">${bookingDesc.avgRating} 점</a>
+						</h5>
+						<p class="card-text">
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${bookingDesc.roomId}">${bookingDesc.roomId}</a>
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${bookingDesc.roomId}">${bookingDesc.defaultPrice} 원</a>
+						</p>
+						<p class="card-text">
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${bookingDesc.roomId}">${bookingDesc.address}</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</c:forEach>
+	</div>
     
-    <h5>예약</h5>
-    <table class="table table-danger" >
-        <thead>
-            <tr>
-                <th>숙소아이디</th>
-                <th>메인사진</th>
-                <th>주소</th>
-                <th>숙소이름</th>
-                <th>기본가격</th>
-                <th>평점</th>
-            </tr>
-        </thead>
-        <c:forEach var="bookingDesc" items="${bookingDesc}">
-            <tbody>
-                <tr>
-                    <td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${bookingDesc.roomId}">${bookingDesc.roomId}</a></td>
-                    <td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${bookingDesc.roomId}">${bookingDesc.mainImage}</a></td>
-                    <td>${bookingDesc.address}</td>
-                    <td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${bookingDesc.roomId}">${bookingDesc.roomName}</a></td>
-                    <td>${bookingDesc.defaultPrice}</td>
-                    <td>${bookingDesc.avgRating}</td>
-                </tr>
-            </tbody>
-        </c:forEach>
-    </table>
-    
-    <h5>위시리스트</h5>
-    <table class="table table-danger" >    
-        <thead>
-            <tr>
-                <th>숙소아이디</th>
-                <th>메인사진</th>
-                <th>주소</th>
-                <th>숙소이름</th>
-                <th>기본가격</th>
-                <th>평점</th>
-            </tr>
-        </thead>
+	<!-- 위시리스트 TOP 4 -->
+    <div class="row row-cols-1 row-cols-md-4 g-4">
         <c:forEach var="wishListDesc" items="${wishListDesc}">
-            <tbody>
-                <tr>
-                    <td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${wishListDesc.roomId}">${wishListDesc.roomId}</a></td>
-                    <td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${wishListDesc.roomId}">${wishListDesc.mainImage}</a></td>
-                    <td>${wishListDesc.address}</td>
-                    <td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${wishListDesc.roomId}">${wishListDesc.roomName}</a></td>
-                    <td>${wishListDesc.defaultPrice}</td>
-                    <td>${wishListDesc.avgRating}</td>
-                </tr>
-            </tbody>
-        </c:forEach>
-    </table>
+			<div class="col">
+				<div class="card h-100">
+					<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
+					<div class="card-body">	
+						<h5 class="card-text">
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${wishListDesc.roomId}">${wishListDesc.roomName}</a>
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${wishListDesc.roomId}">${wishListDesc.avgRating} 점</a>
+						</h5>
+						<p class="card-text">
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${wishListDesc.roomId}">${wishListDesc.roomId}</a>
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${wishListDesc.roomId}">${wishListDesc.defaultPrice} 원</a>
+						</p>
+						<p class="card-text">
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${wishListDesc.roomId}">${wishListDesc.address}</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</c:forEach>
+	</div>
+	
+	<!-- 별점 TOP 4 -->
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+		<c:forEach var="ratingDesc" items="${ratingDesc}">
+			<div class="col">
+				<div class="card h-100">
+					<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
+					<div class="card-body">	
+						<h5 class="card-text">
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${ratingDesc.roomId}">${ratingDesc.roomName}</a>
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${ratingDesc.roomId}">${ratingDesc.avgRating} 점</a>
+						</h5>
+						<p class="card-text">
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${ratingDesc.roomId}">${ratingDesc.roomId}</a>
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${ratingDesc.roomId}">${ratingDesc.defaultPrice} 원</a>
+						</p>
+						<p class="card-text">
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${ratingDesc.roomId}">${ratingDesc.address}</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</c:forEach>
+	</div>	
     
     <script>
-    
         // Moment.js를 사용하여 오늘 날짜 문자열 생성
         let today = moment().format("YYYY/MM/DD");
         

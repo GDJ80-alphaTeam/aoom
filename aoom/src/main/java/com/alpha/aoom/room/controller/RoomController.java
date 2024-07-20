@@ -118,5 +118,4 @@ public class RoomController extends BaseController {
 		
 		return "/room/roomList";
 	}
-	
 }

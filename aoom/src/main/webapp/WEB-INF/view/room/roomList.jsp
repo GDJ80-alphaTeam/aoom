@@ -129,54 +129,29 @@
 	</div>
 	<br>
 
-	<h3 class="text-center">결과 출력</h3>
-
-	<table class="table table-danger">
-		<thead>
-			<tr>
-				<th>숙소아이디</th>
-				<th>메인사진</th>
-				<th>주소</th>
-				<th>숙소이름</th>
-				<th>기본가격</th>
-				<th>평점</th>
-			</tr>
-		</thead>
-		<tbody id="result">
-			<!-- 검색 결과 -->
-			<c:forEach var="searchResult" items="${searchResult}">
-				<tr>
-					<td>${searchResult.roomId}</td>
-					<td>${searchResult.mainImage}</td>
-					<td>${searchResult.address}</td>
-					<td>${searchResult.roomName}</td>
-					<td>${searchResult.defaultPrice}</td>
-					<td>작업중</td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-
 	<!-- 검색결과 카드 방식 -->
-	<body class="container">
-		<div class="row row-cols-1 row-cols-md-4 g-4">
-		
-			<c:forEach var="searchResult" items="${searchResult}">
-				<div class="col">
-					<div class="card h-100">
-						<img src="..." class="card-img-top" alt="..." height="200px">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">This is a longer card with supporting text
-								below as a natural lead-in to additional content. This content is
-								a little bit longer.</p>
-						</div>
+	<div class="row row-cols-1 row-cols-md-4 g-4">
+		<c:forEach var="searchResult" items="${searchResult}">
+			<div class="col">
+				<div class="card h-100">
+					<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
+					<div class="card-body">	
+						<h5 class="card-text">
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${searchResult.roomId}">${searchResult.roomName}</a>
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${searchResult.roomId}">⭐ 점</a>
+						</h5>
+						<p class="card-text">
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${searchResult.roomId}">${searchResult.roomId}</a>
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${searchResult.roomId}">${searchResult.defaultPrice} 원</a>
+						</p>
+						<p class="card-text">
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${searchResult.roomId}">${searchResult.address}</a>
+						</p>
 					</div>
 				</div>
-			</c:forEach>
-		</div>
-
-
+			</div>
+		</c:forEach>
+	</div>
 
 	<script>
         // Moment.js를 사용하여 오늘 날짜 문자열 생성
@@ -340,6 +315,4 @@
         });
     </script>
 </body>
-
-
 </html>
