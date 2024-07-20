@@ -202,15 +202,25 @@
 		
 	<script>
 								
-		flatpickr("#datepicker", {			
+		let isInitializing = false;
+		
+		
+		const fp = flatpickr("#datepicker", {			
 			mode: "range",
 			dateFormat: "Y-m-d",		       		         
 			minDate: 'today',        // 오늘 이전 날짜 선택 비활성화
 			maxDate: '2024-12-31',   // 특정 날짜까지 선택 가능
-			defaultDate: 'today',    // 초기 날짜 설정 (현재 날짜와 시간)		
+			//defaultDate: 'today',    // 초기 날짜 설정 (현재 날짜와 시간)		
 			showMonths: 2,
 			locale: "ko",			   
+			disable: [],
 			onOpen: function(selectedDates, dateStr, instance) {
+				
+				if (!isInitializing) {
+                    isInitializing = true; // 설정 중임을 표시
+				
+                    
+                 // 모든 날짜를 활성화하려면 enable을 빈 배열로 설정                                        
 				$.ajax({
 		            url: '/onedayPrice/ajaxValidDate',
 		            method: 'post',
@@ -218,22 +228,54 @@
 		            dataType: 'json',
 		            success: function(response) {
 		            	
+		            	instance.set('disable', []);
 		            	console.log(response)
 		                // 서버에서 받은 비활성화할 날짜 배열
-		                let disableDates = response.data.map(item => item.oneday);
-		
+		                let disableDate = response.data.map(item => item.oneday);
+						console.log(disableDate)
 		                // Flatpickr 인스턴스 업데이트
-		            	instance.set('disable', disableDates);
-		            }
-		           
+		            	instance.set('enable', disableDate);
+		            },
+		            complete: function() {
+	                    isInitializing = false; // 초기화 완료 표시
+	                }   
 		        });		
-			}
+				
+			}}
 			,
 			onChange: function(selectedDates, dateStr, instance) {
 				console.log("Selected range: ", selectedDates);
+				
+				// 날짜형식 변경 yyyy/mm/dd
+            	let formattedDates = moment(selectedDates[0]).format('YYYY-MM-DD');
+                console.log("Selected range (formatted): ", formattedDates);
+				
+				$.ajax({
+		            url: '/onedayPrice/ajaxSelectDay',
+		            method: 'post',
+		            data: {"roomId":"${roomInfo.roomId}" , "selectedDate" : formattedDates },
+		            dataType: 'json',
+		            success: function(response) {
+		            			            			                
+	                    // 서버에서 받은 비활성화할 날짜 배열
+		                let disableDates = response.data.map(item => item.oneday);		
+		                // Flatpickr 인스턴스 업데이트
+		            	instance.set('enable', disableDates);
+		                
+		            	console.log(disableDates);
+		            }
+		           
+		        });		
 			  }
 			});
- 
+ 	
+		// 비활성화된 날짜를 초기화하는 함수
+        function resetDisableDates() {
+            fp.set('disable', []); // 모든 날짜를 활성화
+        }
+
+        
+		
 	<!-- 숙소 운영 시작일 날짜 제한 및 Date Range Picker 설정-->							
 		// 마지막날+1 
 		let endDate = moment("${roomInfo.endDate}", "YYYY-MM-DD").add(1, 'days').format("YYYY-MM-DD");

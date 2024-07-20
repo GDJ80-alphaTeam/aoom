@@ -22,7 +22,7 @@ public class OnedayPriceService {
 	// 예약 불가능한 숙소목록 출력
 	public List<Map<String, Object>> selectByStatCode (Map<String, Object> param) {
 			
-		param.put("onestateCode", "one02");
+		param.put("onestateCode", "one01");
 		return onedayPriceMapper.selectByStatCode(param);
 	}
 
@@ -60,5 +60,20 @@ public class OnedayPriceService {
 	// 해당 숙소의 하루 숙박 가격 삭제
 	public int delete(Map<String, Object> param) {
 		return onedayPriceMapper.delete(param);
+	}
+	
+	// 예약가능한 날짜(달력에서 날짜를 선택했을때)
+	public List<Map<String, Object>> selectByOneday (Map<String, Object> param){
+		log.info("왜값이 있는걸까?"+onedayPriceMapper.selectByOneday(param));
+		
+		// 선택한 날짜뒤로 예약날짜가 없으면 결과값이 없음. 그래서 그때 이후로 표시해줄 날짜값 호출을 해줘야하는데 oracle이랑 mybatis랑 쿼리결과가름
+		if(onedayPriceMapper.selectByOneday(param).isEmpty()) {
+			log.info("if = null일때");
+			return onedayPriceMapper.selectByremain(param);
+		} else {
+			log.info("if = null아닐때");
+			return onedayPriceMapper.selectByOneday(param);
+		}
+		
 	}
 }

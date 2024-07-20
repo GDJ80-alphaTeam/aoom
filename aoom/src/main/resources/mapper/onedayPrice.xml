@@ -8,6 +8,8 @@
 		,oneday_price
 		,update_date
 		,left_people
+		,onestat_code
+		,create_date
 	</sql>
 	
 	<!-- onedayPrice의 예약상태의 따른 리스트 검색 -->
@@ -43,4 +45,56 @@
     	WHERE
     		room_id = #{roomId}
     </delete>
+    
+    <!-- 사용자가 선택한날로부터 예약가능한날짜 표시 -->
+    <select id = "selectByOneday" parameterType="map" resultType="camelCaseMap">
+    	SELECT 
+    		*
+   		FROM 
+    		oneday_price 
+   		WHERE
+    		room_id = #{roomId}
+    		AND oneday <![CDATA[>=]]> #{selectedDate}
+    		AND oneday <![CDATA[<=]]>
+        		(SELECT 
+        			oneday	     		
+        		FROM
+		        	(
+		        	SELECT
+		           		  rownum as rn  
+		           		 ,<include refid="onedayPrice_col"/> 
+		        	FROM
+		            	oneday_price
+		        	WHERE 
+		        		oneday <![CDATA[>=]]> #{selectedDate}    
+		        		AND onestat_code = 'one02'
+		        		AND room_Id = #{roomId}        
+		        	ORDER BY 
+		        		oneday 
+		       		)
+        		WHERE 
+            		rn <![CDATA[>]]> 0 
+            		AND rn <![CDATA[<]]> 2 )
+        
+    </select>
+    <!-- 비활성된 예약날짜가 없을시 실행할 쿼리 -->
+    <select id = "selectByremain" parameterType="map" resultType="camelCaseMap">
+    	
+            SELECT
+                oneday 
+            FROM
+            	oneday_price
+            WHERE 
+                room_id = #{roomId} 
+                AND oneday <![CDATA[>=]]> #{selectedDate}
+            UNION        
+            SELECT  
+            	oneday+1
+            FROM 
+            	oneday_price
+            WHERE
+              	room_id = #{roomId} 
+               	AND oneday <![CDATA[>=]]> #{selectedDate}
+        
+    </select>
 </mapper>
