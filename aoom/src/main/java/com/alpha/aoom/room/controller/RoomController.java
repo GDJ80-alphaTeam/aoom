@@ -84,33 +84,28 @@ public class RoomController extends BaseController {
 	// 숙소 목록 출력(검색, 필터, 카테고리 조건)
 	@RequestMapping("/roomList")
 	public String roomList(@RequestParam Map<String, Object> param, ModelMap modelMap) {
-		
-		log.info("받은 조건 : "+ param);
-		
-		String test = (String) param.get("amenities");
-		// System.out.println("편의시설 받은 값 : " + test.toString());
-		
-	    // amenities 값을 콤마로 분리하여 배열로 변환 후 맵에 저장
-	    String amenitiesStr = (String) param.get("amenities");
-	    if (amenitiesStr != null && !amenitiesStr.isEmpty()) {
-	        String[] amenitiesArray = amenitiesStr.split(",");
-	        param.put("amenities", amenitiesArray);
-	    }
-	    
-		String[] test2 = (String[]) param.get("amenities");
-		System.out.println("편의시설 배열로 형변환 : " + Arrays.toString(test2));
-		
-		// 숙소 출력 조건 아이템(카테고리, 숙소유형, 편의시설)
+		// 검색 조건에 쓰일 카테고리, 숙소유형, 편의시설
 		List<Map<String, Object>> roomCategory = codeService.selectByGroupKey("roomcate");
 		List<Map<String, Object>> roomType = codeService.selectByGroupKey("roomtype");
 		List<Map<String, Object>> amenities = codeService.selectByGroupKey("amenities");
 		
-		// 숙소 검색, 필터, 카테고리 조건으로 조회
-		List<Map<String, Object>> searchResult = roomService.selectBySearch(param);
-
-		log.info("보낼 결과 : "+ searchResult);
+		// amenities 값 : 콤마로 분리 -> 배열타입에 넣음 -> 맵에 저장
+		String amenitiesStr = (String) param.get("amenities");
+		if (amenitiesStr != null && !amenitiesStr.isEmpty()) {
+			String[] amenitiesArray = amenitiesStr.split(",");
+			param.put("amenities", amenitiesArray);
+		}
 		
-		// modelMap에 필요한 출력 데이터 추가
+		// param 디버깅(amenities 배열도 확인)
+		log.info("param : "+ param);
+		String[] test = (String[]) param.get("amenities");
+		log.info("편의시설 배열: " + Arrays.toString(test));
+		
+		// 숙소 검색, 필터, 카테고리 선택 후 결과
+		List<Map<String, Object>> searchResult = roomService.selectBySearch(param);
+		log.info("searchResult : "+ searchResult);
+		
+		// modelMap에 데이터 추가
 		modelMap.addAttribute("roomCategory", roomCategory);
 		modelMap.addAttribute("roomType", roomType);
 		modelMap.addAttribute("amenities", amenities);

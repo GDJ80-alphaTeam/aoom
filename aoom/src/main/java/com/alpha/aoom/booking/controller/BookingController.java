@@ -16,6 +16,18 @@ public class BookingController {
 
 	@RequestMapping("book")
 	public String booking(@RequestParam Map<String, Object> param, ModelMap modelMap) {
+		log.info("param : " + param);
+		// 체크인, 체크아웃, 숙박인원 값
+		String roomId = (String)param.get("roomId");
+		String startDate = (String)param.get("startDate");
+		String endDate = (String)param.get("endDate");
+		String usePeople = (String)param.get("usePeople");
+		
+		// modelMap에 데이터 추가
+		modelMap.addAttribute("roomId", roomId);
+		modelMap.addAttribute("startDate", startDate);
+		modelMap.addAttribute("endDate", endDate);
+		modelMap.addAttribute("usePeople", usePeople);
 		return "/booking/book";
 	}
 }

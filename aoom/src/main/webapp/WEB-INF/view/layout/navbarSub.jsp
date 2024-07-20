@@ -17,7 +17,7 @@
 					 		<span>로그인 하세요</span>
 					 	</c:if>
 					 	<c:if test="${sessionScope.userInfo.userId != null}">
-						 	<span><img alt="" src="" style="width:35px; height:35px;"></span>
+						 	<span><img alt="" src="/image/etc/userDefault.png" style="width:35px; height:35px;"></span>
 						 	<span>${sessionScope.userInfo.userName} 님</span>
 					 	</c:if>
 					</button>
