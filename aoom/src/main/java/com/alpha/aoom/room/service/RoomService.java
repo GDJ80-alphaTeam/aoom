@@ -1,5 +1,6 @@
 package com.alpha.aoom.room.service;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,8 @@ public class RoomService {
 	@Autowired
 	ImageUpload imageUpload;
 	
+	private final int rowPerPage = 5;
+	
 	// 숙소 상세보기 조회
 	// param: room_id
 	public Map<String, Object> selectOne(Map<String,Object> param) {
@@ -36,8 +39,20 @@ public class RoomService {
 	}
 	
 	// user가 호스팅하고있는 숙소 목록 조회
-	public List<Map<String, Object>> selectByUserId(String userId){
-		return roomMapper.selectByUserId(userId);
+	public List<Map<String, Object>> selectByUserId(Map<String, Object> param){
+									
+		// startRow ~ endRow 사이의 값 조회  
+		int beginRow = ((int)param.get("currentPage") - 1) * rowPerPage;
+		// beginRow + rowPerPage 로우퍼페이지의 개수만큼 검색
+		
+		int endRow = beginRow + rowPerPage;		
+		log.info("beginRow={}", beginRow);
+		log.info("endRow={}", endRow);
+		
+		param.put("beginRow", beginRow);
+		param.put("endRow", endRow);
+		
+		return roomMapper.selectByUserId(param);
 	}
 	
 	// 조회수 TOP4 숙소 조회
@@ -94,21 +109,43 @@ public class RoomService {
 		log.info("roomName={}", param.get("roomName"));
 		log.info("roomContent={}", param.get("roomContent"));
 		log.info("amenities={}", param.get("amenities"));
+		log.info("mainImage={}", mainImage);
 		
-		// 이미지 생성은 각자의 프로젝트 경로 + 이미지 폴더 경로 이므로 각자의 프로젝트 경로까지 포함하는 totalFolderPath 변수 생성
-		String totalFolderPath = param.get("baseFolderPath").toString() + param.get("imageFolderPath").toString();
-		
-		// 숙소 메인 이미지 저장 및 uuid 파일명 반환
-		String uuidMainImage = imageUpload.saveFile(totalFolderPath, mainImage);
-		
-		// 숙소 메인 이미지 원본 이름
-		String originalMainImage = mainImage.getOriginalFilename();
-		
-		param.put("mainImage", param.get("imageFolderPath").toString() + "/" + uuidMainImage);
-		param.put("originalName", originalMainImage);
+		// mainImage를 변경했다면 mainImage정보도 DB에 반영
+		if(!mainImage.isEmpty()) {
+			// 이미지 생성은 각자의 프로젝트 경로 + 이미지 폴더 경로 이므로 각자의 프로젝트 경로까지 포함하는 totalFolderPath 변수 생성
+			String totalFolderPath = param.get("baseFolderPath").toString() + param.get("imageFolderPath").toString();
+			
+			// 숙소 메인 이미지 저장 및 uuid 파일명 반환
+			String uuidMainImage = imageUpload.saveFile(totalFolderPath, mainImage);
+			
+			// 숙소 메인 이미지 원본 이름
+			String originalMainImage = mainImage.getOriginalFilename();
+			
+			param.put("mainImage", param.get("imageFolderPath").toString() + "/" + uuidMainImage);
+			param.put("originalName", originalMainImage);
+		}
 		
 		// UPDATE(roomName, roomContent, mainImage, originalName)
 		roomMapper.update(param);
+	}
+	
+	// user가 호스팅하고있는 숙소의 개수, lastPage
+	public Map<String, Object> selectByTotalCnt(Map<String, Object> param) {
+		
+		Map<String, Object> pagingInfo = new HashMap<>();
+		int totalRow = roomMapper.selectByTotalCnt(param);
+		
+		int lastPage = totalRow / rowPerPage ;
+		
+		if(totalRow % rowPerPage != 0) {
+			lastPage += 1; 
+		}
+		
+		pagingInfo.put("totalRow", totalRow);
+		pagingInfo.put("lastPage", lastPage);
+		
+		return pagingInfo;
 	}
 	
 }

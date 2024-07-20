@@ -15,6 +15,7 @@
 	<select id="selectByRoomId" parameterType="map" resultType="camelCaseMap">
 		SELECT 
 	    	<include refid="roomImage_col"/>  
+	    	, '0' AS check_edit
 		FROM
 		    room_image
 		where 

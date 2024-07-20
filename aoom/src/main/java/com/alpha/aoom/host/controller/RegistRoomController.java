@@ -150,6 +150,10 @@ public class RegistRoomController extends BaseController{
 									   @RequestParam("images") MultipartFile[] images,
 									   ModelMap modelMap) {
 		log.info("param={}", param);
+		log.info("mainImage={}", mainImage.isEmpty());
+		for (MultipartFile image : images) {
+			log.info("image={}", image.isEmpty());
+		}
 		
 		// param에 담겨있는 amenities가 문자열이기 때문에 List로 파싱
         String amenitiesStr = param.get("amenities").toString();

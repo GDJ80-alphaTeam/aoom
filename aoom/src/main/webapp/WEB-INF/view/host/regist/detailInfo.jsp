@@ -71,51 +71,43 @@
 			<!-- 메인이미지 -->
 			<div style="display: inline-block; position: relative;">
 				<button type="button" id="mainImageRemove" style="position: absolute; top: 0; right: 0;">X</button>
-				<label for="mainImage"> 
-					<img src="/image/etc/imageUploadIcon.png" style="width: 300px; height: 300px; display: block;" id="mainImageFile">
+				<label for="mainImage">
+					<c:if test="${roomInfo.mainImage != null && roomInfo.mainImage ne ''}">
+						<img src="${roomInfo.mainImage }" style="width: 300px; height: 300px; display: block;" id="mainImageFile"> 
+					</c:if>
+					<c:if test="${roomInfo.mainImage == null || roomInfo.mainImage eq ''}">
+						<img src="/image/etc/imageUploadIcon.png" style="width: 300px; height: 300px; display: block;" id="mainImageFile"> 
+					</c:if>
+					
 					<input type="file" id="mainImage" name="mainImage" accept="image/*" style="display: none;">
+					<input type="hidden" id="mainImageDB" value="${roomInfo.mainImage }">
 				</label> 
 			</div>
 
 			<!-- 나머지 이미지들 -->
 			<div style="display: inline-block;">
 				<div>
-					<!-- 1번째 이미지 -->
-					<div style="position: relative; display: inline-block;">
-						<button type="button" id="firstImageRemove" style="position: absolute; top: 0; right: 0;">X</button>
-						<label for="firstImage">
-							<img src="/image/etc/imageUploadIcon.png" style="width: 150px; height: 150px; display: block;" id="firstImageFile"> 
-							<input type="file" id="firstImage" name="images" accept="image/*" style="display: none;">
-						</label>
-					</div>
-					<!-- 2번째 이미지 -->
-					<div style="position: relative; display: inline-block;">
-						<button type="button" id="secondImageRemove" style="position: absolute; top: 0; right: 0;">X</button>
-						<label for="secondImage"> 
-							<img src="/image/etc/imageUploadIcon.png" style="width: 150px; height: 150px; display: block;" id="secondImageFile"> 
-							<input type="file" id="secondImage" name="images" accept="image/*" style="display: none;">
-						</label>
-					</div>
-				</div>
-
-				<div>
-					<!-- 3번째 이미지 -->
-					<div style="position: relative; display: inline-block;">
-						<button type="button" id="thirdImageRemove" style="position: absolute; top: 0; right: 0;">X</button>
-						<label for="thirdImage"> 
-							<img src="/image/etc/imageUploadIcon.png" style="width: 150px; height: 150px; display: block;" id="thirdImageFile"> 
-							<input type="file" id="thirdImage" name="images" accept="image/*" style="display: none;">
-						</label>
-					</div>
-
-					<!-- 4번째 이미지 -->
-					<div style="position: relative; display: inline-block;">
-						<button type="button" id="fourthImageRemove" style="position: absolute; top: 0; right: 0;">X</button>
-						<label for="fourthImage"> 
-							<img src="/image/etc/imageUploadIcon.png" style="width: 150px; height: 150px; display: block;" id="fourthImageFile"> 
-							<input type="file" id="fourthImage" name="images" accept="image/*" style="display: none;">
-						</label>
-					</div>
+					<c:forEach var="i" begin="1" end="4">
+						<c:if test="${i % 2 == 1 }">
+							<div>
+						</c:if>
+						<div style="position: relative; display: inline-block;">
+							<button type="button" id="image_${i }_remove" style="position: absolute; top: 0; right: 0;">X</button>
+							<label for="image_${i }">
+								<c:if test="${roomInfo.roomImages[i].image != null && roomInfo.roomImages[i].image ne ''}">
+									<img src="${roomInfo.roomImages[i].image }" style="width: 150px; height: 150px; display: block;" id="image_${i }_file"> 
+									<input type="hidden" name="checkEdit" value="${roomInfo.roomImages[i].checkEdit }">
+								</c:if>
+								<c:if test="${roomInfo.roomImages[i].image == null || roomInfo.roomImages[i].image eq ''}">
+									<img src="/image/etc/imageUploadIcon.png" style="width: 150px; height: 150px; display: block;" id="image_${i }_file"> 
+								</c:if>
+								<input type="file" id="image_${i }" name="images" accept="image/*" style="display: none;">
+							</label>
+						</div>
+						<c:if test="${i % 2 == 0 }">
+							</div>
+						</c:if>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -230,13 +222,18 @@
 
 	<!-- 폼 제출 전 이미지 파일 업로드 했는지 검사 -->
 	<script type="text/javascript">
+		console.log($('#mainImageDB').val());
+		console.log($('#firstmageDB').val());
+		console.log($('#secondImageDB').val());
+		console.log($('#thirdImageDB').val());
+		console.log($('#fourthImageDB').val());
 		$('#BtnNext').click(
 			function() {
-				if (($('#mainImage').val() == '') 
-						|| ($('#firstImage').val() == '')
-						|| ($('#secondImage').val() == '') 
-						|| ($('#thirdImage').val() == '')
-						|| ($('#fourthImage').val() == '')) {
+				if (($('#mainImage').val() == '' && $('#mainImageDB').val() == '')
+						|| ($('#firstImage').val() == '' && $('#firstImageDB').val() == '')
+						|| ($('#secondImage').val() == '' && $('#secondImageDB').val() == '')
+						|| ($('#thirdImage').val() == '' && $('#thirdImageDB').val() == '')
+						|| ($('#fourthImage').val() == '' && $('#fourthImageDB').val() == '')) {
 					
 					alert('숙소 이미지를 추가해주세요!');
 					return false;

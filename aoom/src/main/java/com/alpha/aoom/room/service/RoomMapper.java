@@ -15,7 +15,7 @@ public interface RoomMapper {
 	Map<String, Object> selectOne(Map<String,Object> param);
 			
 	// user가 호스팅하고있는 숙소 목록 조회
-	List<Map<String, Object>> selectByUserId(String userId);
+	List<Map<String, Object>> selectByUserId(Map<String, Object> param);
 	
 	// 조회수 TOP4 숙소 조회
 	List<Map<String, Object>> selectByViews();
@@ -37,4 +37,7 @@ public interface RoomMapper {
 
 	// 숙소 등록 - 숙소 등록 1,2,3 단계에서 입력한 정보 DB에 수정
 	int update(Map<String, Object> param);
+	
+	// user가 호스팅하고있는 숙소의 개추
+	int selectByTotalCnt(Map<String, Object> param);
 }

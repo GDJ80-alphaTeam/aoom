@@ -68,11 +68,6 @@
 			<input type="text" id="detailAddress" placeholder="상세주소">
 			<input type="hidden" name="address" id="address" required="required">
 		</div>
-		<script type="text/javascript">
-			console.log($('#frontAddress').val());
-			console.log($('#detailAddress').val());
-			console.log($('#address').val());
-		</script>
 		<!-- 최대 인원 설정 -->
 		<div>
 			최대 인원 : 
@@ -152,7 +147,7 @@
 					
 	                // 선택한 주소를 frontAddress에 값으로 주기
 	                $('#frontAddress').val(addr);
-	                $('#address').val($('#frontAddress').val() + ' ' + $('#detailAddress').val())
+	                $('#address').val($('#frontAddress').val() + '^' + $('#detailAddress').val())
 	                // 커서 상세주소 필드로 이동
 	                $('#detailAddress').focus();
 	            }
@@ -163,8 +158,32 @@
 	<!-- 주소 찾기한 주소와 상세 주소 더하기 -->
 	<script type="text/javascript">
 		$('#detailAddress').blur(function() {
-			$('#address').val($('#frontAddress').val() + ' ' + $('#detailAddress').val());
+			$('#address').val($('#frontAddress').val() + '^' + $('#detailAddress').val());
 			console.log($('#address').val());
+		});
+	</script>
+	
+	<!-- DB에서 가져온 주소 나누기 -->
+	<script type="text/javascript">
+		$( document ).ready(function() {
+		    console.log("${roomInfo.address}");
+		    let roomInfo = "${roomInfo.address}";
+		    let array = roomInfo.split("^");
+		    let address1 = array[0];
+		    let address2 = array[1];
+		    
+		    console.log(address1);
+		    console.log(address2);
+		    
+			// input 요소에 값 설정
+			$('#frontAddress').val(address1);
+			$('#detailAddress').val(address2);
+			$('#address').val(address1 + '^' + address2);
+			
+		    console.log($('#frontAddress').val());
+		    console.log($('#detailAddress').val());
+		    console.log($('#address').val());
+			
 		});
 	</script>
 	
