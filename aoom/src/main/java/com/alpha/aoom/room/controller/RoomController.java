@@ -1,5 +1,6 @@
 package com.alpha.aoom.room.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -85,6 +86,19 @@ public class RoomController extends BaseController {
 	public String roomList(@RequestParam Map<String, Object> param, ModelMap modelMap) {
 		
 		log.info("받은 조건 : "+ param);
+		
+		String test = (String) param.get("amenities");
+		// System.out.println("편의시설 받은 값 : " + test.toString());
+		
+	    // amenities 값을 콤마로 분리하여 배열로 변환 후 맵에 저장
+	    String amenitiesStr = (String) param.get("amenities");
+	    if (amenitiesStr != null && !amenitiesStr.isEmpty()) {
+	        String[] amenitiesArray = amenitiesStr.split(",");
+	        param.put("amenities", amenitiesArray);
+	    }
+	    
+		String[] test2 = (String[]) param.get("amenities");
+		System.out.println("편의시설 배열로 형변환 : " + Arrays.toString(test2));
 		
 		// 숙소 출력 조건 아이템(카테고리, 숙소유형, 편의시설)
 		List<Map<String, Object>> roomCategory = codeService.selectByGroupKey("roomcate");

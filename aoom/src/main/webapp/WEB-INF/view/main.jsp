@@ -298,7 +298,7 @@
 		
 		// 초기화 버튼 이벤트
         $('#clearFilter').click(function() {
-            $('#filter')[0].reset();
+            $('#filterForm')[0].reset();
         });
     </script>
 </body>

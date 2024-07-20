@@ -59,7 +59,7 @@
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">필터 </h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form id="filter">
+                            <form id="filterForm">
                                 <div class="modal-body">
 
                                     <h3>가격</h3>
@@ -305,7 +305,7 @@
 
         // 초기화 버튼 이벤트
         $('#clearFilter').click(function() {
-            $('#filter')[0].reset();
+            $('#filterForm')[0].reset();
         });
     </script>
 </body>
