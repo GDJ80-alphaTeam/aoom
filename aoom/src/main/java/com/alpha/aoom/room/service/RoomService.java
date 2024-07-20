@@ -94,9 +94,12 @@ public class RoomService {
 		log.info("roomName={}", param.get("roomName"));
 		log.info("roomContent={}", param.get("roomContent"));
 		log.info("amenities={}", param.get("amenities"));
-			
+		
+		// 이미지 생성은 각자의 프로젝트 경로 + 이미지 폴더 경로 이므로 각자의 프로젝트 경로까지 포함하는 totalFolderPath 변수 생성
+		String totalFolderPath = param.get("baseFolderPath").toString() + param.get("imageFolderPath").toString();
+		
 		// 숙소 메인 이미지 저장 및 uuid 파일명 반환
-		String uuidMainImage = imageUpload.saveFile(param.get("totalFolderPath").toString(), mainImage);
+		String uuidMainImage = imageUpload.saveFile(totalFolderPath, mainImage);
 		
 		// 숙소 메인 이미지 원본 이름
 		String originalMainImage = mainImage.getOriginalFilename();

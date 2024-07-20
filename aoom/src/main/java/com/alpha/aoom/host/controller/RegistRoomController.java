@@ -168,8 +168,8 @@ public class RegistRoomController extends BaseController{
 		// 이미지 저장시 사용할 폴더 경로 param에 추가
 		param.put("imageFolderPath", imageFolderPath);
 		
-		// 이미지 생성은 각자의 프로젝트 경로 + 이미지 폴더 경로 이므로 각자의 프로젝트 경로까지 포함하는 totalFolderPath로 param에 추가
-		param.put("totalFolderPath", folderCreation.BASE_FOLDER_PATH + imageFolderPath);
+		// 각자의 프로젝트 이미지 경로 param에 추가
+		param.put("baseFolderPath", folderCreation.BASE_FOLDER_PATH);
 		
 		log.info("param={}", param);
 		

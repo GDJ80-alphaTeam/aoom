@@ -31,12 +31,15 @@ public class RoomImageService {
 	// 슥소 메인 이미지를 제외한 나머지 이미지들 저장 및 roomImage테이블에 INSERT
 	public void insert(Map<String, Object> param, MultipartFile[] images) {
 		
+		// 이미지 생성은 각자의 프로젝트 경로 + 이미지 폴더 경로 이므로 각자의 프로젝트 경로까지 포함하는 totalFolderPath 변수 생성
+		String totalFolderPath = param.get("baseFolderPath").toString() + param.get("imageFolderPath").toString();
+		
 		// 나머지 숙소 이미지들 저장 및 INSERT(roomImage)
 		// 숙소 이미지들의 imageNo시퀀스를 위해 for문 사용
 		for (int i = 0; i < images.length; i++) {
 			
 			// 이미지 저장 및 uuid 이름 반환
-			String uuidImage = imageUpload.saveFile(param.get("totalFolderPath").toString(), images[i]);
+			String uuidImage = imageUpload.saveFile(totalFolderPath, images[i]);
 			// 원본이미지 이름
 			String originalImage = images[i].getOriginalFilename();
 			
