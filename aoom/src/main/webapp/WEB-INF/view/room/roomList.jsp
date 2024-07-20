@@ -134,11 +134,13 @@
 		<c:forEach var="searchResult" items="${searchResult}">
 			<div class="col">
 				<div class="card h-100">
-					<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
+					<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${searchResult.roomId}">
+						<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
+					</a>
 					<div class="card-body">	
 						<h5 class="card-text">
 							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${searchResult.roomId}">${searchResult.roomName}</a>
-							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${searchResult.roomId}">⭐ 점</a>
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${searchResult.roomId}">⭐ 0점</a>
 						</h5>
 						<p class="card-text">
 							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${searchResult.roomId}">${searchResult.roomId}</a>

@@ -119,11 +119,13 @@
 		<c:forEach var="viewsDesc" items="${viewsDesc}">
 			<div class="col">
 				<div class="card h-100">
-					<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
+					<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${viewsDesc.roomId}">
+						<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
+					</a>
 					<div class="card-body">	
 						<h5 class="card-text">
 							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${viewsDesc.roomId}">${viewsDesc.roomName}</a>
-							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${viewsDesc.roomId}">${viewsDesc.avgRating} 점</a>
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${viewsDesc.roomId}">⭐${viewsDesc.avgRating} 점</a>
 						</h5>
 						<p class="card-text">
 							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${viewsDesc.roomId}">${viewsDesc.roomId}</a>
@@ -137,17 +139,20 @@
 			</div>
 		</c:forEach>
 	</div>
+    <br>
     
 	<!-- 예약 TOP 4 -->
     <div class="row row-cols-1 row-cols-md-4 g-4">
 		<c:forEach var="bookingDesc" items="${bookingDesc}">
 			<div class="col">
 				<div class="card h-100">
-					<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
+					<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${bookingDesc.roomId}">
+						<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
+					</a>
 					<div class="card-body">	
 						<h5 class="card-text">
 							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${bookingDesc.roomId}">${bookingDesc.roomName}</a>
-							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${bookingDesc.roomId}">${bookingDesc.avgRating} 점</a>
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${bookingDesc.roomId}">⭐${bookingDesc.avgRating} 점</a>
 						</h5>
 						<p class="card-text">
 							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${bookingDesc.roomId}">${bookingDesc.roomId}</a>
@@ -161,17 +166,20 @@
 			</div>
 		</c:forEach>
 	</div>
+    <br>
     
 	<!-- 위시리스트 TOP 4 -->
     <div class="row row-cols-1 row-cols-md-4 g-4">
         <c:forEach var="wishListDesc" items="${wishListDesc}">
 			<div class="col">
 				<div class="card h-100">
-					<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
+					<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${wishListDesc.roomId}">
+						<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
+					</a>
 					<div class="card-body">	
 						<h5 class="card-text">
 							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${wishListDesc.roomId}">${wishListDesc.roomName}</a>
-							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${wishListDesc.roomId}">${wishListDesc.avgRating} 점</a>
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${wishListDesc.roomId}">⭐${wishListDesc.avgRating} 점</a>
 						</h5>
 						<p class="card-text">
 							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${wishListDesc.roomId}">${wishListDesc.roomId}</a>
@@ -185,17 +193,20 @@
 			</div>
 		</c:forEach>
 	</div>
+	<br>
 	
 	<!-- 별점 TOP 4 -->
     <div class="row row-cols-1 row-cols-md-4 g-4">
 		<c:forEach var="ratingDesc" items="${ratingDesc}">
 			<div class="col">
 				<div class="card h-100">
-					<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
+					<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${ratingDesc.roomId}">
+						<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
+					</a>
 					<div class="card-body">	
 						<h5 class="card-text">
 							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${ratingDesc.roomId}">${ratingDesc.roomName}</a>
-							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${ratingDesc.roomId}">${ratingDesc.avgRating} 점</a>
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${ratingDesc.roomId}">⭐${ratingDesc.avgRating} 점</a>
 						</h5>
 						<p class="card-text">
 							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${ratingDesc.roomId}">${ratingDesc.roomId}</a>
