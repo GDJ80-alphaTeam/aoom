@@ -13,5 +13,46 @@
 </head>
 <body>
 
+<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
+	
+	<div style="margin: 0 auto; width: 1500px">
+		<h1>예약목록 페이지</h1>
+	
+		<table class="table">
+			<thead>
+				<tr>
+					<th>숙소이름</th>
+					<th>예약 일자</th>
+					<th>호스트</th>
+					<th>대표사진</th>
+					<th>예약상태</th>
+					<th>결제상태</th>
+					<th>비고(환불상태)</th>
+				</tr>
+			</thead>	
+			<tbody>
+			<c:forEach var="r" items="${bookingList}">
+			
+					<tr>
+						
+						<td>
+							<a href="${pageContext.request.contextPath}/guest/booking">
+								${r.roomName}
+							</a>	
+						</td>
+						<td>${r.createDate}</td>
+						<td>${r.userId}</td>
+						
+						<td>
+							<img src="${r.mainImage}" style="height: 50px;">
+						</td>
+						<td> ${r.bookstatName}</td>
+						<td>${r.paystatName}</td>
+					</tr>
+				
+			</c:forEach>	
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>

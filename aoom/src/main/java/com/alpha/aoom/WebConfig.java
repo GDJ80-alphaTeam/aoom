@@ -20,7 +20,7 @@ public class WebConfig implements WebMvcConfigurer{
 				.excludePathPatterns("/main", "/member/signup", "/member/ajaxSignup", "/member/ajaxSignout", 
 						"/member/signin", "/member/ajaxSignin", "/userAuthNo/ajaxSend", "/userAuthNo/ajaxAuthCheck", 
 						"/room/roomInfo", "/image/**", "/room/roomList" , "/review/ajaxReviewPaging",
-						"/room/ajaxResultRoom" , "/onedayPrice/ajaxValidDate");
+						"/room/ajaxResultRoom" , "/onedayPrice/ajaxValidDate" , "/onedayPrice/ajaxSelectDay");
 		
 		// 위 설정을 인터셉터에 적용
 		WebMvcConfigurer.super.addInterceptors(registry);

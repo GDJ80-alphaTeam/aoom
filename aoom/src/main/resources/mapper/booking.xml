@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alpha.aoom.booking.service.BookingMapper">
+	
+	<!-- 컬럼 이름 sql조각 -->
+	<sql id="booking_col">
+		 booking_id
+		,room_id
+		,user_id
+		,stay_people
+		,create_date
+		,bookstat_code
+		,paystat_code
+	</sql>
+
+	<!-- 로그인한 사용자의 예약정보 + 숙소정보 조회 -->
+	<select id="selectByUserId" parameterType="map" resultType="camelCaseMap">
+		SELECT
+	    	 b.booking_id 
+	    	,b.create_date
+	    	,b.room_id 
+	    	,r.room_name
+	    	,r.user_id  
+	    	,r.main_image 
+	    	,c.code_name as paystat_name
+	    	,c2.code_name as bookstat_name
+		FROM
+		    booking b
+		LEFT JOIN
+		    room r 
+		ON 
+			b.room_id = r.room_id
+		LEFT join 
+		    code c
+		ON 
+			b.paystat_code = c.code_key
+		LEFT join 
+		    code c2
+	    ON 
+	    	b.bookstat_code = c2.code_key
+		WHERE 
+		    b.user_id = #{userId}
+
+	</select>
+	
+</mapper>
