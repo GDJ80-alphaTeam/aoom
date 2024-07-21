@@ -22,12 +22,15 @@ public class BookingController {
 		String startDate = (String)param.get("startDate");
 		String endDate = (String)param.get("endDate");
 		String usePeople = (String)param.get("usePeople");
+		String bookingDate = startDate+" ~ "+endDate;
+		log.info("bookingDate : " + bookingDate);
 		
 		// modelMap에 데이터 추가
 		modelMap.addAttribute("roomId", roomId);
 		modelMap.addAttribute("startDate", startDate);
 		modelMap.addAttribute("endDate", endDate);
 		modelMap.addAttribute("usePeople", usePeople);
+		modelMap.addAttribute("bookingDate", bookingDate);
 		return "/booking/book";
 	}
 }
