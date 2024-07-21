@@ -40,8 +40,8 @@
 		LEFT JOIN    
 		    (SELECT
 		        booking_id 
-		        ,min(oneday) AS start_date
-		        ,max(oneday) AS end_date
+		        ,to_char(min(oneday), 'yy-mm-dd') AS start_date
+		        ,to_char(max(oneday), 'yy-mm-dd') AS end_date
 		    FROM     
 		        booking_oneday_price_map
 		    WHERE
