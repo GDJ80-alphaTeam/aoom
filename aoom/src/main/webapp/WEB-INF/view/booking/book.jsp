@@ -25,7 +25,6 @@
     <jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
 
 	<h3><button onclick="history.back()" class="btn btn-outline-danger"><</button> 예약하기</h3>
-    
     <!-- 그리드 -->
 	<form id="booking">
 		<div class="container">
@@ -54,11 +53,12 @@
 					<div class="card" style="width: 18rem;">
 						<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="...">
 						<div class="card-body">
-							<h5 class="card-title">숙소이름 들어갈 자리</h5>
+							<h5 class="card-title">${roomInfo.roomName }</h5>
 								<p class="card-text">
-									카테고리 들어갈 자리
+									${roomInfo.category }
 									<br>
-									평점 / 후기 카운트 들어갈 자리
+									⭐${ratingReview.avg }점
+									(후기 ${ratingReview.cnt }개)
 								</p>
 						</div>
 						<ul class="list-group list-group-flush">
