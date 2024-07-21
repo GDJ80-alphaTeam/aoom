@@ -29,11 +29,12 @@ public class GuestController {
 	public String guestBookList (HttpSession session , ModelMap modelMap) {
 		
 		// 세션에서 user정보 가져오기
-		Map<String, Object> userInfo = (HashMap<String, Object>)session.getAttribute("userInfo");
-		
+		Map<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
+			
 		//log.info(bookingService.selectByUserId(userInfo)+"test");
 		
 		modelMap.addAttribute("bookingList", bookingService.selectByUserId(userInfo));
+		modelMap.addAttribute("bookingDate", bookingService.selectByBookingMap(userInfo));
 		
 		return "/guest/bookList";
 	}

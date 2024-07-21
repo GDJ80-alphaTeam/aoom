@@ -34,7 +34,6 @@
 			<c:forEach var="r" items="${bookingList}">
 			
 					<tr>
-						
 						<td>
 							<a href="${pageContext.request.contextPath}/guest/booking">
 								${r.roomName}

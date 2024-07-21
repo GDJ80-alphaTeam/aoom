@@ -38,7 +38,7 @@ public interface RoomMapper {
 	// 숙소 등록 - 숙소 등록 1,2,3 단계에서 입력한 정보 DB에 수정
 	int update(Map<String, Object> param);
 	
-	// user가 호스팅하고있는 숙소의 개추
+	// user가 호스팅하고있는 숙소의 개수
 	int selectByTotalCnt(Map<String, Object> param);
 	
 	// 숙소의 카테고리 이름 조회

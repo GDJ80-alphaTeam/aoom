@@ -22,8 +22,8 @@
 	    	,r.room_name
 	    	,r.user_id  
 	    	,r.main_image 
-	    	,c.code_name as paystat_name
-	    	,c2.code_name as bookstat_name
+	    	,c.code_name AS paystat_name
+	    	,c2.code_name AS bookstat_name
 		FROM
 		    booking b
 		LEFT JOIN
@@ -43,4 +43,27 @@
 
 	</select>
 	
+	<select id="selectByBookingMap" parameterType="map" resultType="camelCaseMap">
+		SELECT
+        	 booking_id 
+        	,max(oneday) AS start_date
+        	,min(oneday) AS endDate
+    	FROM     
+        	booking_oneday_price_map
+    	WHERE
+        	user_id = (
+       		SELECT 
+            	user_id
+        	FROM     
+            	booking 
+        	WHERE 
+            	user_id = #{userId}
+            )
+    	GROUP BY
+        	booking_id
+    	ORDER BY
+        	booking_id DESC
+	</select>
+	
+	  		
 </mapper>
