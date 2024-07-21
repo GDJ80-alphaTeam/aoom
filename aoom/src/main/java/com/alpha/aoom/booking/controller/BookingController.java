@@ -1,5 +1,6 @@
 package com.alpha.aoom.booking.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.alpha.aoom.onedayPrice.service.OnedayPriceService;
 import com.alpha.aoom.room.service.RoomService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +19,11 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class BookingController {
 
-	@Autowired RoomService roomService;
+	@Autowired
+	RoomService roomService;
+	
+	@Autowired
+	OnedayPriceService onedayPriceService;
 	
 	@RequestMapping("book")
 	public String booking(@RequestParam Map<String, Object> param, ModelMap modelMap) {
@@ -34,6 +40,10 @@ public class BookingController {
 		Map<String, Object> roomInfo = roomService.selectByCategoryName(param);
 		// 숙소의 평점과 후기의 갯수 조회
 		Map<String, Object> ratingReview = roomService.selectByRatingAvgReviewCnt(param);
+		// 숙박일정에 따른 숙박가격 조회
+		Map<String, Object> bookingPrice = onedayPriceService.selectByBookingDate(param);
+		// 숙박일정에 따른 숙박가격 세부조회(일자별 가격)
+		List<Map<String, Object>> bookingPriceDetail = onedayPriceService.selectByBookingDateDetail(param);
 		
 		// modelMap에 데이터 추가
 		modelMap.addAttribute("roomId", roomId);
@@ -43,6 +53,8 @@ public class BookingController {
 		modelMap.addAttribute("bookingDate", bookingDate);
 		modelMap.addAttribute("roomInfo", roomInfo);
 		modelMap.addAttribute("ratingReview", ratingReview);
+		modelMap.addAttribute("bookingPrice", bookingPrice);
+		modelMap.addAttribute("bookingPriceDetail", bookingPriceDetail);
 		
 		return "/booking/book";
 	}

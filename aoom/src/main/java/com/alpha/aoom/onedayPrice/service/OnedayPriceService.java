@@ -20,7 +20,7 @@ public class OnedayPriceService {
 	
 	// param: roomId , onestateCode
 	// 예약 불가능한 숙소목록 출력
-	public List<Map<String, Object>> selectByStatCode (Map<String, Object> param) {
+	public List<Map<String, Object>> selectByStatCode(Map<String, Object> param) {
 			
 		param.put("onestateCode", "one01");
 		return onedayPriceMapper.selectByStatCode(param);
@@ -63,16 +63,24 @@ public class OnedayPriceService {
 	}
 	
 	// 예약가능한 날짜(달력에서 날짜를 선택했을때)
-	public List<Map<String, Object>> selectByOneday (Map<String, Object> param){
+	public List<Map<String, Object>> selectByOneday(Map<String, Object> param){
 		
-		// 선택한 날짜뒤로 예약날짜가 없으면 결과값이 없음. 인원수 초과해도 사람이없네
+		// 선택한 날짜뒤로 예약날짜가 없으면 결과값이 없음.
 		if(onedayPriceMapper.selectByOneday(param).isEmpty()) {
-			log.info("if = null일때");
 			return onedayPriceMapper.selectByremain(param);
 		} else {
-			log.info("if = null아닐때");
 			return onedayPriceMapper.selectByOneday(param);
 		}
 		
+	}
+	
+	// 숙박일정에 따른 숙박가격 조회
+	public Map<String, Object> selectByBookingDate(Map<String, Object> param){
+		return onedayPriceMapper.selectByBookingDate(param);
+	}
+	
+	// 숙박일정에 따른 숙박가격 세부조회(일자별 가격)
+	public List<Map<String, Object>> selectByBookingDateDetail(Map<String, Object> param){
+		return onedayPriceMapper.selectByBookingDateDetail(param);
 	}
 }

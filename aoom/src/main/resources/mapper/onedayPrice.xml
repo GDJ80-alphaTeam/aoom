@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.alpha.aoom.onedayPrice.service.OnedayPriceMapper">
+
 	<!-- 컬럼 이름 sql조각 -->
 	<sql id="onedayPrice_col">
 		 oneday
@@ -75,8 +76,8 @@
         		WHERE 
             		rn <![CDATA[>]]> 0 
             		AND rn <![CDATA[<]]> 2 )
-        
     </select>
+    
     <!-- 비활성된 예약날짜가 없을시 실행할 쿼리 -->
     <select id = "selectByremain" parameterType="map" resultType="camelCaseMap">
     	
@@ -95,6 +96,31 @@
             WHERE
               	room_id = #{roomId} 
                	AND oneday <![CDATA[>=]]> #{selectedDate}
-        
     </select>
+    
+    <!-- 숙박일정에 따른 숙박가격 조회 -->
+    <select id="selectByBookingDate" parameterType="map" resultType="camelCaseMap">
+	    SELECT
+		    TO_CHAR(SUM(oneday_price), '999,999,999') AS sum
+		FROM
+		    oneday_price
+		WHERE
+		    room_id = #{roomId}
+		    AND oneday BETWEEN TO_DATE(#{startDate}, 'YY/MM/DD') AND (TO_DATE(#{endDate}, 'YY/MM/DD') - 1)
+		GROUP BY
+		    room_id
+    </select>
+    
+    <!-- 숙박일정에 따른 숙박가격 세부조회(일자별 가격) -->
+    <select id="selectByBookingDateDetail" parameterType="map" resultType="camelCaseMap">
+	    SELECT
+		     TO_CHAR(oneday, 'YYYY/MM/DD') AS oneday
+		    ,TO_CHAR(oneday_price, '999,999,999') AS oneday_price
+		FROM
+		    oneday_price
+		WHERE
+		    room_id = #{roomId}
+	    	AND oneday BETWEEN TO_DATE(#{startDate}, 'YY/MM/DD') AND (TO_DATE(#{endDate}, 'YY/MM/DD') - 1)
+    </select>
+    
 </mapper>

@@ -65,13 +65,15 @@
 							<li class="list-group-item">
 								<h5 class="card-title">요금세부정보</h5>
 								<p class="card-text">
-									000000 X 00일
+									<c:forEach var="bookingPriceDetail" items="${bookingPriceDetail}">
+										${bookingPriceDetail.oneday} : ${bookingPriceDetail.onedayPrice}원 <br>
+									</c:forEach>
 								</p>
 							</li>
 							<li class="list-group-item">
 								<h5 class="card-title">총합계</h5>
 								<p class="card-text">
-									000000 원
+									${bookingPrice.sum } 원
 								</p>
 							</li>
 						</ul>

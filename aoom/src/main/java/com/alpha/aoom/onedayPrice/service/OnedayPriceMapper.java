@@ -22,4 +22,10 @@ public interface OnedayPriceMapper {
 	
 	// 숙소에 예약불가능한 날짜가 없을경우 사용자가 선택한값이후로 출력할 날짜들 
 	List<Map<String, Object>> selectByremain(Map<String, Object> param);
+	
+	// 숙박일정에 따른 숙박가격 조회
+	Map<String, Object> selectByBookingDate(Map<String, Object> param);
+	
+	// 숙박일정에 따른 숙박가격 세부조회(일자별 가격)
+	List<Map<String, Object>> selectByBookingDateDetail(Map<String, Object> param);
 }
