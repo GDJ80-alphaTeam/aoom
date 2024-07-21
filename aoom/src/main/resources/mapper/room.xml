@@ -338,4 +338,34 @@
 			user_id = #{userId}
 			AND roomstat_code !='rst05'
 	</select>
+	
+	<!-- 숙소의 카테고리 이름 조회 -->
+	<select id="selectByCategoryName" parameterType="map" resultType="camelCaseMap">
+		SELECT
+		     r.room_id AS room_id
+		    ,r.room_name AS room_name
+		    ,c.code_name AS category
+		FROM
+		    room r
+		INNER JOIN
+		    code c
+		ON
+		    r.roomcate_code = c.code_key
+		WHERE
+		    r.room_id = #{roomId}
+	</select>
+	
+	<!-- 숙소의 평점과 후기의 갯수 조회 -->
+	<select id="selectByRatingAvgReviewCnt" parameterType="map" resultType="camelCaseMap">
+		SELECT
+		     room_id
+		    ,ROUND(AVG(rating), '1') AS avg
+		    ,COUNT(room_id) AS cnt
+		FROM
+		    review
+		WHERE
+		    room_id = #{roomId}
+		GROUP BY
+		    room_id
+	</select>
 </mapper>
