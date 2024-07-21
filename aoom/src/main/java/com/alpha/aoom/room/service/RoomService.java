@@ -152,10 +152,4 @@ public class RoomService {
 	public Map<String, Object> selectByCategoryName(Map<String, Object> param){
 		return roomMapper.selectByCategoryName(param);
 	}
-	
-	// 숙소의 평점과 후기의 갯수 조회
-	public Map<String, Object> selectByRatingAvgReviewCnt(Map<String, Object> param){
-		return roomMapper.selectByRatingAvgReviewCnt(param);
-	}
-	
 }

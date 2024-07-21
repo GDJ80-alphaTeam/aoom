@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.alpha.aoom.onedayPrice.service.OnedayPriceService;
+import com.alpha.aoom.review.service.ReviewService;
 import com.alpha.aoom.room.service.RoomService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,9 @@ public class BookingController {
 	@Autowired
 	OnedayPriceService onedayPriceService;
 	
+	@Autowired
+	ReviewService reviewService;
+	
 	@RequestMapping("book")
 	public String booking(@RequestParam Map<String, Object> param, ModelMap modelMap) {
 		log.info("param : " + param);
@@ -39,7 +43,7 @@ public class BookingController {
 		// 카테고리 이름 조회
 		Map<String, Object> roomInfo = roomService.selectByCategoryName(param);
 		// 숙소의 평점과 후기의 갯수 조회
-		Map<String, Object> ratingReview = roomService.selectByRatingAvgReviewCnt(param);
+		Map<String, Object> ratingReview = reviewService.selectByRatingAvgReviewCnt(param);
 		// 숙박일정에 따른 숙박가격 조회
 		Map<String, Object> bookingPrice = onedayPriceService.selectByBookingDate(param);
 		// 숙박일정에 따른 숙박가격 세부조회(일자별 가격)

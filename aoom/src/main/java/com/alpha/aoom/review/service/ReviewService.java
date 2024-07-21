@@ -85,5 +85,10 @@ public class ReviewService {
 		return hostCount;
 					
 	}
+	
+	// 숙소의 평점과 후기의 갯수 조회
+	public Map<String, Object> selectByRatingAvgReviewCnt(Map<String, Object> param){
+		return reviewMapper.selectByRatingAvgReviewCnt(param);
+	}
 
 }

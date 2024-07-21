@@ -16,4 +16,7 @@ public interface ReviewMapper {
 	
 	// 유저 한명의 받은리뷰수의 총합
 	Map<String, Object> selectByHostTotalCnt (Map<String, Object> param);
+	
+	// 숙소의 평점과 후기의 갯수 조회
+	Map<String, Object> selectByRatingAvgReviewCnt(Map<String, Object> param);
 }
