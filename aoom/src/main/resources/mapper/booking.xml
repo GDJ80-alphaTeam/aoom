@@ -16,54 +16,55 @@
 	<!-- 로그인한 사용자의 예약정보 + 숙소정보 조회 -->
 	<select id="selectByUserId" parameterType="map" resultType="camelCaseMap">
 		SELECT
-	    	 b.booking_id 
-	    	,b.create_date
-	    	,b.room_id 
-	    	,r.room_name
-	    	,r.user_id  
-	    	,r.main_image 
-	    	,c.code_name AS paystat_name
-	    	,c2.code_name AS bookstat_name
+		     b.booking_id
+		    ,b.create_date
+		    ,b.room_id 
+		    ,r.room_name
+		    ,r.user_id  
+		    ,r.main_image 
+		    ,c.code_name as paystat_name
+		    ,c2.code_name as bookstat_code
+		    ,bookingDate.start_date
+		    ,bookingDate.end_date
 		FROM
 		    booking b
 		LEFT JOIN
 		    room r 
-		ON 
-			b.room_id = r.room_id
-		LEFT join 
+		    on b.room_id = r.room_id
+		LEFT JOIN 
 		    code c
-		ON 
-			b.paystat_code = c.code_key
-		LEFT join 
+		    on b.paystat_code = c.code_key
+		LEFT JOIN 
 		    code c2
-	    ON 
-	    	b.bookstat_code = c2.code_key
+		    on b.bookstat_code = c2.code_key
+		LEFT JOIN    
+		    (SELECT
+		        booking_id 
+		        ,min(oneday) AS start_date
+		        ,max(oneday) AS end_date
+		    FROM     
+		        booking_oneday_price_map
+		    WHERE
+		    	booking_id = (
+		            SELECT 
+		                booking_id
+		            FROM     
+		                booking 
+		            WHERE 
+		                user_id = #{userId}
+		                )
+		    GROUP BY
+		        booking_id
+		    ORDER BY
+		        booking_id desc 
+		     )  bookingDate
+		     ON bookingDate.booking_id = b.booking_id 
 		WHERE 
 		    b.user_id = #{userId}
 
 	</select>
 	
-	<select id="selectByBookingMap" parameterType="map" resultType="camelCaseMap">
-		SELECT
-        	 booking_id 
-        	,max(oneday) AS start_date
-        	,min(oneday) AS endDate
-    	FROM     
-        	booking_oneday_price_map
-    	WHERE
-        	user_id = (
-       		SELECT 
-            	user_id
-        	FROM     
-            	booking 
-        	WHERE 
-            	user_id = #{userId}
-            )
-    	GROUP BY
-        	booking_id
-    	ORDER BY
-        	booking_id DESC
-	</select>
+
 	
 	  		
 </mapper>

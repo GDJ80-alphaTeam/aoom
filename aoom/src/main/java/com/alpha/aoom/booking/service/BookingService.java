@@ -21,8 +21,4 @@ public class BookingService {
 		
 	}
 	
-	public Map<String, Object> selectByBookingMap(Map<String, Object> param){
-		
-		return bookingMapper.selectByBookingMap(param);
-	}
 }

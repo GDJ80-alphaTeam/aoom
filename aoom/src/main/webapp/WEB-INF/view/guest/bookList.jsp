@@ -39,7 +39,7 @@
 								${r.roomName}
 							</a>	
 						</td>
-						<td>${r.createDate}</td>
+						<td>${r.startDate} ~ ${r.endDate}</td>
 						<td>${r.userId}</td>
 						
 						<td>

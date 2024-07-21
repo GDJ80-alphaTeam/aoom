@@ -34,7 +34,6 @@ public class GuestController {
 		//log.info(bookingService.selectByUserId(userInfo)+"test");
 		
 		modelMap.addAttribute("bookingList", bookingService.selectByUserId(userInfo));
-		modelMap.addAttribute("bookingDate", bookingService.selectByBookingMap(userInfo));
 		
 		return "/guest/bookList";
 	}
