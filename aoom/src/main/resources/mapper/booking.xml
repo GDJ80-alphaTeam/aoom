@@ -16,50 +16,74 @@
 	<!-- 로그인한 사용자의 예약정보 + 숙소정보 조회 -->
 	<select id="selectByUserId" parameterType="map" resultType="camelCaseMap">
 		SELECT
-		     b.booking_id
-		    ,b.create_date
-		    ,b.room_id 
-		    ,r.room_name
-		    ,r.user_id  
-		    ,r.main_image 
-		    ,c.code_name as paystat_name
-		    ,c2.code_name as bookstat_name
-		    ,bookingDate.start_date
-		    ,bookingDate.end_date
+			*
+		FROM	
+			(SELECT
+			     b.booking_id
+			    ,b.create_date
+			    ,b.room_id 
+			    ,r.room_name
+			    ,r.user_id  
+			    ,r.main_image 
+			    ,c.code_name AS paystat_name
+			    ,c2.code_name AS bookstat_name
+			    ,bookingDate.start_date
+			    ,bookingDate.end_date
+			    ,bookingDate.oneday_price
+			    ,rownum AS rn
+			FROM
+			    booking b
+			LEFT JOIN
+			    room r 
+			    on b.room_id = r.room_id
+			LEFT JOIN 
+			    code c
+			    on b.paystat_code = c.code_key
+			LEFT JOIN 
+			    code c2
+			    on b.bookstat_code = c2.code_key
+			LEFT JOIN    
+			    (SELECT
+			        booking_id 
+			        ,to_char(min(oneday), 'yy-mm-dd') AS start_date
+			        ,to_char(max(oneday+1), 'yy-mm-dd') AS end_date
+			        ,sum(oneday_price) AS oneday_price
+			    FROM     
+			        booking_oneday_price_map
+			    WHERE
+			    	1=1
+		    		<if test="userId != null"> 
+			    		AND booking_id IN (
+			            SELECT 
+			                booking_id
+			            FROM     
+			                booking 
+			            WHERE 
+			                user_id = #{userId}
+			            )    
+		            </if>
+		            <if test="bookingId != null">
+			        	AND booking_id	= #{bookingId}
+		            </if>
+			                
+			    GROUP BY
+			        booking_id
+			    ORDER BY
+			        booking_id desc 
+			     )  bookingDate
+			     ON bookingDate.booking_id = b.booking_id 
+			WHERE 
+			    b.user_id = #{userId})
+		WHERE
+       		rn <![CDATA[>]]> #{beginRow} and rn <![CDATA[<=]]> #{endRow}    
+	</select>
+	
+	<select id="selectByTotalCnt" parameterType="map" resultType="int">
+		SELECT
+			COUNT(*) AS cnt
 		FROM
-		    booking b
-		LEFT JOIN
-		    room r 
-		    on b.room_id = r.room_id
-		LEFT JOIN 
-		    code c
-		    on b.paystat_code = c.code_key
-		LEFT JOIN 
-		    code c2
-		    on b.bookstat_code = c2.code_key
-		LEFT JOIN    
-		    (SELECT
-		        booking_id 
-		        ,to_char(min(oneday), 'yy-mm-dd') AS start_date
-		        ,to_char(max(oneday+1), 'yy-mm-dd') AS end_date
-		    FROM     
-		        booking_oneday_price_map
-		    WHERE
-		    	booking_id = (
-		            SELECT 
-		                booking_id
-		            FROM     
-		                booking 
-		            WHERE 
-		                user_id = #{userId}
-		                )
-		    GROUP BY
-		        booking_id
-		    ORDER BY
-		        booking_id desc 
-		     )  bookingDate
-		     ON bookingDate.booking_id = b.booking_id 
+			booking	
 		WHERE 
-		    b.user_id = #{userId}
+			user_id = #{userId}	
 	</select>
 </mapper>

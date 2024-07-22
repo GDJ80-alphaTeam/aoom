@@ -14,4 +14,10 @@ public interface BookingMapper {
 	// 유저가 예약한 숙소의 숙박기간 
 	Map<String, Object> selectByBookingMap(Map<String, Object> param);
 	
+	// 유저의 총예약수
+	int selectByTotalCnt(Map<String, Object> param);
+	
+	// 유저의 상세예약정보
+	Map<String, Object> selectBybookingId(Map<String, Object> param);
+	
 }
