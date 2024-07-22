@@ -15,11 +15,13 @@
 	<select id="selectByRoomId" parameterType="map" resultType="camelCaseMap">
 		SELECT 
 	    	<include refid="roomImage_col"/>  
-	    	, '0' AS check_edit
 		FROM
 		    room_image
 		where 
-		    room_id = #{roomId}		
+		    room_id = #{roomId}
+		    <if test="imageNo != null and !imageNo.equals('')">
+	        	AND image_no = #{imageNo}
+	    	</if>
 	</select>
 	
 	<!-- 숙소등록 2단계에서 메인 이미지를 제외한 나머지 이미지들 INSERT -->

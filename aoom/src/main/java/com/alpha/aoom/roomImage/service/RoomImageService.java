@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.alpha.aoom.util.file.ImageRemove;
 import com.alpha.aoom.util.file.ImageUpload;
 
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,9 @@ public class RoomImageService {
 	
 	@Autowired
 	ImageUpload imageUpload;
+	
+	@Autowired
+	ImageRemove imageRemove;
 	
 	// 해당 숙소의 사진 검색
 	public List<Map<String, Object>> selectByRoomId(Map<String,Object> param) {
@@ -74,14 +78,28 @@ public class RoomImageService {
 			
 			String key = entry.getKey();
 			MultipartFile imageFile = entry.getValue();
-			log.info(key, imageFile.toString());
+			log.info(key + imageFile.toString());
 			if(key.startsWith("images_") && !imageFile.isEmpty()) {
+				log.info(key + imageFile.isEmpty());
 				
 				Map<String, Object> imageParam = new HashMap<>();
 				imageParam.put("imageNo", key.substring(key.indexOf('_') + 1));
 				imageParam.put("roomId", param.get("roomId"));
 				
+				String baseFolderPath = param.get("baseFolderPath").toString();
+				log.info(baseFolderPath);
+				log.info(imageParam.toString());
+				
+				log.info(roomImageMapper.selectByRoomId(imageParam).toString());
+				
+				if(!roomImageMapper.selectByRoomId(imageParam).isEmpty()) {
+					String imagePath = roomImageMapper.selectByRoomId(imageParam).get(0).get("image").toString();
+					
+					imageRemove.remove(baseFolderPath, imagePath);
+				}
+				
 				roomImageMapper.delete(imageParam);
+				
 			}
 		}
 	}
