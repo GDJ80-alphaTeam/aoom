@@ -14,6 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
     <style>
         .hidden {
             display: none;
@@ -44,8 +45,8 @@
 				        <option value="card">카드</option>
 				        <option value="bankTransfer">무통장입금</option>
 				    </select>
-				    <input id="cardInfo" class="hidden" type="text" placeholder="카드 번호 입력" required autocomplete="off" pattern="\d{4}-\d{4}-\d{4}-\d{4}">
-				    <input id="bankInfo" class="hidden" type="text" placeholder="계좌 번호 입력" required autocomplete="off">
+				    <input id="cardInfo" class="hidden" type="text" placeholder="카드번호 입력('-'를 포함하여 입력해주세요.)" required pattern="\d{4}-\d{4}-\d{4}-\d{4}">
+				    <input id="bankInfo" class="hidden" type="text" placeholder="환불 계좌 입력('-'를 포함하여 입력해주세요.)" required pattern="^(\d{1,})(-(\d{1,})){1,}">
 				</div>
 				
 				<!-- 우 -->

@@ -9,10 +9,10 @@
 		,r.room_name
 		,r.roomtype_code
 		,r.roomcate_code
-		,r.default_price
+		,TO_CHAR(r.default_price, '999,999,999') AS default_price
 		,r.start_date
 		,r.end_date
-		,r.address
+		,REPLACE(r.address, '^', ' ') AS address
 		,r.roomstat_code
 		,r.room_content
 		,r.reject_content
@@ -225,9 +225,9 @@
 		SELECT
 			 room_id
 			,main_image
-			,address
+			,REPLACE(address, '^', ' ') AS address
 			,room_name
-			,default_price
+			,TO_CHAR(default_price, '999,999,999') AS default_price
 			,roomcate_code
 		FROM
 			room
@@ -328,7 +328,7 @@
 			room_id = #{roomId}
 	</update>
 	
-	<!-- user가 호스팅하고있는 숙소의 개추 -->
+	<!-- user가 호스팅하고있는 숙소의 갯수 -->
 	<select id="selectByTotalCnt" parameterType="map" resultType="int">
 		SELECT 
 			 COUNT(*) AS cnt
