@@ -146,21 +146,19 @@ public class RegistRoomController extends BaseController{
 	// 숙소 등록 - 숙소 등록 2단계 정보 DB 입력 및 숙소 등록 3단계 페이지 이동
 	@RequestMapping("/roomManage/registRoom/registDetailInfo")
 	public String registRoomDetailInfo(@RequestParam Map<String, Object> param, 
-									   @RequestParam("mainImage") MultipartFile mainImage,
-									   @RequestParam("images") MultipartFile[] images,
+									   @RequestParam Map<String, MultipartFile> images,
 									   ModelMap modelMap) {
 		log.info("param={}", param);
-		log.info("mainImage={}", mainImage.isEmpty());
-		for (MultipartFile image : images) {
-			log.info("image={}", image.isEmpty());
-		}
-		
+		log.info("메인 사진 입력 여부={}", !images.get("mainImage").isEmpty());
+		log.info(images.toString());
+	
 		// param에 담겨있는 amenities가 문자열이기 때문에 List로 파싱
         String amenitiesStr = param.get("amenities").toString();
         List<String> amenities = Arrays.asList(amenitiesStr.split(","));
 		
-		// param에 amenities값(리스트), mainImage, images 추가
+		// param에 amenities값(리스트), images 추가
 		param.put("amenities", amenities);
+		param.put("images", images);
 		
 		// 숙소 이미지 폴더 생성 체크 후 이미지 파일 저장
 		// 폴더 이름 형식 지정(room + 오늘날짜)
@@ -178,11 +176,11 @@ public class RegistRoomController extends BaseController{
 		log.info("param={}", param);
 		
 		// 입력한 정보 DB에 UPDATE 및 이미지 저장
-		roomService.update(param, mainImage);
+		roomService.update(param, images.get("mainImage"));
 		
 		// 숙소 이미지, 편의시설의 경우 row수가 달라질 수 있으므로 DELETE 후 INSERT 진행 
 		roomImageService.delete(param);
-		roomImageService.insert(param, images);
+		roomImageService.insert(param);
 		
 		amenitiesService.delete(param);
 		amenitiesService.insert(param);

@@ -27,6 +27,8 @@
 		,r.bank_code
 		,r.account_no
 		,r.views
+		,r.address AS origin_address
+		,r.default_price AS orginal_default_price
 	</sql>	
 	
 	<!-- 숙소 전체 목록 조회 retrieveList -->
@@ -59,32 +61,26 @@
 	<select id="selectByUserId" parameterType="map" resultType="camelCaseMap">
        	SELECT
        		*
-       	FROM
-       	(
-       		SELECT
-		         <include refid="room_col" />
-		        ,code_name
-		        ,ROWNUM AS rn
-	        FROM
-	        ( 
-	            SELECT
-			         <include refid="room_col" />
-			        ,c.code_name
-			    FROM
-			        room r
-			    INNER JOIN 
-			    	code c
-			    ON 
-			    	r.roomstat_code = c.code_key 
-		        WHERE 
-		        	user_id = #{userId}
-		        	AND roomstat_code !='rst05'
-		        ORDER BY 
-		        	create_date DESC
-	         ) r
-       	) r
+		FROM
+        (
+			SELECT
+				<include refid="room_col" />
+		        ,c.code_name
+       			,ROW_NUMBER() OVER (ORDER BY r.create_date DESC) AS rn
+			FROM
+				room r
+			INNER JOIN
+				code c
+			ON
+		    	r.roomstat_code = c.code_key
+	        WHERE
+	        	r.user_id = #{userId}
+	        	AND r.roomstat_code !='rst05'
+	        ORDER BY
+	        	r.create_date DESC
+         ) r
        	WHERE
-       		rn <![CDATA[>]]> #{beginRow} and rn <![CDATA[<=]]> #{endRow}
+       		rn <![CDATA[>]]> #{beginRow} AND rn <![CDATA[<=]]> #{endRow}
 	</select>
 	
 	<!-- 조회수 TOP4 숙소 조회 -->

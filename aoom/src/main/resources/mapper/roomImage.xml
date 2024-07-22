@@ -42,5 +42,8 @@
 		DELETE FROM room_image
 		WHERE
 			room_id = #{roomId}
+			<if test="imageNo != null and !imageNo.equals('')">
+	        	AND image_no = #{imageNo}
+	    	</if>
 	</delete>
 </mapper>

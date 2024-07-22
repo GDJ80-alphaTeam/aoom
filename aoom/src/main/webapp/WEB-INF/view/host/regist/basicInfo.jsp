@@ -165,9 +165,9 @@
 	
 	<!-- DB에서 가져온 주소 나누기 -->
 	<script type="text/javascript">
-		$( document ).ready(function() {
-		    console.log("${roomInfo.address}");
-		    let roomInfo = "${roomInfo.address}";
+		$(document).ready(function() {
+		    console.log("${roomInfo.originAddress}");
+		    let roomInfo = "${roomInfo.originAddress}";
 		    let array = roomInfo.split("^");
 		    let address1 = array[0];
 		    let address2 = array[1];
@@ -178,7 +178,7 @@
 			// input 요소에 값 설정
 			$('#frontAddress').val(address1);
 			$('#detailAddress').val(address2);
-			$('#address').val(address1 + '^' + address2);
+			$('#address').val(roomInfo);
 			
 		    console.log($('#frontAddress').val());
 		    console.log($('#detailAddress').val());

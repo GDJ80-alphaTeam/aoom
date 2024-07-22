@@ -25,7 +25,7 @@ public class FolderCreation {
 	@PostConstruct
 	public void init() {
 		BASE_FOLDER_PATH = servletContext.getRealPath("/");
-		System.out.println(BASE_FOLDER_PATH);
+		log.info("프로젝트 경로={}", BASE_FOLDER_PATH);
 	}
 	
 	/**
