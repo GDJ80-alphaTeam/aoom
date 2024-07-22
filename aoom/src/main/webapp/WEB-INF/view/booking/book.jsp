@@ -34,19 +34,20 @@
 				<!-- 좌 -->
 				<div class="col">
 					<h3>날짜</h3>    
-				    <input type="text" id="datePicker" style="width: 300px;" required autocomplete="off">
+				    <input type="text" id="datePicker" style="width: 300px;" required autocomplete="off"><br>
+				    <input type="hidden" id="startDate" name="startDate">
+				    <input type="hidden" id="endDate" name="endDate">
 				    
 				    <h3>숙박인원</h3>
-				    <input type="number" name="usePeople" id="usePeople" min="1" required autocomplete="off">
+				    <input type="number" id="usePeople" name="usePeople" min="1" required autocomplete="off">
 				    
 				    <h3>결제 수단 선택</h3>
 				    <select id="paymentMethod">
-				        <option value="">===결제수단===</option>
-				        <option value="card">카드</option>
+				        <option value="card" selected>카드</option>
 				        <option value="bankTransfer">무통장입금</option>
 				    </select>
-				    <input id="cardInfo" class="hidden" type="text" placeholder="카드번호 입력('-'를 포함하여 입력해주세요.)" required pattern="\d{4}-\d{4}-\d{4}-\d{4}">
-				    <input id="bankInfo" class="hidden" type="text" placeholder="환불 계좌 입력('-'를 포함하여 입력해주세요.)" required pattern="^(\d{1,})(-(\d{1,})){1,}">
+				    <input type="text" id="cardInfo" name="cardInfo" placeholder="카드번호 입력('-'를 포함하여 입력해주세요.)" pattern="\d{4}-\d{4}-\d{4}-\d{4}" required>
+				    <input type="text" id="bankInfo" name="bankInfo" class="hidden" placeholder="환불 계좌 입력('-'를 포함하여 입력해주세요.)" pattern="^(\d{1,})(-(\d{1,})){1,}">
 				</div>
 				
 				<!-- 우 -->
@@ -65,7 +66,7 @@
 						<ul class="list-group list-group-flush">
 							<li class="list-group-item">
 								<h5 class="card-title">요금세부정보</h5>
-								<p class="card-text">
+								<p class="card-text"  id="detailPrice">
 									<c:forEach var="bookingPriceDetail" items="${bookingPriceDetail}">
 										${bookingPriceDetail.oneday} : ${bookingPriceDetail.onedayPrice}원 <br>
 									</c:forEach>
@@ -73,7 +74,7 @@
 							</li>
 							<li class="list-group-item">
 								<h5 class="card-title">총합계</h5>
-								<p class="card-text">
+								<p class="card-text"  id="totalPrice">
 									${bookingPrice.sum } 원
 								</p>
 							</li>
@@ -90,13 +91,28 @@
 	
 
 	<script>
+	    // URL 쿼리 매개변수를 파싱하여 객체로 변환하는 함수
+	    function getQueryParams() {
+	        const params = {};
+	        const queryString = window.location.search.substring(1);
+	        const regex = /([^&=]+)=([^&]*)/g;
+	        let m;
+	        while (m = regex.exec(queryString)) {
+	            params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+	        }
+	        return params;
+	    }
+	
 	    // url데이터를 input태그 value에 삽입
 	    $(document).ready(function(){
-	        const usePeople = "${usePeople}";
-	        const bookingDate = "${bookingDate}";
-	        
-	        if (usePeople) $('#usePeople').val(usePeople);
-	        if (bookingDate) $('#datePicker').val(bookingDate);
+	        const params = getQueryParams();
+	
+	        if (params.usePeople) $('#usePeople').val(params.usePeople);
+	        if (params.startDate) $('#startDate').val(params.startDate);
+	        if (params.endDate) $('#endDate').val(params.endDate);
+	        if (params.startDate && params.endDate) {
+	            $('#datePicker').val(params.startDate + " ~ " + params.endDate);
+	        }
 	    });
 	
 	    let isInitializing = false;
@@ -145,16 +161,22 @@
 	            }
 	        },
 	        onChange: function(selectedDates, dateStr, instance) {
-	            console.log("Selected range: ", selectedDates);
-	            
 	            // 날짜형식 변경 yyyy/mm/dd
-	            let formattedDates = moment(selectedDates[0]).format('YYYY-MM-DD');
-	            console.log("Selected range (formatted): ", formattedDates);
+	            let formattedDates = moment(selectedDates[0]).format('YYYY/MM/DD');
+	            let startDate = moment(selectedDates[0]).format('YYYY/MM/DD');
+	            let endDate = moment(selectedDates[1]).format('YYYY/MM/DD');
 	            
+	            // usePeople 값을 가져옴
+	            let usePeople = $('#usePeople').val();
+	            
+	         	// endDate input 필드 업데이트
+                $('#startDate').val(startDate);
+                $('#endDate').val(endDate);
+	         
 	            $.ajax({
-	                url: '/onedayPrice/ajaxSelectDay',
+	                url: '/onedayPrice/ajaxBookingDay',
 	                method: 'post',
-	                data: {"roomId":"${roomId}" , "selectedDate" : formattedDates },
+	                data: {"roomId" : "${roomId}", "selectedDate" : formattedDates, "startDate" : startDate, "endDate" : endDate, "usePeople" : usePeople},
 	                dataType: 'json',
 	                success: function(response) {
 	                    // 서버에서 받은 비활성화할 날짜 배열
@@ -162,26 +184,62 @@
 	                    // Flatpickr 인스턴스 업데이트
 	                    instance.set('enable', disableDates);
 	                    
-	                    console.log(disableDates);
+	                    // 요금 세부 정보 업데이트
+	                    let priceDetail = "";
+	                    response.bookingPriceDetail.forEach(function(detail){
+	                    	priceDetail += detail.oneday + " : " + detail.onedayPrice + "원<br>";
+	                    });
+	                    $('#detailPrice').html(priceDetail);
+	                    
+	                    // 요금 합계 업데이트
+	                    $('#totalPrice').text(response.bookingPrice.sum + ' 원');
+	                    
+	                    // 예약날짜업데이트
+	                    
 	                }
 	            });
 	        }
 	    });
 	    
-	    // 결제수단 선택시 인풋창 보이게
-		$('#paymentMethod').change(function() {
-		    const selectedMethod = $(this).val();
-		    if (selectedMethod === 'card') {
-		        $('#cardInfo').removeClass('hidden');
-		        $('#bankInfo').addClass('hidden');
-		    } else if (selectedMethod === 'bankTransfer') {
-		        $('#cardInfo').addClass('hidden');
-		        $('#bankInfo').removeClass('hidden');
-		    } else {
-		        $('#cardInfo').addClass('hidden');
-		        $('#bankInfo').addClass('hidden');
-		    }
+	    // 결제수단 선택시 인풋창 보이게 + 유효성 검사
+        $('#paymentMethod').change(function() {
+            const selectedMethod = $(this).val();
+            $('#cardInfo').removeClass('hidden').removeAttr('required');
+            $('#bankInfo').removeClass('hidden').removeAttr('required');
+            
+            if (selectedMethod === 'card') {
+                $('#cardInfo').addClass('hidden').attr('required', 'required');
+            } else if (selectedMethod === 'bankTransfer') {
+                $('#bankInfo').addClass('hidden').attr('required', 'required');
+            }
+
+            if (selectedMethod === 'card') {
+                $('#cardInfo').removeClass('hidden').attr('required', 'required');
+                $('#bankInfo').addClass('hidden').removeAttr('required');
+            } else if (selectedMethod === 'bankTransfer') {
+                $('#bankInfo').removeClass('hidden').attr('required', 'required');
+                $('#cardInfo').addClass('hidden').removeAttr('required');
+            } else {
+                $('#cardInfo').addClass('hidden').removeAttr('required');
+                $('#bankInfo').addClass('hidden').removeAttr('required');
+            }
+        });
+	    
+	    // 숙박인원 변경 시 이벤트
+		$('#usePeople').on('input', function() {
+			alert("인원변경됨.");
 		});
+	    
 	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+

@@ -57,6 +57,34 @@ public class onedayPriceController extends BaseController {
 			  return getFailResult(model);
 		  }		  			  
 		  
+	  }
+	  
+	  // param : selectDate
+	  // 예약가능한 날짜(달력에서 날짜를 선택했을때)
+	  @RequestMapping("/ajaxBookingDay")
+	  @ResponseBody
+	  public Map<String, Object> ajaxBookingDay(@RequestParam Map<String, Object> param){
+		  // ajax로 보낼 값
+		  Map<String, Object> model = new HashMap<String, Object>();
+		  
+		  log.info("ajaxSelectDay테스트 : " + param);
+		  // 숙박일정에 따른 숙박가격 조회, 세부조회(일자별 가격)
+		  Map<String, Object> bookingPrice = onedayPriceService.selectByBookingDate(param);
+		  List<Map<String, Object>> bookingPriceDetail = onedayPriceService.selectByBookingDateDetail(param);
+		  log.info("숙박가격 조회 : " + bookingPrice);
+		  log.info("일자별 가격 : " + bookingPriceDetail);
+		  
+		  // model에 넣기
+		  model.put("bookingPrice", bookingPrice);
+		  model.put("bookingPriceDetail", bookingPriceDetail);
+		  model.put("data", onedayPriceService.selectByOneday(param));
+		  
+		  if( onedayPriceService.selectByOneday(param) != null) {
+			  return getSuccessResult(model);
+		  } else {
+			  return getFailResult(model);
+		  }		  			  
+		  
 	  } 
 	
 }
