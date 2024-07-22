@@ -37,6 +37,7 @@
 				    <input type="text" id="datePicker" style="width: 300px;" required autocomplete="off"><br>
 				    <input type="hidden" id="startDate" name="startDate">
 				    <input type="hidden" id="endDate" name="endDate">
+				    <input type="hidden" id="roomId" name="roomId">
 				    
 				    <h3>숙박인원</h3>
 				    <input type="number" id="usePeople" name="usePeople" min="1" required autocomplete="off">
@@ -46,8 +47,8 @@
 				        <option value="card" selected>카드</option>
 				        <option value="bankTransfer">무통장입금</option>
 				    </select>
-				    <input type="text" id="cardInfo" name="cardInfo" placeholder="카드번호 입력('-'를 포함하여 입력해주세요.)" pattern="\d{4}-\d{4}-\d{4}-\d{4}" required>
-				    <input type="text" id="bankInfo" name="bankInfo" class="hidden" placeholder="환불 계좌 입력('-'를 포함하여 입력해주세요.)" pattern="^(\d{1,})(-(\d{1,})){1,}">
+				    <input type="text" id="cardInfo" name="cardNo" placeholder="카드번호 입력('-'를 포함하여 입력해주세요.)" pattern="\d{4}-\d{4}-\d{4}-\d{4}" required>
+				    <input type="text" id="bankInfo" name="refundAccount" class="hidden" placeholder="환불 계좌 입력('-'를 포함하여 입력해주세요.)" pattern="^(\d{1,})(-(\d{1,})){1,}">
 				</div>
 				
 				<!-- 우 -->
@@ -76,6 +77,7 @@
 								<h5 class="card-title">총합계</h5>
 								<p class="card-text"  id="totalPrice">
 									${bookingPrice.sum } 원
+									<input type="hidden" name="paymentPrice" value="${bookingPrice.sum }">
 								</p>
 							</li>
 						</ul>
@@ -113,6 +115,7 @@
 	        if (params.startDate && params.endDate) {
 	            $('#datePicker').val(params.startDate + " ~ " + params.endDate);
 	        }
+	        if (params.roomId) $('#roomId').val(params.roomId);
 	    });
 	
 	    let isInitializing = false;
@@ -230,6 +233,24 @@
 			alert("인원변경됨.");
 		});
 	    
+	    // 예약하기 버튼 클릭 시 이벤트
+	    $('#bookingBtn').click(function(event){
+			alert('버튼클릭 후 ajax 전');
+	    	
+	    	// form 데이터를 seraialize()로 가져오기
+	    	let formData = $('#booking').serialize();
+	    	
+			$.ajax({
+				url: '/booking/ajaxBook',
+				method: 'get',
+				data: formData,
+				dataType: 'json',
+				success: function(response){
+					if(response.result){
+					}
+				}
+			})
+	    })
 	</script>
 </body>
 </html>
