@@ -80,22 +80,23 @@
     
     <!-- 비활성된 예약날짜가 없을시 실행할 쿼리 -->
     <select id = "selectByremain" parameterType="map" resultType="camelCaseMap">
-    	
-            SELECT
-                oneday 
-            FROM
-            	oneday_price
-            WHERE 
-                room_id = #{roomId} 
-                AND oneday <![CDATA[>=]]> #{selectedDate}
-            UNION        
-            SELECT  
-            	oneday+1
-            FROM 
-            	oneday_price
-            WHERE
-              	room_id = #{roomId} 
-               	AND oneday <![CDATA[>=]]> #{selectedDate}
+    	SELECT
+        	oneday 
+        FROM
+           	oneday_price
+        WHERE 
+            room_id = #{roomId} 
+            AND oneday <![CDATA[>=]]> #{selectedDate}
+            
+        UNION     
+           
+        SELECT  
+           	oneday+1
+        FROM 
+           	oneday_price
+        WHERE
+           	room_id = #{roomId} 
+          	AND oneday <![CDATA[>=]]> #{selectedDate}
     </select>
     
     <!-- 숙박일정에 따른 숙박가격 조회 -->

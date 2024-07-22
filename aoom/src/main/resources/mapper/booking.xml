@@ -23,7 +23,7 @@
 		    ,r.user_id  
 		    ,r.main_image 
 		    ,c.code_name as paystat_name
-		    ,c2.code_name as bookstat_code
+		    ,c2.code_name as bookstat_name
 		    ,bookingDate.start_date
 		    ,bookingDate.end_date
 		FROM
@@ -41,7 +41,7 @@
 		    (SELECT
 		        booking_id 
 		        ,to_char(min(oneday), 'yy-mm-dd') AS start_date
-		        ,to_char(max(oneday), 'yy-mm-dd') AS end_date
+		        ,to_char(max(oneday+1), 'yy-mm-dd') AS end_date
 		    FROM     
 		        booking_oneday_price_map
 		    WHERE
@@ -61,10 +61,5 @@
 		     ON bookingDate.booking_id = b.booking_id 
 		WHERE 
 		    b.user_id = #{userId}
-
 	</select>
-	
-
-	
-	  		
 </mapper>
