@@ -22,6 +22,7 @@
 			     b.booking_id
 			    ,b.create_date
 			    ,b.room_id 
+			    ,b.bookstat_code
 			    ,r.room_name
 			    ,r.user_id  
 			    ,r.main_image 
@@ -117,4 +118,13 @@
 		    ,'pay02'
 		)
 	</insert>
+	
+	<update id="updateBookingStat" parameterType="map">
+		UPDATE 
+			booking
+		SET 
+			bookstat_code = #{bookstatCode}
+		WHERE 
+			booking_id = #{bookingId}
+	</update>
 </mapper>

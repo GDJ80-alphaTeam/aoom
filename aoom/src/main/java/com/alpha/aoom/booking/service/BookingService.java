@@ -73,4 +73,11 @@ public class BookingService {
 		return 1;
 	}
 	
+	// param : bookingId , bookstatCode
+		// 예약 상태 변경 
+	public int updateBookingStat(Map<String, Object> param) {
+			
+		return bookingMapper.updateBookingStat(param);
+	}
+	
 }

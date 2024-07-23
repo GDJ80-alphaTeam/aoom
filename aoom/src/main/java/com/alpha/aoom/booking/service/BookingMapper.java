@@ -16,5 +16,7 @@ public interface BookingMapper {
 	
 	// 예약 추가
 	int insert(Map<String, Object> param);
-	
+
+	// 예약상태변경
+	int updateBookingStat(Map<String, Object> param);
 }

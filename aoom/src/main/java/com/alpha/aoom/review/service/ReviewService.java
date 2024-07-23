@@ -1,13 +1,18 @@
 package com.alpha.aoom.review.service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.alpha.aoom.util.file.FolderCreation;
+import com.alpha.aoom.util.file.ImageUpload;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,7 +23,9 @@ public class ReviewService {
 
 	@Autowired
 	ReviewMapper reviewMapper;
-
+	
+	@Autowired
+	FolderCreation folderCreation;
 	private final int rowPerPage = 2;
 	
 	// param : String room_id , int currentPage , int beginRow , int endRow
@@ -75,13 +82,6 @@ public class ReviewService {
 		
 		Map<String, Object> hostCount = new HashMap<>(originalHostCount);
 		
-		double roundedValue = 0; 
-		
-		if(hostCount.get("avg") != null) {
-			roundedValue = Math.round((((BigDecimal)(hostCount).get("avg")).doubleValue()) * 10) / 10.0;
-		}
-		//log.info(roundedValue);
-		hostCount.put("avg", roundedValue);
 		return hostCount;
 					
 	}
@@ -91,4 +91,38 @@ public class ReviewService {
 		return reviewMapper.selectByRatingAvgReviewCnt(param);
 	}
 
+	// param : booking_id , room_id , user_id , review_content , review_image , original_name
+	// 리뷰 등록 
+	public int insert(Map<String, Object> param){
+		
+		ImageUpload imageUpload = new ImageUpload();
+		
+		// 폴더 이름 형식 지정(room + 오늘날짜)
+		String folderName = "room" + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+		
+		// 생성된 폴더의 경로(상대경로 - /image/roomYYYYMMDD/ 형식)
+		String imageFolderPath = folderCreation.createImageFolder(folderName);
+		
+		String baseFolderPath = folderCreation.BASE_FOLDER_PATH ;
+
+		MultipartFile reviewImage = (MultipartFile) param.get("reviewImage");
+		
+		// 이미지 생성은 각자의 프로젝트 경로 + 이미지 폴더 경로 이므로 각자의 프로젝트 경로까지 포함하는 totalFolderPath 변수 생성
+		String totalFolderPath = baseFolderPath + imageFolderPath;
+		log.info("baseFolderPath"+baseFolderPath);
+		log.info("imageFolderPath"+imageFolderPath);
+		// 리뷰 이미지 저장 및 uuid 파일명 반환
+		String uuidMainImage = imageUpload.saveFile(totalFolderPath, reviewImage);
+		
+		// 리뷰 이미지 이름
+		String originalMainImage = reviewImage.getOriginalFilename();
+		
+		param.put("reviewImage", imageFolderPath + "/" + uuidMainImage);
+		param.put("originalName", originalMainImage);
+		return reviewMapper.insert(param);
+	}
+	public int insertContent(Map<String, Object> param) {
+		
+		return reviewMapper.insertContent(param);
+	}
 }

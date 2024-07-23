@@ -68,7 +68,7 @@ public class RoomController extends BaseController {
 		//log.info("숙소상세보기 호출값" + roomInfo);
 		//log.info("숙소편의시설 호출값" + roomAmenities);
 		//log.info("리뷰목록 호출값"+reviewList);
-		//log.info("해당숙소의 리뷰 평점 및 리뷰값"+reviewCntAvg);
+		log.info("해당숙소의 리뷰 평점 및 리뷰값"+reviewCntAvg);
 		//log.info("해당숙소의 이미지 url 조회"+roomImages);
 		
 		modelMap.addAttribute("roomInfo",roomInfo);

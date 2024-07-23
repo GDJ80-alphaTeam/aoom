@@ -25,6 +25,7 @@ public class GuestController {
 	
 	CodeService codeService;
 	
+	// param: currentPage
 	// 사용자가 예약한 목록 출력
 	@RequestMapping("/bookList")
 	public String guestBookList (@RequestParam Map<String, Object> param , HttpSession session , ModelMap modelMap ) {
@@ -47,6 +48,8 @@ public class GuestController {
 		return "/guest/bookList";
 	}
 	
+	// param : roomId 
+	// 게스트 예약상세보기
 	@RequestMapping("/bookInfo")
 	public String requestMethodName(@RequestParam Map<String, Object> param , HttpSession session , ModelMap modelMap) {
 		

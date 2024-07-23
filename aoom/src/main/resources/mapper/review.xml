@@ -6,6 +6,7 @@
 		booking_id
        ,room_id
        ,user_id
+       ,rating
        ,review_content
        ,review_image
        ,original_name
@@ -43,7 +44,7 @@
 	<select id="selectByAvgCnt" parameterType="map" resultType="camelCaseMap">
 		SELECT 
 			 COUNT(*) AS cnt
-			,AVG(rating) AS avg		
+			,ROUND(AVG(rating), 1) AS avg 		
 		FROM 
 			review
 		WHERE 
@@ -54,7 +55,7 @@
 	<select id="selectByHostTotalCnt" parameterType="map" resultType="camelCaseMap">
 		SELECT 
 			 COUNT(*) AS cnt 
-		    ,avg(rating) AS avg
+		    ,ROUND(AVG(rating), 1) AS avg 
 		FROM
 			review
 		INNER JOIN
@@ -92,4 +93,38 @@
 		GROUP BY
 		    room_id
 	</select>
+	
+	<insert id="insert" parameterType="map">
+		INSERT INTO review(
+				<include refid="review_col"/>
+		) VALUES(
+			 #{bookingId}
+	       	,#{roomId}
+	       	,#{userId}
+	       	,#{rating}
+	       	,#{reviewContent}
+	       	,#{reviewImage}
+	       	,#{originalName}
+	       	,sysdate
+		) 
+	</insert>
+	
+	<insert id="insertContent" parameterType="map">
+		INSERT INTO review(
+				booking_id
+		       ,room_id
+		       ,user_id
+		       ,rating
+		       ,review_content
+		       ,create_date
+		) VALUES(
+			 #{bookingId}
+	       	,#{roomId}
+	       	,#{userId}
+	       	,#{rating}
+	       	,#{reviewContent}
+	       	,sysdate
+		) 
+	</insert>
+	
 </mapper>

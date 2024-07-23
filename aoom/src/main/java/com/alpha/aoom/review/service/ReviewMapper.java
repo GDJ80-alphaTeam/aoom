@@ -19,4 +19,10 @@ public interface ReviewMapper {
 	
 	// 숙소의 평점과 후기의 갯수 조회
 	Map<String, Object> selectByRatingAvgReviewCnt(Map<String, Object> param);
+	
+	// 리뷰등록
+	int insert(Map<String, Object> param);
+	
+	// 리뷰등록(사진X)
+	int insertContent(Map<String, Object> param);
 }
