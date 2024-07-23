@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.alpha.aoom.booking.service.BookingService;
 import com.alpha.aoom.onedayPrice.service.OnedayPriceService;
 import com.alpha.aoom.review.service.ReviewService;
 import com.alpha.aoom.room.service.RoomService;
@@ -31,6 +32,9 @@ public class BookingController extends BaseController {
 	
 	@Autowired
 	ReviewService reviewService;
+	
+	@Autowired
+	BookingService bookingService;
 	
 	// 예약하기
 	@RequestMapping("/book")
@@ -70,22 +74,21 @@ public class BookingController extends BaseController {
 	// 예약하기 버튼 클릭 ajax
 	// param : startDate, endDate, roomId, usePeople, cardNo, refundAccount, paymentPrice
 	@RequestMapping("/ajaxBook")
-	public Map<String, Object> ajaxBook(@RequestParam Map<String, Object> param, ModelMap modelMap, HttpSession session) {
-		Map<String, Object> model = new HashMap<String, Object>();
-
-	    // 세션에서 userInfo를 가져옴
+	public Map<String, Object> ajaxBook(@RequestParam Map<String, Object> param, HttpSession session) {
+		Map<String, Object> model = new HashMap<String, Object>(); // ajax 결과 담을 맵
+		
+	    // 세션에서 userInfo를 가져옴 -> userInfo에서 userId를 추출
 	    Map<String, Object> userInfo = (Map<String, Object>) session.getAttribute("userInfo");
-	    
-	    // userInfo에서 userId를 추출
 	    String userId = (String) userInfo.get("userId");
 	    
-	    // 로그로 출력해 확인
-	    log.info("userId : " + userId);
-	    log.info("ajaxParam : " + param); 
-		
-		// modelMap에 값 넣기
-	    // 값 넣을 자리(작업중)
-	    log.info("ajaxModelMap : " + modelMap);
+	    // param에 userId 넣기
+	    param.put("userId", userId);
+	    
+	    // 디버깅
+	    log.info("파람 : " + param);
+	    
+	    // 예약하기
+	    int booking = bookingService.booking(param);
 	    
 		return getSuccessResult(model);
 	}

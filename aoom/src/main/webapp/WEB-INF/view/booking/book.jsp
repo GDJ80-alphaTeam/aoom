@@ -235,19 +235,21 @@
 	    
 	    // 예약하기 버튼 클릭 시 이벤트
 	    $('#bookingBtn').click(function(event){
-			alert('버튼클릭 후 ajax 전');
 	    	
+		    if (!document.getElementById('booking').checkValidity()) {
+		        alert('폼을 올바르게 작성해주세요.');
+		        return; // 폼이 유효하지 않으면 AJAX 요청을 보내지 않음
+		    }
+		    
 	    	// form 데이터를 seraialize()로 가져오기
 	    	let formData = $('#booking').serialize();
 	    	
 			$.ajax({
 				url: '/booking/ajaxBook',
-				method: 'get',
+				method: 'post',
 				data: formData,
-				dataType: 'json',
 				success: function(response){
-					if(response.result){
-					}
+					
 				}
 			})
 	    })

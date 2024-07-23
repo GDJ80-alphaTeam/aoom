@@ -4,17 +4,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import jakarta.servlet.http.HttpSession;
+import com.alpha.aoom.onedayPrice.service.OnedayPriceMapper;
+import com.alpha.aoom.onedayPrice.service.OnedayPriceService;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class BookingService {
 
 	@Autowired
 	BookingMapper bookingMapper;
+	
+	@Autowired
+	OnedayPriceMapper onedayPriceMapper;
 	
 	final private int rowPerPage = 5 ;
 		
@@ -47,6 +54,17 @@ public class BookingService {
 		pagingInfo.put("lastPage", lastPage);
 		
 		return pagingInfo;
+	}
+	
+	// 예약 하기
+	@Transactional
+	public int booking(Map<String, Object> param) {
+		// 예약추가	
+		bookingMapper.insert(param);
+		// oneday_price 상태 예약불가로 업데이트, 남은 인원 감소
+		onedayPriceMapper.updateByStatUsePeople(param);
+		
+		return 1;
 	}
 	
 }

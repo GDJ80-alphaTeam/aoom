@@ -29,94 +29,79 @@
 				<!-- 검색 -->
 				<form id="search">
 					<input type="text" name="address" id="address" placeholder="여행지">
-					<input type="text" id="daterange" name="daterange"
-						placeholder="체크인 / 체크아웃" autocomplete="off"> <input
-						type="hidden" id="startDate" name="startDate"> <input
-						type="hidden" id="endDate" name="endDate"> <input
-						type="number" name="usePeople" id="usePeople" min="1"
-						placeholder="여행자">
+					<input type="text" id="daterange" name="daterange" placeholder="체크인 / 체크아웃" autocomplete="off"> 
+					<input type="hidden" id="startDate" name="startDate"> 
+					<input type="hidden" id="endDate" name="endDate">
+					<input type="number" name="usePeople" id="usePeople" min="1" placeholder="여행자">
 					<button type="button" id="btnSearch">검색</button>
 				</form>
 				<br>
 
 				<!-- 카테고리 전체 버튼 -->
-				<button type="button" id="btnAllCategories"
-					class="btn btn-danger btn-sm" onclick="removeCategory()">전체</button>
+				<button type="button" id="btnAllCategories" class="btn btn-danger btn-sm" onclick="removeCategory()">전체</button>
 
 				<!-- 카테고리 -->
-				<c:forEach var="roomCategory" items="${roomCategory}"
-					varStatus="status">
-					<button type="button" id="btn${roomCategory.codeKey}"
-						data-category="${roomCategory.codeKey}"
-						class="btn btn-danger btn-sm category-btn">${roomCategory.codeName}</button>
+				<c:forEach var="roomCategory" items="${roomCategory}" varStatus="status">
+					<button type="button" id="btn${roomCategory.codeKey}" data-category="${roomCategory.codeKey}" class="btn btn-danger btn-sm category-btn">${roomCategory.codeName}</button>
 				</c:forEach>
 
 				<!-- 필터 -->
 				<!-- Button trigger modal -->
-				<button type="button" class="btn btn-danger btn-sm"
-					data-bs-toggle="modal" data-bs-target="#exampleModal">필터</button>
+				<button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">필터</button>
 
 				<!-- Modal -->
-				<div class="modal fade" id="exampleModal" tabindex="-1"
-					aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal fade" id="exampleModal" tabindex="-1"	aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog modal-dialog-scrollable">
 						<div class="modal-content">
 							<div class="modal-header">
 								<h1 class="modal-title fs-5" id="exampleModalLabel">필터</h1>
-								<button type="button" class="btn-close" data-bs-dismiss="modal"
-									aria-label="Close"></button>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"	aria-label="Close"></button>
 							</div>
 							<form id="filterForm">
 								<div class="modal-body">
 
 									<h3>가격</h3>
-									<input type="number" min="30000" value="30000" name="lowPrice"
-										placeholder="최저"> ~ <input type="number" min="30000"
-										value="200000" name="highPrice" placeholder="최고">
+									<input type="number" min="30000" value="30000" name="lowPrice" placeholder="최저"> ~ <input type="number" min="30000" value="200000" name="highPrice" placeholder="최고">
 
 									<h3>숙소 유형</h3>
-									<label for="roomTypeAll">전체</label> <input type="radio"
-										id="roomTypeAll" name="roomtypeCode" value="all" checked>
+									<label for="roomTypeAll">전체</label> <input type="radio" id="roomTypeAll" name="roomtypeCode" value="all" checked>
 									<c:forEach var="roomType" items="${roomType}">
 										<label for="${roomType.codeKey}">${roomType.codeName}</label>
-										<input type="radio" id="${roomType.codeKey}"
-											name="roomtypeCode" value="${roomType.codeKey}">
+										<input type="radio" id="${roomType.codeKey}" name="roomtypeCode" value="${roomType.codeKey}">
 									</c:forEach>
 
 									<h3>침실과 침대 화장실</h3>
-									<label for="totalSpace">침실</label> <input type="radio"
-										id="totalSpace1" name="totalSpace" value="1" checked>1
-									<input type="radio" id="totalSpace2" name="totalSpace"
-										value="2">2 <input type="radio" id="totalSpace3"
-										name="totalSpace" value="3">3 <input type="radio"
-										id="totalSpace4" name="totalSpace" value="4">4 <input
-										type="radio" id="totalSpace5" name="totalSpace" value="5">5+
-									<br> <label for="totalBed">침대</label> <input type="radio"
-										id="totalBed1" name="totalBed" value="1" checked>1 <input
-										type="radio" id="totalBed2" name="totalBed" value="2">2
+									<label for="totalSpace">침실</label> 
+									<input type="radio" id="totalSpace1" name="totalSpace" value="1" checked>1
+									<input type="radio" id="totalSpace2" name="totalSpace" value="2">2 
+									<input type="radio" id="totalSpace3" name="totalSpace" value="3">3 
+									<input type="radio" id="totalSpace4" name="totalSpace" value="4">4 
+									<input type="radio" id="totalSpace5" name="totalSpace" value="5">5+
+									<br>
+									<label for="totalBed">침대</label> 
+									<input type="radio" id="totalBed1" name="totalBed" value="1" checked>1 
+									<input type="radio" id="totalBed2" name="totalBed" value="2">2
 									<input type="radio" id="totalBed3" name="totalBed" value="3">3
 									<input type="radio" id="totalBed4" name="totalBed" value="4">4
 									<input type="radio" id="totalBed5" name="totalBed" value="5">5+
-									<br> <label for="totalBath">화장실</label> <input
-										type="radio" id="totalBath1" name="totalBath" value="1"
-										checked>1 <input type="radio" id="totalBath2"
-										name="totalBath" value="2">2 <input type="radio"
-										id="totalBath3" name="totalBath" value="3">3 <input
-										type="radio" id="totalBath4" name="totalBath" value="4">
+									<br>
+									<label for="totalBath">화장실</label> 
+									<input type="radio" id="totalBath1" name="totalBath" value="1" checked>1 
+									<input type="radio" id="totalBath2" name="totalBath" value="2">2 
+									<input type="radio" id="totalBath3" name="totalBath" value="3">3 
+									<input type="radio" id="totalBath4" name="totalBath" value="4">4
 									<input type="radio" id="totalBath5" name="totalBath" value="5">5+
 
 									<h3>편의 시설</h3>
 									<!-- 기본값 0(hidden), 선택시 1값이 submit되게. -->
 									<c:forEach var="amenitie" items="${amenities}">
-										<input type="checkbox" id="${amenitie.codeKey}"
-											name="amenities" value="${amenitie.codeKey}">${amenitie.codeName}
+										<input type="checkbox" id="${amenitie.codeKey}" name="amenities" value="${amenitie.codeKey}">${amenitie.codeName}
                                         <br>
 									</c:forEach>
 
 								</div>
 								<div class="modal-footer">
-									<button type="button" id="clearFilter"
-										class="btn btn-secondary">초기화</button>
+									<button type="button" id="clearFilter" class="btn btn-secondary">초기화</button>
 									<button type="button" id="btnFilter" class="btn btn-danger">필터링</button>
 								</div>
 							</form>

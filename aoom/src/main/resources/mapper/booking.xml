@@ -78,6 +78,7 @@
        		rn <![CDATA[>]]> #{beginRow} and rn <![CDATA[<=]]> #{endRow}    
 	</select>
 	
+	<!-- 유저의 총예약수 -->
 	<select id="selectByTotalCnt" parameterType="map" resultType="int">
 		SELECT
 			COUNT(*) AS cnt
@@ -86,4 +87,34 @@
 		WHERE 
 			user_id = #{userId}	
 	</select>
+	
+	<!-- 예약추가 -->
+	<insert id="insert" parameterType="map">
+ 	    <!-- booking INSERT 전 사용가능한 booking_Id가져와서 param에 추가후, INSERT 쿼리에 적용 -->
+	    <selectKey keyProperty="bookingId" resultType="String" order="BEFORE">
+	        SELECT 
+	        	'b' || TO_CHAR(SYSDATE, 'YYYYMMDD') || LPAD(NVL(MAX(SUBSTR(booking_id, 10, 2)), 0) + 1, 2, '0') AS booking_id
+	        FROM 
+	        	booking
+	        WHERE 
+	        	booking_id LIKE 'b' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '%'
+	    </selectKey>
+		INSERT INTO booking(
+		     booking_id
+		    ,room_id
+		    ,user_id
+		    ,stay_people
+		    ,create_date
+		    ,bookstat_code
+		    ,paystat_code
+		) VALUES(
+		     #{bookingId}
+		    ,#{roomId}
+		    ,#{userId}
+		    ,#{usePeople}
+		    ,SYSDATE
+		    ,'bst02'
+		    ,'pay02'
+		)
+	</insert>
 </mapper>

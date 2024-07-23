@@ -124,4 +124,18 @@
 	    	AND oneday BETWEEN TO_DATE(#{startDate}, 'YY/MM/DD') AND (TO_DATE(#{endDate}, 'YY/MM/DD') - 1)
     </select>
     
+    <!-- oneday_price 상태 예약불가로 업데이트, 남은 인원 감소 -->
+    <update id="updateByStatUsePeople" parameterType="map">
+	    UPDATE
+		    oneday_price
+		SET 
+		     onestat_code = 'one02'
+		    ,left_people = left_people - #{usePeople}
+		    ,update_date = SYSDATE
+		WHERE
+		    oneday <![CDATA[>=]]> #{startDate}
+		    AND oneday <![CDATA[<]]> #{endDate}
+		    AND room_id = #{roomId}
+    </update>
+    
 </mapper>

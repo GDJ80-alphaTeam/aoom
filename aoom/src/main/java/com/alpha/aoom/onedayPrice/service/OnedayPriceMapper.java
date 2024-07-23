@@ -28,4 +28,7 @@ public interface OnedayPriceMapper {
 	
 	// 숙박일정에 따른 숙박가격 세부조회(일자별 가격)
 	List<Map<String, Object>> selectByBookingDateDetail(Map<String, Object> param);
+	
+	// oneday_price 상태 예약불가로 업데이트, 남은 인원 감소
+	int updateByStatUsePeople(Map<String, Object> param);
 }
