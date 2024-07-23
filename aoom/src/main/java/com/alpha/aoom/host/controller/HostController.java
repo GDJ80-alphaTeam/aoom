@@ -84,4 +84,12 @@ public class HostController extends BaseController{
 			return getFailResult(model);
 		}
 	}
+	
+	// 달력 - 하루 숙박 가격 설정 페이지
+	@RequestMapping("/calendar")
+	public String calendar() {
+	
+		return "/host/calendar";
+	}
+	
 }

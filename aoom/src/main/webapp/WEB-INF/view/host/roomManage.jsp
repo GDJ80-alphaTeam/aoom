@@ -18,7 +18,7 @@
 	<br>
 	<div>
 		<a href="/host/main">메인</a>
-		<a href="#">달력</a>
+		<a href="/host/calendar">달력</a>
 		<a href="/host/roomManage">숙소 관리</a>
 		<a href="#">예약 목록</a>
 	</div>
