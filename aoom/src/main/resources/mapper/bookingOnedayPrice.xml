@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alpha.aoom.bookingOnedayPrice.service.BookingOnedayPriceMapper">
+
+	<!-- 컬럼 이름 sql조각 -->
+	<sql id="bookingOnedayPrice_col">
+		 booking_id
+		,oneday
+		,room_id
+		,oneday_price
+		,create_date
+	</sql>
+	
+	<!-- booking_oneday_price_map 추가 -->
+	<insert id="insert" parameterType="map">
+		<!-- 해당 userId의 마지막 예약Id를 가져오는 select문 -->
+		<selectKey keyProperty="bookingId" resultType="String" order="BEFORE">
+			SELECT 
+				MAX(booking_id)
+			FROM 
+				booking
+			WHERE 
+				user_id = #{userId}
+			GROUP BY 
+				user_id
+		</selectKey>
+	
+		DECLARE
+			v_start_date DATE := #{startDate};
+			v_end_date DATE := #{endDate};
+			v_oneday DATE;
+			v_oneday_price NUMBER(12,0);
+		BEGIN
+			v_oneday := v_start_date;
+			WHILE v_oneday <![CDATA[<]]> v_end_date LOOP
+				SELECT oneday_price INTO v_oneday_price
+				FROM ONEDAY_PRICE
+				WHERE oneday = v_oneday
+					AND room_id = #{roomId};
+	
+				INSERT INTO "ALPHA"."BOOKING_ONEDAY_PRICE_MAP"
+				("BOOKING_ID", "ONEDAY", "ROOM_ID", "ONEDAY_PRICE", "CREATE_DATE")
+				VALUES
+				(#{bookingId}, v_oneday, #{roomId}, v_oneday_price, SYSDATE);
+	
+				v_oneday := v_oneday + 1;
+			END LOOP;
+		END;
+	</insert>
+
+</mapper>

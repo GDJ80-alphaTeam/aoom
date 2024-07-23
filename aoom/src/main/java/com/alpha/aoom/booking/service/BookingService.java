@@ -1,5 +1,7 @@
 package com.alpha.aoom.booking.service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.alpha.aoom.bookingOnedayPrice.service.BookingOnedayPriceMapper;
 import com.alpha.aoom.onedayPrice.service.OnedayPriceMapper;
-import com.alpha.aoom.onedayPrice.service.OnedayPriceService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,6 +24,9 @@ public class BookingService {
 	
 	@Autowired
 	OnedayPriceMapper onedayPriceMapper;
+	
+	@Autowired
+	BookingOnedayPriceMapper bookingOnedayPriceMapper;
 	
 	final private int rowPerPage = 5 ;
 		
@@ -63,7 +68,8 @@ public class BookingService {
 		bookingMapper.insert(param);
 		// oneday_price 상태 예약불가로 업데이트, 남은 인원 감소
 		onedayPriceMapper.updateByStatUsePeople(param);
-		
+		// booking_oneday_price_map 추가
+		bookingOnedayPriceMapper.insert(param);
 		return 1;
 	}
 	
