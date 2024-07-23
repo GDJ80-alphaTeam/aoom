@@ -40,17 +40,19 @@ public class RoomService {
 	
 	// user가 호스팅하고있는 숙소 목록 조회
 	public List<Map<String, Object>> selectByUserId(Map<String, Object> param){
-									
-		// startRow ~ endRow 사이의 값 조회  
-		int beginRow = ((int)param.get("currentPage") - 1) * rowPerPage;
-		// beginRow + rowPerPage 로우퍼페이지의 개수만큼 검색
 		
-		int endRow = beginRow + rowPerPage;		
-		log.info("beginRow={}", beginRow);
-		log.info("endRow={}", endRow);
-		
-		param.put("beginRow", beginRow);
-		param.put("endRow", endRow);
+		if(param.get("currentPage") != null) {
+			// startRow ~ endRow 사이의 값 조회  
+			int beginRow = ((int)param.get("currentPage") - 1) * rowPerPage;
+			// beginRow + rowPerPage 로우퍼페이지의 개수만큼 검색
+			
+			int endRow = beginRow + rowPerPage;		
+			log.info("beginRow={}", beginRow);
+			log.info("endRow={}", endRow);
+			
+			param.put("beginRow", beginRow);
+			param.put("endRow", endRow);
+		}
 		
 		return roomMapper.selectByUserId(param);
 	}

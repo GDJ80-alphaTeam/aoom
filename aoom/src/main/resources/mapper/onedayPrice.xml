@@ -138,4 +138,13 @@
 		    AND room_id = #{roomId}
     </update>
     
+    <!-- 해당 숙소의 전체 하루숙박가격 -->
+    <select id="select" parameterType="map" resultType="camelCaseMap">
+    	SELECT
+    		<include refid="onedayPrice_col"></include>
+    	FROM 
+    		oneday_price
+   		WHERE
+   			room_id = #{roomId}
+    </select>
 </mapper>

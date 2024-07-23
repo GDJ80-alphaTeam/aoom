@@ -80,7 +80,11 @@
 	        	r.create_date DESC
          ) r
        	WHERE
-       		rn <![CDATA[>]]> #{beginRow} AND rn <![CDATA[<=]]> #{endRow}
+       		1=1
+       		<if test="beginRow != null and !beginRow.equals('') and endRow != null and !endRow.equals('')">
+	       		AND rn <![CDATA[>]]> #{beginRow} 
+	       		AND rn <![CDATA[<=]]> #{endRow}
+       		</if>
 	</select>
 	
 	<!-- 조회수 TOP4 숙소 조회 -->

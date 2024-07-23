@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alpha.aoom.onedayPrice.service.OnedayPriceService;
 import com.alpha.aoom.room.service.RoomService;
 import com.alpha.aoom.util.BaseController;
 
@@ -20,10 +21,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 @RequestMapping("/host")
-public class HostController extends BaseController{
+public class HostController extends BaseController {
 	
 	@Autowired
 	RoomService roomService;
+	
+	@Autowired
+	OnedayPriceService onedayPriceService;
 
 	// 호스트 모드 메인화면 호출
 	@RequestMapping("/main")
@@ -87,9 +91,34 @@ public class HostController extends BaseController{
 	
 	// 달력 - 하루 숙박 가격 설정 페이지
 	@RequestMapping("/calendar")
-	public String calendar() {
+	public String calendar(HttpSession session, ModelMap modelMap) {
+		
+		// 세션에서 user정보 가져오기
+		Map<String, Object> userInfo = (HashMap<String, Object>)session.getAttribute("userInfo");
+		log.info("userInfo={}", userInfo);
+		
+		modelMap.addAttribute("roomList", roomService.selectByUserId(userInfo));
 	
 		return "/host/calendar";
+	}
+	
+	// 달력 - 해당하는 숙소의 onedayPrice가져오기
+	@RequestMapping("/calendar/ajaxSelectOnedayPrice")
+	@ResponseBody
+	public Map<String, Object> ajaxSelectOnedayPrice(@RequestParam Map<String, Object> param) { 
+		
+		log.info("param={}", param);
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		model.put("data", onedayPriceService.select(param));
+		log.info(model.toString());
+		
+		if(!model.isEmpty()) {
+			log.info(getSuccessResult(model).toString());
+			return getSuccessResult(model);
+		} else {
+			return getFailResult(model);
+		}
 	}
 	
 }

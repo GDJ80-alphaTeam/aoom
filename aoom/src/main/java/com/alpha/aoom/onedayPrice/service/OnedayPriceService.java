@@ -83,4 +83,9 @@ public class OnedayPriceService {
 	public List<Map<String, Object>> selectByBookingDateDetail(Map<String, Object> param){
 		return onedayPriceMapper.selectByBookingDateDetail(param);
 	}
+	
+	// 해당 숙소의 전체 하루숙박가격
+	public List<Map<String, Object>> select(Map<String, Object> param) {
+		return onedayPriceMapper.select(param);
+	}
 }
