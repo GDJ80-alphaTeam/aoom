@@ -10,7 +10,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-	<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css" rel="stylesheet" />
 	<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
 	<style>
 		.selected-date {
@@ -76,6 +75,7 @@
 			</div>
 		</div>
 	</div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
       var calendarEl = document.getElementById('calendar');
@@ -100,33 +100,35 @@
         
         events: [
           {
-            title: 'Event 1',
+            title: '예약 불가',
             start: '2024-05-10',
-            end: '2024-05-12' // 종료일은 포함되지 않음
+            end: '2024-05-12'
           },
           {
-            title: 'Event 2',
+            title: '예약 불가',
             start: '2024-06-15',
-            end: '2024-06-18' // 종료일은 포함되지 않음
+            end: '2024-06-18'
           }
         ],
 
         eventDidMount: function(info) {
-          var startDate = new Date(info.event.start);
-          var endDate = new Date(info.event.end);
-          endDate.setDate(endDate.getDate() - 1); // 종료일 하루 빼기
-          var currentDate = startDate;
-
-          // 이벤트 날짜에 대한 모든 셀에 대해 스타일 적용
-          while (currentDate <= endDate) {
-            var dateStr = currentDate.toISOString().split('T')[0];
-            var cell = document.querySelector(`.fc-daygrid-day[data-date="${dateStr}"]`);
-            if (cell) {
-              cell.classList.add('event-date');
-            }
-            currentDate.setDate(currentDate.getDate() + 1);
-          }
-        },
+        	  var startDate = new Date(info.event.start);
+        	  var endDate = new Date(info.event.end);
+        	  endDate.setDate(endDate.getDate() - 1); // Adjust the end date
+        	  var currentDate = startDate;
+				console.log(startDate);
+				console.log(endDate);
+				console.log(currentDate);
+        	  while (currentDate <= endDate) { // Adjust the condition to include the end date
+        	    var dateStr = currentDate.toISOString().split('T')[0];
+				console.log(dateStr);
+        	    var cell = document.querySelector('[data-date="' + dateStr + '"]');
+        	    if (cell) {
+        	      cell.classList.add('event-date');
+        	    }
+        	    currentDate.setDate(currentDate.getDate() + 1);
+        	  }
+        	},
 
         selectAllow: function(selectInfo) {
           var events = calendar.getEvents();
@@ -140,29 +142,29 @@
         },
         
         select: function(info) {
-          // Clear previous selection
-          var selectedCells = document.querySelectorAll('.selected-date');
-          selectedCells.forEach(function(cell) {
-            cell.classList.remove('selected-date');
-          });
-          
-          // Highlight selected dates
-          var startDate = new Date(info.startStr);
-          var endDate = new Date(info.endStr);
-          endDate.setDate(endDate.getDate() - 1); // 종료일 하루 빼기
-          var currentDate = startDate;
+        	  // Clear previous selection
+        	  var selectedCells = document.querySelectorAll('.selected-date');
+        	  selectedCells.forEach(function(cell) {
+        	    cell.classList.remove('selected-date');
+        	  });
 
-          while (currentDate <= endDate) {
-            var dateStr = currentDate.toISOString().split('T')[0];
-            var cell = document.querySelector(`.fc-daygrid-day[data-date="${dateStr}"]`);
-            if (cell) {
-              cell.classList.add('selected-date');
-            }
-            currentDate.setDate(currentDate.getDate() + 1);
-          }
-          
-          alert('selected ' + info.startStr + ' to ' + info.endStr);
-        }
+        	  // Highlight selected dates
+        	  var startDate = new Date(info.startStr);
+        	  var endDate = new Date(info.endStr);
+        	  endDate.setDate(endDate.getDate() - 1); // Adjust the end date
+        	  var currentDate = startDate;
+
+        	  while (currentDate <= endDate) { // Adjust the condition to include the end date
+        	    var dateStr = currentDate.toISOString().split('T')[0];
+        	    var cell = document.querySelector('[data-date="' + dateStr + '"]');
+        	    if (cell) {
+        	      cell.classList.add('selected-date');
+        	    }
+        	    currentDate.setDate(currentDate.getDate() + 1);
+        	  }
+
+        	  alert('selected ' + info.startStr + ' to ' + info.endStr);
+        	}
       });
 
       calendar.render();
