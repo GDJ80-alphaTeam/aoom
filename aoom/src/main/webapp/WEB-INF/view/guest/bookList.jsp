@@ -38,7 +38,7 @@
 							${r.roomName}
 						</td>
 						<td>${r.startDate} ~ ${r.endDate}</td>
-						<td>${r.userId}</td>
+						<td>${r.hostId}</td>
 						
 						<td>
 							<img src="${r.mainImage}" style="height: 50px;">

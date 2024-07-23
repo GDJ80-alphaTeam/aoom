@@ -27,7 +27,7 @@
 							<li><a class="dropdown-item" href="#">자주묻는질문</a></li>
 						</c:if>
 						<c:if test="${sessionScope.userInfo.userId != null}">
-							<li><a class="dropdown-item" href="#">계정</a></li>
+							<li><a class="dropdown-item" href="${pageContext.request.contextPath}/user/myPage">계정</a></li>
 							<li><a class="dropdown-item" href="#">메시지</a></li>
 							<li><a class="dropdown-item" href="#">알림</a></li>
 							<li><a class="dropdown-item" href="${pageContext.request.contextPath}/guest/bookList">숙소예약목록</a></li>

@@ -23,8 +23,10 @@
 			    ,b.create_date
 			    ,b.room_id 
 			    ,b.bookstat_code
+			    ,b.stay_people
+			    ,r.address
 			    ,r.room_name
-			    ,r.user_id  
+			    ,r.user_id AS host_id  
 			    ,r.main_image 
 			    ,c.code_name AS paystat_name
 			    ,c2.code_name AS bookstat_name
@@ -74,7 +76,14 @@
 			     )  bookingDate
 			     ON bookingDate.booking_id = b.booking_id 
 			WHERE 
-			    b.user_id = #{userId})
+				1=1
+				<if test="userId != null">
+			    	AND b.user_id = #{userId}
+			    </if>
+			    <if test="bookingId != null">
+			    	AND b.booking_id = #{bookingId}
+			    </if>
+		)			    
 		WHERE
        		rn <![CDATA[>]]> #{beginRow} and rn <![CDATA[<=]]> #{endRow}    
 	</select>

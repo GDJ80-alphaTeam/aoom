@@ -60,8 +60,9 @@ public class ReviewController extends BaseController{
 		
 		param.put("userId", userInfo.get("userId").toString());
 		param.put("reviewImage", image.get("reviewImage"));
-		log.info("param"+param);
-		if(image.isEmpty()) {
+		
+		//log.info("param"+param);
+		if(!image.get("reviewImage").isEmpty()) {
 			reviewService.insert(param);
 		} else {
 			reviewService.insertContent(param);

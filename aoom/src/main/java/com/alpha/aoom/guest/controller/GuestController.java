@@ -51,7 +51,7 @@ public class GuestController {
 	// param : roomId 
 	// 게스트 예약상세보기
 	@RequestMapping("/bookInfo")
-	public String requestMethodName(@RequestParam Map<String, Object> param , HttpSession session , ModelMap modelMap) {
+	public String guestBookInfo(@RequestParam Map<String, Object> param , HttpSession session , ModelMap modelMap) {
 		
 		Map<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
 		
