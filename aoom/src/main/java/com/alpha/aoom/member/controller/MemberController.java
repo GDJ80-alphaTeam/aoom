@@ -33,9 +33,8 @@ public class MemberController extends BaseController{
 	// paramMap : userId , userPw
 	@RequestMapping("/ajaxSignin")
 	@ResponseBody
-	public String signin(@RequestParam Map<String, Object> param, HttpSession session) {
-		
-		System.out.println("로그인 정보 : " + param);
+	public Map<String, Object> signin(@RequestParam Map<String, Object> param, HttpSession session) {
+		Map<String, Object> model = new HashMap<String, Object>(); // ajax 결과 담을 맵
 		
 		// 서비스에서 로그인정보와 로그인 결과 호출
 		Map<String, Object> signinInfo = userService.signinUser(param);
@@ -47,9 +46,9 @@ public class MemberController extends BaseController{
 		if(result.equals("success")) { // 로그인 성공
 			// 세션에 담기
 			session.setAttribute("userInfo", signinInfo.get("userInfo"));
-			return "success";
+			return getSuccessResult(model,"로그인에 성공하셨습니다. 당신의 숙소를 예약하세요!");
 		} else { // 로그인실패
-			return "fail";
+			return getFailResult(model,"로그인에 실패하였습니다. 다시 확인해주세요.");
 		}
 	}
 	
@@ -83,14 +82,9 @@ public class MemberController extends BaseController{
 		
 		// 회원가입 성공 분기
 		if (row == 1) {
-			return getSuccessResult(model);
+			return getSuccessResult(model,"회원가입에 성공하였습니다. 로그인 후 이용해 주세요.");
 		} else {
-			return getFailResult(model,"회원가입에 실패하였습니다. 다시 시도해 주십시오.");
+			return getFailResult(model,"회원가입에 실패하였습니다. 다시 시도해 주세요.");
 		}
 	}
-	
 }
-
-
-
-

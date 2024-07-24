@@ -196,9 +196,6 @@
 	                    
 	                    // 요금 합계 업데이트
 	                    $('#totalPrice').text(response.bookingPrice.sum + ' 원');
-	                    
-	                    // 예약날짜업데이트
-	                    
 	                }
 	            });
 	        }

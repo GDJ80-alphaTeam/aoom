@@ -2,47 +2,68 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>로그인</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</head>
-<body>
-	<form id="signin">
-		<div>
-			이메일 : <input type="email" value="newlife5991@naver.com" name="userId" id="userId" placeholder="이메일을 입력해주세요" required="required">
-		</div>
-		<div>
-			비밀번호 : <input type="password" value="qwer1234!" name="userPw" id="userPw" required="required">
-		</div>
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="loginModalLabel">로그인</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- 로그인 폼 내용 -->
+                <form id="signin">
+					<div>
+						이메일 : <input type="email" id="signinUserId" name="userId" placeholder="이메일을 입력해주세요" required="required">
+					</div>
+					<div>
+						비밀번호 : <input type="password" id="signinUserPw" name="userPw" required="required">
+					</div>
+				</form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                <button type="button" id="signinBtn" class="btn btn-primary">로그인</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+	// 로그인 버튼 클릭시
+	$('#signinBtn').click(function(){
 		
-		<button type="button" id="signinBtn">로그인</button>
-	</form>
-	
-	<script type="text/javascript">
+		// 아이디 빈칸 유효성 검사
+        if ($('#signinUserId').val().trim() === '') {
+            alert('이메일을 입력해주세요.');
+            $('#signinUserId').focus();
+            return;
+        }
 		
-		// 로그인 버튼 클릭시
-		$('#signinBtn').click(function(){
-			
-			$.ajax({
-				url:'/member/ajaxSignin',
-				method: 'post',
-				data: $('#signin').serialize(),
-				success: function(response){
-					if (response === 'success'){
-						window.location.href = '/main';
-					} else {
-						alert('로그인에 실패하였습니다.');
-					}
+		// 비밀번호 양식
+		const PWCHECK = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+		
+		// 비밀번호 유효성검사
+		if(!PWCHECK.test($('#signinUserPw').val())){
+			alert('비밀번호는 영문자+숫자+특수문자 조합으로 8~25자리 사용해야 합니다.');
+			$('#userPw').focus();
+			return;
+		} 
+		
+		$.ajax({
+			url:'/member/ajaxSignin',
+			method: 'post',
+			data: $('#signin').serialize(),
+			success: function(response){
+				if (response.result){
+					alert(response.message);
+					window.location.href = '/main';
+				} else {
+					alert(response.message);
 				}
-			})
-			
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+	            console.error('AJAX Error: ' + textStatus + ': ' + errorThrown);
+	            alert('로그인 중 오류가 발생했습니다.');
+	        }
 		})
-		
-	</script>
-</body>
-</html>
+	})
+</script>
