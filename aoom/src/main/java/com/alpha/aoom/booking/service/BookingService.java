@@ -69,7 +69,16 @@ public class BookingService {
 		// oneday_price 상태 예약불가로 업데이트, 남은 인원 감소
 		onedayPriceMapper.updateByStatUsePeople(param);
 		// booking_oneday_price_map 추가
-		bookingOnedayPriceMapper.insert(param);
+		
+		
+		List<Map<String, Object>> oneDayPriceList = onedayPriceMapper.selectListByDuringDate(param);
+		
+		for(Map<String,Object> map : oneDayPriceList) {
+			map.put("bookingId", param.get("bookingId").toString());
+			System.out.println(map);
+			bookingOnedayPriceMapper.insert(map);
+		}
+		
 		return 1;
 	}
 	

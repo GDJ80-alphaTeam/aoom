@@ -13,8 +13,8 @@
 	
 	<!-- booking_oneday_price_map 추가 -->
 	<insert id="insert" parameterType="map">
-		<!-- 해당 userId의 마지막 예약Id를 가져오는 select문 -->
-		<selectKey keyProperty="bookingId" resultType="String" order="BEFORE">
+	<!-- 해당 userId의 마지막 예약Id를 가져오는 select문 -->
+ 	<!--<selectKey keyProperty="bookingId" resultType="String" order="BEFORE">
 			SELECT 
 				MAX(booking_id)
 			FROM 
@@ -45,7 +45,10 @@
 	
 				v_oneday := v_oneday + 1;
 			END LOOP;
-		END;
+		END; -->
+		insert into booking_oneday_price_map 
+		(booking_id,oneday,room_id, oneday_price, create_date)
+		values(#{bookingid},#{onedayChar},#{roomId},#{onedayPrice},SYSDATE)	
 	</insert>
 
 </mapper>

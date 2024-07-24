@@ -179,7 +179,7 @@
 	            $.ajax({
 	                url: '/onedayPrice/ajaxBookingDay',
 	                method: 'post',
-	                data: {"roomId" : "${roomId}", "selectedDate" : formattedDates, "startDate" : startDate, "endDate" : endDate, "usePeople" : usePeople},
+	                data: {"roomId" : "${roomId}", "selectedDatea" : formattedDates, "startDate" : startDate, "endDate" : endDate, "usePeople" : usePeople},
 	                dataType: 'json',
 	                success: function(response) {
 	                    // 서버에서 받은 비활성화할 날짜 배열
@@ -249,7 +249,7 @@
 				method: 'post',
 				data: formData,
 				success: function(response){
-					
+					alert('성공했ㅅㅂ니다.');
 				}
 			})
 	    })

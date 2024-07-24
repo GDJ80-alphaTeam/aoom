@@ -99,7 +99,7 @@
           	AND oneday <![CDATA[>=]]> #{selectedDate}
     </select>
     
-    <!-- 숙박일정에 따른 숙박가격 조회 -->
+    <!-- 숙박일정에 따른 숙박가격 조회 합계 -->
     <select id="selectByBookingDate" parameterType="map" resultType="camelCaseMap">
 	    SELECT
 		    TO_CHAR(SUM(oneday_price), '999,999,999') AS sum
@@ -112,7 +112,7 @@
 		    room_id
     </select>
     
-    <!-- 숙박일정에 따른 숙박가격 세부조회(일자별 가격) -->
+    <!-- 숙박일정에 따른 숙박가격 세부조회리스트(일자별 가격) -->
     <select id="selectByBookingDateDetail" parameterType="map" resultType="camelCaseMap">
 	    SELECT
 		     TO_CHAR(oneday, 'YYYY/MM/DD') AS oneday
@@ -123,6 +123,19 @@
 		    room_id = #{roomId}
 	    	AND oneday BETWEEN TO_DATE(#{startDate}, 'YY/MM/DD') AND (TO_DATE(#{endDate}, 'YY/MM/DD') - 1)
     </select>
+    
+    <!-- 숙박일정에 따른 숙박가격 세부조회리스트(모든컬럼출력) -->
+    <select id = "selectListByDuringDate" resultType="camelCaseMap">
+    	SELECT
+    		<include refid="onedayPrice_col"/> 
+    		,TO_CHAR(oneday, 'YYYY/MM/DD') AS oneday_char
+    	FROM
+    		oneday_price
+		WHERE
+		    room_id = #{roomId}
+	    	AND oneday BETWEEN TO_DATE(#{startDate}, 'YY/MM/DD') AND (TO_DATE(#{endDate}, 'YY/MM/DD') - 1)
+    </select>
+
     
     <!-- oneday_price 상태 예약불가로 업데이트, 남은 인원 감소 -->
     <update id="updateByStatUsePeople" parameterType="map">
@@ -141,7 +154,7 @@
     <!-- 해당 숙소의 전체 하루숙박가격 -->
     <select id="select" parameterType="map" resultType="camelCaseMap">
     	SELECT
-    		<include refid="onedayPrice_col"></include>
+    		<include refid="onedayPrice_col"/>
     	FROM 
     		oneday_price
    		WHERE
