@@ -4,13 +4,14 @@
 
 	<!-- 컬럼 이름 sql조각 -->
 	<sql id="onedayPrice_col">
-		 oneday
-		,room_id
-		,oneday_price
-		,update_date
-		,left_people
-		,onestat_code
-		,create_date
+		 op.oneday
+		,op.room_id
+		,TO_CHAR(op.oneday_price, '999,999,999') AS oneday_price
+		,op.oneday_price AS original_oneday_price
+		,op.update_date
+		,op.left_people
+		,op.onestat_code
+		,op.create_date
 	</sql>
 	
 	<!-- onedayPrice의 예약상태의 따른 리스트 검색 -->
@@ -152,12 +153,28 @@
     </update>
     
     <!-- 해당 숙소의 전체 하루숙박가격 -->
-    <select id="select" parameterType="map" resultType="camelCaseMap">
-    	SELECT
-    		<include refid="onedayPrice_col"/>
-    	FROM 
-    		oneday_price
-   		WHERE
-   			room_id = #{roomId}
-    </select>
+	<select id="select" parameterType="map" resultType="camelCaseMap">
+		SELECT
+			 <include refid="onedayPrice_col" />
+			,c.code_name
+		FROM
+			oneday_price op
+		INNER JOIN
+			code c
+		ON
+			op.onestat_code = c.code_key
+		WHERE
+			op.room_id = #{roomId}
+	</select>
+	
+	<!-- 하루 숙박 가격 수정 -->
+	<update id="update" parameterType="map">
+		UPDATE
+			oneday_price
+		SET
+			oneday_price = #{onedayPrice}
+		WHERE
+			room_id = #{roomId}
+			AND oneday = #{oneday}
+	</update>
 </mapper>

@@ -166,8 +166,8 @@
 	<!-- DB에서 가져온 주소 나누기 -->
 	<script type="text/javascript">
 		$(document).ready(function() {
-		    console.log("${roomInfo.originAddress}");
-		    let roomInfo = "${roomInfo.originAddress}";
+		    console.log("${roomInfo.originalAddress}");
+		    let roomInfo = "${roomInfo.originalAddress}";
 		    let array = roomInfo.split("^");
 		    let address1 = array[0];
 		    let address2 = array[1];

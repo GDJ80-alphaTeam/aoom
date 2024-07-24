@@ -1,5 +1,7 @@
 package com.alpha.aoom.host.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -91,18 +93,21 @@ public class HostController extends BaseController {
 	
 	// 달력 - 하루 숙박 가격 설정 페이지
 	@RequestMapping("/calendar")
-	public String calendar(HttpSession session, ModelMap modelMap) {
+	public String calendar(@RequestParam Map<String, Object> param, HttpSession session, ModelMap modelMap) {
+		log.info("selectedRoomId={}", param.toString());
 		
 		// 세션에서 user정보 가져오기
 		Map<String, Object> userInfo = (HashMap<String, Object>)session.getAttribute("userInfo");
 		log.info("userInfo={}", userInfo);
 		
+		// 활성화 중인 숙소만 가져오도록 설정
 		modelMap.addAttribute("roomList", roomService.selectByUserId(userInfo));
+		modelMap.addAttribute("selectedRoomId", param.get("roomId"));
 	
 		return "/host/calendar";
 	}
 	
-	// 달력 - 해당하는 숙소의 onedayPrice가져오기
+	// 달력 - 해당하는 숙소의 onedayPrice, 운영기간 가져오기
 	@RequestMapping("/calendar/ajaxSelectOnedayPrice")
 	@ResponseBody
 	public Map<String, Object> ajaxSelectOnedayPrice(@RequestParam Map<String, Object> param) { 
@@ -110,7 +115,8 @@ public class HostController extends BaseController {
 		log.info("param={}", param);
 		Map<String, Object> model = new HashMap<String, Object>();
 		
-		model.put("data", onedayPriceService.select(param));
+		model.put("onedayData", onedayPriceService.select(param));
+		model.put("roomData", roomService.selectOne(param));
 		log.info(model.toString());
 		
 		if(!model.isEmpty()) {
@@ -121,4 +127,20 @@ public class HostController extends BaseController {
 		}
 	}
 	
+	// 달력 - 숙소 기본요금 수정
+	@RequestMapping("/calendar/updateDefaultPrice")
+	public String updateDefaultPrice(@RequestParam Map<String, Object> param) {
+		log.info("기본요금 수정 param={}", param.toString());
+		
+		if(param.get("startOneDay") == null && param.get("endOneDay") == null) {
+			// room 테이블의 defaultPrice 수정
+			roomService.update(param);
+		}
+		
+		// oneday_price 테이블의 onedayPrice 수정
+		onedayPriceService.update(param);
+		log.info("하루숙박 가격 수정 완료");
+		
+		return "redirect:/host/calendar?roomId=" + param.get("roomId").toString();
+	}
 }

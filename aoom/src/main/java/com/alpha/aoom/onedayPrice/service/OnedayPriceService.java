@@ -9,6 +9,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alpha.aoom.room.service.RoomService;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -17,6 +19,9 @@ public class OnedayPriceService {
 	
 	@Autowired
 	OnedayPriceMapper onedayPriceMapper;
+	
+	@Autowired
+	RoomService roomService;
 	
 	// param: roomId , onestateCode
 	// 예약 불가능한 숙소목록 출력
@@ -84,8 +89,44 @@ public class OnedayPriceService {
 		return onedayPriceMapper.selectByBookingDateDetail(param);
 	}
 	
-	// 해당 숙소의 전체 하루숙박가격
+	// 해당 숙소의 전체 하루숙박가격 조히
 	public List<Map<String, Object>> select(Map<String, Object> param) {
 		return onedayPriceMapper.select(param);
+	}
+	
+	// 하루 숙박 가격 수정
+	public void update(Map<String, Object> param) {
+		log.info("하루숙박 가격 수정 param={}", param.toString());
+		
+		Object paramStartDate = param.get("startDate");
+		Object paramEndDate = param.get("endDate");
+		
+		// startDate, endDate가 없다면 - 기본요금 수정일 경
+		if(paramStartDate == null && paramEndDate == null) {
+			Map<String, Object > roomInfo =  roomService.selectOne(param);
+			paramStartDate = roomInfo.get("startDate").toString();
+			paramEndDate = roomInfo.get("endDate").toString();
+		}
+		
+		// startDate부터 endDate까지 DB에 UPDATE
+		// DB에서 가져온 날짜의 포맷 형식 지정
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+		
+		// 시작일과 종료일 가져오기
+		LocalDate startDate = LocalDate.parse(paramStartDate.toString(), dateTimeFormatter);
+		LocalDate endDate = LocalDate.parse(paramEndDate.toString(), dateTimeFormatter);
+		
+		// 시작일부터 종료일까지 반복
+		for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
+			
+			// UPDATE에 사용될 map을 만들고 필요한 컬럼들 추가
+			Map<String, Object> onedayParam = new HashMap<>();
+			onedayParam.put("roomId", param.get("roomId"));
+			onedayParam.put("oneday", date);
+			onedayParam.put("onedayPrice", param.get("defaultPrice"));
+			
+			// update 메서드 호출
+			onedayPriceMapper.update(onedayParam);
+		}
 	}
 }

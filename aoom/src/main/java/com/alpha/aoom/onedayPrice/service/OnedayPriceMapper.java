@@ -37,4 +37,7 @@ public interface OnedayPriceMapper {
 	
 	// 해당 숙소의 전체 하루숙박가격
 	List<Map<String, Object>> select(Map<String, Object> param);
+	
+	// 하루숙박가격 수정
+	int update(Map<String, Object> param);
 }

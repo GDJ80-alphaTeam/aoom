@@ -27,8 +27,8 @@
 		,r.bank_code
 		,r.account_no
 		,r.views
-		,r.address AS origin_address
-		,r.default_price AS orginal_default_price
+		,r.address AS original_address
+		,r.default_price AS original_default_price
 	</sql>	
 	
 	<!-- 숙소 전체 목록 조회 retrieveList -->
