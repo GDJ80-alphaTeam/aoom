@@ -21,6 +21,7 @@
 		<table class="table">
 			<thead>
 				<tr>
+					<th>예약번호</th>
 					<th>숙소이름</th>
 					<th>예약 일자</th>
 					<th>호스트</th>
@@ -31,23 +32,27 @@
 				</tr>
 			</thead>	
 			<tbody>
-			<a>
 			<c:forEach var="r" items="${bookingList}">
-					<tr onclick="window.location.href='/guest/bookInfo?bookingId=${r.bookingId}'">
-						<td>
-							${r.roomName}
-						</td>
-						<td>${r.startDate} ~ ${r.endDate}</td>
-						<td>${r.hostId}</td>
-						
-						<td>
-							<img src="${r.mainImage}" style="height: 50px;">
-						</td>
-						<td> ${r.bookstatName}</td>
-						<td>${r.paystatName}</td>
-					</tr>
+				<tr>
+					<td>${r.bookingId}</td>
+					<td onclick="window.location.href='/guest/bookInfo?bookingId=${r.bookingId}'">
+						${r.roomName}
+					</td>
+					<td>${r.startDate} ~ ${r.endDate}</td>
+					<td>${r.hostId}</td>
+					
+					<td onclick="window.location.href='/guest/bookInfo?bookingId=${r.bookingId}'">
+						<img src="${r.mainImage}" style="height: 50px;">
+					</td>
+					<td> ${r.bookstatName}</td>
+					<td>${r.paystatName}</td>
+					<td>
+						<button onclick="window.location.href='/booking/bookingCancel?bookingId=${r.bookingId}'">
+							예약취소하기
+						</button>
+					</td>
+				</tr>
 			</c:forEach>
-			</a>	
 			</tbody>
 		</table>
 		
@@ -66,7 +71,7 @@
 		          </c:when>
 		          
 		          <c:otherwise>
-		            <button class="page-link" type="button" onclick="window.location.href='/guest/bookList?currentPage=${currentPage - 1}'">이전</button>
+	        	    <button class="page-link" type="button" onclick="window.location.href='/guest/bookList?currentPage=${currentPage - 1}'">이전</button>
 		          </c:otherwise>
 		          
 		        </c:choose>
@@ -99,14 +104,14 @@
 		          
 		          <c:otherwise>
 		            <button class="page-link" type="button" onclick="window.location.href='/guest/bookList?currentPage=${currentPage + 1}'">다음</button>
-		          </c:otherwise>
-		          
+		          </c:otherwise>		          
 		        </c:choose>
 		      </li>
 		    </ul>
 		  </nav>
 		</c:otherwise>
 	</c:choose>
+	
 	</div>
 </body>
 </html>

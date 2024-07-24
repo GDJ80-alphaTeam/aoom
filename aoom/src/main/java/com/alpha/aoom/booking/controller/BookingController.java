@@ -97,4 +97,26 @@ public class BookingController extends BaseController {
 	    	return getFailResult(model,"예약 실패");
 	    }
 	}
+	
+	@RequestMapping("/bookingCancel")
+	public String bookingCancel(@RequestParam Map<String, Object> param , HttpSession session , ModelMap modelMap) {
+		
+		// 세션값 호출
+		Map<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
+		param.put("userId", userInfo.get("userId").toString());
+		
+		// 세션에 있는 아이디값과 예약넘버를 비교해서 일치하지않으면 메인으로 내보냄
+		if(bookingService.selectByInvalidAccess(param) == 0) {
+			return "redirect:/main";
+		}
+		
+		// 페이징을 하지않아도 같은 쿼리를 사용해서 넣어줘야함
+		int currentPage = 1;
+		param.put("currentPage", currentPage);
+
+		// 예약 상세정보 
+		modelMap.addAttribute("bookingInfo" , bookingService.selectByUserId(param).get(0));
+		
+		return "/booking/bookingCancel";
+	}
 }

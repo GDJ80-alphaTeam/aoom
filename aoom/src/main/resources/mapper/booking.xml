@@ -19,7 +19,7 @@
 			*
 		FROM	
 			(SELECT
-			     b.booking_id
+			     bookingDate.booking_id
 			    ,b.create_date
 			    ,b.room_id 
 			    ,b.bookstat_code
@@ -55,24 +55,30 @@
 			        booking_oneday_price_map
 			    WHERE
 			    	1=1
-		    		<if test="userId != null"> 
-			    		AND booking_id IN (
-			            SELECT 
-			                booking_id
-			            FROM     
-			                booking 
-			            WHERE 
-			                user_id = #{userId}
-			            )    
-		            </if>
-		            <if test="bookingId != null">
-			        	AND booking_id	= #{bookingId}
-		            </if>
-			                
+			    	<choose>
+					    <when test="userId != null and bookingId != null">
+					        AND booking_id = #{bookingId}
+					    </when>
+					    <otherwise>
+					        <if test="userId != null"> 
+					            AND booking_id IN (
+					                SELECT 
+					                    booking_id
+					                FROM     
+					                    booking 
+					                WHERE 
+					                    user_id = #{userId}
+					                )    
+					        </if>
+					        <if test="bookingId != null">
+					            AND booking_id = #{bookingId}
+					        </if>
+					    </otherwise>
+					</choose>
 			    GROUP BY
 			        booking_id
 			    ORDER BY
-			        booking_id desc 
+			        booking_id  
 			     )  bookingDate
 			     ON bookingDate.booking_id = b.booking_id 
 			WHERE 
@@ -128,6 +134,7 @@
 		)
 	</insert>
 	
+	<!-- 후기입력시 예약상태변화 -->
 	<update id="updateBookingStat" parameterType="map">
 		UPDATE 
 			booking
@@ -136,4 +143,15 @@
 		WHERE 
 			booking_id = #{bookingId}
 	</update>
+	
+	<!-- 예약페이지 접근시 유효성검사 -->
+	<select id="selectByInvalidAccess" parameterType="map" resultType="int">
+		SELECT
+		    count(*) as cnt
+		FROM
+		    booking
+		WHERE
+		    user_id = #{userId}
+		    AND booking_id = #{bookingId}
+	</select>
 </mapper>

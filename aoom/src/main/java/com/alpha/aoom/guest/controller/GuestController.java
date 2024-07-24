@@ -37,6 +37,8 @@ public class GuestController {
 		String userId = userInfo.get("userId").toString();
 		param.put("userId", userId);
 		
+		
+		
 		// currentPage가 param에 가지고있으면 param값 , 없으면 1
 		int currentPage = (String)param.get("currentPage") != null ? Integer.parseInt((String)param.get("currentPage")) : 1 ; 
 		param.put("currentPage", currentPage);
@@ -54,7 +56,11 @@ public class GuestController {
 	public String guestBookInfo(@RequestParam Map<String, Object> param , HttpSession session , ModelMap modelMap) {
 		
 		Map<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
-		
+		param.put("userId", userInfo.get("userId").toString());
+		// 세션에 있는 아이디값과 예약넘버를 비교해서 일치하지않으면 메인으로 내보냄
+		if(bookingService.selectByInvalidAccess(param) == 0) {
+			return "redirect:/main";
+		}
 		int currentPage = 1;
 		
 		// 세션에서 가져온 user정보에서 userId 가져오기

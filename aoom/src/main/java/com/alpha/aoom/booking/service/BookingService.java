@@ -104,4 +104,8 @@ public class BookingService {
 		return bookingMapper.updateBookingStat(param);
 	}
 	
+	// 접근방식에 대한 유효성 검사
+	public int selectByInvalidAccess(Map<String, Object> param) {
+		return bookingMapper.selectByInvalidAccess(param);
+	}
 }
