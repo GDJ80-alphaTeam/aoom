@@ -61,9 +61,6 @@ public class RoomController extends BaseController {
 		
 		// 숙소 호스트가 받은 총합 후기수
 		Map<String, Object> hostReviewTotal = reviewService.selectByHostTotalCnt(param);
-		
-		
-		
 				
 		//log.info("숙소상세보기 호출값" + roomInfo);
 		//log.info("숙소편의시설 호출값" + roomAmenities);

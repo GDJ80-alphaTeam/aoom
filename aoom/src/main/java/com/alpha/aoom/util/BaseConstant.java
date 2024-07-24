@@ -19,7 +19,7 @@ public interface BaseConstant {
 	// 코드 값
 	final public static String CODE_RESULT_SUCCESS = "00";
 	// 메세지 값
-	final public static String MASSAGE_RESULT_SUCCESS = "SUCCESS";
+	final public static String MASSAGE_RESULT_SUCCESS = "완료 되었습니다.";
 
 	
 	

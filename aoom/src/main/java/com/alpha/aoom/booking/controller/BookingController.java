@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alpha.aoom.booking.service.BookingService;
 import com.alpha.aoom.onedayPrice.service.OnedayPriceService;
@@ -39,7 +40,6 @@ public class BookingController extends BaseController {
 	// 예약하기
 	@RequestMapping("/book")
 	public String booking(@RequestParam Map<String, Object> param, ModelMap modelMap) {
-		log.info("controllerParam : " + param);
 		
 		// 체크인, 체크아웃, 숙박인원 값
 		String roomId = (String)param.get("roomId");
@@ -67,6 +67,7 @@ public class BookingController extends BaseController {
 		modelMap.addAttribute("ratingReview", ratingReview);
 		modelMap.addAttribute("bookingPrice", bookingPrice);
 		modelMap.addAttribute("bookingPriceDetail", bookingPriceDetail);
+		modelMap.addAttribute("maxPeople", roomInfo.get("maxPeople"));
 		
 		return "/booking/book";
 	}
@@ -74,6 +75,7 @@ public class BookingController extends BaseController {
 	// 예약하기 버튼 클릭 ajax
 	// param : startDate, endDate, roomId, usePeople, cardNo, refundAccount, paymentPrice
 	@RequestMapping("/ajaxBook")
+	@ResponseBody
 	public Map<String, Object> ajaxBook(@RequestParam Map<String, Object> param, HttpSession session) {
 		Map<String, Object> model = new HashMap<String, Object>(); // ajax 결과 담을 맵
 		
@@ -84,12 +86,15 @@ public class BookingController extends BaseController {
 	    // param에 userId 넣기
 	    param.put("userId", userId);
 	    
-	    // 디버깅
-	    log.info("파람 : " + param);
-	    
 	    // 예약하기
 	    int booking = bookingService.booking(param);
 	    
-		return getSuccessResult(model);
+		model.put("data", param.get("bookingId"));
+	    
+	    if(booking == 1) {
+	    	return getSuccessResult(model,"예약 성공");
+	    }else {
+	    	return getFailResult(model,"예약 실패");
+	    }
 	}
 }

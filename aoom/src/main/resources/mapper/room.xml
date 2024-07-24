@@ -344,6 +344,7 @@
 		SELECT
 		     r.room_id AS room_id
 		    ,r.room_name AS room_name
+		    ,r.max_people AS max_people
 		    ,c.code_name AS category
 		FROM
 		    room r

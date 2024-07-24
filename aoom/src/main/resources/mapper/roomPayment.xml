@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alpha.aoom.roomPayment.service.RoomPaymentMapper">
+	<sql id="roomPayment_col">
+		 payment_id
+		,booking_id
+		,room_id
+		,user_id
+		,paytype_code
+		,card_no
+		,refund_account
+		,payment_price
+		,create_date
+	</sql>
+	
+	<!-- 결제 내역 추가  -->
+	<insert id="insert" parameterType="map">
+		<selectKey keyProperty="paymentId" resultType="String" order="BEFORE">
+	        SELECT 
+	        	'p' || TO_CHAR(SYSDATE, 'YYYYMMDD') || LPAD(NVL(MAX(SUBSTR(payment_id, 10, 2)), 0) + 1, 2, '0')
+	        FROM 
+	        	room_payment
+	        WHERE 
+	        	payment_id LIKE 'p' || TO_CHAR(SYSDATE, 'YYYYMMDD') || '%'
+		</selectKey>
+		
+		INSERT INTO room_payment (
+			 PAYMENT_ID
+			,BOOKING_ID
+			,ROOM_ID
+			,USER_ID
+			,PAYTYPE_CODE
+			,CARD_NO
+			,REFUND_ACCOUNT
+			,PAYMENT_PRICE
+			,CREATE_DATE
+		) VALUES (
+			 #{paymentId}
+			,#{bookingId}
+			,#{roomId}
+			,#{userId}
+			<if test="(cardNo != null and !cardNo.equals('')) and (refundAccount == null or refundAccount.equals(''))">
+				,'pmt01'
+				,#{cardNo}
+				,null
+			</if>
+			<if test="(refundAccount != null and !refundAccount.equals('')) and (cardNo == null or cardNo.equals(''))">
+				,'pmt02'
+				,null
+				,#{refundAccount}
+			</if>
+			,#{paymentPrice}
+			,SYSDATE
+			)
+	</insert>
+</mapper>

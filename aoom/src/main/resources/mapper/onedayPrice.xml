@@ -128,7 +128,7 @@
     <select id = "selectListByDuringDate" resultType="camelCaseMap">
     	SELECT
     		<include refid="onedayPrice_col"/> 
-    		,TO_CHAR(oneday, 'YYYY/MM/DD') AS oneday_char
+    		,TO_CHAR(oneday, 'YYYY/MM/DD') AS oneday_char<!-- to_char를 사용 -->
     	FROM
     		oneday_price
 		WHERE

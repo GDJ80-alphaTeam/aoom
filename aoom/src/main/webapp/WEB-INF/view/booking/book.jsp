@@ -40,7 +40,7 @@
 				    <input type="hidden" id="roomId" name="roomId">
 				    
 				    <h3>숙박인원</h3>
-				    <input type="number" id="usePeople" name="usePeople" min="1" required autocomplete="off">
+				    <input type="number" id="usePeople" name="usePeople" min="1" max="${maxPeople}" required autocomplete="off">
 				    
 				    <h3>결제 수단 선택</h3>
 				    <select id="paymentMethod">
@@ -235,10 +235,12 @@
 	    
 	    // 예약하기 버튼 클릭 시 이벤트
 	    $('#bookingBtn').click(function(event){
+	    	event.preventDefault(); // 폼의 기본 제출 동작을 막음
 	    	
+	    	// 폼이 유효하지 않으면 AJAX 요청을 보내지 않음
 		    if (!document.getElementById('booking').checkValidity()) {
 		        alert('폼을 올바르게 작성해주세요.');
-		        return; // 폼이 유효하지 않으면 AJAX 요청을 보내지 않음
+		        return; 
 		    }
 		    
 	    	// form 데이터를 seraialize()로 가져오기
@@ -249,20 +251,20 @@
 				method: 'post',
 				data: formData,
 				success: function(response){
-					alert('성공했ㅅㅂ니다.');
-				}
+					console.log(response); // 응답 로그
+					if(response.result){
+				        alert(response.message);
+				        window.location.href = '/guest/bookInfo?bookingId='+response.data;
+					}else{
+				        alert(response.message);
+					}
+				},
+		        error: function(jqXHR, textStatus, errorThrown) {
+		            console.error('AJAX Error: ' + textStatus + ': ' + errorThrown);
+		            alert('예약 요청 중 오류가 발생했습니다.');
+		        }
 			})
 	    })
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-

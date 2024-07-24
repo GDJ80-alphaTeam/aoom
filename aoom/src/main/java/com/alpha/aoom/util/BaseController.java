@@ -30,12 +30,25 @@ public class BaseController implements BaseConstant{
 		model.put("message", MASSAGE_RESULT_SUCCESS);
 		return model;
 	}
+	public Map<String, Object> getSuccessResult(Map<String, Object> model, String message) {
+		
+		model.put("result", true);
+		model.put("code", CODE_RESULT_SUCCESS);
+		model.put("message", message);
+		return model;
+	}
 	
 	//ajax 성공 결과 (모델반환)
 	public Map<String, Object> getSuccessResult(ModelMap model) {
 		model.put("result", true);
 		model.put("code", CODE_RESULT_SUCCESS);
 		model.put("message", MASSAGE_RESULT_SUCCESS);
+		return model;
+	}
+	public Map<String, Object> getSuccessResult(ModelMap model, String message) {
+		model.put("result", true);
+		model.put("code", CODE_RESULT_SUCCESS);
+		model.put("message", message);
 		return model;
 	}
 	

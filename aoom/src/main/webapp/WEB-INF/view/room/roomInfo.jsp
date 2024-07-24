@@ -192,14 +192,14 @@
 					
 					</div>
 				</div>
-			<form action="${pageContext.request.contextPath}/booking/book" method="get">
+			<form action="${pageContext.request.contextPath}/booking/book" method="get" id="bookingForm">
 				<div style="width: 50% ; background-color: gray" >
 					<input type="text" id="datepicker" style="width: 300px;">
-					<input type="number" id="usePeople" value="1" name="usePeople" min="1" max="9">
-					<input type="hidden" id="startDate" value="가" name="startDate">
-					<input type="hidden" id="endDate" value="나" name="endDate">
+					<input type="number" id="usePeople" value="1" name="usePeople" min="1" max="${roomInfo.maxPeople}">
+					<input type="hidden" id="startDate" name="startDate" required="required">
+					<input type="hidden" id="endDate" name="endDate" required="required">
 					<input type="hidden"  value="${roomInfo.roomId}" name="roomId">
-					<button type="submit">예약하기</button>
+					<button type="submit" id="bookingBtn">예약하기</button>
 				</div>
 			</form>			
 		</div>		
@@ -208,9 +208,27 @@
 		
 		
 	<script>
-								
+	
+	    $('#bookingBtn').click(function(event) {
+	        event.preventDefault(); // 폼의 기본 제출 동작을 막음
+	
+	        var datepickerValue = $('#datepicker').val();
+	
+	        // datepicker가 빈칸이나 null인지 확인
+	        if (!datepickerValue) {
+	            alert('날짜를 선택해주세요.');
+	            return;
+	        }
+	
+	        // 폼 시리얼라이즈
+	        var formData = $('#bookingForm').serialize();
+	
+	        // GET 요청으로 폼 데이터 전송
+	        var actionUrl = $('#bookingForm').attr('action');
+	        window.location.href = actionUrl + '?' + formData;
+	    });
+	
 		let isInitializing = false;
-		
 		
 		const fp = flatpickr("#datepicker", {			
 			mode: "range",
