@@ -14,9 +14,52 @@
 <body>
 	
 	<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
-	<h1>
-		프로필 페이지
-	</h1>
+		
+	<div style="width: 1200px;margin: 0 auto; ">
+		<h1>프로필</h1>	
+		<div style="display: flex;">
+			<div style="width: 30%; height:200px; background: gray; ">
+			
+				<div>
+					후기개수:${host.cnt}
+					가입기간:
+					<c:choose>
+					    <c:when test="${subPeriod.year == 0}">
+					        <c:choose>
+					            <c:when test="${subPeriod.month != 0}">
+					                ${subPeriod.month}월
+					            </c:when>
+					            <c:otherwise>
+					                신규 고객입니다!
+					            </c:otherwise>
+					        </c:choose>
+					    </c:when>
+					    <c:when test="${subPeriod.year != 0}">
+					        ${subPeriod.year}년
+					        <c:choose>
+					            <c:when test="${subPeriod.leftMonth != 0}">
+					                ${subPeriod.leftMonth}월
+					            </c:when>
+					        </c:choose>
+					    </c:when>
+					</c:choose>
+					 
+				</div>
+			
+			</div>
+			<div style="width: 70%; background: green; display: flex;flex-wrap: wrap;">
+			<c:forEach var="p" items="${profile}">
+				<div style="width: 50%;  background: green;">
+					${p.codeName} : ${p.content} 
+				</div>
+			</c:forEach>
+			</div>
+		</div>	
+		<div style="width:50%; background-color: green;">
+		test
+		</div>
+		
+	</div>
 	
 	
 </body>

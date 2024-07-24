@@ -53,4 +53,16 @@
 		WHERE
 			user_id = #{userId}
 	</select>
+	
+	<!-- 가입기간 -->
+	<select id="selectBySubPeriod" parameterType="map" resultType="camelCaseMap">
+		SELECT
+	         TRUNC(MONTHS_BETWEEN(SYSDATE, CREATE_DATE)) as month
+	        ,TRUNC(MONTHS_BETWEEN(SYSDATE, CREATE_DATE) / 12) as year
+	        ,TRUNC(MOD(MONTHS_BETWEEN(SYSDATE, CREATE_DATE), 12)) as left_month
+	    FROM 
+	        users
+	    WHERE
+	        user_id = #{userId}
+	</select>
 </mapper>

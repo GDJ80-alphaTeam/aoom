@@ -12,4 +12,6 @@ public interface UserMapper {
 	Map<String, Object> select(Map<String, Object> param);
 	// 아이디 중복체크
 	Map<String, Object> selectByUserId(Map<String, Object> param);
+	
+	Map<String, Object> selectBySubPeriod(Map<String, Object> param);
 }

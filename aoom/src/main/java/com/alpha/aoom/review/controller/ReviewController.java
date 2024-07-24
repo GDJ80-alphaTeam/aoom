@@ -51,6 +51,7 @@ public class ReviewController extends BaseController{
 				
 	}
 
+	// 숙소 리뷰 인서트
 	// param : rating , bookingId, roomId , reviewContent
 	@RequestMapping("/insert")
 	public String insertReview(@RequestParam Map<String, Object> param
