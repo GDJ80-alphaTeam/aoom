@@ -158,23 +158,20 @@ public class HostController extends BaseController {
 	public String bookList(@RequestParam Map<String, Object> param,  HttpSession session, ModelMap modelMap){
 		
 		// 세션에서 user정보 가져오기
-		Map<String, Object> userInfo = (HashMap<String, Object>)session.getAttribute("userInfo");
-		System.out.println("userInfo : "+ userInfo);
+		Map<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
 		
 		// 세션에서 가져온 userId를 바로 param에 넣기. 이름을 hostId로 넣기.(쿼리문에 들어갈 userId 혼용방지)
 		param.put("hostId", ((Map<String, String>) session.getAttribute("userInfo")).get("userId"));
-		
-		// 선택된 방 가져와서 param에 넣기
-		String selectRoom = (String) param.get("selectRoom");
-		System.out.println("선택된 방 테스트 : "+ selectRoom);
-		param.put("selectRoom", selectRoom);
 		
 		// 로그인 유저의 호스팅한 숙소의 예약 목록
 		List<Map<String, Object>> bookingList = bookingService.selectListByUserId(param);
 		
 		modelMap.addAttribute("roomList", roomService.selectByUserId(userInfo));// 활성화 중인 숙소만 가져오도록 설정(셀렉트 태그 반복문 용도)
-		modelMap.addAttribute("selectRoom", selectRoom);// 선택된 숙소가 셀렉트창에 보이게 설정
+		modelMap.addAttribute("selectRoom", param.get("selectRoom"));// 선택된 숙소가 셀렉트창에 보이게 설정
 		modelMap.addAttribute("bookingList", bookingList);// 내 숙소 예약한 게스트들 목록
+		modelMap.addAttribute("startDate", param.get("startDate"));// 내 숙소 예약한 게스트들 목록
+		modelMap.addAttribute("endDate", param.get("endDate"));// 내 숙소 예약한 게스트들 목록
+		modelMap.addAttribute("bookStat", param.get("bookStat"));// 내 숙소 예약한 게스트들 목록
 		
 		return "/host/bookList";
 	}

@@ -186,14 +186,29 @@
 		        ) r
 		    ON
 		        b.room_id = r.room_id
+	        WHERE
+	        	1 = 1
+	        <if test="bookStat == 'bst02'">
+	        	AND bookstat_code = 'bst02'
+	        </if>
+	        <if test="bookStat == 'bst03'">
+	        	AND (bookstat_code = 'bst03' OR bookstat_code = 'bst04')
+	        </if>
+	        <if test="bookStat == 'bst05'">
+	        	AND bookstat_code = 'bst05'
+	        </if>
 		    )br
 		ON
 		    bopm.booking_id = br.booking_id
 		WHERE
 			1 = 1
-			<if test="selectRoom != null || selectRoom eq ''">
+			<if test="(selectRoom != null || selectRoom eq '') and selectRoom != 'all'">
 				AND br.room_id = #{selectRoom}
 			</if>
+	        <if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+	            AND oneday <![CDATA[>=]]> TO_DATE(#{startDate}, 'yy/mm/dd')
+	            AND oneday <![CDATA[<]]> TO_DATE(#{endDate}, 'yy/mm/dd')
+	        </if>
 		GROUP BY
 		     br.room_name
 		    ,br.user_id
