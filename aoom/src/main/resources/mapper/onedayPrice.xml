@@ -4,14 +4,13 @@
 
 	<!-- 컬럼 이름 sql조각 -->
 	<sql id="onedayPrice_col">
-		 TO_CHAR(op.oneday, 'YYYY-MM-DD') AS oneday
-		,op.room_id
-		,TO_CHAR(op.oneday_price, '999,999,999') AS oneday_price
-		,op.oneday_price AS original_oneday_price
-		,op.update_date
-		,op.left_people
-		,op.onestat_code
-		,op.create_date
+		 oneday
+		,room_id
+		,oneday_price
+		,update_date
+		,left_people
+		,onestat_code
+		,create_date
 	</sql>
 	
 	<!-- onedayPrice의 예약상태의 따른 리스트 검색 -->
@@ -155,7 +154,14 @@
     <!-- 해당 숙소의 전체 하루숙박가격 -->
 	<select id="select" parameterType="map" resultType="camelCaseMap">
 		SELECT
-			 <include refid="onedayPrice_col" />
+			 TO_CHAR(op.oneday, 'YYYY-MM-DD') AS oneday
+			,op.room_id
+			,TO_CHAR(op.oneday_price, '999,999,999') AS oneday_price
+			,op.oneday_price AS original_oneday_price
+			,op.update_date
+			,op.left_people
+			,op.onestat_code
+			,op.create_date
 			,c.code_name
 		FROM
 			oneday_price op

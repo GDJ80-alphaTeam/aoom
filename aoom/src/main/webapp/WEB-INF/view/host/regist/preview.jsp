@@ -41,8 +41,9 @@
 					<td>${roomInfo.address }</td>
 					<td>${roomInfo.defaultPrice }원</td>
 					<td>
-						<fmt:formatDate value="${roomInfo.startDate }" pattern="yyyy/MM/dd"/> ~
-						<fmt:formatDate value="${roomInfo.endDate }" pattern="yyyy/MM/dd"/>
+						${roomInfo.startDate } ~ ${roomInfo.endDate }
+<%-- 						<fmt:formatDate value="${roomInfo.startDate }" pattern="yyyy/MM/dd"/> ~ --%>
+<%-- 						<fmt:formatDate value="${roomInfo.endDate }" pattern="yyyy/MM/dd"/> --%>
 					</td>
 				</tr>
 			</tbody>
