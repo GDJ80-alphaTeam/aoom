@@ -53,4 +53,13 @@
 			,SYSDATE
 			)
 	</insert>
+	
+	<select id="selectByBookingId" parameterType="map" resultType="camelCaseMap">
+		SELECT
+	    	<include refid="roomPayment_col"/>
+		FROM  
+	    	room_payment
+		WHERE
+	    	booking_id = #{bookingId}
+	</select>
 </mapper>

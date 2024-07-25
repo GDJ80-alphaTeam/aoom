@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alpha.aoom.cancelRefund.service.CancelRefundMapper">
+
+	<insert id="insert" parameterType="map">
+		INSERT INTO cancel_refund(
+	         booking_id
+	        ,payment_id
+	        ,refund_price
+	        ,cancelrea_code
+	      	,cancel_content
+	      	,create_date
+	        
+        ) VALUES(
+            #{bookingId}
+           ,#{paymentId}
+           ,#{refundPrice}
+           ,#{cancelreaCode}
+           ,#{cancelreaContent}
+           ,sysdate
+       	)
+	</insert>
+	
+</mapper>

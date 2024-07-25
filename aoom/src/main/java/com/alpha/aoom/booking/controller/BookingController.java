@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alpha.aoom.booking.service.BookingService;
+import com.alpha.aoom.cancelRefund.service.CancelRefundService;
+import com.alpha.aoom.code.service.CodeService;
 import com.alpha.aoom.onedayPrice.service.OnedayPriceService;
 import com.alpha.aoom.review.service.ReviewService;
 import com.alpha.aoom.room.service.RoomService;
+import com.alpha.aoom.roomPayment.service.RoomPaymentService;
 import com.alpha.aoom.util.BaseController;
 
 import jakarta.servlet.http.HttpSession;
@@ -36,6 +39,15 @@ public class BookingController extends BaseController {
 	
 	@Autowired
 	BookingService bookingService;
+	
+	@Autowired
+	CodeService codeService;
+	
+	@Autowired
+	RoomPaymentService roomPaymentService;
+	
+	@Autowired
+	CancelRefundService cancelRefundService;
 	
 	// 예약하기
 	@RequestMapping("/book")
@@ -97,7 +109,8 @@ public class BookingController extends BaseController {
 	    	return getFailResult(model,"예약 실패");
 	    }
 	}
-	
+	 
+	// 예약취소 페이지
 	@RequestMapping("/bookingCancel")
 	public String bookingCancel(@RequestParam Map<String, Object> param , HttpSession session , ModelMap modelMap) {
 		
@@ -110,13 +123,37 @@ public class BookingController extends BaseController {
 			return "redirect:/main";
 		}
 		
+		codeService.selectByGroupKey("cancelrea");
+		
 		// 페이징을 하지않아도 같은 쿼리를 사용해서 넣어줘야함
 		int currentPage = 1;
 		param.put("currentPage", currentPage);
-
-		// 예약 상세정보 
+		
+		// 결제 상세정보
+		modelMap.addAttribute("paymentInfo", roomPaymentService.selectByBookingId(param));
+		// 예약 상세정보
 		modelMap.addAttribute("bookingInfo" , bookingService.selectByUserId(param).get(0));
+		// 취소 카테고리
+		modelMap.addAttribute("cancelInfo" , codeService.selectByGroupKey("cancelrea"));
+		
 		
 		return "/booking/bookingCancel";
+	}
+	
+	// 예약취소 이벤트	
+	// param : bookingId , refundPrice , cancelreaCode , cancelContent 
+	@RequestMapping("/bookingCancelEvent")
+	public String dobookingCancel(@RequestParam Map<String, Object> param , ModelMap modelMap) {
+		
+		log.info("마파람"+param);
+		int result = cancelRefundService.insert(param);
+		
+		if(result != 1) {
+			log.info("실패"+"");
+			return "redirect:/booking/bookList";
+		} 
+		
+		return "hi";
+	
 	}
 }
