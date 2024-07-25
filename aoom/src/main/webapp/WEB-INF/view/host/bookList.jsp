@@ -35,7 +35,7 @@
 	                    <c:if test="${room.roomId == selectRoom}">
 	                        <option value="${room.roomId }" selected="selected">${room.roomName }</option>
 	                    </c:if>
-	                    <c:if test="${room.roomId != selectedRoomId}">
+	                    <c:if test="${room.roomId != selectRoom}">
 	                        <option value="${room.roomId }">${room.roomName }</option>
 	                    </c:if>
 	                </c:if>
@@ -87,8 +87,6 @@
 	</table>
 	
 	<script type="text/javascript">
-	
-		
 	
 	</script>
 </body>

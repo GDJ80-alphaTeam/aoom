@@ -156,11 +156,11 @@ public class HostController extends BaseController {
 		// 세션에서 가져온 userId를 바로 param에 넣기. 이름을 hostId로 넣기.(쿼리문에 들어갈 userId 혼용방지)
 		param.put("hostId", ((Map<String, String>) session.getAttribute("userInfo")).get("userId"));
 		
-		// 선택된 방 가져오기
+		// 선택된 방 가져와서 param에 넣기
 		String selectRoom = (String) param.get("selectRoom");
 		System.out.println("선택된 방 테스트 : "+ selectRoom);
+		param.put("selectRoom", selectRoom);
 		
-		// (작업중)
 		// 로그인 유저의 호스팅한 숙소의 예약 목록
 		List<Map<String, Object>> bookingList = bookingService.selectListByUserId(param);
 		
