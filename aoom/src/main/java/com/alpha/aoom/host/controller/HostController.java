@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alpha.aoom.booking.service.BookingService;
+import com.alpha.aoom.code.service.CodeService;
 import com.alpha.aoom.onedayPrice.service.OnedayPriceService;
 import com.alpha.aoom.room.service.RoomService;
 import com.alpha.aoom.util.BaseController;
@@ -33,6 +34,8 @@ public class HostController extends BaseController {
 	@Autowired
 	BookingService bookingService;
 
+	@Autowired
+	CodeService codeService;
 	// 호스트 모드 메인화면 호출
 	@RequestMapping("/main")
 	public String main(HttpSession session, ModelMap modelMap) {
@@ -102,6 +105,11 @@ public class HostController extends BaseController {
 		Map<String, Object> userInfo = (HashMap<String, Object>)session.getAttribute("userInfo");
 		log.info("userInfo={}", userInfo);
 		
+		// onedayPrice의 상태 변경을 위해 onestatCode 불러와서 model에 추가하기
+		List<Map<String, Object>> onestatCodeList = codeService.selectByGroupKey("onestat");
+		log.info("onestatCodeList={}", onestatCodeList);
+		modelMap.addAttribute("onestatCodeList", onestatCodeList);
+		
 		// 활성화 중인 숙소만 가져오도록 설정
 		modelMap.addAttribute("roomList", roomService.selectByUserId(userInfo));
 		modelMap.addAttribute("selectedRoomId", param.get("roomId"));
@@ -140,7 +148,7 @@ public class HostController extends BaseController {
 		}
 		
 		// oneday_price 테이블의 onedayPrice 수정
-		onedayPriceService.update(param);
+		onedayPriceService.updateOnedayPrice(param);
 		log.info("하루숙박 가격 수정 완료");
 		
 		return "redirect:/host/calendar?roomId=" + param.get("roomId").toString();
@@ -169,5 +177,24 @@ public class HostController extends BaseController {
 		modelMap.addAttribute("bookingList", bookingList);// 내 숙소 예약한 게스트들 목록
 		
 		return "/host/bookList";
+	}
+	
+	// 달력 - 숙소의 oneday의 상태 변경
+	@RequestMapping("/calendar/ajaxUpdateOnestatCode")
+	@ResponseBody
+	public Map<String, Object> ajaxUpdateOnestatCode(@RequestParam Map<String, Object> param) {
+		log.info("onedayPrice 상태 변경 param={}", param);
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		model.put("data", param);
+		
+		int row = onedayPriceService.updateOnestatCode(param);
+		
+		if(row != 0) {
+			log.info(getSuccessResult(model).toString());
+			return getSuccessResult(model, "상태가 변경되었습니다.");
+		} else {
+			return getFailResult(model);
+		}
 	}
 }

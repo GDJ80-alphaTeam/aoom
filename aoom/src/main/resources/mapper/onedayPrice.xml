@@ -172,7 +172,12 @@
 		UPDATE
 			oneday_price
 		SET
-			oneday_price = #{onedayPrice}
+			<if test="onedayPrice != null and !onedayPrice.equals('')">
+				oneday_price = #{onedayPrice}
+			</if>
+			<if test="onestatCode != null and !onestatCode.equals('')">
+				onestat_code = #{onestatCode}
+			</if>
 		WHERE
 			room_id = #{roomId}
 			AND oneday = #{oneday}

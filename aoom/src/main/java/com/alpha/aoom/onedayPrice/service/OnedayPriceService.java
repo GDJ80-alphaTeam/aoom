@@ -94,14 +94,14 @@ public class OnedayPriceService {
 		return onedayPriceMapper.select(param);
 	}
 	
-	// 하루 숙박 가격 수정
-	public void update(Map<String, Object> param) {
+	// onedayPrice 수정
+	public void updateOnedayPrice(Map<String, Object> param) {
 		log.info("하루숙박 가격 수정 param={}", param.toString());
 		
 		Object paramStartDate = param.get("startDate");
 		Object paramEndDate = param.get("endDate");
 		
-		// startDate, endDate가 없다면 - 기본요금 수정일 경
+		// startDate, endDate가 없다면 - 기본요금 수정일 경우
 		if(paramStartDate == null && paramEndDate == null) {
 			Map<String, Object > roomInfo =  roomService.selectOne(param);
 			paramStartDate = roomInfo.get("startDate").toString();
@@ -128,5 +128,39 @@ public class OnedayPriceService {
 			// update 메서드 호출
 			onedayPriceMapper.update(onedayParam);
 		}
+	}
+	
+	// onestatCode 수정
+	public int updateOnestatCode(Map<String, Object> param) {
+		log.info("onestatCode 수정 param={}", param.toString());
+		
+		// update된 row수 return 하기위해 선언
+		int row = 0;
+		
+		Object paramStartDate = param.get("startDate");
+		Object paramEndDate = param.get("endDate");
+		
+		// startDate부터 endDate까지 DB에 UPDATE
+		// DB에서 가져온 날짜의 포맷 형식 지정
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		
+		// 시작일과 종료일 가져오기
+		LocalDate startDate = LocalDate.parse(paramStartDate.toString(), dateTimeFormatter);
+		LocalDate endDate = LocalDate.parse(paramEndDate.toString(), dateTimeFormatter);
+		
+		// 시작일부터 종료일까지 반복
+		for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
+			
+			// UPDATE에 사용될 map을 만들고 필요한 컬럼들 추가
+			Map<String, Object> onedayParam = new HashMap<>();
+			onedayParam.put("roomId", param.get("roomId"));
+			onedayParam.put("oneday", date);
+			onedayParam.put("onestatCode", param.get("onestatCode"));
+			
+			// update 메서드 호출
+			row += onedayPriceMapper.update(onedayParam);
+		}
+		
+		return row;
 	}
 }

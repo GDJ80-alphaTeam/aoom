@@ -46,7 +46,7 @@
         <a href="/host/main">메인</a>
         <a href="/host/calendar">달력</a>
         <a href="/host/roomManage">숙소 관리</a>
-        <a href="#">예약 목록</a>
+        <a href="/host/bookList">예약 목록</a>
     </div>
     
     <div>
@@ -70,7 +70,7 @@
         
         <div id="DivSelectDay" style="width: 20%; box-sizing: border-box;">
         
-        	<!-- 닐찌 산텍 안했을 때 -->
+        	<!-- 닐찌 선택 안했을 때 -->
             <div style="width: 100%; display: inline-block;" id="notSelectDay">
 	            <form action="/host/calendar/updateDefaultPrice" method="post">
 	            	<h3>기본 요금</h3>
@@ -88,21 +88,27 @@
 	            </form>
             </div>
             
-            <!-- 닐찌 산텍 했을 때 -->
+            <!-- 닐찌 선택 했을 때 -->
             <div style="width: 100%;" id="selectDay">
             	<!-- 선택한 날짜 표시 -->
                 <h3 id="dateTitle"></h3>
                 <br>
                 
-                <div class="d-flex align-items-center">
-                    <span>예약 차단</span>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                    </div>
-                    <span>예약 가능</span>
-                </div>
-                <br>
+                <!-- 예약 상태 변경 -->
                 <form action="/host/calendar/updateDefaultPrice" method="post">
+	                <div class="d-flex align-items-center">
+<!-- 	                    <span>예약 차단</span> -->
+<!-- 	                    <div class="form-check form-switch"> -->
+<!-- 	                        <input class="form-check-input" type="checkbox" name="onestatCode" role="switch" id="flexSwitchCheckDefault"> -->
+<!-- 	                    </div> -->
+<!-- 	                    <span>예약 가능</span> -->
+						<c:forEach var="onestatCode" items="${onestatCodeList }">						
+						    <button type="button" name="onestatCode" value="${onestatCode.codeKey }">${onestatCode.codeName }</button>
+						</c:forEach>
+												
+	                </div>
+	                <br>
+                
 	                <div>1박당</div>
 	                <input type="hidden" name="roomId" value="${selectedRoomId }">
 	                <input type="hidden" name="startDate" id="startOneDay">
@@ -116,13 +122,14 @@
     </div>
     
     <script type="text/javascript">
-    	// calendar 변수 선언
+    	// calendar, 선택한 roomId 전역 변수 선언
 	    let calendar; 
-	
+	    let urlRoomId;
+	    
 	    $(document).ready(function() {
 	    	
 	    	// 선택된 숙소 roomId 가져오고, input에 value 넣어주기
-	        let urlRoomId = $('#selectRoom').val();
+	        urlRoomId = $('#selectRoom').val();
 	        $('input[name="roomId"]').val(urlRoomId);
 	        
 	        // 해당 숙소의 onedayPrice목록 가져오기
@@ -186,7 +193,11 @@
 	        }
 	    });
 	
-	    // fullCalendar 초기화 함수
+	</script>
+	
+	<!-- fullCalendar 초기화 및 생성 -->
+	<script type="text/javascript">
+		// fullCalendar 초기화 함수
 	    function initCalendar(events, startDate, endDate) {
 	        let calendarEl = document.getElementById('calendar');
 	        
@@ -202,7 +213,7 @@
 	            showNonCurrentDates: false, // 해당 월의 달력에 이전달, 다음달 날짜 표시할건지 설정
 	            aspectRatio: 1.5, // 달력 크기 설정(종횡비)
 	            selectable: true, // 날짜(cell)를 선택할 수 있게 설정
-// 	            selectOverlap: true, // 이벤트가 있는 부분도 선택 가능하게 설정
+// 		        selectOverlap: true, // 이벤트가 있는 부분도 선택 가능하게 설정
 	            locale: 'kr', // 언어 설정
 	            headerToolbar: { // 달력 상단 설정
 	                start: 'prev',
@@ -217,18 +228,18 @@
 	            select: function(info) {
 	                // 선택되어있던 날짜(cell)를 배열로 가져오기
 	                let selectedCells = $('.selected-date').toArray();
-
+	
 	                // 선택한 날짜(cell) 배열 forEach문 돌리기
 	                selectedCells.forEach(function(cell) {
 	                    // 선택되어있는 날짜들의 색을 변경하는 클래스 제거
 	                    $(cell).removeClass('selected-date');
 	                });
-
+	
 	                // 선택한 날짜 가져오기
 	                let startDate = moment(info.startStr);
 	                let endDate = moment(info.endStr);
-
-	                // 선택한 날짜 만큼 반복
+	
+	                // 해당 event의 날짜만큼 반복 - ()
 	                while (startDate < endDate) {
 	                    let cell = $('[data-date="' + startDate.format('YYYY-MM-DD') + '"]');
 	                    if (cell) {
@@ -236,20 +247,20 @@
 	                    }
 	                    startDate = moment(startDate).add(1, 'day');
 	                }
-
+	
 	                // 날짜 선택에 따라 div 토글
 	                $('#selectDay').show();
 	                $('#notSelectDay').hide();
-
+	
 	                let startOneDay = info.startStr;
 	                let endOneDay = moment(info.endStr).subtract(1,'day').format('YYYY-MM-DD');
-
+	
 	                if(startOneDay === endOneDay) {
 	                    $('#dateTitle').text(startOneDay + ' 요금 설정');
 	                } else {
 	                    $('#dateTitle').text(startOneDay + '~' + endOneDay + ' 요금 설정');
 	                }
-
+	
 	                $('#startOneDay').val(startOneDay);
 	                $('#endOneDay').val(endOneDay);
 	            },
@@ -264,6 +275,27 @@
 	        calendar.render();
 	    }
 	</script>
-
+	
+	<script type="text/javascript">
+		$("button[name='onestatCode']").click(function() {
+			let onestatCode = $(this).val();
+			
+			$.ajax({
+				url: '/host/calendar/ajaxUpdateOnestatCode',
+				method: 'get',
+				data: {
+						'roomId' : urlRoomId,
+						'onestatCode' : onestatCode,
+						'startDate': $('#startOneDay').val(),
+						'endDate': $('#endOneDay').val()
+					  },
+				success: function(response) {
+					console.log(response);
+					window.location.href = '/host/calendar?roomId=' + urlRoomId;
+					alert(response.message);
+				}
+			});
+		});
+	</script>
 </body>
 </html>
