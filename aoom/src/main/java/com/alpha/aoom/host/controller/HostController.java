@@ -1,7 +1,5 @@
 package com.alpha.aoom.host.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alpha.aoom.booking.service.BookingService;
 import com.alpha.aoom.onedayPrice.service.OnedayPriceService;
 import com.alpha.aoom.room.service.RoomService;
 import com.alpha.aoom.util.BaseController;
@@ -30,6 +29,9 @@ public class HostController extends BaseController {
 	
 	@Autowired
 	OnedayPriceService onedayPriceService;
+	
+	@Autowired
+	BookingService bookingService;
 
 	// 호스트 모드 메인화면 호출
 	@RequestMapping("/main")
@@ -142,5 +144,26 @@ public class HostController extends BaseController {
 		log.info("하루숙박 가격 수정 완료");
 		
 		return "redirect:/host/calendar?roomId=" + param.get("roomId").toString();
+	}
+
+	@RequestMapping("/bookList")
+	public String bookList(@RequestParam Map<String, Object> param,  HttpSession session, ModelMap modelMap){
+		
+		// 세션에서 user정보 가져오기
+		Map<String, Object> userInfo = (HashMap<String, Object>)session.getAttribute("userInfo");
+		String selectRoom = (String) param.get("selectRoom");
+		System.out.println("선택된 방 테스트 : "+selectRoom);
+		
+		// (작업중)
+		// 로그인 유저의 호스팅한 숙소의 예약 목록
+		// List<Map<String, Object>> bookingList = bookingService.selectListByUserId(param);
+		// log.info("내 숙소 예약한 것들 목록 : " + bookingList);
+		
+		// 활성화 중인 숙소만 가져오도록 설정(셀렉트 태그 반복문 용도)
+		modelMap.addAttribute("roomList", roomService.selectByUserId(userInfo));
+		// 선택된 숙소가 셀렉트창에 보이게 설정
+		modelMap.addAttribute("selectRoom", selectRoom);
+		
+		return "/host/bookList";
 	}
 }

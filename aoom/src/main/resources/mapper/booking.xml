@@ -4,13 +4,13 @@
 	
 	<!-- 컬럼 이름 sql조각 -->
 	<sql id="booking_col">
-		 booking_id
-		,room_id
-		,user_id
-		,stay_people
-		,create_date
-		,bookstat_code
-		,paystat_code
+		 b.booking_id
+		,b.room_id
+		,b.user_id
+		,b.stay_people
+		,b.create_date
+		,b.bookstat_code
+		,b.paystat_code
 	</sql>
 
 	<!-- 로그인한 사용자의 예약정보 + 숙소정보 조회 -->
@@ -153,5 +153,45 @@
 		WHERE
 		    user_id = #{userId}
 		    AND booking_id = #{bookingId}
+	</select>
+	
+	<!-- 로그인 유저의 호스팅한 숙소의 예약 목록 -->
+	<select id="selectListByUserId" parameterType="map" resultType="camelCaseMap">
+		SELECT
+		     TO_CHAR(MIN(oneday), 'yy/mm/dd') AS check_in
+			,TO_CHAR(MAX(oneday+1), 'yy/mm/dd') AS check_out
+		    ,br.room_name
+		    ,br.user_id AS guest_id
+		    ,br.bookstat_code
+		FROM
+		    booking_oneday_price_map bopm
+		INNER JOIN
+		    (
+		    SELECT
+		    	 <include refid="booking_col"/>
+		        ,r.room_name
+		    FROM
+		        booking b
+		    INNER JOIN
+		        (
+		        SELECT
+		            room_id,
+		            room_name
+		        FROM
+		            room
+		        WHERE
+		            user_id = #{userId}
+		            AND roomstat_code = 'rst03'
+		        ) r
+		    ON
+		        b.room_id = r.room_id
+		    )br
+		ON
+		    bopm.booking_id = br.booking_id
+		GROUP BY
+		    br.room_name,
+		    br.user_id,
+		    br.bookstat_code,
+		    oneday
 	</select>
 </mapper>

@@ -108,4 +108,10 @@ public class BookingService {
 	public int selectByInvalidAccess(Map<String, Object> param) {
 		return bookingMapper.selectByInvalidAccess(param);
 	}
+	
+	// 로그인 유저의 호스팅한 숙소의 예약 목록
+	public List<Map<String, Object>> selectListByUserId (Map<String, Object> param){
+		return bookingMapper.selectListByUserId(param);
+	}
+	
 }

@@ -16,7 +16,7 @@
 						이메일 : <input type="email" id="signinUserId" name="userId" placeholder="이메일을 입력해주세요" required="required">
 					</div>
 					<div>
-						비밀번호 : <input type="password" id="signinUserPw" name="userPw" required="required">
+						비밀번호 : <input type="password" id="signinUserPw" name="userPw" required="required" value="qwer1234!">
 					</div>
 				</form>
             </div>

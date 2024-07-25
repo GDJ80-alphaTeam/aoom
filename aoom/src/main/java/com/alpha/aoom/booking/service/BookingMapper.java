@@ -22,4 +22,7 @@ public interface BookingMapper {
 	
 	// 비정상적인 접근을 했을때를 위한, 확인쿼리
 	int selectByInvalidAccess(Map<String, Object> param);
+	
+	// 로그인 유저의 호스팅한 숙소의 예약 목록
+	List<Map<String, Object>> selectListByUserId(Map<String, Object> param);
 }

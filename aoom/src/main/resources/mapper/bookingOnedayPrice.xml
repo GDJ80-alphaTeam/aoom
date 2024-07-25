@@ -46,9 +46,18 @@
 				v_oneday := v_oneday + 1;
 			END LOOP;
 		END; -->
-		insert into booking_oneday_price_map 
-		(booking_id,oneday,room_id, oneday_price, create_date)
-		values(#{bookingid},#{onedayChar},#{roomId},#{onedayPrice},SYSDATE)	
+		INSERT INTO booking_oneday_price_map(
+			 booking_id
+			,oneday
+			,room_id
+			,oneday_price
+			,create_date)
+		VALUES(
+			#{bookingid}
+			,#{onedayChar}
+			,#{roomId}
+			,#{onedayPrice}
+			,SYSDATE)	
 	</insert>
 
 </mapper>
