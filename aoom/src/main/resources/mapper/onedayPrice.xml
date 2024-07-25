@@ -4,7 +4,7 @@
 
 	<!-- 컬럼 이름 sql조각 -->
 	<sql id="onedayPrice_col">
-		 op.oneday
+		 TO_CHAR(op.oneday, 'YYYY-MM-DD') AS oneday
 		,op.room_id
 		,TO_CHAR(op.oneday_price, '999,999,999') AS oneday_price
 		,op.oneday_price AS original_oneday_price

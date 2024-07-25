@@ -37,7 +37,7 @@ public class OnedayPriceService {
 
 		// startDate부터 endDate까지 DB에 INSERT
 		// DB에서 가져온 날짜의 포맷 형식 지정
-		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 		// 시작일과 종료일 가져오기
 		LocalDate startDate = LocalDate.parse(param.get("startDate").toString(), dateTimeFormatter);
@@ -110,7 +110,7 @@ public class OnedayPriceService {
 		
 		// startDate부터 endDate까지 DB에 UPDATE
 		// DB에서 가져온 날짜의 포맷 형식 지정
-		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		
 		// 시작일과 종료일 가져오기
 		LocalDate startDate = LocalDate.parse(paramStartDate.toString(), dateTimeFormatter);

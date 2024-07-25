@@ -132,7 +132,7 @@ public class HostController extends BaseController {
 	public String updateDefaultPrice(@RequestParam Map<String, Object> param) {
 		log.info("기본요금 수정 param={}", param.toString());
 		
-		if(param.get("startOneDay") == null && param.get("endOneDay") == null) {
+		if(param.get("startDate") == null && param.get("endDate") == null) {
 			// room 테이블의 defaultPrice 수정
 			roomService.update(param);
 		}

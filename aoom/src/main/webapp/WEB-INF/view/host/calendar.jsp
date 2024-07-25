@@ -70,6 +70,7 @@
         
         <div id="DivSelectDay" style="width: 20%; box-sizing: border-box;">
         
+        	<!-- 닐찌 산텍 안했을 때 -->
             <div style="width: 100%; display: inline-block;" id="notSelectDay">
 	            <form action="/host/calendar/updateDefaultPrice" method="post">
 	            	<h3>기본 요금</h3>
@@ -87,7 +88,9 @@
 	            </form>
             </div>
             
+            <!-- 닐찌 산텍 했을 때 -->
             <div style="width: 100%;" id="selectDay">
+            	<!-- 선택한 날짜 표시 -->
                 <h3 id="dateTitle"></h3>
                 <br>
                 
@@ -111,12 +114,18 @@
             </div>
         </div>
     </div>
+    
     <script type="text/javascript">
+    	// calendar 변수 선언
 	    let calendar; 
 	
 	    $(document).ready(function() {
+	    	
+	    	// 선택된 숙소 roomId 가져오고, input에 value 넣어주기
 	        let urlRoomId = $('#selectRoom').val();
 	        $('input[name="roomId"]').val(urlRoomId);
+	        
+	        // 해당 숙소의 onedayPrice목록 가져오기
 	        selectOnedayPrice();
 	
 	        $('#selectRoom').change(function() {
@@ -126,31 +135,42 @@
 	            selectOnedayPrice();
 	        });
 	
+	        // 해당 숙소의 onedayPrice가져오는 함수
 	        function selectOnedayPrice() {
+	        	
+	        	// 해당 숙소의 onedayPrice가져오는 ajax
 	            $.ajax({
 	                url: '/host/calendar/ajaxSelectOnedayPrice',
 	                method: 'get',
 	                data: {'roomId': urlRoomId},
-	                success: function(response) {
-	
+	                success: function(response) { // onedayPrice가져오기 성공하면
+	                	
+	                	// 운영일 만큼만 달력을 보여주기 위해 startDate, endDate 가져오기
 	                    let startDate = response.roomData.startDate;
 	                    let endDate = response.roomData.endDate;
+	                    
+	                    // room테이블에 설정된 숙소의 기본 요금 가져와서 value 넣어주기 
 						$('#defaultPrice').val(response.roomData.originalDefaultPrice);
-	
-	                    // 데이터가 올바른지 확인
-	                    if (response && response.onedayData && Array.isArray(response.onedayData)) {
-	                        let onedayList = response.onedayData; // 데이터 배열 가져오기
+	                    
+	                    // 데이터 잘 가져왔는지 분기
+	                    if (response && response.onedayData && Array.isArray(response.onedayData)) { // 데이터가 비어있지 않다면
+	                    	
+	                    	// 해당 숙소의 onedayPrice 전체 가져와서 배열에 담기 
+	                        let onedayList = response.onedayData;
+	                    
+	                    	// fullcalendar event를 담을 배열
 	                        let events = [];
 	
 	                        // 가져온 onedayPrice들로 event 배열 생성
 	                        onedayList.forEach(function(item) {
-	                            let date = item.oneday;
-	
-	                            let oneday = moment(date).format('YYYY-MM-DD');
+	                        	
+	                        	// oneday_price테이블의 oneday
+	                            let oneday = item.oneday;
+								
 	                            if (moment(oneday, 'YYYY-MM-DD', true).isValid()) {
 	                                events.push({
 	                                    title: item.codeName, // 예약 가능 여부
-	                                    description: item.onedayPrice + '원', // 추가 텍스트
+	                                    description: item.onedayPrice + '원', // onedayPrice 표시
 	                                    start: oneday, // oneday
 	                                    end: moment(oneday).add(1, 'day').format('YYYY-MM-DD'), // ondey + 1 (퇴실날)
 	                                    color: item.onestatCode === 'one01' ? 'green' : 'red',
@@ -166,115 +186,77 @@
 	        }
 	    });
 	
+	    // fullCalendar 초기화 함수
 	    function initCalendar(events, startDate, endDate) {
 	        let calendarEl = document.getElementById('calendar');
+	        
+	     	// 기존 캘린더가 있으면 제거
 	        if (calendar) {
-	            calendar.destroy(); // 기존 캘린더가 있으면 제거
+	            calendar.destroy();
 	        }
+	     	
+	     	// calendar 생성
 	        calendar = new FullCalendar.Calendar(calendarEl, {
-	            initialView: 'dayGridMonth',
-	            navLinks: false,
-	            showNonCurrentDates: false,
-	            aspectRatio: 1.5,
-	            selectable: true,
-	            selectOverlap: true, // 이벤트가 있는 부분도 선택 가능하게 설정
-	            locale: 'kr',
-	            defaultAllDayEventDuration: 1,
-	            headerToolbar: {
+	            initialView: 'dayGridMonth', // 달력 형태 설정
+	            navLinks: false, // 날짜 클릭 기능 설정
+	            showNonCurrentDates: false, // 해당 월의 달력에 이전달, 다음달 날짜 표시할건지 설정
+	            aspectRatio: 1.5, // 달력 크기 설정(종횡비)
+	            selectable: true, // 날짜(cell)를 선택할 수 있게 설정
+// 	            selectOverlap: true, // 이벤트가 있는 부분도 선택 가능하게 설정
+	            locale: 'kr', // 언어 설정
+	            headerToolbar: { // 달력 상단 설정
 	                start: 'prev',
 	                center: 'title',
 	                end: 'next',
 	            },
-	            validRange: {
+	            validRange: { // 달력 범위 설정(해당 room의 운영기간 만큼)
 	                start: startDate,
 	                end: endDate
 	            },
-	            events: events,
-	            eventDidMount: function(info) {
-	                let startDate = new Date(moment(info.event.start).format("YYYY-MM-DD"));
-	                let endDate = new Date(moment(info.event.end).format("YYYY-MM-DD"));
-	                endDate.setDate(endDate.getDate());
-	                let currentDate = startDate;
-	                let today = new Date(moment().format("YYYY-MM-DD"));
-	
-	                while (currentDate < endDate) {
-	                    let dateStr = currentDate.toISOString().split('T')[0];
-	                    let cell = document.querySelector('[data-date="' + dateStr + '"]');
-	                    if (cell) {
-	                        if (currentDate < today) {
-	                            cell.classList.add('event-date');
-	                        }
-	                    }
-	                    currentDate.setDate(currentDate.getDate() + 1);
-	                }
-	            },
-	            selectAllow: function(selectInfo) {
-	                let today = new Date();
-	                let selectStart = selectInfo.start;
-	                let selectEnd = selectInfo.end;
-	
-	                // 선택 시작일이 오늘 날짜 이전일 경우 선택을 허용하지 않음
-	                if (selectEnd <= today) {
-	                    return false;
-	                }
-	
-	                // 오늘 날짜 이후의 날짜에 대해서만 선택을 허용
-	                return true;
-	            },
+	            events: events,	// 달력의 event - 해당 onedayPrice의 상태, 가격 표시
 	            select: function(info) {
-	            	console.log(info);
-	                let selectedCells = document.querySelectorAll('.selected-date');
+	                // 선택되어있던 날짜(cell)를 배열로 가져오기
+	                let selectedCells = $('.selected-date').toArray();
+
+	                // 선택한 날짜(cell) 배열 forEach문 돌리기
 	                selectedCells.forEach(function(cell) {
-	                    cell.classList.remove('selected-date');
+	                    // 선택되어있는 날짜들의 색을 변경하는 클래스 제거
+	                    $(cell).removeClass('selected-date');
 	                });
-	                let startDate = new Date(moment(info.startStr).format("YYYY-MM-DD"));
-	                let endDate = new Date(moment(info.endStr).format("YYYY-MM-DD"));
-	                endDate.setDate(endDate.getDate() - 1);
-	                let currentDate = startDate;
-	
-	                while (currentDate <= endDate) {
-	                    let dateStr = currentDate.toISOString().split('T')[0];
-	                    let cell = document.querySelector('[data-date="' + dateStr + '"]');
+
+	                // 선택한 날짜 가져오기
+	                let startDate = moment(info.startStr);
+	                let endDate = moment(info.endStr);
+
+	                // 선택한 날짜 만큼 반복
+	                while (startDate < endDate) {
+	                    let cell = $('[data-date="' + startDate.format('YYYY-MM-DD') + '"]');
 	                    if (cell) {
-	                        cell.classList.add('selected-date');
+	                        cell.addClass('selected-date');
 	                    }
-	                    currentDate.setDate(currentDate.getDate() + 1);
+	                    startDate = moment(startDate).add(1, 'day');
 	                }
-	
+
 	                // 날짜 선택에 따라 div 토글
 	                $('#selectDay').show();
 	                $('#notSelectDay').hide();
-	
-	                console.log(moment(info.startStr).format("YYYY-MM-DD"));
-	                console.log(moment(info.endStr).subtract(1,'day').format("YYYY-MM-DD"));
-	                
-	                let startOneDay = moment(info.startStr).format("YYYY-MM-DD");
-	                let endOneDay = moment(info.endStr).subtract(1,'day').format("YYYY-MM-DD");
-	                
-	                if(startOneDay == endOneDay) {
-	                	$('#dateTitle').text(startOneDay + ' 요금 설정');
-	                	
-	                	$('#startOneDay').val(startOneDay);
-	                	$('#endOneDay').val(endOneDay);
-	                	console.log($('input[name="roomId"]').val());	                	
+
+	                let startOneDay = info.startStr;
+	                let endOneDay = moment(info.endStr).subtract(1,'day').format('YYYY-MM-DD');
+
+	                if(startOneDay === endOneDay) {
+	                    $('#dateTitle').text(startOneDay + ' 요금 설정');
 	                } else {
-	                	$('#dateTitle').text(startOneDay + '~' + endOneDay  + ' 요금 설정');
-	                	
-	                	$('#startOneDay').val(startOneDay);
-	                	$('#endOneDay').val(endOneDay);
-	                	console.log($('input[name="roomId"]').val());	                	
+	                    $('#dateTitle').text(startOneDay + '~' + endOneDay + ' 요금 설정');
 	                }
-	                alert('selected ' + info.startStr + ' to ' + info.endStr);
+
+	                $('#startOneDay').val(startOneDay);
+	                $('#endOneDay').val(endOneDay);
 	            },
-	            eventContent: function(arg) {
-	                let italicEl = document.createElement('span');
-	                italicEl.innerHTML = arg.event.title;
-	
-	                let descriptionEl = document.createElement('div');
-	                descriptionEl.innerHTML = arg.event.extendedProps.description;
-	
-	                let arrayOfDomNodes = [ italicEl, descriptionEl ];
-	
+	            eventContent: function(arg) { // event에 내용 넣기(해당 날짜의 onedayPrice)
+					let $italicEl = $('<span></span>').html(arg.event.title);
+					let $descriptionEl = $('<div></div>').html(arg.event.extendedProps.description);
+					let arrayOfDomNodes = [$italicEl[0], $descriptionEl[0]];
 	                return { domNodes: arrayOfDomNodes };
 	            }
 	        });
