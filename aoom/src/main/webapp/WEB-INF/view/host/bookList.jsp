@@ -28,6 +28,7 @@
 		<!-- 호스팅 목록 -->
 	    <div>
 	        <select id="selectRoom" name="selectRoom">
+	        	<option value="all">===숙소선택===</option>
 	            <!-- 숙소 상태가 활성화인것만 나오게 설정 -->
 	            <c:forEach var="room" items="${roomList }">
 	                <c:if test="${room.roomstatCode == 'rst03' and room.roomstatCode eq 'rst03'}">
@@ -40,8 +41,8 @@
 	                </c:if>
 	            </c:forEach>
 	        </select>
+		    <button type="submit">선택</button>
 	    </div>
-	    <button type="submit">버턴</button>
 	</form>
 	
 	<h1>예약받은목록</h1>
@@ -58,14 +59,30 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td><button class="btn btn-danger">바로가기</button></td>
-			</tr>
+			<c:forEach var="bookingList" items="${bookingList }">
+				<tr>
+					<td>${bookingList.roomName}</td>
+					<td>${bookingList.guestId}</td>
+					<td>${bookingList.checkIn}</td>
+					<td>${bookingList.checkOut}</td>
+                    <c:if test="${bookingList.bookstatCode == 'bst01'}">
+                        <td>예약대기</td>
+                    </c:if>
+                    <c:if test="${bookingList.bookstatCode == 'bst02'}">
+                        <td>이용전</td>
+                    </c:if>
+                    <c:if test="${bookingList.bookstatCode == 'bst03'}">
+                        <td>이용후</td>
+                    </c:if>
+                    <c:if test="${bookingList.bookstatCode == 'bst04'}">
+                        <td>후기작성완료</td>
+                    </c:if>
+                    <c:if test="${bookingList.bookstatCode == 'bst05'}">
+                        <td>예약취소</td>
+                    </c:if>
+					<td><button class="btn btn-danger">바로가기</button></td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 	

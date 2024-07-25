@@ -180,7 +180,7 @@
 		        FROM
 		            room
 		        WHERE
-		            user_id = #{userId}
+		            user_id = #{hostId}
 		            AND roomstat_code = 'rst03'
 		        ) r
 		    ON
@@ -193,5 +193,7 @@
 		    br.user_id,
 		    br.bookstat_code,
 		    oneday
+		ORDER BY
+			check_in DESC
 	</select>
 </mapper>
