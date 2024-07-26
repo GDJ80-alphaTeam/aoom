@@ -6,7 +6,7 @@
 	<sql id="user_col">
 		 user_id
 		,user_pw
-		,user_birth
+		,TO_CHAR(user_birth, 'YYYY-MM-DD') AS user_birth
 		,user_name
 		,user_phone
 		,userstat_code
@@ -14,6 +14,7 @@
 		,update_date
 		,userauth_code
 		,user_image
+		,TO_DATE(SYSDATE, 'YYYY-MM-DD') - TO_DATE(update_date, 'YYYY-MM-DD') AS recent_edit
 	</sql>
 	
 	<!-- 회원가입 -->

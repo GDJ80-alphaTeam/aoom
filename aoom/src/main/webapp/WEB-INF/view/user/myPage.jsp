@@ -19,7 +19,7 @@
 				프로필
 			
 		</div>
-		<div style="width: 100%;height: 300px;">
+		<div style="width: 100%;height: 300px;" onclick="window.location.href='/user/userInfo'">
 			<a> 
 				개인정보
 			</a>

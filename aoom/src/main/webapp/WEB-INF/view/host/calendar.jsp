@@ -73,7 +73,8 @@
         	<!-- 닐찌 선택 안했을 때 -->
             <div style="width: 100%; display: inline-block;" id="notSelectDay">
 	            <form action="/host/calendar/updateDefaultPrice" method="post">
-	            	<h3>기본 요금</h3>
+	            	<h3 id="notSelectedDateTitle"></h3>
+	            	<h3>전체 요금</h3>
 	                <div>1박당</div>
 	                <input type="hidden" name="roomId" value="${selectedRoomId }">
 	                <input type="number" min="30000" id="defaultPrice" name="defaultPrice" required="required" style="height: 35px;">원
@@ -91,21 +92,15 @@
             <!-- 닐찌 선택 했을 때 -->
             <div style="width: 100%;" id="selectDay">
             	<!-- 선택한 날짜 표시 -->
-                <h3 id="dateTitle"></h3>
+                <h3 id="selectedDateTitle"></h3>
                 <br>
                 
                 <!-- 예약 상태 변경 -->
                 <form action="/host/calendar/updateDefaultPrice" method="post">
 	                <div class="d-flex align-items-center">
-<!-- 	                    <span>예약 차단</span> -->
-<!-- 	                    <div class="form-check form-switch"> -->
-<!-- 	                        <input class="form-check-input" type="checkbox" name="onestatCode" role="switch" id="flexSwitchCheckDefault"> -->
-<!-- 	                    </div> -->
-<!-- 	                    <span>예약 가능</span> -->
 						<c:forEach var="onestatCode" items="${onestatCodeList }">						
 						    <button type="button" name="onestatCode" value="${onestatCode.codeKey }">${onestatCode.codeName }</button>
 						</c:forEach>
-												
 	                </div>
 	                <br>
                 
@@ -155,7 +150,11 @@
 	                	// 운영일 만큼만 달력을 보여주기 위해 startDate, endDate 가져오기
 	                    let startDate = response.roomData.startDate;
 	                    let endDate = response.roomData.endDate;
+	                    // 날짜 선택하지 않았을 때 title 설정
+	                    $('#notSelectedDateTitle').html(startDate + '<br>~' + endDate);
 	                    
+	                    // 실제 운영기간보다 1일 더 작게나와 1일 추가
+	                    endDate = moment(endDate).add(1, 'day').format('YYYY-MM-DD');
 	                    // room테이블에 설정된 숙소의 기본 요금 가져와서 value 넣어주기 
 						$('#defaultPrice').val(response.roomData.originalDefaultPrice);
 	                    
@@ -226,43 +225,69 @@
 	            },
 	            events: events,	// 달력의 event - 해당 onedayPrice의 상태, 가격 표시
 	            select: function(info) {
-	                // 선택되어있던 날짜(cell)를 배열로 가져오기
+	                // 선택한 날짜(cell) 요소들을 배열로 가져오기
 	                let selectedCells = $('.selected-date').toArray();
-	
-	                // 선택한 날짜(cell) 배열 forEach문 돌리기
-	                selectedCells.forEach(function(cell) {
-	                    // 선택되어있는 날짜들의 색을 변경하는 클래스 제거
-	                    $(cell).removeClass('selected-date');
-	                });
-	
-	                // 선택한 날짜 가져오기
+	                
+	                // 선택한 날짜의 시작일과 종료일을 가져오기
 	                let startDate = moment(info.startStr);
 	                let endDate = moment(info.endStr);
-	
-	                // 해당 event의 날짜만큼 반복 - ()
+	                
+	                // 선택되어 있는 날짜칸들(cell)에 해당하는 요소들을 담을 배열 선언 
+	                let cellArray = [];
+
+	                // 선택한 날짜들의 cell 요소들을 가져와 배열에 담기
 	                while (startDate < endDate) {
 	                    let cell = $('[data-date="' + startDate.format('YYYY-MM-DD') + '"]');
 	                    if (cell) {
-	                        cell.addClass('selected-date');
+	                        cellArray.push(cell);
 	                    }
 	                    startDate = moment(startDate).add(1, 'day');
 	                }
-	
-	                // 날짜 선택에 따라 div 토글
-	                $('#selectDay').show();
-	                $('#notSelectDay').hide();
-	
-	                let startOneDay = info.startStr;
-	                let endOneDay = moment(info.endStr).subtract(1,'day').format('YYYY-MM-DD');
-	
-	                if(startOneDay === endOneDay) {
-	                    $('#dateTitle').text(startOneDay + ' 요금 설정');
+
+	                // 이미 선택된 날짜들인지 확인
+	                let selectedDate = true;
+	                
+					// cellArray 배열에 담긴 요소들 확인
+					cellArray.forEach(function(cell) {
+					    if (!cell.hasClass('selected-date')) {
+					        selectedDate = false;
+					    }
+					});
+					
+	                if (selectedDate) {
+	                    // 이미 선택된 날짜면 'selected-date' 클래스를 제거
+	                    cellArray.forEach(function(cell) {
+	                        cell.removeClass('selected-date');
+	                    });
+	                    // 날짜 선택에 따라 div 토글
+	                    $('#selectDay').hide();
+	                    $('#notSelectDay').show();
 	                } else {
-	                    $('#dateTitle').text(startOneDay + '~' + endOneDay + ' 요금 설정');
+	                    // 새로운 날짜를 선택했을 때
+	                    selectedCells.forEach(function(cell) {
+	                        $(cell).removeClass('selected-date');
+	                    });
+
+	                    cellArray.forEach(function(cell) {
+	                        cell.addClass('selected-date');
+	                    });
+
+	                    // 날짜 선택에 따라 div 토글
+	                    $('#selectDay').show();
+	                    $('#notSelectDay').hide();
+
+	                    let startOneDay = info.startStr;
+	                    let endOneDay = moment(info.endStr).subtract(1, 'day').format('YYYY-MM-DD');
+
+	                    if (startOneDay === endOneDay) {
+	                        $('#selectedDateTitle').html(startOneDay + '<br>요금 설정');
+	                    } else {
+	                        $('#selectedDateTitle').html(startOneDay + '<br>~' + endOneDay + '<br>요금 설정');
+	                    }
+
+	                    $('#startOneDay').val(startOneDay);
+	                    $('#endOneDay').val(endOneDay);
 	                }
-	
-	                $('#startOneDay').val(startOneDay);
-	                $('#endOneDay').val(endOneDay);
 	            },
 	            eventContent: function(arg) { // event에 내용 넣기(해당 날짜의 onedayPrice)
 					let $italicEl = $('<span></span>').html(arg.event.title);

@@ -82,17 +82,15 @@
 		<!-- 숙소 운영일 설정 -->
 		<div>
 			숙소 운영 기간 : 
-			<fmt:formatDate value="${roomInfo.startDate }" pattern="yyyy-MM-dd" var="startDateDB"/>
-			<fmt:formatDate value="${roomInfo.endDate }" pattern="yyyy-MM-dd" var="endDateDB"/>
 			<c:if test="${roomInfo.startDate != null && roomInfo.startDate ne ''}">
-				<input type="text" id="roomOperationDate" placeholder="날짜를 선택해주세요" value="${startDateDB }-${endDateDB }" style="width: 300px;" required="required" autocomplete="off">			
+				<input type="text" id="roomOperationDate" placeholder="날짜를 선택해주세요" value="${roomInfo.startDate }-${roomInfo.endDate }" style="width: 300px;" required="required" autocomplete="off">			
 			</c:if>
 			<c:if test="${roomInfo.startDate == null || roomInfo.startDate eq ''}">
 				<input type="text" id="roomOperationDate" placeholder="날짜를 선택해주세요" style="width: 300px;" required="required" autocomplete="off">
 			</c:if>
 
-			<input type="hidden" id="startDate" value="${startDateDB }" name="startDate">
-			<input type="hidden" id="endDate" value="${endDateDB }" name="endDate">
+			<input type="hidden" id="startDate" value="${roomInfo.startDate }" name="startDate">
+			<input type="hidden" id="endDate" value="${roomInfo.endDate }" name="endDate">
 		</div>
 		
 		<!-- 방, 침대, 욕실 수 설정 -->
