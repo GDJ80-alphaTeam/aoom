@@ -41,8 +41,9 @@
 		FROM 
 			USERS
 		WHERE 
-			user_id = #{userId} AND 
-			user_pw = #{userPw}
+			user_id = #{userId} 
+			AND user_pw = #{userPw}
+			AND userstat_code = 'ust01'
 	</select>
 	
 	<!-- 아이디 중복체크 -->
@@ -93,5 +94,8 @@
 			</if>
 		WHERE
 			user_id = #{userId}
+			<if test="userPw != null and !userPw.equals('')">
+				AND user_pw = #{userPw}
+			</if>
 	</update>
 </mapper>

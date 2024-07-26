@@ -27,7 +27,7 @@
 			
 			<div>
 				<h5><b>아이디</b></h5>
-				<input type="text" id="userId" name="userId" value="${sessionScope.userInfo.userId}" readonly="readonly" style="border-width: 0; outline: none;">
+				<input type="text" name="userId" value="${sessionScope.userInfo.userId}" readonly="readonly" style="border-width: 0; outline: none;">
 				<br>
 			</div>
 			<hr>
@@ -55,16 +55,58 @@
 				<h6>비밀번호 확인</h6>
 				<input type="password" id="editUserPwcheck" name="editUserPwCheck">
 			</div>
+			<hr>
+			
+			<div>
+				<h5><b>계정 탈퇴</b></h5>
+				<a data-bs-toggle="modal" data-bs-target="#secessionModal" style="color: blue;">계정 탈퇴</a>
+				<br>
+			</div>
+			<hr>
 			<br>
 			
 			<button type="button" onclick="window.location.href='/user/myPage'">나가기</button>
-			<button type="submit" id="submitBtn">수정하기</button>
+			<button type="submit" id="editBtn">수정하기</button>
 		</form>
 	</div>
 	
-	<script type="text/javascript">
+	<!-- Modal -->
+	<div class="modal fade" id="secessionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title" id="exampleModalLabel">계정 탈퇴</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+				
+				<form id="checkSecessionForm">
+					<!-- 내용 -->
+					<div class="modal-body">
+						<div>
+							<h6><b>아이디</b></h6>
+							<input type="text" id="secessionUserId" name="userId" value="${sessionScope.userInfo.userId}" readonly="readonly" style="border-width: 0; outline: none;">
+							
+							<h6><b>비밀번호</b></h6>
+							<input type="password" id="secessionUserPw" name="userPw" style="width: 70%;">
+
+						</div>
+					</div>
+					
+					<!-- 버튼이름 -->
+					<div class="modal-footer">	
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+						<button type="button" id="secessionBtn" class="btn btn-primary">탈퇴하기</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 	
-		$('#submitBtn').on('click', function() {
+	<!-- 개인정보 수정 -->
+	<script type="text/javascript">
+		
+		// 수정 버튼 클릭시
+		$('#editBtn').on('click', function() {
 			let editUserPw = $('#editUserPw').val();
 			let editUserPwcheck = $('#editUserPwcheck').val();
 			
@@ -94,6 +136,27 @@
 					} else {
 						window.location.href = '/user/userInfo';
 						alert(response.message);
+					}
+				}
+			});
+		});
+	</script>
+	
+	<!-- 계정 탈퇴 -->
+	<script type="text/javascript">
+		$('#secessionBtn').on('click', function() {
+			$.ajax({
+				url: '/user/userInfo/ajaxSecessionUser',
+				method: 'post',
+				data: $('#checkSecessionForm').serialize(),
+				success: function(response) {
+					console.log(response);
+					if(response.result) {
+						alert(response.message);
+						window.location.href = '/main';
+					} else {
+						alert(response.message);
+						$('#userPw').focus();
 					}
 				}
 			});

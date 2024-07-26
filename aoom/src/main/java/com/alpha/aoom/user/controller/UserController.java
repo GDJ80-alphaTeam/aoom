@@ -88,4 +88,26 @@ public class UserController extends BaseController {
 			return getFailResult(model, "수정에 실패하였습니다. 다시 시도해주세요");
 		}
 	}
+	
+	// 고객 탈퇴
+	@RequestMapping("/userInfo/ajaxSecessionUser")
+	@ResponseBody
+	public Map<String, Object> ajaxSecessionUser(@RequestParam Map<String, Object> param, HttpSession session) {
+		
+		// 상태를 탈퇴한 상태(ust02)로 변경하기 위해 추가
+		param.put("userstatCode", "ust02");
+		
+		log.info("고객 탈퇴 param={}", param.toString());
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		int row = userService.update(param);
+		if(row != 0) {
+			session.invalidate();
+			return getSuccessResult(model, "탈퇴되었습니다. 안녕히 가세요");
+		} else {
+			return getFailResult(model, "탈퇴되지 않았습니다. 다시 시도해 주세요");
+		}
+		
+	}
 }

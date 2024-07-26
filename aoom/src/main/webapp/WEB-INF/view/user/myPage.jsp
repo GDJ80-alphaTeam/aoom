@@ -41,7 +41,7 @@
 					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 				</div>
 				
-				<form id="checkUserInfo">
+				<form id="checkUserInfoForm">
 					<!-- 내용 -->
 					<div class="modal-body">
 						<div>
@@ -70,7 +70,7 @@
 			$.ajax({
 				url: '/user/userInfo/ajaxCheckUserInfo',
 				method: 'post',
-				data: $('#checkUserInfo').serialize(),
+				data: $('#checkUserInfoForm').serialize(),
 				success: function(response) {
 					console.log(response);
 					if(response.result) {
