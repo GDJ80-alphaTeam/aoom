@@ -159,19 +159,32 @@ public class HostController extends BaseController {
 		
 		// 세션에서 user정보 가져오기
 		Map<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
-		
 		// 세션에서 가져온 userId를 바로 param에 넣기. 이름을 hostId로 넣기.(쿼리문에 들어갈 userId 혼용방지)
 		param.put("hostId", ((Map<String, String>) session.getAttribute("userInfo")).get("userId"));
 		
+		// 페이징 처리
+		int currentPage = param.get("currentPage") == null ? 1 : Integer.parseInt((String) param.get("currentPage")); // 현재페이지 정보 없으면 1 있으면 있는 그 값 가져오기
+		int rowPerPage = 5; // 한 페이지에 넣을 행의 수
+		int beginRow = (currentPage - 1) * rowPerPage; // 현재 페이지에서 시작할 행의 rowNum 번호(행번호)
+		param.put("rowPerPage", rowPerPage);
+		param.put("beginRow", beginRow);
+		
 		// 로그인 유저의 호스팅한 숙소의 예약 목록
 		List<Map<String, Object>> bookingList = bookingService.selectListByUserId(param);
+		// 로그인 유저의 호스팅한 숙소의 예약 목록의 행갯수
+		int totalRows = bookingService.selectListByUserIdCnt(param);
+		// 마지막페이지 구하기
+		int lastPage = (int) Math.ceil((double) totalRows / rowPerPage);
 		
-		modelMap.addAttribute("roomList", roomService.selectByUserId(userInfo));// 활성화 중인 숙소만 가져오도록 설정(셀렉트 태그 반복문 용도)
-		modelMap.addAttribute("selectRoom", param.get("selectRoom"));// 선택된 숙소가 셀렉트창에 보이게 설정
-		modelMap.addAttribute("bookingList", bookingList);// 내 숙소 예약한 게스트들 목록
-		modelMap.addAttribute("startDate", param.get("startDate"));// 내 숙소 예약한 게스트들 목록
-		modelMap.addAttribute("endDate", param.get("endDate"));// 내 숙소 예약한 게스트들 목록
-		modelMap.addAttribute("bookStat", param.get("bookStat"));// 내 숙소 예약한 게스트들 목록
+		// modelMap에 넣기
+		modelMap.addAttribute("roomList", roomService.selectByUserId(userInfo)); // 활성화 중인 숙소만 가져오도록 설정(셀렉트 태그 반복문 용도)
+		modelMap.addAttribute("selectRoom", param.get("selectRoom")); // 선택된 숙소가 셀렉트창에 보이게 설정
+		modelMap.addAttribute("bookingList", bookingList); // 내 숙소 예약한 게스트들 목록
+		modelMap.addAttribute("startDate", param.get("startDate")); // 내 숙소 예약한 게스트들 목록
+		modelMap.addAttribute("endDate", param.get("endDate")); // 내 숙소 예약한 게스트들 목록
+		modelMap.addAttribute("bookStat", param.get("bookStat")); // 내 숙소 예약한 게스트들 목록
+		modelMap.addAttribute("currentPage", currentPage); // 현재페이지
+		modelMap.addAttribute("lastPage", lastPage); // 마지막페이지
 		
 		return "/host/bookList";
 	}

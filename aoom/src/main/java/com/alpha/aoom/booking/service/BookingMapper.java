@@ -25,4 +25,7 @@ public interface BookingMapper {
 	
 	// 로그인 유저의 호스팅한 숙소의 예약 목록
 	List<Map<String, Object>> selectListByUserId(Map<String, Object> param);
+
+	// 로그인 유저의 호스팅한 숙소의 예약 목록의 행의 갯수
+	int selectListByUserIdCnt(Map<String, Object> param);
 }
