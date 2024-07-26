@@ -77,7 +77,7 @@
 						<input type="text" value="${paymentInfo.refundAccount}" id="bankInfo" name="refundAccount" placeholder="환불 계좌 입력('-'를 포함하여 입력해주세요.)" style="display: block;" pattern="^(\d{1,})(-(\d{1,})){1,}" disabled="disabled">
 					</div>
 					<!-- 무통장 입금 선택시 나올 부분 -->
-				    <select id="bank" class="hidden" name="bank">
+				    <select id="bank" class="hidden" name="bankCode">
 				    	<c:forEach var="bank" items="${bank}">
 				    		<option value="${bank.codeKey}">${bank.codeName}</option>
 				    	</c:forEach>

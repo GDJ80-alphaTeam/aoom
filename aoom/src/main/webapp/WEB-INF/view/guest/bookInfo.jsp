@@ -15,8 +15,21 @@
 <body>
 
 	<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
-	<h1>예약상세보기</h1>
+	
+	
 	<div style="width: 1200px;margin: 0 auto; text-align: center;">
+	
+		<c:choose>
+			<c:when test="${bookingInfo.bookstatCode == 'bst05'}">
+				<h1>취소된예약</h1>
+			</c:when>
+			<c:when test="${paymentInfo.paytypeCode == 'pmt02' }">
+				<h3>환불계좌:${paymentInfo.refundAccount}</h3>
+			</c:when>
+			<c:otherwise>
+				<h1>예약상세보기</h1>
+			</c:otherwise>
+		</c:choose>
 	
 		<div style="width: 100%">
 			<h3>가격:${bookingInfo.totalPrice}</h3>
@@ -52,71 +65,72 @@
 		</div>
 		
 		<form action="/review/insert" enctype="multipart/form-data" method="post" id="reviewForm">		
-		<c:choose> 
-			<c:when test="${bookingInfo.bookstatCode == 'bst03'}">
-				
-				<!-- Button trigger modal -->
-				<button type="button" class="btn btn-primary" data-bs-toggle="modal"data-bs-target="#reviewModal">
-						후기 작성하기
-				</button>
-
-			<!-- Modal -->
-			<div class="modal fade" id="reviewModal" tabindex="-1"	aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">후기 작성하기</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-						</div>
-						<!-- 내용 -->
-						<div class="modal-body">
-							<h3>후기 작성시 수정이 불가능합니다.</h3>
-							 <input type="hidden" id="rating" name="rating" value="0">
-							 <input type="hidden" name="bookingId" value="${bookingInfo.bookingId}">
-				 			 <input type="hidden" name="roomId" value="${bookingInfo.roomId}">
-					        	<span id="star1" onClick="stars(1)">
-					           		⚝
-					           	</span>
-					           	<span id="star2" onClick="stars(2)">
-					           		⚝
-					           	</span>
-					           	<span id="star3" onClick="stars(3)">
-					           		⚝
-					           	</span>
-					           	<span id="star4" onClick="stars(4)">
-					           		⚝
-					           	</span>
-					           	<span id="star5" onClick="stars(5)">
-					           		⚝
-					           	</span>	 
-							<p>후기내용</p>
-							<textarea rows="5" cols="35" id="reviewContent" name="reviewContent" required="required" maxlength="500"></textarea>
-							<p>후기사진</p>
-							<div style="display: inline-block;">
-								<div style="display: inline-block; position: relative;">
-								<button type="button" class="btn-close" id="reviewImageRemove" style="position: absolute; top: 0; right: 0;"></button>
-								<label for="reviewImage">
-									<img src="/image/etc/imageUploadIcon.png" style="width: 300px; height: 300px; display: block;" id="reviewImageFile"> 
-									<input type="file" id="reviewImage" name="reviewImage" accept="image/*" style="display: none;">
-								</label> 
+			<c:choose> 
+				<c:when test="${bookingInfo.bookstatCode == 'bst03'}">
+					
+					<!-- Button trigger modal -->
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal"data-bs-target="#reviewModal">
+							후기 작성하기
+					</button>
+	
+				<!-- Modal -->
+				<div class="modal fade" id="reviewModal" tabindex="-1"	aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">후기 작성하기</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+							</div>
+							<!-- 내용 -->
+							<div class="modal-body">
+								<h3>후기 작성시 수정이 불가능합니다.</h3>
+								 <input type="hidden" id="rating" name="rating" value="0">
+								 <input type="hidden" name="bookingId" value="${bookingInfo.bookingId}">
+					 			 <input type="hidden" name="roomId" value="${bookingInfo.roomId}">
+						        	<span id="star1" onClick="stars(1)">
+						           		⚝
+						           	</span>
+						           	<span id="star2" onClick="stars(2)">
+						           		⚝
+						           	</span>
+						           	<span id="star3" onClick="stars(3)">
+						           		⚝
+						           	</span>
+						           	<span id="star4" onClick="stars(4)">
+						           		⚝
+						           	</span>
+						           	<span id="star5" onClick="stars(5)">
+						           		⚝
+						           	</span>	 
+								<p>후기내용</p>
+								<textarea rows="5" cols="35" id="reviewContent" name="reviewContent" required="required" maxlength="500"></textarea>
+								<p>후기사진</p>
+								<div style="display: inline-block;">
+									<div style="display: inline-block; position: relative;">
+									<button type="button" class="btn-close" id="reviewImageRemove" style="position: absolute; top: 0; right: 0;"></button>
+									<label for="reviewImage">
+										<img src="/image/etc/imageUploadIcon.png" style="width: 300px; height: 300px; display: block;" id="reviewImageFile"> 
+										<input type="file" id="reviewImage" name="reviewImage" accept="image/*" style="display: none;">
+									</label> 
+									</div>
 								</div>
 							</div>
-						</div>
-						<!-- 버튼이름 -->
-						<div class="modal-footer">	
-							<button type="button" class="btn btn-secondary"data-bs-dismiss="modal">닫기</button>
-							<button type="button" id="submitBtn" class="btn btn-primary">작성하기</button>
+							<!-- 버튼이름 -->
+							<div class="modal-footer">	
+								<button type="button" class="btn btn-secondary"data-bs-dismiss="modal">닫기</button>
+								<button type="button" id="submitBtn" class="btn btn-primary">작성하기</button>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			</c:when>
-			
-			<c:otherwise>
-				후기를 이미 작성했거나 작성할수없는 상태입니다.
-			</c:otherwise>
-		</c:choose>
-			</form>
+				</c:when>
+				
+				<c:otherwise>
+					후기를 이미 작성했거나 작성할수없는 상태입니다.
+				</c:otherwise>
+			</c:choose>
+		</form>
+		
 	</div>
 </body>
 

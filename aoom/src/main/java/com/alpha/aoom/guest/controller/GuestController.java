@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.alpha.aoom.booking.service.BookingService;
 import com.alpha.aoom.code.service.CodeService;
+import com.alpha.aoom.roomPayment.service.RoomPaymentService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +25,11 @@ public class GuestController {
 	@Autowired
 	BookingService bookingService;
 	
+	@Autowired
 	CodeService codeService;
+	
+	@Autowired
+	RoomPaymentService roomPaymentService;
 	
 	// param: currentPage
 	// 사용자가 예약한 목록 출력
@@ -65,10 +70,11 @@ public class GuestController {
 		param.put("userId", userId);
 		param.put("currentPage" , currentPage);
 		
-		log.info("data"+bookingService.selectListByGuestId(param));
-		// list로받아온값 map으로 보냄 
+		// 예약정보
 		modelMap.put("bookingInfo", bookingService.selectListByGuestId(param).get(0));
-			
+		// 결제정보 
+		modelMap.put("paymentInfo", roomPaymentService.selectByBookingId(param));	
+		
 		return "/guest/bookInfo";
 	}
 	

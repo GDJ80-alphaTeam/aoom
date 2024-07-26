@@ -169,8 +169,9 @@ public class BookingController extends BaseController {
 		
 		// onedayPrice 가 취소되어 기존의 onedayPrice를 활성화 시켜줘야함.
 		onedayPriceService.updateByCancel(param);
-		log.info("이거왜안되는건데대체!!!!!!!!!!!!!!!!!!"+onedayPriceService.updateByCancel(param));
-		log.info(param+"param");
+		// 예약취소시 계좌번호에 변동이 생기면 계좌번호 업데이트
+		roomPaymentService.updateAccount(param);
+		
 		return "redirect:/guest/bookList";
 	
 	}

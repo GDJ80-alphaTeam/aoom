@@ -60,6 +60,7 @@
 			)
 	</insert>
 	
+	<!-- 해당예약의 결제정보 검색 -->
 	<select id="selectByBookingId" parameterType="map" resultType="camelCaseMap">
 		SELECT
 	    	<include refid="roomPayment_col"/>
@@ -69,5 +70,18 @@
 	    	booking_id = #{bookingId}
 	</select>
 	
+	<!-- 결제취소시 계좌값이 변동되었다면 변경 -->
+	<update id="updateAccount" parameterType="map" >
+		UPDATE 
+            room_payment
+        SET
+             refund_account = #{refundAccount}
+            ,bank_code = #{bankCode}
+        WHERE
+            payment_id = #{paymentId}
+            AND booking_id = #{bookingId}
+            AND refund_account != #{refundAccount}
+            AND bank_code != #{bankCode}
+	</update>
 	
 </mapper>

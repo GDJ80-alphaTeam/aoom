@@ -19,4 +19,10 @@ public class RoomPaymentService {
 			
 		return roomPaymentMapper.selectByBookingId(param);
 	}
+	
+	// 예약취소시 계좌값에 변동이 있으면 업데이트 없으면 유지
+	public int updateAccount(Map<String, Object> param) {
+		
+		return roomPaymentMapper.updateAccount(param);
+	}
 }

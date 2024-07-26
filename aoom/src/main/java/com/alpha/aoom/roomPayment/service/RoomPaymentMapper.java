@@ -11,4 +11,7 @@ public interface RoomPaymentMapper {
 	
 	// 선택한 예약의 결제내역 검색
 	Map<String, Object> selectByBookingId(Map<String, Object> param);
+	
+	// 예약 취소시 계좌 변경이 있으면 변경
+	int updateAccount(Map<String, Object> param);
 }
