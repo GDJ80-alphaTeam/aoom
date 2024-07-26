@@ -70,22 +70,8 @@ public class BookingService {
 	@Transactional
 	public int booking(Map<String, Object> param) {
 		
-		// booking 테이블 insert(예약건 추가)
-		bookingMapper.insert(param);
-		
-		// oneday_price 테이블 update(상태 예약불가로 업데이트, 남은 인원 감소)
-		onedayPriceMapper.updateByStatUsePeople(param);
-		
-		// booking_oneday_price_map 테이블 insert (맵테이블 추가)
-		List<Map<String, Object>> oneDayPriceList = 
-				onedayPriceMapper.selectListByDuringDate(param); // 숙박일정에 따른 가격 조회
-		for(Map<String,Object> map : oneDayPriceList) {
-			map.put("bookingId", param.get("bookingId").toString()); // bookingInsert할때 selectKey태그에서 param에 roomId를 넣었었음.
-			bookingOnedayPriceMapper.insert(map); // 매 반복문에 insrt코드 호출하여 한행, 한행 insert될 수 있게
-		}
-		
-		// payment 테이블 insert (결제 정보 추가)
-		String paymentPriceStr = (String) param.get("paymentPrice"); // paymentPrice값을 순수 숫자로 바꾸기
+		// paymentPrice값을 순수 숫자로 바꾸기
+		String paymentPriceStr = (String) param.get("paymentPrice"); 
 		try {
 			NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
 			Number paymentPriceNum = numberFormat.parse(paymentPriceStr.trim());
@@ -93,6 +79,22 @@ public class BookingService {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		
+		// 1. booking 테이블 insert(예약건 추가)
+		bookingMapper.insert(param);
+		
+		// 2. oneday_price 테이블 update(상태 예약불가로 업데이트, 남은 인원 감소)
+		onedayPriceMapper.updateByStatUsePeople(param);
+		
+		// 3. booking_oneday_price_map 테이블 insert (맵테이블 추가)
+		List<Map<String, Object>> oneDayPriceList = 
+				onedayPriceMapper.selectListByDuringDate(param); // 숙박일정에 따른 가격 조회
+		for(Map<String,Object> map : oneDayPriceList) {
+			map.put("bookingId", param.get("bookingId").toString()); // bookingInsert할때 selectKey태그에서 param에 roomId를 넣었었음.
+			bookingOnedayPriceMapper.insert(map); // 매 반복문에 insrt코드 호출하여 한행, 한행 insert될 수 있게
+		}
+		
+		// 4. room_payment 테이블 insert (결제 정보 추가)
 		roomPaymentMapper.insert(param);
 		
 		return 1;

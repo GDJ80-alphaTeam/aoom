@@ -30,7 +30,9 @@
 			,ROOM_ID
 			,USER_ID
 			,PAYTYPE_CODE
+			,CARD_CODE
 			,CARD_NO
+			,BANK_CODE
 			,REFUND_ACCOUNT
 			,PAYMENT_PRICE
 			,CREATE_DATE
@@ -41,12 +43,16 @@
 			,#{userId}
 			<if test="(cardNo != null and !cardNo.equals('')) and (refundAccount == null or refundAccount.equals(''))">
 				,'pmt01'
+				,#{card}
 				,#{cardNo}
+				,null
 				,null
 			</if>
 			<if test="(refundAccount != null and !refundAccount.equals('')) and (cardNo == null or cardNo.equals(''))">
 				,'pmt02'
 				,null
+				,null
+				,#{bank}
 				,#{refundAccount}
 			</if>
 			,#{paymentPrice}

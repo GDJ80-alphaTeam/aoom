@@ -47,8 +47,23 @@
 				        <option value="card" selected>카드</option>
 				        <option value="bankTransfer">무통장입금</option>
 				    </select>
+				    
+				    <!-- 카드 선택시 나올 부분 -->
+				    <select id="cardsa" name="card">
+				    	<c:forEach var="card" items="${card }">
+				    		<option value="${card.codeKey }">${card.codeName }</option>
+				    	</c:forEach>
+				    </select>
 				    <input type="text" id="cardInfo" name="cardNo" placeholder="카드번호 입력('-'를 포함하여 입력해주세요.)" pattern="\d{4}-\d{4}-\d{4}-\d{4}" required>
+				    
+				    <!-- 무통장 입금 선택시 나올 부분 -->
+				    <select id="bank" class="hidden" name="bank">
+				    	<c:forEach var="bank" items="${bank }">
+				    		<option value="${bank.codeKey }">${bank.codeName }</option>
+				    	</c:forEach>
+				    </select>
 				    <input type="text" id="bankInfo" name="refundAccount" class="hidden" placeholder="환불 계좌 입력('-'를 포함하여 입력해주세요.)" pattern="^(\d{1,})(-(\d{1,})){1,}">
+				    
 				</div>
 				
 				<!-- 우 -->
@@ -77,8 +92,8 @@
 								<h5 class="card-title">총합계</h5>
 								<p class="card-text"  id="totalPrice">
 									${bookingPrice.sum } 원
-									<input type="hidden" name="paymentPrice" value="${bookingPrice.sum }">
 								</p>
+								<input type="hidden" id="paymentPrice" name="paymentPrice" value="${bookingPrice.sum }">
 							</li>
 						</ul>
 						<div class="card-body">
@@ -150,10 +165,10 @@
 	                    dataType: 'json',
 	                    success: function(response) {
 	                        instance.set('disable', []);
-	                        console.log(response);
+	                        
 	                        // 서버에서 받은 비활성화할 날짜 배열
 	                        let disableDate = response.data.map(item => item.oneday);
-	                        console.log(disableDate);
+	                        
 	                        // Flatpickr 인스턴스 업데이트
 	                        instance.set('enable', disableDate);
 	                    },
@@ -179,9 +194,11 @@
 	            $.ajax({
 	                url: '/onedayPrice/ajaxBookingDay',
 	                method: 'post',
-	                data: {"roomId" : "${roomId}", "selectedDatea" : formattedDates, "startDate" : startDate, "endDate" : endDate, "usePeople" : usePeople},
+	                data: {"roomId" : "${roomId}", "selectedDate" : formattedDates, "startDate" : startDate, "endDate" : endDate, "usePeople" : usePeople},
 	                dataType: 'json',
 	                success: function(response) {
+	                	console.log(response)
+	                	
 	                    // 서버에서 받은 비활성화할 날짜 배열
 	                    let disableDates = response.data.map(item => item.oneday);      
 	                    // Flatpickr 인스턴스 업데이트
@@ -196,6 +213,7 @@
 	                    
 	                    // 요금 합계 업데이트
 	                    $('#totalPrice').text(response.bookingPrice.sum + ' 원');
+	                    $('#paymentPrice').val(response.bookingPrice.sum);
 	                }
 	            });
 	        }
@@ -205,23 +223,33 @@
         $('#paymentMethod').change(function() {
             const selectedMethod = $(this).val();
             $('#cardInfo').removeClass('hidden').removeAttr('required');
+            $('#cardsa').removeClass('hidden').removeAttr('required');
             $('#bankInfo').removeClass('hidden').removeAttr('required');
+            $('#bank').removeClass('hidden').removeAttr('required');
             
             if (selectedMethod === 'card') {
                 $('#cardInfo').addClass('hidden').attr('required', 'required');
+                $('#cardsa').addClass('hidden').attr('required', 'required');
             } else if (selectedMethod === 'bankTransfer') {
                 $('#bankInfo').addClass('hidden').attr('required', 'required');
+                $('#bank').addClass('hidden').attr('required', 'required');
             }
 
             if (selectedMethod === 'card') {
                 $('#cardInfo').removeClass('hidden').attr('required', 'required');
+                $('#cardsa').removeClass('hidden').attr('required', 'required');
                 $('#bankInfo').addClass('hidden').removeAttr('required');
+                $('#bank').addClass('hidden').removeAttr('required');
             } else if (selectedMethod === 'bankTransfer') {
                 $('#bankInfo').removeClass('hidden').attr('required', 'required');
+                $('#bank').removeClass('hidden').attr('required', 'required');
                 $('#cardInfo').addClass('hidden').removeAttr('required');
+                $('#cardsa').addClass('hidden').removeAttr('required');
             } else {
                 $('#cardInfo').addClass('hidden').removeAttr('required');
+                $('#cardsa').addClass('hidden').removeAttr('required');
                 $('#bankInfo').addClass('hidden').removeAttr('required');
+                $('#bank').addClass('hidden').removeAttr('required');
             }
         });
 	    

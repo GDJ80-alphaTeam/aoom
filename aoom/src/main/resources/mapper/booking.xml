@@ -123,6 +123,9 @@
 		    ,create_date
 		    ,bookstat_code
 		    ,paystat_code
+		    ,check_in
+		    ,check_out
+		    ,total_price
 		) VALUES(
 		     #{bookingId}
 		    ,#{roomId}
@@ -131,6 +134,9 @@
 		    ,SYSDATE
 		    ,'bst02'
 		    ,'pay02'
+		    ,#{startDate}
+		    ,#{endDate}
+		    ,#{paymentPrice}
 		)
 	</insert>
 	

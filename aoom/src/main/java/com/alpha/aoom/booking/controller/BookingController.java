@@ -80,6 +80,8 @@ public class BookingController extends BaseController {
 		modelMap.addAttribute("bookingPrice", bookingPrice);
 		modelMap.addAttribute("bookingPriceDetail", bookingPriceDetail);
 		modelMap.addAttribute("maxPeople", roomInfo.get("maxPeople"));
+		modelMap.addAttribute("bank", codeService.selectByGroupKey("bank"));
+		modelMap.addAttribute("card", codeService.selectByGroupKey("card"));
 		
 		return "/booking/book";
 	}
