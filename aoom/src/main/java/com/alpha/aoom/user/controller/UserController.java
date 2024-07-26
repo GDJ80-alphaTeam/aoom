@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequestMapping("/user")
 @Controller
-public class UserController extends BaseController{
+public class UserController extends BaseController {
 	
 	@Autowired
 	UserService userService;
@@ -31,20 +31,11 @@ public class UserController extends BaseController{
 		return "/user/myPage";
 	}
 	
-	@RequestMapping("/userInfo")
-	public String userInfo(@RequestParam Map<String, Object> param, HttpSession session, ModelMap modelMap) {
-		
-		Map<String, Object> userInfo = (Map<String, Object>) session.getAttribute("userInfo");
-		modelMap.addAttribute("userInfo", userInfo);
-		
-		return "/user/userInfo";
-	}
-	
-	// 개인정보 수정시 현재 비밀번호 확인
-	@RequestMapping("/userInfo/ajaxEditPwCheck")
+	// 개인정보 수정전 고객 정보 확인
+	@RequestMapping("/userInfo/ajaxCheckUserInfo")
 	@ResponseBody
-	public Map<String, Object> ajaxEditPwCheck(@RequestParam Map<String, Object> param) {
-		log.info("개인정보 수정 비밀번호 확인 param={}", param.toString());
+	public Map<String, Object> ajaxCheckUserInfo(@RequestParam Map<String, Object> param, HttpSession session) {
+		log.info("개인정보 수정전 정보 확인 param={}", param.toString());
 		
 		Map<String, Object> model = new HashMap<String, Object>();
 		
@@ -53,16 +44,48 @@ public class UserController extends BaseController{
 		model.put("userInfo", userInfo);
 		
 		if(userInfo != null) {
+			// session 설정하여 개인정보 수정페이지 url 직접 접근 막기
+			session.setAttribute("userInfoAccess", true);
 			return getSuccessResult(model);
 		} else {
-			return getFailResult(model, "현재 비밀번호를 다시 입력해주세요!");
+			return getFailResult(model, "비밀번호를 다시 입력해주세요!");
 		}
 	}
 	
-	// 개인정보 수정하기
-	@RequestMapping("/userInfo/edit")
-	public String edit(@RequestParam Map<String, Object> param) {
+	// 고객 개인정보 출력 및 수정 페이지 호출
+	@RequestMapping("/userInfo")
+	public String userInfo(@RequestParam Map<String, Object> param, HttpSession session, ModelMap modelMap) {
+		
+		// 개인정보 수정 페이지 권한 세션
+		Boolean editAuth = (Boolean) session.getAttribute("userInfoAccess");
+		
+		if(editAuth != null && editAuth) { // 권한 있을 때
+			// session 제거 - 새로고침, 다른페이지에서 접근 막기
+			session.removeAttribute("userInfoAccess");
+			return "/user/userInfo";
+		} else { // 권한 없을 때
+			return "redirect:/user/myPage";
+		}
+	}
+	
+	// 고객 개인정보 수정
+	@RequestMapping("/userInfo/ajaxEditUserInfo")
+	@ResponseBody
+	public Map<String, Object> ajaxEditUserInfo(@RequestParam Map<String, Object> param, HttpSession session) {
 		log.info("개인정보 수정 param={}", param.toString());
-		return "redirect:/user/userInfo";
+		if(param.get("editUserPw") != null && !param.get("editUserPw").toString().equals("")) {
+			param.put("userPw", param.get("editUserPw"));
+		}
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		int row = userService.update(param);
+		if(row != 0) {
+			Map<String, Object> editedUserInfo = userService.selectByUserId(param);
+			session.setAttribute("userInfo", editedUserInfo);
+			return getSuccessResult(model, "고객님의 정보가 수정되었습니다!");
+		} else {
+			return getFailResult(model, "수정에 실패하였습니다. 다시 시도해주세요");
+		}
 	}
 }

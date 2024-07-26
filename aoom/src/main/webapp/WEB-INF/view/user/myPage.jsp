@@ -19,7 +19,7 @@
 				프로필
 			
 		</div>
-		<div style="width: 100%;height: 300px;" onclick="window.location.href='/user/userInfo'">
+		<div style="width: 100%;height: 300px;" id="userInfoPage" data-bs-toggle="modal" data-bs-target="#checkUserInfoModal">
 			<a> 
 				개인정보
 			</a>
@@ -31,5 +31,57 @@
 		</div>
 		
 	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="checkUserInfoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title" id="exampleModalLabel">회원정보 확인</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+				
+				<form id="checkUserInfo">
+					<!-- 내용 -->
+					<div class="modal-body">
+						<div>
+							<h6><b>아이디</b></h6>
+							<input type="text" id="userId" name="userId" value="${sessionScope.userInfo.userId}" readonly="readonly" style="border-width: 0; outline: none;">
+							
+							<h6><b>비밀번호</b></h6>
+							<input type="password" id="userPw" name="userPw" style="width: 70%;">
+
+						</div>
+					</div>
+					
+					<!-- 버튼이름 -->
+					<div class="modal-footer">	
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+						<button type="button" id="checkBtn" class="btn btn-primary">확인</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 개인정보 수정 들어가기 전 고객 정보 확인 -->
+	<script type="text/javascript">
+		$('#checkBtn').on('click', function() {
+			$.ajax({
+				url: '/user/userInfo/ajaxCheckUserInfo',
+				method: 'post',
+				data: $('#checkUserInfo').serialize(),
+				success: function(response) {
+					console.log(response);
+					if(response.result) {
+						 window.location.href = '/user/userInfo';
+					} else {
+						alert(response.message);
+						$('#userPw').focus();
+					}
+				}
+			});
+		});
+	</script>
 </body>
 </html>

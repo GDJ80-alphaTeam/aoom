@@ -63,10 +63,20 @@ public class UserService {
 		return "fail";
 	}
 	
-
 	// 가입기간 확인
 	public Map<String, Object> selectBySubPeriod(Map<String, Object> param) {
 		
 		return userMapper.selectBySubPeriod(param);
+	}
+	
+	// 고객정보 수정
+	public int update(Map<String, Object> param) {
+		
+		return userMapper.update(param);
+	}
+	
+	// 고객 정보 가져오기
+	public Map<String, Object> selectByUserId(Map<String, Object> param) {
+		return userMapper.selectByUserId(param);
 	}
 }

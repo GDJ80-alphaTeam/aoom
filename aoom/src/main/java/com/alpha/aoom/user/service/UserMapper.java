@@ -14,4 +14,6 @@ public interface UserMapper {
 	Map<String, Object> selectByUserId(Map<String, Object> param);
 	
 	Map<String, Object> selectBySubPeriod(Map<String, Object> param);
+	// 고객 정보 수정
+	int update(Map<String, Object> param);
 }
