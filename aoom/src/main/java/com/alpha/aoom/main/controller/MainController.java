@@ -1,5 +1,6 @@
 package com.alpha.aoom.main.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alpha.aoom.code.service.CodeService;
 import com.alpha.aoom.room.service.RoomService;
+import com.alpha.aoom.wishList.service.WishListService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -24,9 +26,12 @@ public class MainController {
 	@Autowired
 	CodeService codeService;
 	
+	@Autowired
+	WishListService wishListService;
+	
 	// 메인페이지 호출
 	@RequestMapping("/main")
-	public String main(ModelMap modelMap) {
+	public String main(ModelMap modelMap, HttpSession session) {
 		
 		// 숙소 카테고리 조회
 		List<Map<String, Object>> roomCategory = codeService.selectByGroupKey("roomcate");
@@ -61,6 +66,14 @@ public class MainController {
 		modelMap.addAttribute("ratingDesc", ratingDesc);
 		modelMap.addAttribute("bookingDesc", bookingDesc);
 		modelMap.addAttribute("wishListDesc", wishListDesc);
+		
+		// user의 세션이 있다면 위시리스트 목록을 modelMap으로 보내기
+		if(session.getAttribute("userInfo") != null) {
+			Map<String, Object> wishListParam = new HashMap<String, Object>();
+			wishListParam.put("userId", ((Map<String, Object>) session.getAttribute("userInfo")).get("userId"));
+//			log.info("user의 위시리스트={}", wishListService.select(wishListParam).toString());
+			modelMap.addAttribute("userWishRoom", wishListService.select(wishListParam));
+		}
 		
 		return "main";
 	}

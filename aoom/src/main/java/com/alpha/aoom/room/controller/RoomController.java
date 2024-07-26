@@ -94,7 +94,7 @@ public class RoomController extends BaseController {
 	
 	// 숙소 목록 출력(검색, 필터, 카테고리 조건)
 	@RequestMapping("/roomList")
-	public String roomList(@RequestParam Map<String, Object> param, ModelMap modelMap) {
+	public String roomList(@RequestParam Map<String, Object> param, ModelMap modelMap, HttpSession session) {
 		// 검색 조건에 쓰일 카테고리, 숙소유형, 편의시설
 		List<Map<String, Object>> roomCategory = codeService.selectByGroupKey("roomcate");
 		List<Map<String, Object>> roomType = codeService.selectByGroupKey("roomtype");
@@ -122,6 +122,14 @@ public class RoomController extends BaseController {
 		modelMap.addAttribute("amenities", amenities);
 		modelMap.addAttribute("searchResult", searchResult);
 		
+		
+		// user의 세션이 있다면 위시리스트 목록을 modelMap으로 보내기
+		if(session.getAttribute("userInfo") != null) {
+			Map<String, Object> wishListParam = new HashMap<String, Object>();
+			wishListParam.put("userId", ((Map<String, Object>) session.getAttribute("userInfo")).get("userId"));
+//			log.info("user의 위시리스트={}", wishListService.select(wishListParam).toString());
+			modelMap.addAttribute("userWishRoom", wishListService.select(wishListParam));
+		}
 		return "/room/roomList";
 	}
 }

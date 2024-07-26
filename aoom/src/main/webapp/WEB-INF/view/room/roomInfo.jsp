@@ -460,7 +460,11 @@
 	
 	<!-- 위시리스트에 있는 숙소 추가, 제거 -->
 	<script type="text/javascript">
+		let userId = '${sessionScope.userInfo.userId}';
 		$('#wishListBtn').click(function() {
+			if(userId === ''){
+				alert('로그인이 필요한 기능입니다');
+			}
 			$.ajax({
 				url: '/ajaxWishList',
 				method: 'get',
@@ -469,7 +473,6 @@
 					'roomId' : '${roomInfo.roomId}'
 				},
 				success: function(response) {
-					console.log(response);
 					if(response.result) {
 						alert(response.message)
 						window.location.href="/room/roomInfo?roomId=${roomInfo.roomId}"

@@ -119,6 +119,20 @@
 		<c:forEach var="viewsDesc" items="${viewsDesc}">
 			<div class="col">
 				<div class="card h-100">
+					<button type="button" name="wishListBtn_${viewsDesc.roomId}" style="position: absolute; top: 0; right: 0; border: 0; background-color: transparent;">
+						<c:set var="isWishRoom" value="false"></c:set>
+						<c:forEach var="uwr" items="${userWishRoom }">
+							<c:if test="${uwr.roomId == viewsDesc.roomId }">
+								<c:set var="isWishRoom" value="true"></c:set>
+							</c:if>
+						</c:forEach>
+						<c:if test="${isWishRoom}">
+							&#129505;
+						</c:if>
+						<c:if test="${!isWishRoom}">
+							&#129293;
+						</c:if>
+					</button>
 					<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${viewsDesc.roomId}">
 						<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
 					</a>
@@ -146,6 +160,20 @@
 		<c:forEach var="bookingDesc" items="${bookingDesc}">
 			<div class="col">
 				<div class="card h-100">
+					<button type="button" name="wishListBtn_${bookingDesc.roomId}" style="position: absolute; top: 0; right: 0; border: 0; background-color: transparent;">
+						<c:set var="isWishRoom" value="false"></c:set>
+						<c:forEach var="uwr" items="${userWishRoom }">
+							<c:if test="${uwr.roomId == bookingDesc.roomId }">
+								<c:set var="isWishRoom" value="true"></c:set>
+							</c:if>
+						</c:forEach>
+						<c:if test="${isWishRoom}">
+							&#129505;
+						</c:if>
+						<c:if test="${!isWishRoom}">
+							&#129293;
+						</c:if>
+					</button>
 					<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${bookingDesc.roomId}">
 						<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
 					</a>
@@ -173,6 +201,20 @@
         <c:forEach var="wishListDesc" items="${wishListDesc}">
 			<div class="col">
 				<div class="card h-100">
+					<button type="button" name="wishListBtn_${wishListDesc.roomId}" style="position: absolute; top: 0; right: 0; border: 0; background-color: transparent;">
+						<c:set var="isWishRoom" value="false"></c:set>
+						<c:forEach var="uwr" items="${userWishRoom }">
+							<c:if test="${uwr.roomId == wishListDesc.roomId }">
+								<c:set var="isWishRoom" value="true"></c:set>
+							</c:if>
+						</c:forEach>
+						<c:if test="${isWishRoom}">
+							&#129505;
+						</c:if>
+						<c:if test="${!isWishRoom}">
+							&#129293;
+						</c:if>
+					</button>
 					<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${wishListDesc.roomId}">
 						<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
 					</a>
@@ -200,6 +242,20 @@
 		<c:forEach var="ratingDesc" items="${ratingDesc}">
 			<div class="col">
 				<div class="card h-100">
+					<button type="button" name="wishListBtn_${ratingDesc.roomId}" style="position: absolute; top: 0; right: 0; border: 0; background-color: transparent;">
+						<c:set var="isWishRoom" value="false"></c:set>
+						<c:forEach var="uwr" items="${userWishRoom }">
+							<c:if test="${uwr.roomId == ratingDesc.roomId }">
+								<c:set var="isWishRoom" value="true"></c:set>
+							</c:if>
+						</c:forEach>
+						<c:if test="${isWishRoom}">
+							&#129505;
+						</c:if>
+						<c:if test="${!isWishRoom}">
+							&#129293;
+						</c:if>
+					</button>
 					<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${ratingDesc.roomId}">
 						<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
 					</a>
@@ -301,5 +357,32 @@
             $('#filterForm')[0].reset();
         });
     </script>
+    
+    <!-- 위시리스트에 숙소 추가, 삭제 -->
+    <script type="text/javascript">
+		let userId = '${sessionScope.userInfo.userId}';
+		$('button[name^="wishListBtn_"]').click(function() {
+			if(userId === ''){
+				alert('로그인이 필요한 기능입니다');
+			}
+			const wishListBtnRoomId = $(this).attr('name');
+			const roomId = wishListBtnRoomId.split('_')[1];
+
+			$.ajax({
+				url : '/ajaxWishList',
+				method : 'get',
+				data : {
+					'userId' : userId,
+					'roomId' : roomId
+				},
+				success : function(response) {
+					if (response.result) {
+						alert(response.message);
+						window.location.href = "/main";
+					}
+				}
+			});
+		});
+	</script>
 </body>
 </html>
