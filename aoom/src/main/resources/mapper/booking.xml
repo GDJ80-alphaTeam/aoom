@@ -11,87 +11,69 @@
 		,b.create_date
 		,b.bookstat_code
 		,b.paystat_code
+		,TO_CHAR(b.check_in , 'yyyy-mm-dd') as check_in
+		,TO_CHAR(b.check_out , 'yyyy-mm-dd') as check_out
+		,b.total_price
 	</sql>
 
-	<!-- 로그인한 사용자의 예약정보 + 숙소정보 조회 -->
-	<select id="selectByUserId" parameterType="map" resultType="camelCaseMap">
+	<!-- 로그인한 사용자의 예약리스트 조회 , 예약 정보조회 , 예약 취소정보 조회-->
+	<select id="selectListByGuestId" parameterType="map" resultType="camelCaseMap">
 		SELECT
-			*
-		FROM	
-			(SELECT
-			     bookingDate.booking_id
-			    ,b.create_date
-			    ,b.room_id 
-			    ,b.bookstat_code
-			    ,b.stay_people
-			    ,r.address
-			    ,r.room_name
-			    ,r.user_id AS host_id  
-			    ,r.main_image 
-			    ,c.code_name AS paystat_name
-			    ,c2.code_name AS bookstat_name
-			    ,bookingDate.start_date
-			    ,bookingDate.end_date
-			    ,bookingDate.oneday_price
-			    ,rownum AS rn
-			FROM
-			    booking b
+		    *
+		FROM
+		    (
+		    SELECT
+		         ROWNUM AS rn
+		        ,<include refid="booking_col"/>
+		        ,b.user_id AS guest_id
+		        ,r.room_name
+		        ,r.user_id AS host_id
+		        ,r.main_image
+		        ,REPLACE(r.address, '^', '  ') AS address
+		        ,c.code_name AS bookstat_name
+		        ,c2.code_name AS paystat_name 
+		         	 
+		    FROM
+		        booking b
 			LEFT JOIN
-			    room r 
-			    on b.room_id = r.room_id
-			LEFT JOIN 
-			    code c
-			    on b.paystat_code = c.code_key
-			LEFT JOIN 
-			    code c2
-			    on b.bookstat_code = c2.code_key
-			LEFT JOIN    
-			    (SELECT
-			        booking_id 
-			        ,to_char(min(oneday), 'yy-mm-dd') AS start_date
-			        ,to_char(max(oneday+1), 'yy-mm-dd') AS end_date
-			        ,sum(oneday_price) AS oneday_price
-			    FROM     
-			        booking_oneday_price_map
-			    WHERE
-			    	1=1
-			    	<choose>
-					    <when test="userId != null and bookingId != null">
-					        AND booking_id = #{bookingId}
-					    </when>
-					    <otherwise>
-					        <if test="userId != null"> 
-					            AND booking_id IN (
-					                SELECT 
-					                    booking_id
-					                FROM     
-					                    booking 
-					                WHERE 
-					                    user_id = #{userId}
-					                )    
-					        </if>
-					        <if test="bookingId != null">
-					            AND booking_id = #{bookingId}
-					        </if>
-					    </otherwise>
-					</choose>
-			    GROUP BY
-			        booking_id
-			    ORDER BY
-			        booking_id  
-			     )  bookingDate
-			     ON bookingDate.booking_id = b.booking_id 
-			WHERE 
-				1=1
-				<if test="userId != null">
-			    	AND b.user_id = #{userId}
-			    </if>
-			    <if test="bookingId != null">
-			    	AND b.booking_id = #{bookingId}
-			    </if>
-		)			    
-		WHERE
-       		rn <![CDATA[>]]> #{beginRow} and rn <![CDATA[<=]]> #{endRow}    
+				room r
+			ON
+				b.room_id = r.room_id
+			LEFT JOIN
+        		code c
+		    ON
+		        c.code_key = b.bookstat_code
+		    LEFT JOIN
+		        code c2
+		    ON 
+		    	c2.code_key = b.paystat_code        								        	
+		    WHERE
+		    	1=1
+		    <choose>
+			    <when test="userId != null and bookingId != null">
+			        AND booking_id = #{bookingId}
+			    </when>
+			    <otherwise>
+			        <if test="userId != null"> 
+			            AND booking_id IN (
+			                SELECT 
+			                    booking_id
+			                FROM     
+			                    booking 
+			                WHERE 
+			                    user_id = #{userId}
+			                )    
+			        </if>
+			        <if test="bookingId != null">
+			            AND booking_id = #{bookingId}
+			        </if>
+			    </otherwise>
+			</choose>    
+		    ORDER BY 
+		    	booking_id DESC    
+			)
+		 WHERE
+       		rn <![CDATA[>]]> #{beginRow} and rn <![CDATA[<=]]> #{endRow}     
 	</select>
 	
 	<!-- 유저의 총예약수 -->

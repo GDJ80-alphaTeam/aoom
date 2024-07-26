@@ -19,30 +19,36 @@
 	<div style="width: 1200px;margin: 0 auto; text-align: center;">
 	
 		<div style="width: 100%">
-			가격${bookingInfo.onedayPrice}
+			<h3>가격:${bookingInfo.totalPrice}</h3>
 		</div>
 		<div style="width: 100%">
-			주소${bookingInfo.address} 
+			<h3>주소:${bookingInfo.address}</h3> 
 		</div>
 		<div style="width: 100%">
-			숙소이름${bookingInfo.roomName} 
+			<h3>숙소이름:${bookingInfo.roomName}</h3> 
 		</div>
 		<div style="width: 100%">
-			체크인날짜${bookingInfo.startDate} 
+			<h3>체크인날짜:${bookingInfo.checkIn}</h3> 
 		</div>
 		<div style="width: 100%">
-			체크아웃날짜${bookingInfo.endDate} 
+			<h3>체크아웃날짜:${bookingInfo.checkOut}</h3> 
 		</div>
-		대표사진:
+		<h3>숙소사진</h3>
 		<img src="${bookingInfo.mainImage}">
 		<div style="width: 100%">
+			<h3>
 			예약번호:${bookingInfo.bookingId}
+			</h3>
 		</div>
 		<div style="width: 100%">
+			<h3>
 			숙박인원:${bookingInfo.stayPeople}
+			</h3>
 		</div>
 		<div style="width: 100%">
-			호스트아이디:${bookingInfo.hostId}
+			<h3>
+				호스트아이디:${bookingInfo.hostId}
+			</h3>
 		</div>
 		
 		<form action="/review/insert" enctype="multipart/form-data" method="post" id="reviewForm">		

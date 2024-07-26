@@ -36,7 +36,7 @@ public class BookingService {
 	final private int rowPerPage = 5 ;
 		
 	// 사용자의 예약목록 출력
-	public List<Map<String, Object>> selectByUserId(Map<String, Object> param){
+	public List<Map<String, Object>> selectListByGuestId(Map<String, Object> param){
 		
 		int beginRow = ((int)param.get("currentPage") - 1) * rowPerPage;
 		int endRow = beginRow + rowPerPage;
@@ -44,7 +44,7 @@ public class BookingService {
 		param.put("beginRow", beginRow);
 		param.put("endRow", endRow);
 		
-		return bookingMapper.selectByUserId(param);
+		return bookingMapper.selectListByGuestId(param);
 		
 	}
 	

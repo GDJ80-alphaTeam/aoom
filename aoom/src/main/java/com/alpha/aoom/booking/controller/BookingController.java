@@ -134,7 +134,7 @@ public class BookingController extends BaseController {
 		// 결제 상세정보
 		modelMap.addAttribute("paymentInfo", roomPaymentService.selectByBookingId(param));
 		// 예약 상세정보
-		modelMap.addAttribute("bookingInfo" , bookingService.selectByUserId(param).get(0));
+		modelMap.addAttribute("bookingInfo" , bookingService.selectListByGuestId(param).get(0));
 		// 취소 카테고리
 		modelMap.addAttribute("cancelInfo" , codeService.selectByGroupKey("cancelrea"));
 		

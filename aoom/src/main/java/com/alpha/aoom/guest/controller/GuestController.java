@@ -1,6 +1,7 @@
 package com.alpha.aoom.guest.controller;
 
 import java.util.HashMap;
+
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +38,10 @@ public class GuestController {
 		String userId = userInfo.get("userId").toString();
 		param.put("userId", userId);
 		
-		
-		
-		// currentPage가 param에 가지고있으면 param값 , 없으면 1
 		int currentPage = (String)param.get("currentPage") != null ? Integer.parseInt((String)param.get("currentPage")) : 1 ; 
 		param.put("currentPage", currentPage);
-		
-		modelMap.addAttribute("bookingList", bookingService.selectByUserId(param));
+		log.info("북리스트 출력값"+bookingService.selectListByGuestId(param));
+		modelMap.addAttribute("bookingList", bookingService.selectListByGuestId(param));
 		modelMap.addAttribute("pagingInfo",bookingService.selectByTotalCnt(param));
 		modelMap.addAttribute("currentPage", currentPage);
 		
@@ -62,15 +60,14 @@ public class GuestController {
 			return "redirect:/main";
 		}
 		int currentPage = 1;
-		
 		// 세션에서 가져온 user정보에서 userId 가져오기
 		String userId = userInfo.get("userId").toString();
 		param.put("userId", userId);
 		param.put("currentPage" , currentPage);
 		
-		log.info("data"+bookingService.selectByUserId(param));
+		log.info("data"+bookingService.selectListByGuestId(param));
 		// list로받아온값 map으로 보냄 
-		modelMap.put("bookingInfo", bookingService.selectByUserId(param).get(0));
+		modelMap.put("bookingInfo", bookingService.selectListByGuestId(param).get(0));
 			
 		return "/guest/bookInfo";
 	}

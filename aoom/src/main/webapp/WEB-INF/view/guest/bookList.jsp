@@ -32,24 +32,36 @@
 				</tr>
 			</thead>	
 			<tbody>
-			<c:forEach var="r" items="${bookingList}">
+			<c:forEach var="b" items="${bookingList}">
 				<tr>
-					<td>${r.bookingId}</td>
-					<td onclick="window.location.href='/guest/bookInfo?bookingId=${r.bookingId}'">
-						${r.roomName}
-					</td>
-					<td>${r.startDate} ~ ${r.endDate}</td>
-					<td>${r.hostId}</td>
-					
-					<td onclick="window.location.href='/guest/bookInfo?bookingId=${r.bookingId}'">
-						<img src="${r.mainImage}" style="height: 50px;">
-					</td>
-					<td> ${r.bookstatName}</td>
-					<td>${r.paystatName}</td>
 					<td>
-						<button onclick="window.location.href='/booking/bookingCancel?bookingId=${r.bookingId}'">
-							예약취소하기
-						</button>
+						<a href="/guest/bookInfo?bookingId=${b.bookingId}">
+							${b.bookingId}
+						</a>
+					</td>
+					<td>
+						${b.roomName}
+					</td>
+					<td>${b.checkIn} ~ ${b.checkOut}</td>
+					<td>${b.hostId}</td>
+					
+					<td>
+						<a href="/guest/bookInfo?bookingId=${b.bookingId}">
+							<img src="${b.mainImage}" style="height: 50px;">
+						</a>
+					</td>
+					<td> ${b.bookstatName}</td>
+					<td>${b.paystatName}</td>
+					<td>
+						<c:choose>
+							<c:when test="${b.bookstatCode eq 'bst01' ||b.bookstatCode eq 'bst02'}">
+						
+								<button onclick="window.location.href='/booking/bookingCancel?bookingId=${b.bookingId}'">
+									예약취소하기
+								</button>
+						
+							</c:when>
+						</c:choose>
 					</td>
 				</tr>
 			</c:forEach>

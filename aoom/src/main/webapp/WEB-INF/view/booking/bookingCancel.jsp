@@ -19,13 +19,12 @@
 		<h1>예약취소페이지</h1>
 		<div style="width: 100%;display: flex;height: 200px;">
 			<div style="width: 50% " >
-				<p>결제한금액:${bookingInfo.onedayPrice}</p>
-				<p>환불금액:${bookingInfo.onedayPrice}(수수료에 따라 차등)</p>
+				<p>결제한금액:${bookingInfo.totalPrice}</p>
+				<p>환불금액:${bookingInfo.totalPrice}(수수료에 따라 차등)</p>
 				<div>
 					<h3>환불 세부내역</h3>
-					<p>결제금액:${bookingInfo.onedayPrice}</p>
-					<p>수수료:</p>
-					<p>총환불금액</p>	
+					<p>결제금액:${bookingInfo.totalPrice}</p>
+					<p>수수료:0</p>
 				</div>
 			</div>
 			
@@ -43,15 +42,15 @@
 							<li class="list-group-item">
 								<h5 class="card-title">요금세부정보</h5>
 								<p class="card-text"  id="detailPrice">
-									이용날짜: ${bookingInfo.startDate} ~ ${bookingInfo.endDate}<br>
-									결제한금액: ${bookingInfo.onedayPrice}<br>
-									환불금액: ${bookingInfo.onedayPrice }
+									이용날짜: ${bookingInfo.checkIn} ~ ${bookingInfo.checkOut}<br>
+									결제한금액: ${bookingInfo.totalPrice}<br>
+									환불금액: ${bookingInfo.totalPrice}
 								</p>
 							</li>
 							<li class="list-group-item">
 								<h5 class="card-title">총환불금액</h5>
 								<p class="card-text"  id="totalPrice">
-									${bookingInfo.onedayPrice} 원
+									${bookingInfo.totalPrice} 원
 									<input type="hidden" name="paymentPrice" value="${bookingPrice.sum }">
 								</p>
 							</li>

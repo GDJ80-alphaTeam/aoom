@@ -51,7 +51,7 @@
 			room_id = #{roomId}	
 	</select>
 	
-	<!-- 해당하는 숙소 주인이 받았던 후기 총 개수 -->
+	<!-- 해당하는 숙소 주인이 받았던 후기 총 개수 , 프로필에서 cnt와 평점표시-->
 	<select id="selectByHostTotalCnt" parameterType="map" resultType="camelCaseMap">
 		SELECT 
 			 COUNT(*) AS cnt 

@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface BookingMapper {
 	
 	// 유저의 예약정보 + 숙소정보 리스트 
-	List<Map<String, Object>> selectByUserId(Map<String, Object> param);
+	List<Map<String, Object>> selectListByGuestId(Map<String, Object> param);
 	
 	// 유저의 총예약수
 	int selectByTotalCnt(Map<String, Object> param);
