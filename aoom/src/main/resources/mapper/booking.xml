@@ -190,13 +190,15 @@
 		    bopm.booking_id = br.booking_id
 		WHERE
 			1 = 1
-			<if test="(selectRoom != null || selectRoom eq '') and selectRoom != 'all'">
+			<if test="selectRoom != null and !selectRoom.equals('') and !selectRoom.equals('all')">
 				AND br.room_id = #{selectRoom}
 			</if>
-	        <if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
-	            AND oneday <![CDATA[>=]]> TO_DATE(#{startDate}, 'yy/mm/dd')
-	            AND oneday <![CDATA[<]]> TO_DATE(#{endDate}, 'yy/mm/dd')
-	        </if>
+			<if test="startDate != null and !startDate.equals('')">
+				AND oneday <![CDATA[>=]]> TO_DATE(#{startDate}, 'yy/mm/dd')
+			</if>
+			<if test="endDate != null and !endDate.equals('')">
+				AND oneday <![CDATA[<]]> TO_DATE(#{endDate}, 'yy/mm/dd')
+			</if>
 		GROUP BY
 		     br.room_name
 		    ,br.user_id
@@ -256,13 +258,15 @@
 	            bopm.booking_id = br.booking_id
 	        WHERE
 	            1 = 1
-	            <if test="(selectRoom != null || selectRoom eq '') and selectRoom != 'all'">
-	                AND br.room_id = #{selectRoom}
-	            </if>
-	            <if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
-	                AND oneday <![CDATA[>=]]> TO_DATE(#{startDate}, 'yy/mm/dd')
-	                AND oneday <![CDATA[<]]> TO_DATE(#{endDate}, 'yy/mm/dd')
-	            </if>
+			<if test="selectRoom != null and !selectRoom.equals('') and !selectRoom.equals('all')">
+				AND br.room_id = #{selectRoom}
+			</if>
+			<if test="startDate != null and !startDate.equals('')">
+				AND oneday <![CDATA[>=]]> TO_DATE(#{startDate}, 'yy/mm/dd')
+			</if>
+			<if test="endDate != null and !endDate.equals('')">
+				AND oneday <![CDATA[<]]> TO_DATE(#{endDate}, 'yy/mm/dd')
+			</if>
 	        GROUP BY
 	             br.room_name
 	            ,br.user_id
