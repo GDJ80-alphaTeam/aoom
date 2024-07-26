@@ -129,14 +129,9 @@
 				method: 'post',
 				data: $('#editUserInfoForm').serialize(),
 				success: function(response) {
-					console.log(response);
-					if(response.result) {
-						 window.location.href = '/user/userInfo';
-						 alert(response.message);
-					} else {
-						window.location.href = '/user/userInfo';
-						alert(response.message);
-					}
+// 					console.log(response);
+					window.location.href = '/user/userInfo';
+					alert(response.message);
 				}
 			});
 		});

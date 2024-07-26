@@ -1,6 +1,7 @@
 package com.alpha.aoom.user.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alpha.aoom.user.service.UserService;
 import com.alpha.aoom.util.BaseController;
+import com.alpha.aoom.wishList.service.WishListService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -25,13 +27,16 @@ public class UserController extends BaseController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	WishListService wishListService;
+	
 	@RequestMapping("/myPage")
 	public String userPage(@RequestParam Map<String, Object> param) {
 		
 		return "/user/myPage";
 	}
 	
-	// 개인정보 수정전 고객 정보 확인
+	// 개인정보 수정전 고객 정보 확인 ajax
 	@RequestMapping("/userInfo/ajaxCheckUserInfo")
 	@ResponseBody
 	public Map<String, Object> ajaxCheckUserInfo(@RequestParam Map<String, Object> param, HttpSession session) {
@@ -68,7 +73,7 @@ public class UserController extends BaseController {
 		}
 	}
 	
-	// 고객 개인정보 수정
+	// 고객 개인정보 수정 ajax
 	@RequestMapping("/userInfo/ajaxEditUserInfo")
 	@ResponseBody
 	public Map<String, Object> ajaxEditUserInfo(@RequestParam Map<String, Object> param, HttpSession session) {
@@ -89,7 +94,7 @@ public class UserController extends BaseController {
 		}
 	}
 	
-	// 고객 탈퇴
+	// 고객 탈퇴 ajax
 	@RequestMapping("/userInfo/ajaxSecessionUser")
 	@ResponseBody
 	public Map<String, Object> ajaxSecessionUser(@RequestParam Map<String, Object> param, HttpSession session) {
@@ -108,6 +113,18 @@ public class UserController extends BaseController {
 		} else {
 			return getFailResult(model, "탈퇴되지 않았습니다. 다시 시도해 주세요");
 		}
+	}
+	
+	// 고객의 위시리스트 페이지 호출
+	@RequestMapping("/wishList")
+	public String wishList(HttpSession session, ModelMap modelMap) {
+		Map<String, Object> userInfo = (Map<String, Object>) session.getAttribute("userInfo");
 		
+		List<Map<String, Object>> userWishList = wishListService.select(userInfo); 
+		log.info("유저 위시 리스트 ={}", userWishList);
+		
+		modelMap.addAttribute("userWishList", userWishList);
+		
+		return "/user/wishList";
 	}
 }

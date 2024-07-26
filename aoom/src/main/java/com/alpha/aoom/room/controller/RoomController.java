@@ -1,6 +1,7 @@
 package com.alpha.aoom.room.controller;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +18,9 @@ import com.alpha.aoom.review.service.ReviewService;
 import com.alpha.aoom.room.service.RoomService;
 import com.alpha.aoom.roomImage.service.RoomImageService;
 import com.alpha.aoom.util.BaseController;
+import com.alpha.aoom.wishList.service.WishListService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -38,11 +41,13 @@ public class RoomController extends BaseController {
 	CodeService codeService;
 	@Autowired
 	OnedayPriceService onedayPriceService;
+	@Autowired
+	WishListService wishListService;
 	
 	// 숙소상세보기 뷰페이지 호출
 	// param: userId(get)
 	@RequestMapping("/roomInfo")
-	public String roomInfo(@RequestParam Map<String, Object> param , ModelMap modelMap) {
+	public String roomInfo(@RequestParam Map<String, Object> param, HttpSession session, ModelMap modelMap) {
 		
 		// 숙소정보 조회 + 숙소 주인정보 
 		Map<String, Object> roomInfo = roomService.selectOne(param);
@@ -62,6 +67,15 @@ public class RoomController extends BaseController {
 		// 숙소 호스트가 받은 총합 후기수
 		Map<String, Object> hostReviewTotal = reviewService.selectByHostTotalCnt(param);
 				
+		// user의 세션이 있다면 해당 숙소가 위시리스트에 존재하는지 확인, 존재하면 modelMap으로 view에 보내기
+		if(session.getAttribute("userInfo") != null) {
+			Map<String, Object> wishListParam = new HashMap<String, Object>();
+			wishListParam.put("roomId", param.get("roomId"));
+			wishListParam.put("userId", ((Map<String, Object>) session.getAttribute("userInfo")).get("userId"));
+//			log.info(wishListService.select(wishListParam).toString());
+			modelMap.addAttribute("userWishRoom", wishListService.select(wishListParam));
+		}
+		
 		//log.info("숙소상세보기 호출값" + roomInfo);
 		//log.info("숙소편의시설 호출값" + roomAmenities);
 		//log.info("리뷰목록 호출값"+reviewList);

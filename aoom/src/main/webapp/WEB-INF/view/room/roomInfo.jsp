@@ -29,10 +29,13 @@
 				${roomInfo.roomName}
 			</div>			
 			<!-- 위시리스트 버튼 -->
-			<button type="button" style="background-color: white ; border: 0">
-				<a>
-					&#128151;
-				</a>
+			<button type="button" id="wishListBtn" style="background-color: white ; border: 0">
+				<c:if test="${userWishRoom[0] != null }">
+					&#129505;
+				</c:if>
+				<c:if test="${userWishRoom[0] == null }">
+					&#129293;
+				</c:if>
 			</button>
 		</h1>
 		
@@ -453,5 +456,26 @@
 		       map.setCenter(coords);
 			} 
 		});    
+	</script>
+	
+	<!-- 위시리스트에 있는 숙소 추가, 제거 -->
+	<script type="text/javascript">
+		$('#wishListBtn').click(function() {
+			$.ajax({
+				url: '/ajaxWishList',
+				method: 'get',
+				data: {
+					'userId' : '${sessionScope.userInfo.userId}',
+					'roomId' : '${roomInfo.roomId}'
+				},
+				success: function(response) {
+					console.log(response);
+					if(response.result) {
+						alert(response.message)
+						window.location.href="/room/roomInfo?roomId=${roomInfo.roomId}"
+					}
+				}
+			});
+		});
 	</script>
 </html>
