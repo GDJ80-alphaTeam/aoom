@@ -146,67 +146,78 @@
 	<!-- 로그인 유저의 호스팅한 숙소의 예약 목록 -->
 	<select id="selectListByUserId" parameterType="map" resultType="camelCaseMap">
 		SELECT
-		     TO_CHAR(MIN(oneday), 'yy/mm/dd') AS check_in
-			,TO_CHAR(MAX(oneday+1), 'yy/mm/dd') AS check_out
-		    ,br.room_name
-		    ,br.user_id AS guest_id
-		    ,br.bookstat_code
-		    ,br.room_id
-		FROM
-		    booking_oneday_price_map bopm
-		INNER JOIN
-		    (
-		    SELECT
-		    	 <include refid="booking_col"/>
-		        ,r.room_name
-		    FROM
-		        booking b
-		    INNER JOIN
-		        (
-		        SELECT
-		             room_id
-		            ,room_name
-		        FROM
-		            room
-		        WHERE
-		            user_id = #{hostId}
-		            AND roomstat_code = 'rst03'
-		        ) r
-		    ON
-		        b.room_id = r.room_id
-	        WHERE
-	        	1 = 1
-	        <if test="bookStat == 'bst02'">
-	        	AND bookstat_code = 'bst02'
-	        </if>
-	        <if test="bookStat == 'bst03'">
-	        	AND (bookstat_code = 'bst03' OR bookstat_code = 'bst04')
-	        </if>
-	        <if test="bookStat == 'bst05'">
-	        	AND bookstat_code = 'bst05'
-	        </if>
-		    )br
-		ON
-		    bopm.booking_id = br.booking_id
+			*
+		FROM(	
+			SELECT 
+				 t.*
+				,ROWNUM AS rnum
+			FROM (
+				SELECT
+				     TO_CHAR(MIN(oneday), 'yy/mm/dd') AS check_in
+					,TO_CHAR(MAX(oneday+1), 'yy/mm/dd') AS check_out
+				    ,br.room_name
+				    ,br.user_id AS guest_id
+				    ,br.bookstat_code
+				    ,br.room_id
+				FROM
+				    booking_oneday_price_map bopm
+				INNER JOIN
+				    (
+				    SELECT
+				    	 <include refid="booking_col"/>
+				        ,r.room_name
+				    FROM
+				        booking b
+				    INNER JOIN
+				        (
+				        SELECT
+				             room_id
+				            ,room_name
+				        FROM
+				            room
+				        WHERE
+				            user_id = #{hostId}
+				            AND roomstat_code = 'rst03'
+				        ) r
+				    ON
+				        b.room_id = r.room_id
+			        WHERE
+			        	1 = 1
+			        <if test="bookStat == 'bst02'">
+			        	AND bookstat_code = 'bst02'
+			        </if>
+			        <if test="bookStat == 'bst03'">
+			        	AND (bookstat_code = 'bst03' OR bookstat_code = 'bst04')
+			        </if>
+			        <if test="bookStat == 'bst05'">
+			        	AND bookstat_code = 'bst05'
+			        </if>
+				    )br
+				ON
+				    bopm.booking_id = br.booking_id
+				WHERE
+					1 = 1
+					<if test="selectRoom != null and !selectRoom.equals('') and !selectRoom.equals('all')">
+						AND br.room_id = #{selectRoom}
+					</if>
+					<if test="startDate != null and !startDate.equals('')">
+						AND oneday <![CDATA[>=]]> TO_DATE(#{startDate}, 'yy/mm/dd')
+					</if>
+					<if test="endDate != null and !endDate.equals('')">
+						AND oneday <![CDATA[<]]> TO_DATE(#{endDate}, 'yy/mm/dd')
+					</if>
+				GROUP BY
+				     br.room_name
+				    ,br.user_id
+				    ,br.bookstat_code
+				    ,oneday
+				    ,br.room_id
+				ORDER BY
+					check_in DESC
+				)t
+			)
 		WHERE
-			1 = 1
-			<if test="selectRoom != null and !selectRoom.equals('') and !selectRoom.equals('all')">
-				AND br.room_id = #{selectRoom}
-			</if>
-			<if test="startDate != null and !startDate.equals('')">
-				AND oneday <![CDATA[>=]]> TO_DATE(#{startDate}, 'yy/mm/dd')
-			</if>
-			<if test="endDate != null and !endDate.equals('')">
-				AND oneday <![CDATA[<]]> TO_DATE(#{endDate}, 'yy/mm/dd')
-			</if>
-		GROUP BY
-		     br.room_name
-		    ,br.user_id
-		    ,br.bookstat_code
-		    ,oneday
-		    ,br.room_id
-		ORDER BY
-			check_in DESC
+			rnum > #{beginRow} AND rnum <![CDATA[<=]]> #{beginRow} + #{rowPerPage}
 	</select>
 	
 	<!-- 로그인 유저의 호스팅한 숙소의 예약 목록의 행의 갯수 -->

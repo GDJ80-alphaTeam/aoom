@@ -108,12 +108,58 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	
+
+	<c:choose>
+		<c:when test="${lastPage == 0 }"></c:when>
+		<c:otherwise>
+			<nav>
+				<ul class="pagination">
+					<li class="page-item">
+					<!-- paging 이전버튼 --> 
+						<c:choose>
+							<c:when test="${currentPage == 1}">
+								<button class="page-link disabled" type="button">이전</button>
+							</c:when>
+							<c:otherwise>
+								<button class="page-link" type="button" onclick="window.location.href='/host/bookList?selectRoom=${selectRoom }&startDate=${startDate }&endDate=${endDate }&bookStat=${bookStat }&currentPage=${currentPage - 1}'">이전</button>
+							</c:otherwise>
+						</c:choose>
+					</li>
+
+					<!-- paging 숫자버튼 -->
+					<c:forEach var="i" begin="1" end="${lastPage}">
+						<li class="page-item">
+							<c:choose>
+								<c:when test="${currentPage == i}">
+									<button class="page-link active" type="button" onclick="window.location.href='/host/bookList?selectRoom=${selectRoom }&startDate=${startDate }&endDate=${endDate }&bookStat=${bookStat }&currentPage=${i}'">${i}</button>
+								</c:when>
+								<c:otherwise>
+									<button class="page-link " type="button" onclick="window.location.href='/host/bookList?selectRoom=${selectRoom }&startDate=${startDate }&endDate=${endDate }&bookStat=${bookStat }&currentPage=${i}'">${i}</button>
+								</c:otherwise>
+							</c:choose></li>
+					</c:forEach>
+
+					<!-- paging 다음버튼 -->
+					<li class="page-item">
+						<c:choose>
+							<c:when test="${currentPage == lastPage}">
+								<button class="page-link disabled" type="button">다음</button>
+							</c:when>
+							<c:otherwise>
+								<button class="page-link" type="button" onclick="window.location.href='/host/bookList?selectRoom=${selectRoom }&startDate=${startDate }&endDate=${endDate }&bookStat=${bookStat }&currentPage=${currentPage + 1}'">다음</button>
+							</c:otherwise>
+						</c:choose>
+					</li>
+				</ul>
+			</nav>
+		</c:otherwise>
+	</c:choose>
+
 	<script type="text/javascript">
 	
-	// 달력 출력
-	let startDate = flatpickr('#startDate');
-	let endDate = flatpickr('#endDate');
+		// 달력 출력
+		let startDate = flatpickr('#startDate');
+		let endDate = flatpickr('#endDate');
         
 	</script>
 </body>

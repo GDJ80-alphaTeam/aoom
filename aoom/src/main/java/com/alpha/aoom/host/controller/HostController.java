@@ -169,8 +169,15 @@ public class HostController extends BaseController {
 		param.put("rowPerPage", rowPerPage);
 		param.put("beginRow", beginRow);
 		
+		System.out.println("현재페이지(currentPage) : " + currentPage);
+		System.out.println("시작행(beginRow) : " + beginRow);
+		System.out.println("페이지당 행갯수(rowPerPage) : " + rowPerPage);
+		
 		// 로그인 유저의 호스팅한 숙소의 예약 목록
 		List<Map<String, Object>> bookingList = bookingService.selectListByUserId(param);
+		
+		System.out.println("목록(bookingList) : " + bookingList);
+		
 		// 로그인 유저의 호스팅한 숙소의 예약 목록의 행갯수
 		int totalRows = bookingService.selectListByUserIdCnt(param);
 		// 마지막페이지 구하기
