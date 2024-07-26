@@ -40,7 +40,9 @@
 						</a>
 					</td>
 					<td>
+						<a href="/room/roomInfo?roomId=${b.roomId}">
 						${b.roomName}
+						</a>
 					</td>
 					<td>${b.checkIn} ~ ${b.checkOut}</td>
 					<td>${b.hostId}</td>

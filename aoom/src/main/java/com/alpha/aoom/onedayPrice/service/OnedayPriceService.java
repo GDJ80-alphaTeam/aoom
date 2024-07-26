@@ -163,4 +163,10 @@ public class OnedayPriceService {
 		
 		return row;
 	}
+	
+	// 예약취소한 bookingOnedayPricemap목록
+	public int updateByCancel(Map<String, Object> param){
+		
+		return onedayPriceMapper.updateByCancel(param);
+	}
 }

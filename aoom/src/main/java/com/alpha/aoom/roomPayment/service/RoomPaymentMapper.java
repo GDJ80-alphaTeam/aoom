@@ -9,6 +9,6 @@ public interface RoomPaymentMapper {
 	// 결제 내역 추가
 	int insert(Map<String, Object> param);
 	
-	// 해당예약의 결제내역 검색
+	// 선택한 예약의 결제내역 검색
 	Map<String, Object> selectByBookingId(Map<String, Object> param);
 }

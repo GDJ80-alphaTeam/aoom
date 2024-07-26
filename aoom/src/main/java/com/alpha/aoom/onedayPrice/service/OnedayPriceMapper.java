@@ -40,4 +40,7 @@ public interface OnedayPriceMapper {
 	
 	// 하루숙박가격 수정
 	int update(Map<String, Object> param);
+	
+	// 예약취소후 운영가능으로 상태 변경
+	int updateByCancel(Map<String, Object> param);
 }

@@ -76,13 +76,27 @@
 						대금수령계좌 :
 						<input type="text" value="${paymentInfo.refundAccount}" id="bankInfo" name="refundAccount" placeholder="환불 계좌 입력('-'를 포함하여 입력해주세요.)" style="display: block;" pattern="^(\d{1,})(-(\d{1,})){1,}" disabled="disabled">
 					</div>
+					<!-- 무통장 입금 선택시 나올 부분 -->
+				    <select id="bank" class="hidden" name="bank">
+				    	<c:forEach var="bank" items="${bank}">
+				    		<option value="${bank.codeKey}">${bank.codeName}</option>
+				    	</c:forEach>
+				    </select>
 				</c:when>
 			</c:choose>
 			<!-- 예약번호 -->
 			<input type="hidden" value="${bookingInfo.bookingId}" name="bookingId">
-			<input type="hidden" value="${bookingInfo.onedayPrice}" name="refundPrice">
+			<!-- 총환불금액 -->
+			<input type="hidden" value="${bookingInfo.totalPrice}" name="refundPrice">
 			<!-- 결제번호 -->
 			<input type="hidden" value="${paymentInfo.paymentId}" name="paymentId">
+			<!-- 숙소아이디 -->
+			<input type="hidden" value="${bookingInfo.roomId}" name="roomId">
+			<!-- 숙소예약기간 -->
+			<input type="hidden" value="${bookingInfo.checkIn}" name="checkIn">
+			<input type="hidden" value="${bookingInfo.checkOut}" name="checkOut">
+			<!-- 예약취소 인원수 -->
+			<input type="hidden" value="${bookingInfo.stayPeople}" name="stayPeople">
 			<button type="submit">예약취소하기</button>
 		</form>
 		<p id="result"></p>

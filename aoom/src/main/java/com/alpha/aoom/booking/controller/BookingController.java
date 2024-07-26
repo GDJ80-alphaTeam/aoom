@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alpha.aoom.booking.service.BookingService;
+import com.alpha.aoom.bookingOnedayPrice.service.BookingOnedayPriceService;
 import com.alpha.aoom.cancelRefund.service.CancelRefundService;
 import com.alpha.aoom.code.service.CodeService;
 import com.alpha.aoom.onedayPrice.service.OnedayPriceService;
@@ -48,6 +49,9 @@ public class BookingController extends BaseController {
 	
 	@Autowired
 	CancelRefundService cancelRefundService;
+	
+	@Autowired
+	BookingOnedayPriceService bookingOnedayPriceService;
 	
 	// 예약하기
 	@RequestMapping("/book")
@@ -131,13 +135,16 @@ public class BookingController extends BaseController {
 		int currentPage = 1;
 		param.put("currentPage", currentPage);
 		
-		// 결제 상세정보
+		// 결제 상세정보 계좌 , 결제금액
 		modelMap.addAttribute("paymentInfo", roomPaymentService.selectByBookingId(param));
 		// 예약 상세정보
 		modelMap.addAttribute("bookingInfo" , bookingService.selectListByGuestId(param).get(0));
 		// 취소 카테고리
 		modelMap.addAttribute("cancelInfo" , codeService.selectByGroupKey("cancelrea"));
-		
+		// 은행
+		modelMap.addAttribute("bank", codeService.selectByGroupKey("bank"));
+		// 카드
+		modelMap.addAttribute("card", codeService.selectByGroupKey("card"));
 		
 		return "/booking/bookingCancel";
 	}
@@ -147,15 +154,24 @@ public class BookingController extends BaseController {
 	@RequestMapping("/bookingCancelEvent")
 	public String dobookingCancel(@RequestParam Map<String, Object> param , ModelMap modelMap) {
 		
-		log.info("마파람"+param);
-		int result = cancelRefundService.insert(param);
-		
-		if(result != 1) {
+		if(cancelRefundService.insert(param) != 1) {
 			log.info("실패"+"");
 			return "redirect:/booking/bookList";
-		} 
+		}
 		
-		return "hi";
+		// 예약취소시 booking의 상태 예약취소로 업데이트
+		param.put("bookstatCode","bst05");
+		
+		bookingService.updateBookingStat(param);
+		
+		// 해당예약번호를 가진 onedayPricemap삭제
+		bookingOnedayPriceService.delete(param);
+		
+		// onedayPrice 가 취소되어 기존의 onedayPrice를 활성화 시켜줘야함.
+		onedayPriceService.updateByCancel(param);
+		log.info("이거왜안되는건데대체!!!!!!!!!!!!!!!!!!"+onedayPriceService.updateByCancel(param));
+		log.info(param+"param");
+		return "redirect:/guest/bookList";
 	
 	}
 }

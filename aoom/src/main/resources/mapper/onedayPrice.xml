@@ -188,4 +188,17 @@
 			room_id = #{roomId}
 			AND oneday = #{oneday}
 	</update>
+	
+	<!-- 예약취소후 운영가능상태로 변경해줘야함-->
+	<update id="updateByCancel" parameterType="map" >
+		UPDATE 
+			 oneday_price
+		SET
+		     onestat_code = 'one01'
+		    ,left_people = left_people + #{stayPeople}
+		WHERE
+		    room_id = #{roomId}
+		    AND oneday BETWEEN TO_DATE(#{checkIn}, 'YY-MM-DD') AND TO_DATE(#{checkOut}, 'YY-MM-DD') - 1
+		    AND onestat_code = 'one02'
+	</update>
 </mapper>

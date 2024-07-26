@@ -68,4 +68,6 @@
 		WHERE
 	    	booking_id = #{bookingId}
 	</select>
+	
+	
 </mapper>
