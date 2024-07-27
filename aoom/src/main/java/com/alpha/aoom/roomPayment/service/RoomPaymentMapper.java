@@ -1,5 +1,6 @@
 package com.alpha.aoom.roomPayment.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -14,4 +15,7 @@ public interface RoomPaymentMapper {
 	
 	// 예약 취소시 계좌 변경이 있으면 변경
 	int updateAccount(Map<String, Object> param);
+	
+	// 호스트의 수입 조회(전체 or 숙소별)
+	List<Map<String, Object>> selectByHostRevenue(Map<String, Object> param);
 }

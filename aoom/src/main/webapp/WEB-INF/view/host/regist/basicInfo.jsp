@@ -83,7 +83,7 @@
 		<div>
 			숙소 운영 기간 : 
 			<c:if test="${roomInfo.startDate != null && roomInfo.startDate ne ''}">
-				<input type="text" id="roomOperationDate" placeholder="날짜를 선택해주세요" value="${roomInfo.startDate }-${roomInfo.endDate }" style="width: 300px;" required="required" autocomplete="off">			
+				<input type="text" id="roomOperationDate" placeholder="날짜를 선택해주세요" value="${roomInfo.startDate } ~ ${roomInfo.endDate }" style="width: 300px;" required="required" autocomplete="off">			
 			</c:if>
 			<c:if test="${roomInfo.startDate == null || roomInfo.startDate eq ''}">
 				<input type="text" id="roomOperationDate" placeholder="날짜를 선택해주세요" style="width: 300px;" required="required" autocomplete="off">

@@ -1,5 +1,6 @@
 package com.alpha.aoom.roomPayment.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,10 @@ public class RoomPaymentService {
 	public int updateAccount(Map<String, Object> param) {
 		
 		return roomPaymentMapper.updateAccount(param);
+	}
+	
+	// 호스트의 수입 조회(전체 or 숙소별)
+	public List<Map<String, Object>> selectByHostRevenue(Map<String, Object> param) {
+		return roomPaymentMapper.selectByHostRevenue(param);
 	}
 }
