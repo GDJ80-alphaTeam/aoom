@@ -73,4 +73,24 @@ public class ReviewController extends BaseController{
 		return "redirect:/room/roomInfo?roomId="+param.get("roomId").toString();
 	}
 	
+	
+	// 숙소리뷰 페이징 ajax
+		// param : roomId , currentPage
+		@ResponseBody
+		@RequestMapping("/ajaxProfileReviewPaging")
+		public Map<String, Object> profileReviewPaging(@RequestParam Map<String, Object> param) {
+					
+			Map<String, Object> model = new HashMap<String, Object>();
+			
+			Map<String, Object> reviewList = reviewService.selectListByProfile(param);
+			
+			model.put("data", reviewList);
+			// currentPage는 항상들어가기때문에 reviewList로 체크 
+			if(reviewList.get("review") != null) {
+				System.out.println(getSuccessResult(model));
+				return getSuccessResult(model);
+			} else {
+				return getFailResult(model);
+			}
+		}
 }

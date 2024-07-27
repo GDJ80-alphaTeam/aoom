@@ -100,6 +100,7 @@
 		    room_id
 	</select>
 	
+	<!-- 리뷰작성 -->
 	<insert id="insert" parameterType="map">
 		INSERT INTO review(
 				<include refid="review_col"/>
@@ -115,6 +116,7 @@
 		) 
 	</insert>
 	
+	<!-- 리뷰작성 사진X -->
 	<insert id="insertContent" parameterType="map">
 		INSERT INTO review(
 				booking_id
@@ -133,4 +135,43 @@
 		) 
 	</insert>
 	
+	<!-- 프로필에서 프로필주인이 받은 리뷰검색 -->
+	<select id="selectListByProfile" parameterType="map" resultType="camelCaseMap">
+		select
+    		*
+         FROM
+	         (
+	         SELECT        
+	             rownum as rn
+	            ,re.booking_id
+	            ,r.room_id
+	            ,u.user_image
+	            ,u.user_id
+	            ,u.user_name
+	            ,re.rating
+	            ,re.review_content
+	            ,re.review_image
+	            ,re.original_name
+	            ,re.create_date                                                                                                                                                                                                                                        
+			FROM
+				review re
+			INNER JOIN
+				(
+	    		SELECT
+	    			*
+	    		FROM
+	    			room 
+	    		WHERE
+	    			user_id = #{userId}    			                                  			
+			) r
+			ON 
+	            re.room_id = r.room_id 
+	        INNER JOIN
+	            users u
+	        ON
+	            u.user_id = re.user_id
+	        )
+    	WHERE
+			rn <![CDATA[>]]> #{beginRow} and rn <![CDATA[<=]]> #{endRow}
+	</select>
 </mapper>

@@ -25,4 +25,7 @@ public interface ReviewMapper {
 	
 	// 리뷰등록(사진X)
 	int insertContent(Map<String, Object> param);
+	
+	// 프로필 주인의 리뷰검색
+	List<Map<String, Object>> selectListByProfile(Map<String, Object> parma);
 }
