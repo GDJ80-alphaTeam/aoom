@@ -214,4 +214,11 @@ public class HostController extends BaseController {
 			return getFailResult(model);
 		}
 	}
+	
+	// 호스트 예약 상세보기
+	@RequestMapping("/bookList/bookInfo")
+	public String bookInfo(@RequestParam Map<String, Object> param, ModelMap modelMap) {
+		modelMap.addAttribute("bookInfo", bookingService.selectByBookingId(param));
+		return "/host/bookList/bookInfo";
+	}
 }

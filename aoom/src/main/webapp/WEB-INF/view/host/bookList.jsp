@@ -21,10 +21,11 @@
 	<!-- 호스트 모드 메뉴 -->
 	<br>
 	<div>
-		<a href="/host/main">메인</a>
-		<a href="/host/calendar">달력</a>
-		<a href="/host/roomManage">숙소 관리</a>
-		<a href="/host/bookList">예약 목록</a>
+		<a class="btn btn-outline-danger" href="/host/main">메인</a>
+		<a class="btn btn-outline-danger" href="/host/calendar">달력</a>
+		<a class="btn btn-outline-danger" href="/host/roomManage">숙소 관리</a>
+		<a class="btn btn-danger" href="/host/bookList">예약 목록</a>
+		<a class="btn btn-outline-danger" href="/host/revenue">수입</a>
 	</div>
 	<br>
 	
@@ -78,7 +79,8 @@
 				<th>체크인</th>
 				<th>체크아웃</th>
 				<th>예약상태</th>
-				<th>상세보기</th>
+				<th>숙박가격</th>
+				<th>비고</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -103,7 +105,8 @@
                     <c:if test="${bookingList.bookstatCode == 'bst05'}">
                         <td>예약취소</td>
                     </c:if>
-					<td><button class="btn btn-danger">바로가기</button></td>
+					<td>${bookingList.totalPrice}원</td>
+					<td><a href="${pageContext.request.contextPath}/host/bookList/bookInfo?bookingId=${bookingList.bookingId }">상세보기</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

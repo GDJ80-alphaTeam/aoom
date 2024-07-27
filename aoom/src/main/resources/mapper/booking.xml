@@ -153,12 +153,14 @@
 				,ROWNUM AS rnum
 			FROM (
 				SELECT
-				     TO_CHAR(MIN(oneday), 'yy/mm/dd') AS check_in
+					 br.booking_id
+				    ,TO_CHAR(MIN(oneday), 'yy/mm/dd') AS check_in
 					,TO_CHAR(MAX(oneday+1), 'yy/mm/dd') AS check_out
 				    ,br.room_name
 				    ,br.user_id AS guest_id
 				    ,br.bookstat_code
 				    ,br.room_id
+				    ,TO_CHAR(br.total_price, '999,999,999') AS total_price
 				FROM
 				    booking_oneday_price_map bopm
 				INNER JOIN
@@ -207,11 +209,13 @@
 						AND oneday <![CDATA[<]]> TO_DATE(#{endDate}, 'yy/mm/dd')
 					</if>
 				GROUP BY
-				     br.room_name
+					 br.booking_id
+				    ,br.room_name
 				    ,br.user_id
 				    ,br.bookstat_code
 				    ,oneday
 				    ,br.room_id
+				    ,br.total_price
 				ORDER BY
 					check_in DESC
 				)t
@@ -285,6 +289,33 @@
 	            ,oneday
 	            ,br.room_id
 	    ) subquery
+	</select>
+	
+	<select id="selectByBookingId" parameterType="map" resultType="camelCaseMap">
+		SELECT
+			 r.room_id
+		    ,r.main_image
+		    ,r.room_name
+		    ,REPLACE(r.address, '^', ' ') AS address
+		    ,u.user_image
+		    ,u.user_id
+		    ,u.user_phone
+		    ,TO_CHAR(b.total_price, '999,999,999') AS total_price
+		    ,TO_CHAR(b.check_in, 'yy/mm/dd') AS check_in
+		    ,TO_CHAR(b.check_out, 'yy/mm/dd') AS check_out
+		    ,b.bookstat_code
+		FROM
+		    booking b
+		INNER JOIN
+		    users u
+		ON
+		    b.user_id = u.user_id
+		INNER JOIN
+		    room r
+		ON
+		    b.room_id = r.room_id
+		WHERE
+		    booking_id = #{bookingId}
 	</select>
 
 </mapper>

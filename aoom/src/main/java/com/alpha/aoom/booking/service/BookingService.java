@@ -121,4 +121,8 @@ public class BookingService {
 		return bookingMapper.selectListByUserIdCnt(param);
 	}
 	
+	// 호스트 예약 상세보기
+	public Map<String, Object> selectByBookingId(Map<String, Object> param){
+		return bookingMapper.selectByBookingId(param);
+	}
 }
