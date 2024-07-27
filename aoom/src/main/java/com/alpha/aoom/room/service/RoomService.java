@@ -1,6 +1,7 @@
 package com.alpha.aoom.room.service;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -79,6 +80,24 @@ public class RoomService {
 	
 	// 숙소 검색, 필터, 카테고리 조건으로 조회
 	public List<Map<String, Object>> selectBySearch(Map<String, Object> param){
+		
+		// 편의시설 값 : 콤마로 분리 -> 배열타입에 넣음 -> 맵에 저장
+		String amenitiesStr = (String) param.get("amenities");
+		if (amenitiesStr != null && !amenitiesStr.isEmpty()) {
+			String[] amenitiesArray = amenitiesStr.split(",");
+			
+			
+			int amenitiesLength = amenitiesArray.length;
+			param.put("amenities", amenitiesArray);
+			param.put("amenitiesLength", amenitiesLength);
+		}
+		
+		
+		// 편의시설 배열로 넣기
+		log.info("param : "+ param);
+		log.info("편의시설 배열: " + Arrays.toString((String[]) param.get("amenities")));
+		log.info("편의시설 길이 : "+ param.get("amenitiesLength"));
+		
 		return roomMapper.selectBySearch(param);
 	}
 	

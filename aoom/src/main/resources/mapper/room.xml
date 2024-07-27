@@ -222,23 +222,53 @@
 	
 	<!-- 검색, 필터, 카테고리 조건으로 조회 -->
 	<select id="selectBySearch" parameterType="map" resultType="camelCaseMap">
-		SELECT
-			 room_id
-			,main_image
-			,REPLACE(address, '^', ' ') AS address
-			,room_name
-			,TO_CHAR(default_price, '999,999,999') AS default_price
-			,roomcate_code
-		FROM
-			room
-		WHERE
-			roomstat_code = 'rst03'
-	        <if test="address != null and address != ''">
-				AND address LIKE '%${address}%'
+		SELECT r.*,(SELECT ROUND(AVG(r2.RATING),1)
+		         FROM REVIEW r2
+		         WHERE r.ROOM_ID = r2.ROOM_ID 
+		         GROUP BY (r2.ROOM_ID)) AS agv
+		FROM ROOM r
+		JOIN (
+		    SELECT ROOM_ID AS ROOM_ID 
+		    FROM AMENITIES
+		    WHERE AMENITIES_CODE IN ('ame04', 'ame05')
+		    GROUP BY ROOM_ID
+		    HAVING COUNT(DISTINCT AMENITIES_CODE) = 2
+		) a ON r.ROOM_ID = a.ROOM_ID 
+		JOIN (
+		    SELECT o.ROOM_ID 
+		    FROM ONEDAY_PRICE o
+		    WHERE ONESTAT_CODE = 'one01'
+	    	<if test='startDate !=null and endDate != null'>
+		        AND o.ONEDAY BETWEEN TO_DATE(#{startDate}, 'YYYY/MM/DD') AND (TO_DATE(#{endDate}, 'YYYY/MM/DD')-1)
 	        </if>
-	        <if test="selectedCategory != null and selectedCategory != ''">
-	            AND roomcate_code = #{category}
-	        </if>
+	        <if test='lowPrice !=null and highPrice != null'>
+		        AND o.oneday_price <![CDATA[>=]]> #{lowPrice} AND o.oneday_price <![CDATA[<=]]> #{highPrice}
+		    </if>
+		    GROUP BY o.ROOM_ID 
+		    <if test='startDate !=null and endDate != null'>
+		    	HAVING COUNT(DISTINCT o.ONEDAY) = ((TO_DATE(#{endDate}, 'YYYY/MM/DD')-1) - TO_DATE(#{startDate}, 'YYYY/MM/DD')) + 1
+		    </if>
+		) d ON d.ROOM_ID = r.ROOM_ID
+		WHERE 1=1
+		<if test='address !=null'>
+		    AND address LIKE '%'||#{address}||'%'     
+		</if>
+		<if test='usePeople !=null'>
+		    AND max_people >= #{usePeople}
+		</if>
+		<if test='totalSpace !=null'>
+		    AND total_space >= #{totalSpace} 
+		</if>
+		<if test='totalBed !=null'>
+		    AND total_bed >= #{totalBed}
+		</if>
+		<if test='totalBath !=null'>
+		    AND total_bath >= #{totalBath}
+		</if>
+		<if test='category !=null'>
+		    AND roomcate_code = #{category}
+		</if>
+		    
 	</select>
 	
 	<!-- 숙소 등록 - 숙소 등록 1단계 전 숙소 초기화 -->
