@@ -115,9 +115,11 @@ public class RoomController extends BaseController {
 		if(session.getAttribute("userInfo") != null) {
 			Map<String, Object> wishListParam = new HashMap<String, Object>();
 			wishListParam.put("userId", ((Map<String, Object>) session.getAttribute("userInfo")).get("userId"));
-//			log.info("user의 위시리스트={}", wishListService.select(wishListParam).toString());
+			// log.info("user의 위시리스트={}", wishListService.select(wishListParam).toString());
 			modelMap.addAttribute("userWishRoom", wishListService.select(wishListParam));
 		}
+
+		log.info("검색결과" + searchResult);
 		return "/room/roomList";
 	}
 }

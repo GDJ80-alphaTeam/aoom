@@ -222,18 +222,30 @@
 	
 	<!-- 검색, 필터, 카테고리 조건으로 조회 -->
 	<select id="selectBySearch" parameterType="map" resultType="camelCaseMap">
-		SELECT r.*,(SELECT ROUND(AVG(r2.RATING),1)
-		         FROM REVIEW r2
-		         WHERE r.ROOM_ID = r2.ROOM_ID 
-		         GROUP BY (r2.ROOM_ID)) AS agv
+		SELECT DISTINCT 
+			 r.room_id
+			,r.room_name
+			,r.default_price
+			,r.address
+			,r.main_image
+			,(SELECT ROUND(AVG(r2.RATING),1)
+	         FROM REVIEW r2
+	         WHERE r.ROOM_ID = r2.ROOM_ID 
+	         GROUP BY (r2.ROOM_ID)) AS avg
 		FROM ROOM r
+	    <if test='amenities != null'>
 		JOIN (
 		    SELECT ROOM_ID AS ROOM_ID 
 		    FROM AMENITIES
-		    WHERE AMENITIES_CODE IN ('ame04', 'ame05')
-		    GROUP BY ROOM_ID
-		    HAVING COUNT(DISTINCT AMENITIES_CODE) = 2
+			    WHERE AMENITIES_CODE IN
+		        <foreach item="amenity" collection="amenities" open="(" separator="," close=")">
+	        		#{amenity}
+	    		</foreach>
+			    GROUP BY ROOM_ID
+			    HAVING COUNT(DISTINCT AMENITIES_CODE) = #{amenitiesLength}
 		) a ON r.ROOM_ID = a.ROOM_ID 
+	    </if>
+		<if test='(startDate !=null and endDate != null) || (lowPrice !=null and highPrice != null)'>
 		JOIN (
 		    SELECT o.ROOM_ID 
 		    FROM ONEDAY_PRICE o
@@ -249,9 +261,11 @@
 		    	HAVING COUNT(DISTINCT o.ONEDAY) = ((TO_DATE(#{endDate}, 'YYYY/MM/DD')-1) - TO_DATE(#{startDate}, 'YYYY/MM/DD')) + 1
 		    </if>
 		) d ON d.ROOM_ID = r.ROOM_ID
-		WHERE 1=1
-		<if test='address !=null'>
-		    AND address LIKE '%'||#{address}||'%'     
+		</if>
+		WHERE
+			roomstat_code = 'rst03'
+		<if test='address !=null and !address.equals("")'>
+		    AND address LIKE '%'||#{address}||'%'  
 		</if>
 		<if test='usePeople !=null'>
 		    AND max_people >= #{usePeople}
@@ -268,7 +282,6 @@
 		<if test='category !=null'>
 		    AND roomcate_code = #{category}
 		</if>
-		    
 	</select>
 	
 	<!-- 숙소 등록 - 숙소 등록 1단계 전 숙소 초기화 -->

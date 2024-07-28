@@ -139,7 +139,7 @@
 					<div class="card-body">	
 						<h5 class="card-text">
 							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${searchResult.roomId}">${searchResult.roomName}</a>
-							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${searchResult.roomId}">⭐ 0점</a>
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${searchResult.roomId}">⭐ ${searchResult.avg}점</a>
 						</h5>
 						<p class="card-text">
 							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${searchResult.roomId}">${searchResult.roomId}</a>
@@ -175,6 +175,7 @@
                     "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"] // 월 표시방식
                 }
             });
+            
             // 캘린더 '적용' 눌렀을 때 이벤트처리
             $('#daterange').on('apply.daterangepicker', function(ev, picker) {
                 let startDate = picker.startDate; // 첫번째 선택날짜 선언
@@ -191,6 +192,13 @@
                     $('#endDate').val(endDate.format('YYYY/MM/DD'));
                 }
             })
+            
+            // 캘린터 '비우기' 눌렀을 때 이벤트처리
+            $('#daterange').on('cancel.daterangepicker', function(ev, picker) {
+            	$('#daterange').val('');
+            	$('#startDate').val('');
+            	$('#endDate').val('');
+            });
         });
 
         // URL 파라미터 읽기
