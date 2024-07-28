@@ -87,21 +87,12 @@
 								 <input type="hidden" id="rating" name="rating" value="0">
 								 <input type="hidden" name="bookingId" value="${bookingInfo.bookingId}">
 					 			 <input type="hidden" name="roomId" value="${bookingInfo.roomId}">
-						        	<span id="star1" onClick="stars(1)">
-						           		⚝
-						           	</span>
-						           	<span id="star2" onClick="stars(2)">
-						           		⚝
-						           	</span>
-						           	<span id="star3" onClick="stars(3)">
-						           		⚝
-						           	</span>
-						           	<span id="star4" onClick="stars(4)">
-						           		⚝
-						           	</span>
-						           	<span id="star5" onClick="stars(5)">
-						           		⚝
-						           	</span>	 
+					 			<c:forEach var="i" begin="1" end="5">
+						        	<span id="star${i}" onClick="stars(${i})">
+						     			⚝
+						        	</span>
+					           	</c:forEach>
+					           		 
 								<p>후기내용</p>
 								<textarea rows="5" cols="35" id="reviewContent" name="reviewContent" required="required" maxlength="500"></textarea>
 								<p>후기사진</p>

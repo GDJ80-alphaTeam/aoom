@@ -8,20 +8,24 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alpha.aoom.code.service.CodeService;
 import com.alpha.aoom.profile.service.ProfileService;
 import com.alpha.aoom.review.service.ReviewService;
 import com.alpha.aoom.user.service.UserService;
+import com.alpha.aoom.util.BaseController;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-public class ProfileController {
+public class ProfileController extends BaseController{
 
 	@Autowired
 	ProfileService profileService;
@@ -32,49 +36,115 @@ public class ProfileController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	CodeService codeService;
 	
 	// 유저 프로필
 	@RequestMapping("/user/profile")
-	public String Userprofile(@RequestParam Map<String, Object> param , HttpSession session , ModelMap modelMap) {
+	public String Userprofile(@RequestParam Map<String, Object> param , ModelMap modelMap ) {
 
-		// 세션에서 user정보 가져오기  
-		Map<String, Object> userInfo = (HashMap<String, Object>) session.getAttribute("userInfo");
-		log.info("profile"+profileService.select(param));
-		log.info("subPeriod"+userService.selectBySubPeriod(param));
+		List<Map<String, Object>> profileList = profileService.selectListByuserId(param);
+		String profileContent = null;
 		
-		List<Map<String, Object>> profileList = new ArrayList<>(profileService.select(param));
-		Map<String, Object> profileContent = profileList.stream()
-	            .filter(map -> "pfi09".equals(map.get("codeKey")))
-	            .findFirst()  // 첫 번째 요소를 찾음
-	            .orElse(null);  // 요소가 없으면 null 반환
-		
-		// Iterator를 사용하여 요소 삭제
-        Iterator<Map<String, Object>> iterator = profileList.iterator();
-        while (iterator.hasNext()) {
-            Map<String, Object> map = iterator.next();
-            if ("pfi09".equals(map.get("codeKey"))) {
-                iterator.remove();  // 조건에 맞는 요소 삭제
+		// 역방향으로 인덱스를 사용하여 항목 삭제
+		// 정방향으로 하면 삭제후 인덱스가 생략될수있음 
+        for (int i = profileList.size() - 1; i >= 0; i--) {
+            Map<String, Object> list = profileList.get(i);
+
+            // 문자열 비교 시 equals() 사용
+            if ("pfi09".equals(list.get("codeKey"))) {
+                System.out.println("test");
+                profileContent = (String) list.get("content");
+                profileList.remove(i); 
             }
         }
-		
-		// 내용이 있을때만, 모델맵에 담기
-		if (profileContent != null) {
-            modelMap.put("profileContent", profileContent);
-        }
-		
-		System.out.println("프로필리뷰리스트"+reviewService.selectListByProfile(param));
-		
-		log.info("profile"+reviewService.selectByHostTotalCnt(param));
+        // 받은 총리뷰목록
 		modelMap.put("reviewList", reviewService.selectListByProfile(param));
+		// 가입기간
 		modelMap.put("subPeriod", userService.selectBySubPeriod(param));
+		// 리뷰를 받은 총 개수
 		modelMap.put("hostReviewInfo", reviewService.selectByHostTotalCnt(param));
-		modelMap.put("profile", profileList);
+		// 해당 유저의 정보
 		modelMap.put("userInfo", userService.selectByUserId(param));
+		// 프로필 내용 콘텐츠
 		modelMap.put("profileContent", profileContent);
+		// 소개글을 제외한 해당유저의 프로필정보
+		modelMap.put("profile", profileList);
+		// 페이징 정보
 		modelMap.put("reviewPagingInfo", reviewService.selectByProfileCnt(param));
 		
 		
 		return "/user/profile";
 	}
 	
+	
+	@RequestMapping("/user/profileUpdate")
+	public String profileUpdate(@RequestParam Map<String, Object> param , ModelMap modelMap) {
+		List<Map<String, Object>> profileList = profileService.selectListByuserId(param);
+		String profileContent = null;
+		
+		// 역방향으로 인덱스를 사용하여 항목 삭제
+		// 정방향으로 하면 삭제후 인덱스가 생략될수있음 
+        for (int i = profileList.size() - 1; i >= 0; i--) {
+            Map<String, Object> list = profileList.get(i);
+
+            // 문자열 비교 시 equals() 사용
+            if ("pfi09".equals(list.get("codeKey"))) {
+                profileContent = (String) list.get("content");
+                profileList.remove(i); 
+            }
+        }
+        
+        modelMap.put("profileList", codeService.selectByGroupKey("proitem"));
+        // 해당 유저의 정보
+ 		modelMap.put("userInfo", userService.selectByUserId(param));
+        
+        // 프로필 내용 콘텐츠
+ 		modelMap.put("profileContent", profileContent);
+ 		
+ 		// 소개글을 제외한 해당유저의 프로필정보
+		modelMap.put("profile", profileList);
+ 		
+		return "/user/profileUpdate";
+	}
+	
+	// 프로필 수정시 보여줄 내용 호출
+	@RequestMapping("/user/ajaxProfileInfo")
+	@ResponseBody
+	public Map<String, Object> profileContent(@RequestParam Map<String, Object> param , ModelMap modelMap) {
+		
+		log.info("param"+param);
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		Map<String, Object> updateContent = new HashMap<String, Object>();
+		
+		// 사용자가 해당 프로필카테고리의 내용이 없을경우 null 
+		if(profileService.selectListByuserId(param).isEmpty()) {
+			// 제목 + 설명 반환 
+			updateContent = null;
+			model.put("data", codeService.selectByCodeKey(param));
+			
+		} else {
+			// 본인이 작성한 내용 + 제목 + 설명
+			updateContent = profileService.selectListByuserId(param).get(0);
+			model.put("data",updateContent);
+		}
+		
+		
+		
+		if(updateContent != null) {
+			return getSuccessResult(model);
+		} else {
+			return getFailResult(model);
+		}
+		
+	}
+	
+	// 프로필 업데이트 ajax 진행중
+	@RequestMapping("/user/ajaxProfileUpdate")
+	@ResponseBody
+	public Map<String, Object> profileUpdate(@RequestParam Map<String, Object> param){
+		
+		return null;
+	}
 }

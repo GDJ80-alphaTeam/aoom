@@ -23,4 +23,15 @@
 		ORDER BY 
   			code_key
 	</select>
+	
+	<!-- code_key 를 조건으로 단일행 컬럼 조회-->
+	<select id="selectByCodeKey" parameterType="String" resultType="camelCaseMap">
+		SELECT
+			<include refid="code_col"/>
+		FROM
+			code c
+		WHERE
+			code_key = #{codeKey}				
+	</select>
+	
 </mapper>

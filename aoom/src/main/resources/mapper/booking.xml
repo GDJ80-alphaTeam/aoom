@@ -19,62 +19,77 @@
 	<!-- 로그인한 사용자의 예약리스트 조회 , 예약 정보조회 , 예약 취소정보 조회-->
 	<select id="selectListByGuestId" parameterType="map" resultType="camelCaseMap">
 		SELECT
-		    *
+			*
 		FROM
-		    (
-		    SELECT
-		         ROWNUM AS rn
-		        ,<include refid="booking_col"/>
-		        ,b.user_id AS guest_id
-		        ,r.room_name
-		        ,r.user_id AS host_id
-		        ,r.main_image
-		        ,REPLACE(r.address, '^', '  ') AS address
-		        ,c.code_name AS bookstat_name
-		        ,c2.code_name AS paystat_name 
-		         	 
-		    FROM
-		        booking b
-			LEFT JOIN
-				room r
-			ON
-				b.room_id = r.room_id
-			LEFT JOIN
-        		code c
-		    ON
-		        c.code_key = b.bookstat_code
-		    LEFT JOIN
-		        code c2
-		    ON 
-		    	c2.code_key = b.paystat_code        								        	
-		    WHERE
-		    	1=1
-		    <choose>
-			    <when test="userId != null and bookingId != null">
-			        AND booking_id = #{bookingId}
-			    </when>
-			    <otherwise>
-			        <if test="userId != null"> 
-			            AND booking_id IN (
-			                SELECT 
-			                    booking_id
-			                FROM     
-			                    booking 
-			                WHERE 
-			                    user_id = #{userId}
-			                )    
-			        </if>
-			        <if test="bookingId != null">
-			            AND booking_id = #{bookingId}
-			        </if>
-			    </otherwise>
-			</choose>    
-		    ORDER BY 
-		    	booking_id DESC    
-			)
+			(SELECT
+				 rownum as rn
+		  		,booking_id
+		  		,room_id
+		  		,create_date
+		        ,guest_id
+		        ,room_name
+		        ,host_id
+		        ,main_image
+		        ,address
+		        ,bookstat_name
+		        ,paystat_name 
+		        ,bookstat_code
+			FROM
+			    (
+			    SELECT
+			         <include refid="booking_col"/>
+			        ,b.user_id AS guest_id
+			        ,r.room_name
+			        ,r.user_id AS host_id
+			        ,r.main_image
+			        ,REPLACE(r.address, '^', '  ') AS address
+			        ,c.code_name AS bookstat_name
+			        ,c2.code_name AS paystat_name 
+			         	 
+			    FROM
+			        booking b
+				LEFT JOIN
+					room r
+				ON
+					b.room_id = r.room_id
+				LEFT JOIN
+	        		code c
+			    ON
+			        c.code_key = b.bookstat_code
+			    LEFT JOIN
+			        code c2
+			    ON 
+			    	c2.code_key = b.paystat_code        								        	
+			    WHERE
+			    	1=1
+			    <choose>
+				    <when test="userId != null and bookingId != null">
+				        AND booking_id = #{bookingId}
+				    </when>
+				    <otherwise>
+				        <if test="userId != null"> 
+				            AND booking_id IN (
+				                SELECT 
+				                    booking_id
+				                FROM     
+				                    booking 
+				                WHERE 
+				                    user_id = #{userId}
+				                )    
+				        </if>
+				        <if test="bookingId != null">
+				            AND booking_id = #{bookingId}
+				        </if>
+				    </otherwise>
+				</choose>    
+			    ORDER BY 
+			    	booking_id DESC    
+				)
+       	)
 		 WHERE
        		rn <![CDATA[>]]> #{beginRow} and rn <![CDATA[<=]]> #{endRow}     
 	</select>
+
 	
 	<!-- 유저의 총예약수 -->
 	<select id="selectByTotalCnt" parameterType="map" resultType="int">

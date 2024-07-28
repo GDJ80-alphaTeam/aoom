@@ -20,48 +20,53 @@
 		<div style="display: flex;">
 			<div style="width: 30%;  ">
 				<div class="card" style="width: 18rem;">
-					
-				  	<img src="${userInfo.userImage}" class="card-img-top" alt="...">
-				  
-				  <div class="card-body">
-				  	<h5 class="card-title">${userInfo.userName}</h5>
-				  	<div>
-						<c:choose>
-							<c:when test="${hostReviewInfo.cnt == 0}">
-								아직 받은 후기가 없습니다
-							</c:when>
-							<c:otherwise>
-								후기개수 : ${hostReviewInfo.cnt}
-								<br>
-								별점 : ${hostReviewInfo.avg}
-							</c:otherwise>
-						</c:choose>
-						<br>
 						
-						<c:choose>
-						    <c:when test="${subPeriod.year == 0}">
-						        <c:choose>
-						            <c:when test="${subPeriod.month != 0}">
-						                가입기간:${subPeriod.month}월
-						            </c:when>
-						            <c:otherwise>
-						                신규 고객입니다!
-						            </c:otherwise>
-						        </c:choose>
-						    </c:when>
-						    <c:when test="${subPeriod.year != 0}">
-						        가입기간:${subPeriod.year}년
-						        <c:choose>
-						            <c:when test="${subPeriod.leftMonth != 0}">
-						                ${subPeriod.leftMonth}월
-						            </c:when>
-						        </c:choose>
-						    </c:when>
-						</c:choose>
-					</div>
-				
-				  </div>
-			</div>
+					<img src="${userInfo.userImage}" class="card-img-top" alt="...">
+					  
+					<div class="card-body">
+				  		<h5 class="card-title">${userInfo.userName}</h5>
+					  	
+				  		<c:if test="${sessionScope.userInfo.userId == userInfo.userId}">
+					  		<a href="/user/profileUpdate?userId=${userInfo.userId}">프로필 수정하기</a>
+					  	</c:if>
+					  	
+					  	<div>
+							<c:choose>
+								<c:when test="${hostReviewInfo.cnt == 0}">
+									아직 받은 후기가 없습니다
+								</c:when>
+								<c:otherwise>
+									후기개수 : ${hostReviewInfo.cnt}
+									<br>
+									별점 : ${hostReviewInfo.avg}
+								</c:otherwise>
+							</c:choose>
+							<br>
+							
+							<c:choose>
+							    <c:when test="${subPeriod.year == 0}">
+							        <c:choose>
+							            <c:when test="${subPeriod.month != 0}">
+							                가입기간:${subPeriod.month}월
+							            </c:when>
+							            <c:otherwise>
+							                신규 유저입니다! 환영해주세요
+							            </c:otherwise>
+							        </c:choose>
+							    </c:when>
+							    <c:when test="${subPeriod.year != 0}">
+							        가입기간:${subPeriod.year}년
+							        <c:choose>
+							            <c:when test="${subPeriod.leftMonth != 0}">
+							                ${subPeriod.leftMonth}월
+							            </c:when>
+							        </c:choose>
+							    </c:when>
+							</c:choose>
+						</div>
+					
+				  	</div>
+				</div>
 			</div>
 			
 			<div style="width: 70%; display: flex;flex-wrap: wrap;">
@@ -75,33 +80,38 @@
 		
 		<div style="display: flex ; width: 100%;">
 			<div style="width:30%; dispaly:flex">
-						<h3>소개말</h3>
-					    <c:choose>
-					    	<c:when test="${profileContent.content == null || profileContent.content == ''}">
-					    		소개글을 작성해주세요!
-					    	</c:when>
-					    	<c:otherwise>
-					    		<p>${profileContent.content}</p>
-					    	</c:otherwise>
-					    </c:choose>
+				<h3>소개말</h3>
+			    <c:choose>
+			    	<c:when test="${profileContent == null || profileContent == ''}">
+			    		소개글을 작성해주세요!
+			    	</c:when>
+			    	<c:otherwise>
+			    		<p>${profileContent}</p>
+			    	</c:otherwise>
+			    </c:choose>
 			</div>
 		
 			<div style="width:70%; display:flex">
 				
 				<div style="flex-wrap: wrap; margin-bottom:100px; display: flex;">
 					<c:forEach var="r" items="${reviewList.review}" varStatus="status">
-						<div style="width: 45%; margin-right: 30px;margin-bottom: 30px;display: flex;">
+						<div style="width: 40%; margin-right: 30px;margin-bottom: 30px;display: flex; flex-wrap : wrap">
+						
 							<div style="height: 150px ;width: 20%;">										
 								<img id="reviewImg${status.count}"  src="${r.reviewImage}" style="width:100%;height:50%;"onerror="this.style.display='none'">
 								<img id="userImg${status.count}"  src="${r.userImage}" style="width:100%;height:50%;"onerror="this.style.display='none'">
-							</div>						
+							</div>
+													
 							<div style="width: 80%" id="reviewContent${status.count}">
+								<p>별점:${r.rating}</p>
+								<p>이름:${r.userName}</p>
 								${r.reviewContent}
 							</div>
+							
 						</div>
 					</c:forEach>			
 				</div>		
-				<!-- 페이징 총숫자에맞춰서 1~10 ,11~20이런식으로 만들어야됨  -->
+				
 				<c:choose>
 					<c:when test="${reviewPagingInfo.lastPage == 0 }">
 						

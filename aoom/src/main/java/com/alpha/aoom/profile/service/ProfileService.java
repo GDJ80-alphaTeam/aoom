@@ -15,8 +15,11 @@ public class ProfileService {
 	@Autowired
 	ProfileMapper profileMapper;
 	
-	public List<Map<String, Object>> select(Map<String, Object> param){
+	// 해당유저의 프로필정보 검색
+	public List<Map<String, Object>> selectListByuserId(Map<String, Object> param){
 		
-		return profileMapper.selectByuserId(param);
+		return profileMapper.selectListByuserId(param);
 	}
+	
+	
 }

@@ -77,7 +77,7 @@ public class ReviewController extends BaseController{
 	// 숙소리뷰 페이징 ajax
 		// param : roomId , currentPage
 		@ResponseBody
-		@RequestMapping("/ajaxProfileReviewPaging")
+		@RequestMapping("/user/ajaxProfileReviewPaging")
 		public Map<String, Object> profileReviewPaging(@RequestParam Map<String, Object> param) {
 					
 			Map<String, Object> model = new HashMap<String, Object>();
