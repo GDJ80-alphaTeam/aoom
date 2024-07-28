@@ -36,15 +36,27 @@ public class HostController extends BaseController {
 
 	@Autowired
 	CodeService codeService;
+	
 	// 호스트 모드 메인화면 호출
 	@RequestMapping("/main")
-	public String main(HttpSession session, ModelMap modelMap) {
+	public String main(@RequestParam Map<String, Object> param, HttpSession session, ModelMap modelMap) {
 		
-		// 세션에서 user정보 가져오기
+		// 세션에서 user정보 가져오기 -> param에 userId넣기
 		Map<String, Object> userInfo = (HashMap<String, Object>)session.getAttribute("userInfo");
-		log.info("userInfo={}", userInfo);
+		String userId = (String) userInfo.get("userId");
+		param.put("userId", userId);
 		
+		// 대시보드 출력물 호출
+		List<Map<String, Object>> todayContent = bookingService.selectListBySysdate(param);
+		int todayContentCnt = bookingService.selectListBySysdateCnt(param);
+		
+		String actionType = param.get("actionType") == null ? "checkOut" : (String) param.get("actionType");
+		
+		// modelMap으로 보낼 것
 		modelMap.addAttribute("userInfo", userInfo);
+		modelMap.addAttribute("todayContent", todayContent);
+		modelMap.addAttribute("actionType", actionType);
+		modelMap.addAttribute("todayContentCnt", todayContentCnt);
 		
 		return "/host/main";
 	}
@@ -220,5 +232,21 @@ public class HostController extends BaseController {
 	public String bookInfo(@RequestParam Map<String, Object> param, ModelMap modelMap) {
 		modelMap.addAttribute("bookInfo", bookingService.selectByBookingId(param));
 		return "/host/bookList/bookInfo";
+	}
+	
+	// 체크아웃 하기
+	@RequestMapping("/ajaxCheckOut")
+	@ResponseBody
+	public Map<String, Object> checkOut(@RequestParam Map<String, Object> param) {
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		// 체크아웃 서비스 호출
+		int checkOutAction = bookingService.updateBookstat(param);
+		
+		if(checkOutAction == 1) {
+			return getSuccessResult(model, "체크아웃 되었습니다.");
+		}else {
+			return getFailResult(model, "잘못된 접근입니다.");
+		}
 	}
 }

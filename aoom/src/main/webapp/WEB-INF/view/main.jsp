@@ -134,7 +134,7 @@
 						</c:if>
 					</button>
 					<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${viewsDesc.roomId}">
-						<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
+						<img src="${viewsDesc.mainImage}" class="card-img-top" alt="..." height="200px">
 					</a>
 					<div class="card-body">	
 						<h5 class="card-text">
@@ -175,7 +175,7 @@
 						</c:if>
 					</button>
 					<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${bookingDesc.roomId}">
-						<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
+						<img src="${bookingDesc.mainImage}" class="card-img-top" alt="..." height="200px">
 					</a>
 					<div class="card-body">	
 						<h5 class="card-text">
@@ -216,7 +216,7 @@
 						</c:if>
 					</button>
 					<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${wishListDesc.roomId}">
-						<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
+						<img src="${wishListDesc.mainImage}" class="card-img-top" alt="..." height="200px">
 					</a>
 					<div class="card-body">	
 						<h5 class="card-text">
@@ -257,7 +257,7 @@
 						</c:if>
 					</button>
 					<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${ratingDesc.roomId}">
-						<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
+						<img src="${ratingDesc.mainImage}" class="card-img-top" alt="..." height="200px">
 					</a>
 					<div class="card-body">	
 						<h5 class="card-text">

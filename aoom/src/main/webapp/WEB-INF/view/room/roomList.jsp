@@ -134,7 +134,7 @@
 						</c:if>
 					</button>
 					<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${searchResult.roomId}">
-						<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="..." height="200px">
+						<img src="${searchResult.mainImage}" class="card-img-top" alt="..." height="200px">
 					</a>
 					<div class="card-body">	
 						<h5 class="card-text">

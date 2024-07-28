@@ -125,4 +125,19 @@ public class BookingService {
 	public Map<String, Object> selectByBookingId(Map<String, Object> param){
 		return bookingMapper.selectByBookingId(param);
 	}
+	
+	// 오늘 기준 예약 정보 조회
+	public List<Map<String, Object>> selectListBySysdate(Map<String, Object> param){
+		return bookingMapper.selectListBySysdate(param);
+	}
+	
+	// 오늘 기준 예약정보의 행갯수
+	public int selectListBySysdateCnt(Map<String, Object> param) {
+		return bookingMapper.selectListBySysdateCnt(param);
+	}
+	
+	// 체크아웃 처리
+	public int updateBookstat(Map<String, Object> param) {
+		return bookingMapper.updateBookstat(param);
+	}
 }

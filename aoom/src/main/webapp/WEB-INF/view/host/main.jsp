@@ -33,52 +33,89 @@
 	
 	<!-- 호스트의 간편 예약 관리 버튼-->
 	<div>
-		<h3>예약</h3>
-		<button type="button">체크아웃 예정</button>
-		<button type="button">현재 호스팅 중</button>
-		<button type="button">체크인 예정</button>
-		<button type="button">예정</button>
-		<button type="button">작성할 후기</button>
+		<h3>Today</h3>
+		<a class="btn btn-danger" href="${pageContext.request.contextPath}/host/main">체크아웃 예정</a>
+		<a class="btn btn-danger" href="${pageContext.request.contextPath}/host/main?actionType=hosting">현재 호스팅 중</a>
+		<a class="btn btn-danger" href="${pageContext.request.contextPath}/host/main?actionType=checkIn">체크인 예정</a>
+		<a class="btn btn-danger" href="${pageContext.request.contextPath}/host/main?actionType=upComing">다가올 예약</a>
+		<a class="btn btn-danger" href="${pageContext.request.contextPath}/host/main?actionType=pendingReview">후기작성 대기중</a>
 	</div>
 	<br>
+	
+	<h5>
+		<c:if test="${actionType == 'checkOut'}"> 
+		오늘 체크아웃 예정 : ${todayContentCnt } 건
+		</c:if>
+		<c:if test="${actionType == 'hosting'}"> 
+		현재 호스팅 진행중 : ${todayContentCnt } 건
+		</c:if>
+		<c:if test="${actionType == 'checkIn'}"> 
+		오늘 체크인 예정 : ${todayContentCnt } 건
+		</c:if>
+		<c:if test="${actionType == 'upComing'}"> 
+		다가오는 예약 : ${todayContentCnt } 건
+		</c:if>
+		<c:if test="${actionType == 'pendingReview'}"> 
+		후기작성 대기중 : ${todayContentCnt } 건
+		</c:if>
+	</h5>
 	
 	<!-- 호스트의 간편 예약 관리 출력-->
 	<div>
 		<table class="table">
-			<thead>
+			<tr>
+				<th>예약 ID</th>
+				<th>숙소 ID</th>
+				<th>게스트 ID</th>
+				<th>숙박인원</th>
+				<th>체크인</th>
+				<th>체크아웃</th>
+				<th>숙박비용</th>
+				<th>비고</th>
+			</tr>
+			<c:forEach var="todayContent" items="${todayContent}">
 				<tr>
-					<th>예약번호</th>
-					<th>숙소 ID</th>
-					<th>게스트 ID</th>
-					<th>인원</th>
-					<th>예약일</th>
+					<td>${todayContent.bookingId }</td>
+					<td>${todayContent.roomId }</td>
+					<td>${todayContent.userId }</td>
+					<td>${todayContent.stayPeople } 명</td>
+					<td>${todayContent.checkIn }</td>
+					<td>${todayContent.checkOut }</td>
+					<td>${todayContent.totalPrice } 원</td>
+					<td>
+						<c:if test="${actionType == 'checkOut'}">
+							<button type="button" id="checkOutBtn" class="btn btn-danger" data-booking-id="${todayContent.bookingId }" >체크아웃</button>
+						</c:if>
+					</td>
 				</tr>
-			</thead>	
-			<tbody>
-				<tr>
-					<td>예</td>
-					<td>약</td>
-					<td>정</td>
-					<td>보</td>
-					<td>!</td>
-				</tr>
-				<tr>
-					<td>예</td>
-					<td>약</td>
-					<td>정</td>
-					<td>보</td>
-					<td>!</td>
-				</tr>
-				<tr>
-					<td>예</td>
-					<td>약</td>
-					<td>정</td>
-					<td>보</td>
-					<td>!</td>
-				</tr>
-			</tbody>
+			</c:forEach>
 		</table>
 	</div>
 	
+	<script type="text/javascript">
+	
+		// 체크아웃 ajax
+		$('#checkOutBtn').click(function(event){
+			// 예약id 가져오기
+			var bookingId = $(this).data('booking-id');
+			$.ajax({
+				url: '/host/ajaxCheckOut',
+				type: 'POST',
+				data: {
+					'bookingId': bookingId
+				},
+				success: function(response){
+					if (response.result) {
+						alert(response.message);
+						window.location.href = "/host/main";
+					} else{
+						alert(response.message);
+						window.location.href = "/host/main";
+					}
+				}
+			})
+		})
+	
+	</script>
 </body>
 </html>

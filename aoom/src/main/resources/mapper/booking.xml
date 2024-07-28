@@ -317,5 +317,101 @@
 		WHERE
 		    booking_id = #{bookingId}
 	</select>
+	
+	<!-- 오늘 기준 예약 정보 조회 -->
+	<select id="selectListBySysdate" parameterType="map" resultType="camelCaseMap">
+		SELECT
+		     b.booking_id
+		    ,b.room_id
+		    ,b.user_id
+		    ,b.stay_people
+		    ,TO_CHAR(b.check_in, 'yy/mm/dd') AS check_in
+		    ,TO_CHAR(b.check_out, 'yy/mm/dd') AS check_out
+		    ,TO_CHAR(b.total_price, '999,999,999') AS total_price
+		FROM 
+		    booking b
+		LEFT JOIN
+		    (SELECT	
+		        room_id
+		    FROM
+		        room
+		    WHERE
+		        user_id = #{userId}) r
+		ON
+		    r.room_id = b.room_id
+		WHERE
+			1 = 1
+			<if test='actionType == null or actionType.equals("")'>
+		   	    AND b.check_out = SYSDATE
+		   	    AND b.bookstat_code = 'bst02'
+			</if>
+			<if test='actionType != null and actionType.equals("hosting")'>
+		        AND b.check_in <![CDATA[<=]]> SYSDATE
+		        AND b.check_out >= SYSDATE
+		        AND b.bookstat_code = 'bst02'
+			</if>
+			<if test='actionType != null and actionType.equals("checkIn")'>
+		        AND b.check_in = SYSDATE
+		        AND b.bookstat_code = 'bst02'
+			</if>
+			<if test='actionType != null and actionType.equals("upComing")'>
+		        AND b.check_in > SYSDATE
+		        AND b.bookstat_code = 'bst02'
+			</if>
+			<if test='actionType != null and actionType.equals("pendingReview")'>
+		        AND b.check_in > SYSDATE
+		        AND b.bookstat_code = 'bst03'
+			</if>
+	</select>
+	
+	<!-- 오늘 기준 예약 정보의 행갯수 -->
+	<select id="selectListBySysdateCnt" parameterType="map" resultType="int">
+		SELECT
+		     count(*) AS cnt
+		FROM 
+		    booking b
+		LEFT JOIN
+		    (SELECT
+		        room_id
+		    FROM
+		        room
+		    WHERE
+		        user_id = #{userId}) r
+		ON
+		    r.room_id = b.room_id
+		WHERE
+			1 = 1
+			<if test='actionType == null or actionType.equals("")'>
+		   	    AND b.check_out = SYSDATE
+		   	    AND b.bookstat_code = 'bst02'
+			</if>
+			<if test='actionType != null and actionType.equals("hosting")'>
+		        AND b.check_in <![CDATA[<=]]> SYSDATE
+		        AND b.check_out >= SYSDATE
+		        AND b.bookstat_code = 'bst02'
+			</if>
+			<if test='actionType != null and actionType.equals("checkIn")'>
+		        AND b.check_in = SYSDATE
+		        AND b.bookstat_code = 'bst02'
+			</if>
+			<if test='actionType != null and actionType.equals("upComing")'>
+		        AND b.check_in > SYSDATE
+		        AND b.bookstat_code = 'bst02'
+			</if>
+			<if test='actionType != null and actionType.equals("pendingReview")'>
+		        AND b.check_in > SYSDATE
+		        AND b.bookstat_code = 'bst03'
+			</if>
+	</select>
+	
+	<!-- 업데이트처리 -->
+	<update id="updateBookstat" parameterType="map">
+		UPDATE
+		    booking
+		SET
+		    bookstat_code = 'bst03'
+		WHERE
+		    booking_id = #{bookingId}
+	</update>
 
 </mapper>

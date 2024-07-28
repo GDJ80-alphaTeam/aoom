@@ -31,4 +31,13 @@ public interface BookingMapper {
 	
 	// 호스트 예약 상세보기
 	Map<String, Object> selectByBookingId(Map<String, Object> param);
+	
+	// 오늘 기준 예약 정보 조회
+	List<Map<String, Object>> selectListBySysdate(Map<String, Object> param);
+	
+	// 오늘 기준 예약 정보의 행갯수
+	int selectListBySysdateCnt(Map<String, Object> param);
+	
+	// 체크아웃 처리
+	int updateBookstat(Map<String, Object> param);
 }
