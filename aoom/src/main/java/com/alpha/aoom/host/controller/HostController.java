@@ -50,13 +50,19 @@ public class HostController extends BaseController {
 		List<Map<String, Object>> todayContent = bookingService.selectListBySysdate(param);
 		int todayContentCnt = bookingService.selectListBySysdateCnt(param);
 		
+		// 메인 today에 선택메뉴를 선택하지 않으면 오늘 체크아웃을 선택한 것처럼
 		String actionType = param.get("actionType") == null ? "checkOut" : (String) param.get("actionType");
+		
 		
 		// modelMap으로 보낼 것
 		modelMap.addAttribute("userInfo", userInfo);
 		modelMap.addAttribute("todayContent", todayContent);
 		modelMap.addAttribute("actionType", actionType);
 		modelMap.addAttribute("todayContentCnt", todayContentCnt);
+		modelMap.addAttribute("monthCnt", bookingService.selectListByMonthCnt(param)); // 호스트의 월별 예약수
+		modelMap.addAttribute("roomCnt", bookingService.selectListByRoomCnt(param)); // 호스트의 숙소별 예약수
+		modelMap.addAttribute("roomRating", bookingService.selectListByAvgRating(param)); // 호스트의 숙소별 예약수
+		modelMap.addAttribute("wishlistCnt", bookingService.selectListByWishlistCnt(param)); // 호스트의 숙소별 예약수
 		
 		return "/host/main";
 	}

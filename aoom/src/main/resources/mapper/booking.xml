@@ -306,6 +306,7 @@
 	    ) subquery
 	</select>
 	
+	<!-- 호스트 예약 상세보기 -->
 	<select id="selectByBookingId" parameterType="map" resultType="camelCaseMap">
 		SELECT
 			 r.room_id
@@ -429,4 +430,72 @@
 		    booking_id = #{bookingId}
 	</update>
 
+	<!-- 호스트의 월별 예약수 -->
+	<select id="selectListByMonthCnt" parameterType="map" resultType="camelCaseMap">
+		SELECT
+		     TO_CHAR(check_in, 'YYYY/MM') AS booking_month
+		    ,COUNT(*) AS booking_count
+		FROM
+		    booking
+		WHERE
+		    TO_CHAR(check_in, 'YYYY') = TO_CHAR(SYSDATE, 'YYYY')
+		    AND user_id = #{userId}
+		GROUP BY
+		    TO_CHAR(check_in, 'YYYY/MM')
+		ORDER BY
+		    booking_month
+	</select>
+	
+	<!-- 호스트의 숙소별 예약수 -->
+	<select id="selectListByRoomCnt" parameterType="map" resultType="camelCaseMap">
+	    SELECT
+	         r.room_name
+	        ,COUNT(*) AS booking_count
+	    FROM
+	        booking b
+	    JOIN
+	        room r
+	    ON
+	        b.room_id = r.room_id
+	    WHERE
+	        b.user_id = #{userId}
+	    GROUP BY
+	         b.room_id
+	        ,r.room_name
+	    ORDER BY
+	        b.room_id
+	</select>
+	
+	<!-- 호스트의 숙소별 평점 -->
+	<select id="selectListByAvgRating" parameterType="map" resultType="camelCaseMap">
+		SELECT
+		     rm.room_name
+		    ,ROUND(AVG(r.rating), 1) AS average_rating
+		FROM
+		    booking b
+		JOIN
+		    review r ON b.booking_id = r.booking_id
+		JOIN
+		    room rm ON b.room_id = rm.room_id
+		WHERE
+		    b.user_id = #{userId}
+		GROUP BY
+		     rm.room_name
+		    ,b.room_id
+	</select>
+	
+	<!-- 호스트의 숙소의 위시리스트된 갯수 -->
+	<select id="selectListByWishlistCnt" parameterType="map" resultType="camelCaseMap">
+		SELECT 
+		     r.room_name
+		    ,COUNT(*) AS total_count
+		FROM
+		    room r
+		JOIN
+		    wishlist w ON r.room_id = w.room_id
+		WHERE 
+		    r.user_id = #{userId}
+		GROUP BY 
+		    r.room_name
+    </select>
 </mapper>

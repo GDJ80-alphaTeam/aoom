@@ -140,4 +140,24 @@ public class BookingService {
 	public int updateBookstat(Map<String, Object> param) {
 		return bookingMapper.updateBookstat(param);
 	}
+	
+	// 호스트의 월별 예약수
+	public List<Map<String, Object>> selectListByMonthCnt(Map<String, Object> param){
+		return bookingMapper.selectListByMonthCnt(param);
+	}
+	
+	// 호스트의 숙소별 예약수
+	public List<Map<String, Object>> selectListByRoomCnt(Map<String, Object> param){
+		return bookingMapper.selectListByRoomCnt(param);
+	}
+	
+	// 호스트의 숙소별 평점
+	public List<Map<String, Object>> selectListByAvgRating(Map<String, Object> param){
+		return bookingMapper.selectListByAvgRating(param);
+	}
+	
+	// 호스트의 숙소별 평점
+	public List<Map<String, Object>> selectListByWishlistCnt(Map<String, Object> param){
+		return bookingMapper.selectListByWishlistCnt(param);
+	}
 }

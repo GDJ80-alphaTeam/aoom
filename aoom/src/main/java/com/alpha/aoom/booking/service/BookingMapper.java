@@ -40,4 +40,18 @@ public interface BookingMapper {
 	
 	// 체크아웃 처리
 	int updateBookstat(Map<String, Object> param);
+	
+	// 호스트의 월별 예약수
+	List<Map<String, Object>> selectListByMonthCnt(Map<String, Object> param);
+	
+	// 호스트의 숙소별 예약수
+	List<Map<String, Object>> selectListByRoomCnt(Map<String, Object> param);
+	
+	// 호스트의 숙소별 평점
+	List<Map<String, Object>> selectListByAvgRating(Map<String, Object> param);
+	
+	// 호스트의 숙소의 위시리스트된 갯수
+	List<Map<String, Object>> selectListByWishlistCnt(Map<String, Object> param);
+	
+	
 }
