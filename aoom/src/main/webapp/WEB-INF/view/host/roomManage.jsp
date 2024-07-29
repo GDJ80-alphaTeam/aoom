@@ -45,7 +45,12 @@
 			<c:forEach var="room" items="${roomListByUser }">
 				<tr>
 					<td>
-						<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${room.roomId }">${room.roomId }</a>
+						<c:if test="${room.roomstatCode eq 'rst03' }">
+							<a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${room.roomId }">${room.roomId }</a>
+						</c:if>
+						<c:if test="${room.roomstatCode ne 'rst03' }">
+							${room.roomId }
+						</c:if>
 					</td>
 					<td>
 						<c:if test="${room.mainImage != null && room.mainImage ne ''}">

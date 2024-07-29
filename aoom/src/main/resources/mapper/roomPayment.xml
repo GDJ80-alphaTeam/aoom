@@ -87,29 +87,57 @@
 	<!-- 호스트의 수입(전체 or 숙소별) -->
 	<select id="selectByHostRevenue" parameterType="map" resultType="camelCaseMap">
 	    SELECT
-	         TO_CHAR(rp.create_date, 'YYYY-MM') AS payment_month
-	        ,SUM(rp.payment_price) AS total_amount
-	    FROM
-	        room r
-	    INNER JOIN
-	        room_payment rp
-	    ON
-	        r.room_id = rp.room_id
-	    WHERE
-	        r.user_id = #{userId}
-	        AND r.roomstat_code = 'rst03'
-	        AND rp.paytype_code = 'pmt01'
-	        AND rp.booking_id NOT IN (
-	            SELECT
-	                booking_id
-	            FROM
-	                cancel_refund
-	        )
-	        <if test="roomId != null and !roomId.equals('')">
-	            AND r.room_id = #{roomId}
-	        </if>
+	         TO_CHAR(ri.payment_month, 'YYYY-MM') AS payment_month
+	        ,SUM(ri.payment_price) AS total_amount
+	        <choose>
+	            <when test="roomId != null and !roomId.equals('')">
+	               ,ri.room_name
+	               ,ri.start_date
+	               ,ri.end_date
+	            </when>
+	            <otherwise>
+	                ,'전체' AS room_name
+	            </otherwise>
+	        </choose>
+	    FROM (
+	        SELECT
+	             rp.create_date AS payment_month
+	            ,rp.payment_price
+	            ,r.room_name
+	            ,r.room_id
+	            ,TO_CHAR(r.start_date, 'YYYY-MM') AS start_date
+	            ,TO_CHAR(r.end_date, 'YYYY-MM') AS end_date
+	        FROM
+	            room r
+	        INNER JOIN
+	            room_payment rp 
+	        ON r.room_id = rp.room_id
+	        WHERE
+	            r.user_id = #{userId}
+	            AND r.roomstat_code = 'rst03'
+	            AND rp.paytype_code = 'pmt01'
+	            AND rp.booking_id NOT IN (
+	                SELECT
+	                    booking_id
+	                FROM
+	                    cancel_refund
+	            )
+	    ) ri
+	    <if test="roomId != null and !roomId.equals('')">
+	        WHERE ri.room_id = #{roomId}
+	    </if>
 	    GROUP BY
-	        TO_CHAR(rp.create_date, 'YYYY-MM')
+	        TO_CHAR(ri.payment_month, 'YYYY-MM')
+	        <choose>
+	            <when test="roomId != null and !roomId.equals('')">
+	               ,ri.room_name
+	               ,ri.start_date
+	               ,ri.end_date
+	            </when>
+	            <otherwise>
+	               ,'전체'
+	            </otherwise>
+	        </choose>
 	    ORDER BY
 	        payment_month
 	</select>

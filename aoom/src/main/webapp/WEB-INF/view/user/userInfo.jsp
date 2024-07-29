@@ -41,7 +41,7 @@
 			
 			<div>
 				<h5><b>전화번호</b></h5>
-				<input type="tel" name="userPhone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" id="editUserPhone" value="${sessionScope.userInfo.userPhone }" required="required" placeholder="ex)010-1111-1111">
+				<input type="text" name="userPhone" id="editUserPhone" value="${sessionScope.userInfo.userPhone }" required="required" placeholder="ex)010-1111-1111">
 				<br>
 			</div>
 			<hr>
@@ -104,6 +104,8 @@
 	
 	<!-- 개인정보 수정 -->
 	<script type="text/javascript">
+		// 전화번호 정규식
+        const phoneRegex = /^\d{3}-\d{4}-\d{4}$/;
 		
 		// 수정 버튼 클릭시
 		$('#editBtn').on('click', function() {
@@ -121,7 +123,12 @@
 				$('#editUserPhone').focus();
 				return false;
 			}
-
+	        
+			if(!phoneRegex.test($('#editUserPhone').val())) {
+				alert('전화번호 형식이 다릅니다');
+				return false;
+			}
+			
 			if (editUserPw !== '' || editUserPwcheck !== '') {
 				// 비밀번호 유효성검사
 				if (!PWCHECK.test(editUserPw)) {

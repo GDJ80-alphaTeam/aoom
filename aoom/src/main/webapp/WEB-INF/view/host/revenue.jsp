@@ -27,7 +27,7 @@
 	</div>
 	<br>
 	
-	<h2>수입</h2>
+	<h2 id="revenueTitle"></h2>
 	
 	<div>
         <select id="selectRoom" name="selectRoom">
@@ -47,20 +47,26 @@
     </div>
     
     <!-- 수입 차트 -->
-    <div id="chart"></div>
+    <div class="row">
+	    <div id="chart" style="width: 80%;"></div>
+	    <div style="width: 20%;">
+	    	<h2 id="sideTitle"></h2>
+	    	<br>
+	    	<div id="totalPrice"></div>
+	    </div>
+    </div>
 
 	<script type="text/javascript">
-    	const Chart = toastui.Chart;
+		let totalPrice = 0;
+    	const Chart = toastui.Chart;       
     	const el = document.getElementById('chart');
 	    const data = {
     		categories: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-    		series: [
-    			
-   			]
+    		series: []
 	    };
 	    const options = {
    			chart: { 
-   				width: document.body.offsetWidth, 
+   				width: $('#chart').width(), 
    				height: document.documentElement.clientHeight / 2
 			},
    			legend: {
@@ -74,7 +80,7 @@
 			},
 			tooltip: {
                 formatter: function(value, tooltipDataInfo) {
-                    return value + ' 원';
+                    return value.toLocaleString('ko-KR') + ' 원';
                 }
             }
 	    };
@@ -90,15 +96,29 @@
 	    	},
 	    	success: function(response) {
 	            console.log(response);
+	            
+	            $('#revenueTitle').html($('#selectRoom').find('option:selected').text().replaceAll('=', '') + ' 수입')
+	            $('#sideTitle').html($('#selectRoom').find('option:selected').text().replaceAll('=', '') + ' 수입')
+	            
 	            response.forEach(function(item) {
 	                let monthIndex = parseInt(item.paymentMonth.split('-')[1]) - 1; // 월을 인덱스로 변환
 	                revenue[monthIndex] = item.totalAmount;
 	            });
 
-	            chart.addSeries({
-	                name: '${selectedRoomId}' || '전체',
-	                data: revenue
+	            if(response.length !== 0) {
+		            chart.addSeries({
+		                name: response[0].roomName || '전체',
+		                data: revenue
+		            });
+	            }
+	            
+	            console.log(revenue);
+	            
+	            revenue.forEach(function(item) {
+	            	console.log(item);
+	            	totalPrice += item;
 	            });
+	            $('#totalPrice').html('<h4>' + totalPrice.toLocaleString('ko-KR') + ' 원</h4>')
 	        }
 	    });
 	    
@@ -112,7 +132,6 @@
 	    	
 	    	// 선택된 숙소 roomId 가져오고, input에 value 넣어주기
 	        urlRoomId = $('#selectRoom').val();
-	    	console.log('urlRoomId : ', urlRoomId);
 	
 	        $('#selectRoom').change(function() {
 	            urlRoomId = $('#selectRoom').val();
