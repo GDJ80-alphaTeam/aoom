@@ -74,8 +74,8 @@
 			users
 		SET
 			update_date = SYSDATE
-			<if test="userPw != null and !userPw.equals('')">
-				,user_pw = #{userPw}
+			<if test="editUserPw != null and !editUserPw.equals('')">
+				,user_pw = #{editUserPw}
 			</if>
 			<if test="userName != null and !userName.equals('')">
 				,user_name = #{userName}

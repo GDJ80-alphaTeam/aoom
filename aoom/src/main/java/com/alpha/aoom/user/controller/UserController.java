@@ -79,7 +79,7 @@ public class UserController extends BaseController {
 	public Map<String, Object> ajaxEditUserInfo(@RequestParam Map<String, Object> param, HttpSession session) {
 		log.info("개인정보 수정 param={}", param.toString());
 		if(param.get("editUserPw") != null && !param.get("editUserPw").toString().equals("")) {
-			param.put("userPw", param.get("editUserPw"));
+			param.put("editUserPw", param.get("editUserPw"));
 		}
 		
 		Map<String, Object> model = new HashMap<String, Object>();

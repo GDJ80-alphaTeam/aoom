@@ -20,7 +20,7 @@
 			
 			<div>
 				<h5><b>이름</b></h5>
-				<input type="text" id="editUserName" name="userName" value="${sessionScope.userInfo.userName }" required="required"> 
+				<input type="text" id="editUserName" name="userName" value="${sessionScope.userInfo.userName }" onkeyup="chk_han('editUserName')" required="required"> 
 				<br>
 			</div>
 			<hr>
@@ -66,7 +66,7 @@
 			<br>
 			
 			<button type="button" onclick="window.location.href='/user/myPage'">나가기</button>
-			<button type="submit" id="editBtn">수정하기</button>
+			<button type="button" id="editBtn">수정하기</button>
 		</form>
 	</div>
 	
@@ -110,31 +110,54 @@
 			let editUserPw = $('#editUserPw').val();
 			let editUserPwcheck = $('#editUserPwcheck').val();
 			
-			if(editUserPw !== '' || editUserPwcheck !== '') {
+			if ($('#editUserName').val() == '') {
+				alert('이름을 입력해주세요.');
+				$('#editUserName').focus();
+				return false;
+			}
+
+			if ($('#editUserPhone').val() == '') {
+				alert('전화번호를 입력해주세요.');
+				$('#editUserPhone').focus();
+				return false;
+			}
+
+			if (editUserPw !== '' || editUserPwcheck !== '') {
 				// 비밀번호 유효성검사
-				if(!PWCHECK.test(editUserPw)){
+				if (!PWCHECK.test(editUserPw)) {
 					alert('비밀번호는 영문자+숫자+특수문자 조합으로 8~25자리 사용해야 합니다.');
 					$('#editUserPw').focus();
 					return false;
-				} 
+				}
 				if (editUserPw !== editUserPwcheck) {
 					alert("비밀번호가 일치하지 않습니다.");
 					$('#editUserPwcheck').focus();
 					return false;
 				}
 			}
-			
+
 			$.ajax({
-				url: '/user/userInfo/ajaxEditUserInfo',
-				method: 'post',
-				data: $('#editUserInfoForm').serialize(),
-				success: function(response) {
-// 					console.log(response);
+				url : '/user/userInfo/ajaxEditUserInfo',
+				method : 'post',
+				data : $('#editUserInfoForm').serialize(),
+				success : function(response) {
+					// 					console.log(response);
 					window.location.href = '/user/userInfo';
 					alert(response.message);
 				}
 			});
 		});
+	</script>
+	
+	<script type="text/javascript">
+		// 한글을 제외한 값을 입력시 ''로교체
+		function chk_han(id) {
+			var regexp = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+			var value = $("#" + id).val();
+			if (regexp.test(value)) {
+				$("#" + id).val(value.replace(regexp, ''));
+			}
+		}
 	</script>
 	
 	<!-- 계정 탈퇴 -->

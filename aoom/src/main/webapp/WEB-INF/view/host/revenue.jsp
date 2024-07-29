@@ -19,11 +19,11 @@
 	<!-- 호스트 모드 메뉴 -->
 	<br>
 	<div>
-		<a href="/host/main">메인</a>
-		<a href="/host/calendar">달력</a>
-		<a href="/host/roomManage">숙소 관리</a>
-		<a href="/host/bookList">예약 목록</a>
-		<a href="/host/revenue">수입</a>
+		<a class="btn btn-outline-danger" href="/host/main">메인</a>
+		<a class="btn btn-outline-danger" href="/host/calendar">달력</a>
+		<a class="btn btn-outline-danger" href="/host/roomManage">숙소 관리</a>
+		<a class="btn btn-outline-danger" href="/host/bookList">예약 목록</a>
+		<a class="btn btn-danger" href="/host/revenue">수입</a>
 	</div>
 	<br>
 	

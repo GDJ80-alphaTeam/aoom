@@ -116,7 +116,7 @@
 		        <c:choose>
 		        
 		          <c:when test="${currentPage == pagingInfo.lastPage}">
-		            <button class="page-link" type="button" disabled ="disabled">다음</button>
+		            <button class="page-link disabled" type="button" disabled ="disabled">다음</button>
 		          </c:when>
 		          
 		          <c:otherwise>

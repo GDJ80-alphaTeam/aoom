@@ -42,7 +42,7 @@
 				AND wl.room_id = #{roomId}
 			</if>
 		ORDER BY
-			wl.create_date
+			wl.create_date DESC
 	</select>
 	
 	<!-- 위시리스트에 숙소 삭제 -->
