@@ -14,7 +14,9 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
-	
+	${bookingInfo.checkIn}
+	${bookingInfo.checkOut}
+	${bookingInfo.totalPrice}
 	<div style="width: 1200px; margin: 0 auto">
 		<h1>예약취소페이지</h1>
 		<div style="width: 100%;display: flex;height: 200px;">

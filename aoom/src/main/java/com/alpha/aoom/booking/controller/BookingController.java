@@ -154,6 +154,8 @@ public class BookingController extends BaseController {
 	@RequestMapping("/bookingCancelEvent")
 	public String dobookingCancel(@RequestParam Map<String, Object> param , ModelMap modelMap) {
 		
+		System.out.println(param);
+		
 		if(cancelRefundService.insert(param) != 1) {
 			log.info("실패"+"");
 			return "redirect:/booking/bookList";
@@ -166,12 +168,12 @@ public class BookingController extends BaseController {
 		
 		// 해당예약번호를 가진 onedayPricemap삭제
 		bookingOnedayPriceService.delete(param);
-		
 		// onedayPrice 가 취소되어 기존의 onedayPrice를 활성화 시켜줘야함.
 		onedayPriceService.updateByCancel(param);
 		// 예약취소시 계좌번호에 변동이 생기면 계좌번호 업데이트
+		if(param.get("refundAccount") != null) {
 		roomPaymentService.updateAccount(param);
-		
+		}
 		return "redirect:/guest/bookList";
 	
 	}

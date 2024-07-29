@@ -34,7 +34,7 @@
 				
 				<div style="width: 70% ; display: flex; flex-wrap: wrap" >
 					
-				
+					<!-- 내용이 있으면 표시해줘야해서 중첩됨 -->
 					<c:forEach var="ps" items="${profileList}" varStatus="status">
 						<div style="width: 50%;">
 							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="updateBtn${status.index}" value="${ps.codeKey}">
@@ -48,8 +48,32 @@
 						</div>
 					</c:forEach>
 				</div>
-			
 			</div>
+			<h3>자기소개</h3>
+					
+						<c:forEach  var="p" items="${profile}">
+							
+							<c:if test="${p.codeKey == 'pfi09' }">
+								<div id="introductionContent">			
+									<c:if test="${p.content != null}">
+										${p.content}
+									</c:if>
+									
+									<c:if test="${p.content == null || profileContent.content == '' }">
+									
+										소개글을 작성해보세요!
+									</c:if>
+								</div>
+								<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="updateBtn" value="${p.codeKey}">
+								입력하기
+								</button>
+								
+							</c:if>	
+						</c:forEach>
+					</div>
+					
+					
+			
 		</div>	
 	</div>
 	
@@ -64,12 +88,13 @@
 		      </div>
 		      
 		      <div class="modal-body" id="updateContent">
-		        내용 test
+		        로딩중입니다 잠시만기다려주세요.
 		      </div>
 		      
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 		        <button type="button" class="btn btn-primary" id="profileUpdateBtn">변경</button>
+		        <input type="hidden" id="codeKey" name="codeKey">
 		      </div>
 		      
 		    </div>
@@ -121,42 +146,71 @@
 				method:"post",
 				data: {"codeKey": updateTarget , "userId":"${userInfo.userId}"},
 				success: function(response){
-					
+					console.log(response);
 					if(response.code == '00'){
 						
-						let profileContent = response.data.codeDesc+'<br>'+'<input type="text" value="'+response.data.content+'">';
+						
+						let profileContent = response.data.codeDesc+'<br>'+'<textarea rows="10" cols="50" name="content">'+response.data.content+'</textarea>'
+						if(response.data.codeKey != 'pfi09'){
+							profileContent = response.data.codeDesc+'<br>'+'<input type="text" name="content" value="'+response.data.content+'">';		
+						}
+						
 						$('#updateContent').empty();
 						$('#updateContent').append(profileContent);
 						
 						$('#updateTitle').empty();
-						let updateTitle = response.data.codeName+'<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>' 
+						let updateTitle = response.data.codeName+'<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'; 
 						$('#updateTitle').append(updateTitle);
+						
+						$('#codeKey').val(response.data.codeKey);
 					} else if(response.code == '01') {
-						console.log(response);
+						
+						let profileContent = response.data.codeDesc+'<br>'+'<textarea rows="10" cols="50" name="content">'+response.data.content+'</textarea>'
+						if(response.data.codeKey != 'pfi09'){
+							profileContent = response.data.codeDesc+'<br>'+'<input type="text" name="content" value="'+response.data.content+'">';		
+						}
 						$('#updateContent').empty();
-						let profileContent = response.data.codeDesc+'<br>'+'<input type="text">';
 						$('#updateContent').append(profileContent);
 
 						$('#updateTitle').empty();
-						let updateTitle = response.data.codeName+'<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>'
+						let updateTitle = response.data.codeName+'<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
 						$('#updateTitle').append(updateTitle);
 						
+						$('#codeKey').val(response.data.codeKey);
 					}
 				}
 			
 			});
+		}
+		
 		// 모달버튼 에서 폼 제출시		
 		function updateContent(){
 			$.ajax({
 				url:"/user/ajaxProfileUpdate",
 				method:"post",
-				data: {"userId":"${userInfo.userId}" , "updateContents" : $("#updateProfileContent").serialize()},
+				data: $("#updateProfileContent").serialize() + "&userId=" + encodeURIComponent("${userInfo.userId}"),
 				success: function(response){
+					alert('성공!')
+					console.log(response);
+					$('#exampleModal').modal('hide');
 					
+					// 업데이트된 프로필요소의 버튼을 찾아서 바뀐값으로 업데이트해줘야함
+					$('[id^="updateBtn"]').each(function() {
+			             // 현재 요소의 값 
+			             let value = this.value;
+			             // 값확인 + 소개글이 아닐경우실행
+			             if (value == response.data.code.codeKey && value != "pfi09") {
+			                 // 내용 채워넣기
+			            	 $(this).text(response.data.code.codeName+":"+response.data.profile.content);
+			             } else{
+			            	 $('#introductionContent').text(response.data.profile.content)
+			             }
+			             
+			         });
 				}
-			})
-		} 			
+			});
+		}; 			
 			
-		}
+		
 	</script>
 </html>

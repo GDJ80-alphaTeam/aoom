@@ -1,5 +1,6 @@
 package com.alpha.aoom.profile.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -80,37 +81,35 @@ public class ProfileController extends BaseController{
 	
 	@RequestMapping("/user/profileUpdate")
 	public String profileUpdate(@RequestParam Map<String, Object> param , ModelMap modelMap) {
-		List<Map<String, Object>> profileList = profileService.selectListByuserId(param);
-		String profileContent = null;
 		
-		// 역방향으로 인덱스를 사용하여 항목 삭제
-		// 정방향으로 하면 삭제후 인덱스가 생략될수있음 
+		// 모든 프로필목록 출력
+		List<Map<String, Object>> profileList = codeService.selectByGroupKey("proitem");
+		// 프로필목록에서 소개글 제외
         for (int i = profileList.size() - 1; i >= 0; i--) {
             Map<String, Object> list = profileList.get(i);
 
             // 문자열 비교 시 equals() 사용
             if ("pfi09".equals(list.get("codeKey"))) {
-                profileContent = (String) list.get("content");
                 profileList.remove(i); 
             }
         }
         
-        modelMap.put("profileList", codeService.selectByGroupKey("proitem"));
+        // 해당유저가 보유한 프로필정보
+        modelMap.put("profile", profileService.selectListByuserId(param));
         // 해당 유저의 정보
  		modelMap.put("userInfo", userService.selectByUserId(param));
-        
         // 프로필 내용 콘텐츠
- 		modelMap.put("profileContent", profileContent);
+ 		//modelMap.put("profileContent", codeService.selectByCodeKey(param));
  		
  		// 소개글을 제외한 해당유저의 프로필정보
-		modelMap.put("profile", profileList);
+		modelMap.put("profileList", profileList);
  		
 		return "/user/profileUpdate";
 	}
 	
 	// 프로필 수정시 보여줄 내용 호출
-	@RequestMapping("/user/ajaxProfileInfo")
 	@ResponseBody
+	@RequestMapping("/user/ajaxProfileInfo")
 	public Map<String, Object> profileContent(@RequestParam Map<String, Object> param , ModelMap modelMap) {
 		
 		log.info("param"+param);
@@ -140,11 +139,30 @@ public class ProfileController extends BaseController{
 		
 	}
 	
-	// 프로필 업데이트 ajax 진행중
-	@RequestMapping("/user/ajaxProfileUpdate")
+	// 프로필 업데이트 ajax 
 	@ResponseBody
+	@RequestMapping("/user/ajaxProfileUpdate")
 	public Map<String, Object> profileUpdate(@RequestParam Map<String, Object> param){
 		
-		return null;
+		//System.out.println(param);
+		//System.out.println(((BigDecimal)profileService.selectByproitemCode(param).get("cnt")).compareTo(BigDecimal.ZERO) != 0);
+		
+		// 널이 아니면 프로필이 존재하므로 업데이트 , null이나오면 프로필이 없으므로 인서트 
+		if(profileService.selectByproitemCode(param) != null) {
+			profileService.updateByProitemCode(param);
+		} else {
+			System.out.println("결과가없을때");
+			profileService.insertProfile(param);
+		}
+		
+		// 업데이트한 정보 내보내기
+		Map<String, Object> model = new HashMap<String, Object>();
+		Map<String, Object> mergeMap = new HashMap<>();
+			mergeMap.put("code", codeService.selectByCodeKey(param));
+			mergeMap.put("profile", profileService.selectByproitemCode(param));
+			
+			model.put("data", mergeMap);
+			
+		return model;
 	}
 }

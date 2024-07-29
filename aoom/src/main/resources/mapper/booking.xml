@@ -34,6 +34,10 @@
 		        ,bookstat_name
 		        ,paystat_name 
 		        ,bookstat_code
+		        ,check_in
+		        ,check_out
+		        ,total_price
+		        ,stay_people
 			FROM
 			    (
 			    SELECT
@@ -420,12 +424,13 @@
 			</if>
 	</select>
 	
-	<!-- 업데이트처리 -->
+	
+<!-- 업데이트처리 -->
 	<update id="updateBookstat" parameterType="map">
 		UPDATE
 		    booking
 		SET
-		    bookstat_code = 'bst03'
+		    bookstat_code = #{bookstatCode}
 		WHERE
 		    booking_id = #{bookingId}
 	</update>

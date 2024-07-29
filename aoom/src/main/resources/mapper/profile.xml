@@ -27,5 +27,41 @@
 			AND proitem_code = #{codeKey}
 			</if>
 	</select>
+
+	<!-- 해당유저가 보유한 프로필정보가 있는지 체크 -->	
+	<select id="selectByproitemCode" parameterType="map" resultType="camelCaseMap">
+		SELECT  
+		     <include refid="profile_col"/>
+		FROM
+		    profile
+		WHERE
+		    user_id = #{userId}
+		    AND proitem_code = #{codeKey}
+	</select>
 	
+	<!-- 해당유저 프로필 업데이트 -->
+	<update id="updateByProitemCode" parameterType="map">
+		UPDATE
+		    profile
+		SET
+		     content = #{content}
+		WHERE
+		     user_id = #{userId}
+		     AND proitem_code = #{codeKey}
+		     AND content != #{content}	
+	</update>
+	
+	<!-- 해당유저 프로필 인서트 -->
+	<insert id="insertProfile" parameterType="map">
+		 INSERT INTO profile(
+		   proitem_code
+          ,user_id
+          ,content
+		  
+		) VALUES(
+		     #{codeKey}
+            ,#{userId}
+            ,#{content}            
+		)
+	</insert>
 </mapper>

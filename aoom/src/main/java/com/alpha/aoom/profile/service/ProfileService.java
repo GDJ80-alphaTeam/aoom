@@ -21,5 +21,19 @@ public class ProfileService {
 		return profileMapper.selectListByuserId(param);
 	}
 	
-	
+	// 해당유저의 프로필 정보 유무 체크
+	public Map<String,Object> selectByproitemCode(Map<String, Object> param) {
+		
+		return profileMapper.selectByproitemCode(param);
+	}
+	// 유저 프로필 정보 업데이트
+	public int updateByProitemCode(Map<String, Object> param) {
+		
+		return profileMapper.updateByProitemCode(param);
+	}
+	// 유저의 프로필 정보 인서트
+	public int insertProfile(Map<String, Object> param) {
+		
+		return profileMapper.insertProfile(param); 
+	}
 }
