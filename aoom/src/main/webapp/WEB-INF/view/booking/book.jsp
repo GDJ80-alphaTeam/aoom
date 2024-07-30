@@ -69,7 +69,7 @@
 				<!-- 우 -->
 				<div class="col">
 					<div class="card" style="width: 18rem;">
-						<img src="/image/etc/reviewDefault.png" class="card-img-top" alt="...">
+						<img src="${roomInfo.mainImage }" class="card-img-top" alt="...">
 						<div class="card-body">
 							<h5 class="card-title">${roomInfo.roomName }</h5>
 								<p class="card-text">
@@ -225,6 +225,10 @@
             $('#cardsa').removeClass('hidden').removeAttr('required');
             $('#bankInfo').removeClass('hidden').removeAttr('required');
             $('#bank').removeClass('hidden').removeAttr('required');
+            $('#cardInfo').val('');
+            $('#cardsa').val('');
+            $('#bankInfo').val('');
+            $('#bank').val('');
             
             if (selectedMethod === 'card') {
                 $('#cardInfo').addClass('hidden').attr('required', 'required');
