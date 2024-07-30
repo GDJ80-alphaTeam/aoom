@@ -229,7 +229,7 @@ public class HostController extends BaseController {
 			log.info(getSuccessResult(model).toString());
 			return getSuccessResult(model, "상태가 변경되었습니다.");
 		} else {
-			return getFailResult(model);
+			return getFailResult(model, "상태 변경이 불가능합니다! 예약이 존재하는지 확인해주세요");
 		}
 	}
 	

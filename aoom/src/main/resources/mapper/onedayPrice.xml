@@ -185,8 +185,16 @@
 				onestat_code = #{onestatCode}
 			</if>
 		WHERE
-			room_id = #{roomId}
-			AND oneday = #{oneday}
+		room_id = #{roomId}
+		AND oneday = #{oneday}
+		AND NOT EXISTS (
+			SELECT 
+				oneday
+			FROM 
+				BOOKING_ONEDAY_PRICE_MAP
+			WHERE 
+				oneday = #{oneday}
+		)
 	</update>
 	
 	<!-- 예약취소후 운영가능상태로 변경해줘야함-->

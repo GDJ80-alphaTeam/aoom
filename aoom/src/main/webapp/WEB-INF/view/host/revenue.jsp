@@ -154,7 +154,7 @@
 	    		'roomId' : '${selectedRoomId}'
 	    	},
 	    	success: function(response) {
-	            console.log(response);
+	            console.log(response.revenue);
 	            
 	            // 선택된 room 이름으로 title 설정
 	            $('#revenueTitle').html($('#selectRoom').find('option:selected').text().replaceAll('=', '') + ' 수입')
@@ -207,6 +207,7 @@
 	        	},
 	        	success: function(response) {
 	        		
+	        		$('#exampleModalLabel').html(selectedMonth + '월 수입 상세보기');
 	        		// 월별 수입의 각각의 행을 추가 
 		            response.revenueOne.forEach(function(revenue) {
 		                tableRows += '<tr>'
