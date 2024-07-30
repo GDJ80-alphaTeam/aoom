@@ -148,7 +148,6 @@
 	        mode: "range",
 	        dateFormat: "Y-m-d",                           
 	        minDate: 'today',        // 오늘 이전 날짜 선택 비활성화
-	        maxDate: '2024-12-31',   // 특정 날짜까지 선택 가능
 	        defaultDate: defaultDates,    // 초기 날짜 설정 (현재 날짜와 시간)        
 	        showMonths: 2,
 	        locale: "ko",             
