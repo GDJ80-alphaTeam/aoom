@@ -62,20 +62,29 @@
 		<!-- 숙소 위치 설정 -->
 		<div>
 			주소 : 
-			<input type="text" id="frontAddress" placeholder="주소" style="width: 300px;" readonly="readonly" required="required">
-			<button type="button" onclick="searchAddress()">주소 찾기</button><br>
-			상세 주소 : 
-			<input type="text" id="detailAddress" placeholder="상세주소">
-			<input type="hidden" name="address" id="address" required="required">
+			<c:if test="${roomInfo.roomstatCode == 'rst03' }">
+				<input type="text" id="frontAddress" placeholder="주소" style="width: 300px;" readonly="readonly" required="required">
+				<button type="button" disabled="disabled">주소 찾기</button><br>
+				상세 주소 : 
+				<input type="text" id="detailAddress" placeholder="상세주소" readonly="readonly">
+				<input type="hidden" name="address" id="address" required="required">
+			</c:if>
+			<c:if test="${roomInfo.roomstatCode != 'rst03' }">
+				<input type="text" id="frontAddress" placeholder="주소" style="width: 300px;" readonly="readonly" required="required">
+				<button type="button" onclick="searchAddress()">주소 찾기</button><br>
+				상세 주소 : 
+				<input type="text" id="detailAddress" placeholder="상세주소">
+				<input type="hidden" name="address" id="address" required="required">
+			</c:if>
 		</div>
 		<!-- 최대 인원 설정 -->
 		<div>
 			최대 인원 : 
 			<c:if test="${roomInfo.maxPeople != null && roomInfo.maxPeople ne ''}">
-				<input type="number" name="maxPeople" min="1" value="${roomInfo.maxPeople }" required="required">
+				<input type="number" name="maxPeople" min="1" max="99" value="${roomInfo.maxPeople }" required="required">
 			</c:if>
 			<c:if test="${roomInfo.maxPeople == null || roomInfo.maxPeople eq ''}">
-				<input type="number" name="maxPeople" min="1" required="required">
+				<input type="number" name="maxPeople" min="1" max="99" required="required">
 			</c:if>
 		</div>
 		
@@ -97,26 +106,26 @@
 		<div>
 			방 수 : 
 			<c:if test="${roomInfo.totalSpace != null && roomInfo.totalSpace ne ''}">
-				<input type="number" name="totalSpace" min="1" value="${roomInfo.totalSpace }" required="required">			
+				<input type="number" name="totalSpace" min="1" max="999" value="${roomInfo.totalSpace }" required="required">			
 			</c:if>
 			<c:if test="${roomInfo.totalSpace == null || roomInfo.totalSpace eq ''}">
-				<input type="number" name="totalSpace" min="1" required="required">
+				<input type="number" name="totalSpace" min="1" max="999" required="required">
 			</c:if>
 			
 			침대 수 : 
 			<c:if test="${roomInfo.totalBed != null && roomInfo.totalBed ne ''}">
-				<input type="number" name="totalBed" min="0" value="${roomInfo.totalBed }" required="required">			
+				<input type="number" name="totalBed" min="0" max="999" value="${roomInfo.totalBed }" required="required">			
 			</c:if>
 			<c:if test="${roomInfo.totalBed == null || roomInfo.totalBed eq ''}">
-				<input type="number" name="totalBed" min="0" required="required">
+				<input type="number" name="totalBed" min="0" max="999" required="required">
 			</c:if>
 
 			욕실 수 : 
 			<c:if test="${roomInfo.totalBath != null && roomInfo.totalBath ne ''}">
-				<input type="number" name="totalBath" min="0" value="${roomInfo.totalBath }" required="required">			
+				<input type="number" name="totalBath" min="0" max="999" value="${roomInfo.totalBath }" required="required">			
 			</c:if>
 			<c:if test="${roomInfo.totalBath == null || roomInfo.totalBath eq ''}">
-				<input type="number" name="totalBath" min="0" required="required">
+				<input type="number" name="totalBath" min="0" max="999" required="required">
 			</c:if>
 		</div>
 		

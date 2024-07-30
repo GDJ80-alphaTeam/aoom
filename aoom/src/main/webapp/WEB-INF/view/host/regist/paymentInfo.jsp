@@ -36,9 +36,10 @@
 		<br>
 		
 		<!-- 기본 요금 설정 -->
-		<h4>기본 요금</h4>
-		<span>숙소 요금은 10원단위로 절사(내림)됩니다.</span>
 		<div>
+			<h4 style="display: inline;	">기본 요금</h4>
+			<span style="color: red;">플랫폼 수수료 10%</span><br>
+			<span>숙소 요금은 10원단위로 절사(내림)됩니다.</span><br>
 			<input type="number" id="defaultPrice" name="defaultPrice" min="30000" value="${roomInfo.originalDefaultPrice }" placeholder="금액을 입력해주세요" required="required">원
 		</div>
 		<br>
