@@ -115,6 +115,7 @@
     <br>
 	
 	<!-- 조회수 TOP 4 -->
+	<h3>조회수 TOP 4</h3>
    	<div class="row row-cols-1 row-cols-md-4 g-4">
 		<c:forEach var="viewsDesc" items="${viewsDesc}">
 			<div class="col">
@@ -156,6 +157,7 @@
     <br>
     
 	<!-- 예약 TOP 4 -->
+	<h3>예약 TOP 4</h3>
     <div class="row row-cols-1 row-cols-md-4 g-4">
 		<c:forEach var="bookingDesc" items="${bookingDesc}">
 			<div class="col">
@@ -197,6 +199,7 @@
     <br>
     
 	<!-- 위시리스트 TOP 4 -->
+	<h3>위시리스트 TOP 4</h3>
     <div class="row row-cols-1 row-cols-md-4 g-4">
         <c:forEach var="wishListDesc" items="${wishListDesc}">
 			<div class="col">
@@ -238,6 +241,7 @@
 	<br>
 	
 	<!-- 별점 TOP 4 -->
+	<h3>별점 TOP 4</h3>
     <div class="row row-cols-1 row-cols-md-4 g-4">
 		<c:forEach var="ratingDesc" items="${ratingDesc}">
 			<div class="col">
