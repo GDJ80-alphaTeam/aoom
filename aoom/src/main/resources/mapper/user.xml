@@ -100,4 +100,14 @@
 				AND user_pw = #{userPw}
 			</if>
 	</update>
+	
+	<update id="updateByProfileImg" parameterType="map">
+		UPDATE
+			users
+		SET
+			user_image = #{profileImage}	
+		WHERE
+			user_id = #{userId}
+			AND user_image != #{profileImage}	
+	</update>
 </mapper>

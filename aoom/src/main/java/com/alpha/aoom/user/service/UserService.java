@@ -6,6 +6,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.alpha.aoom.roomImage.service.RoomImageService;
+import com.alpha.aoom.util.file.FolderCreation;
+import com.alpha.aoom.util.file.ImageRemove;
+import com.alpha.aoom.util.file.ImageUpload;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,6 +22,9 @@ public class UserService {
 	
 	@Autowired
 	UserMapper userMapper;
+	
+	@Autowired
+	FolderCreation folderCreation;
 
 	// 로그인
 	public Map<String, Object> signinUser(Map<String, Object> param) {
@@ -78,5 +87,49 @@ public class UserService {
 	// 고객 정보 가져오기
 	public Map<String, Object> selectByUserId(Map<String, Object> param) {
 		return userMapper.selectByUserId(param);
+	} 
+	
+	public String updateProfileImg(Map<String, Object> param){
+		
+		ImageUpload imageUpload = new ImageUpload();
+		
+		ImageRemove imageRemove = new ImageRemove();
+		
+		// 저장경로지정 /image/"param"
+		String imageFolderPath = folderCreation.createImageFolder("profile");
+		
+		// 이미지 저장시 사용할 폴더 경로 param에 추가
+		param.put("imageFolderPath", imageFolderPath);
+		
+		// 각자의 프로젝트 이미지 경로 param에 추가
+		param.put("baseFolderPath", folderCreation.BASE_FOLDER_PATH);
+		
+		// 이미지 생성은 각자의 프로젝트 경로 + 이미지 폴더 경로 이므로 각자의 프로젝트 경로까지 포함하는 totalFolderPath 변수 생성
+		String totalFolderPath = param.get("baseFolderPath").toString() + param.get("imageFolderPath").toString();
+		
+		MultipartFile profileImage = (MultipartFile) param.get("profileImage");
+		
+		String uuidMainImage = imageUpload.saveFile(totalFolderPath, profileImage);
+		
+		param.put("profileImage", imageFolderPath + "/" + uuidMainImage);
+		
+		//변경전사진
+		String beforeImg = (String)param.get("deleteImage");
+		
+		String afterImg = (String)param.get("profileImage");
+		
+		// 사진 업데이트전 기존에있던 사진 삭제 단 default 사진일경우 삭제하면안됨
+		if(beforeImg.equals("/image/etc/userDefault.png") || beforeImg == "/image/etc/userDefault.png") {
+		
+		} else {
+			log.info(imageFolderPath + beforeImg);
+			imageRemove.remove(folderCreation.BASE_FOLDER_PATH, beforeImg);
+		}
+			// 유저 프로필 업데이트
+			userMapper.updateByProfileImg(param);
+		return afterImg;
+		
 	}
+	
+	
 }

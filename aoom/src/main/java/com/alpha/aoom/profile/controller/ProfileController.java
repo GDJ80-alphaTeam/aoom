@@ -84,15 +84,22 @@ public class ProfileController extends BaseController{
 		
 		// 모든 프로필목록 출력
 		List<Map<String, Object>> profileList = codeService.selectByGroupKey("proitem");
+		
+		// content 
+		Map<String, Object> introduceContent = null;
+		
 		// 프로필목록에서 소개글 제외
         for (int i = profileList.size() - 1; i >= 0; i--) {
             Map<String, Object> list = profileList.get(i);
-
+            
             // 문자열 비교 시 equals() 사용
             if ("pfi09".equals(list.get("codeKey"))) {
+            	introduceContent = profileList.get(i);
                 profileList.remove(i); 
             }
         }
+        System.out.println(introduceContent);
+        // 
         
         // 해당유저가 보유한 프로필정보
         modelMap.put("profile", profileService.selectListByuserId(param));
@@ -100,7 +107,7 @@ public class ProfileController extends BaseController{
  		modelMap.put("userInfo", userService.selectByUserId(param));
         // 프로필 내용 콘텐츠
  		//modelMap.put("profileContent", codeService.selectByCodeKey(param));
- 		
+ 		modelMap.put("introduceContent", introduceContent);
  		// 소개글을 제외한 해당유저의 프로필정보
 		modelMap.put("profileList", profileList);
  		

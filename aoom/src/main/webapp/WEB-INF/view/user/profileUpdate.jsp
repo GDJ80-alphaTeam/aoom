@@ -21,13 +21,14 @@
 			<div style="display: flex; flex-wrap: flex">
 			
 				<div style="width: 30%">
-					<div style="display: inline-block;">
+					<div style="display: inline-block;" id="imgLabel">
 						<div style="display: inline-block; position: relative;">
-						<button type="button" class="btn-close" id="reviewImageRemove" style="position: absolute; top: 0; right: 0;"></button>
-						<label for="reviewImage">
-							<img src="${userInfo.userImage}" style="width: 300px; height: 300px; display: block;" id="reviewImageFile"> 
-							<input type="file" id="reviewImage" name="reviewImage" accept="image/*" style="display: none;">
-						</label> 
+						
+							<label for="reviewImage">
+								<img src="${userInfo.userImage}" style="width: 300px; height: 300px; display: block;" id="reviewImageFile"> 
+								
+							</label>
+						 
 						</div>
 					</div>
 				</div>
@@ -49,33 +50,38 @@
 					</c:forEach>
 				</div>
 			</div>
-			<h3>자기소개</h3>
-					
-						<c:forEach  var="p" items="${profile}">
-							
-							<c:if test="${p.codeKey == 'pfi09' }">
-								<div id="introductionContent">			
-									<c:if test="${p.content != null}">
-										${p.content}
-									</c:if>
-									
-									<c:if test="${p.content == null || profileContent.content == '' }">
-									
-										소개글을 작성해보세요!
-									</c:if>
-								</div>
-								<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="updateBtn" value="${p.codeKey}">
-								입력하기
-								</button>
-								
-							</c:if>	
-						</c:forEach>
-					</div>
+			<h3>${introduceContent.codeName}</h3>
+				
+				<div id="introductionContent">
+					<c:choose>
+				        <c:when test="${profile == null || profile.isEmpty()}">
+				            
+				                소개글을 작성해보세요!
+				        </c:when>
+				        <c:otherwise>
+				            <c:forEach var="p" items="${profile}">
+				                <c:if test="${p.codeKey == 'pfi09'}">
+				                
+				                    <c:if test="${p.content != null && p.content != ''}">
+				                        ${p.content}
+				                    </c:if>
+				                    
+				                    <c:if test="${p.content == null || p.content == ''}">
+				                        소개글을 작성해보세요!
+				                    </c:if>
+				                </c:if>
+				            </c:forEach>
+				        </c:otherwise>
+				    </c:choose>
+				</div>
+				
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="updateBtn" value="${introduceContent.codeKey}">
+						입력하기
+					</button>
 					
 					
 			
-		</div>	
-	</div>
+	</div>	
 	
 	<!-- Modal -->
 	<form id="updateProfileContent">
@@ -101,24 +107,61 @@
 		  </div>
 		</div>
 	</form>
-		
+		<!-- 새로운 모달 -->
+	<form id="profileImgUpdate" enctype="multipart/form-data">
+	    <div class="modal fade" id="imgUpdateModal" tabindex="-1" aria-labelledby="imgUpdateModal" aria-hidden="true">
+	        <div class="modal-dialog">
+	            <div class="modal-content">
+	                <div class="modal-header" id="imgUpdateModalContent">
+	                    프로필 이미지 수정
+	                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	                </div>
+	
+	                <div class="modal-body" id="imgUpdateModalContent">
+	                	<div>미리보기</div>
+	                	<div style="display: inline-block; position: relative;">
+		                	<label for="reviewImageModal">
+		                		<button type="button" class="btn-close" id="profileImageRemove" style="position: absolute; top: 0; right: 0;"></button>
+			                	<img src="${userInfo.userImage}" style="width: 300px; height: 300px; display: block;" id="reviewImageFileModal">
+			                    <input type="file" id="reviewImageModal" name="profileImage" accept="image/*" style="display: none;">
+		                    </label>
+	                    </div>
+	                </div>
+	
+	                <div class="modal-footer">
+	                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+	                    <button type="button" class="btn btn-primary" id="profileImgUpdateBtn">프로필 이미지 변경</button>
+	                    <input type="hidden" name="userId" value="${userInfo.userId}">
+	                    <input type="hidden" name="deleteImage" value="${userInfo.userImage}">
+	                </div>
+	
+	            </div>
+	        </div>
+	    </div>
+	</form>
+	
 </body>
 
 	<script>
 	
 		//미리 보기 기능 - 메인이미지
-		$('#reviewImage').on('change', function() {
+		$('#reviewImageModal').on('change', function() {
 			const imageSrc = URL.createObjectURL(this.files[0]);
-			$('#reviewImageFile').attr('src', imageSrc);
+			$('#reviewImageFileModal').attr('src', imageSrc);
+			
 		});
+		
+		// 바깥 프로필 사진 클릭했을때
+		$('#imgLabel').on('click', function(event) {
+            $('#imgUpdateModal').modal('show'); // 모달 호출
+        });
 		
 		// 이미지 제거
-		$('#reviewImage').click(function() {
-			$('#reviewImage').val("");
-			$('#reviewImageFile').attr('src', "/image/etc/imageUploadIcon.png");
-		});
+		$('#profileImageRemove').click(function() {
+			$('#reviewImageModal').val("");
+			$('#reviewImageFileModal').attr('src', "/image/etc/userDefault.png");
+		}); 
 		
-		 
 		let updateTarget = null;
 		let profileContent = null;
 		
@@ -128,16 +171,45 @@
 			
 			updateTarget = $(this).val();
 			console.log(updateTarget);
+			//ajax
 			contentCall();
-		})
+		});
 		
-		// 서브밋 버튼 눌렀을때
+		// 프로필 세부내용 서브밋 버튼 눌렀을때
 		$('#profileUpdateBtn').click(function(){
-				
-			console.log("test");
+			//ajax
 			updateContent();
+		});
+		
+		// 프로필 이미지변경 버튼 눌렀을떄
+		$('#profileImgUpdateBtn').click(function(){
+			//ajax
+			profileImgUpdate();
+		});
+		
+		// 프로필 이미지 업데이트
+		function profileImgUpdate(){
 			
-		})
+			let formData = new FormData($('#profileImgUpdate')[0]);
+			$.ajax({
+		        url: "/user/ajaxUserImageUpdate", // 파일 업로드를 처리할 서버 엔드포인트
+		        method: "POST",
+		        data: formData,
+		        contentType: false, // 기본 콘텐츠 타입을 자동으로 설정합니다.
+		        processData: false, // 데이터가 URL 인코딩되지 않도록 설정합니다.
+		        success: function(response){
+		            console.log("프로필 이미지 업데이트 성공:", response);
+		            // 추가적인 성공 처리 로직을 여기에 추가할 수 있습니다.
+		            $('#imgUpdateModal').modal('hide');
+		            alert("변경사항은 재접속후 적용됩니다.");
+		            $('#reviewImageFileModal').attr('src', response.data);
+		            $('#reviewImageFile').attr('src', response.data);
+		            
+		        }
+		      
+		    });
+		}
+		
 		
 		// 모달버튼 누를씨 데이터 호출후 업데이트 
 		function contentCall(){
@@ -146,13 +218,18 @@
 				method:"post",
 				data: {"codeKey": updateTarget , "userId":"${userInfo.userId}"},
 				success: function(response){
-					console.log(response);
+					// data를 지정하지않으면 undefined가 출력됨
+					let dataContent = "";			
+					if(response.data.content != null){
+						dataContent = response.data.content
+					}
+					
+					// 프로필 내용을 수정하기 위해 버튼 클릭시 , 클릭한 버튼에 맞는 데이터를 가져온후 modal 창을 업데이트,
 					if(response.code == '00'){
-						
-						
-						let profileContent = response.data.codeDesc+'<br>'+'<textarea rows="10" cols="50" name="content">'+response.data.content+'</textarea>'
+							
+						let profileContent = response.data.codeDesc+'<br>'+'<textarea rows="10" cols="50" name="content">'+dataContent+'</textarea>';
 						if(response.data.codeKey != 'pfi09'){
-							profileContent = response.data.codeDesc+'<br>'+'<input type="text" name="content" value="'+response.data.content+'">';		
+							profileContent = response.data.codeDesc+'<br>'+'<input type="text" name="content" value="'+dataContent+'">';		
 						}
 						
 						$('#updateContent').empty();
@@ -165,9 +242,9 @@
 						$('#codeKey').val(response.data.codeKey);
 					} else if(response.code == '01') {
 						
-						let profileContent = response.data.codeDesc+'<br>'+'<textarea rows="10" cols="50" name="content">'+response.data.content+'</textarea>'
+						let profileContent = response.data.codeDesc+'<br>'+'<textarea rows="10" cols="50" name="content">'+dataContent+'</textarea>'
 						if(response.data.codeKey != 'pfi09'){
-							profileContent = response.data.codeDesc+'<br>'+'<input type="text" name="content" value="'+response.data.content+'">';		
+							profileContent = response.data.codeDesc+'<br>'+'<input type="text" name="content" value="'+dataContent+'">';		
 						}
 						$('#updateContent').empty();
 						$('#updateContent').append(profileContent);
@@ -190,7 +267,7 @@
 				method:"post",
 				data: $("#updateProfileContent").serialize() + "&userId=" + encodeURIComponent("${userInfo.userId}"),
 				success: function(response){
-					alert('성공!')
+					alert('성공적으로 변경되었습니다.')
 					console.log(response);
 					$('#exampleModal').modal('hide');
 					
@@ -198,19 +275,33 @@
 					$('[id^="updateBtn"]').each(function() {
 			             // 현재 요소의 값 
 			             let value = this.value;
+			             console.log(response.data.code.codeKey);
+			             console.log(typeof response.data.code.codeKey);
 			             // 값확인 + 소개글이 아닐경우실행
 			             if (value == response.data.code.codeKey && value != "pfi09") {
 			                 // 내용 채워넣기
 			            	 $(this).text(response.data.code.codeName+":"+response.data.profile.content);
-			             } else{
-			            	 $('#introductionContent').text(response.data.profile.content)
+			             } 
+			             
+			             if (value == response.data.code.codeKey && value == "pfi09"){
+			            	 $('#introductionContent').text(response.data.profile.content);		
+			            	 
 			             }
 			             
 			         });
 				}
 			});
 		}; 			
-			
+		
+		
+		
+		// 모달창에서 엔터키를 누르면 오류가 발생, 엔터키 입력하면 제출버튼 클릭되게변경
+		$('#exampleModal').on('keydown', 'input, textarea', function(event) {
+	        if (event.key === "Enter") {
+	            event.preventDefault();
+	            $('#profileUpdateBtn').click(); // 엔터키 입력 시 버튼 클릭
+	        }
+	    });
 		
 	</script>
 </html>

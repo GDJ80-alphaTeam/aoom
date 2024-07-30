@@ -10,9 +10,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.alpha.aoom.user.service.UserService;
 import com.alpha.aoom.util.BaseController;
+import com.alpha.aoom.util.file.FolderCreation;
 import com.alpha.aoom.wishList.service.WishListService;
 
 import jakarta.servlet.http.HttpSession;
@@ -126,5 +128,26 @@ public class UserController extends BaseController {
 		modelMap.addAttribute("userWishList", userWishList);
 		
 		return "/user/wishList";
+	}
+	
+	// 유저 프로필 사진수정
+	@ResponseBody
+	@RequestMapping("/ajaxUserImageUpdate")
+	public Map<String, Object> ajaxUserImageUpdate(@RequestParam Map<String, Object> param , @RequestParam Map<String, MultipartFile> image){
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		log.info("test1"+param);
+		log.info("test2"+image);  
+		param.put("profileImage", image.get("profileImage"));
+		param.put("deleteImage", param.get("deleteImage"));
+		// 이미지가 널이 아니면 업데이트 널이면
+		if(image.get("profileImage") != null) {
+			
+			model.put("data",userService.updateProfileImg(param));
+			return getSuccessResult(model);
+		} else {
+			return getFailResult(model);
+		}
+		
 	}
 }
