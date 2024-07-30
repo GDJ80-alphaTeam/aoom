@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alpha.aoom.room.service.RoomService;
 import com.alpha.aoom.roomPayment.service.RoomPaymentService;
+import com.alpha.aoom.util.BaseController;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 @RequestMapping("/host/revenue")
-public class RevenueController {
+public class RevenueController extends BaseController {
 
 	@Autowired
 	RoomService roomService;
@@ -47,10 +48,39 @@ public class RevenueController {
 	// 호스트 수입 불러오는 ajax
 	@RequestMapping("/ajaxSelectRevenue")
 	@ResponseBody
-	public List<Map<String, Object>> ajaxSelectRevenue(@RequestParam Map<String, Object> param) {
+	public Map<String, Object> ajaxSelectRevenue(@RequestParam Map<String, Object> param) {
 		log.info("호스트 수입 ajax param={}", param.toString());
-		// 전체 or 숙소별 수입 가져오기
 		
-		return (List<Map<String, Object>>) roomPaymentService.selectByHostRevenue(param);
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		// 전체 or 각 숙소의 월별 수입 가져오기
+		List<Map<String, Object>> revenueList = roomPaymentService.selectByHostRevenue(param);
+		model.put("revenue", revenueList);
+		
+		if(!revenueList.isEmpty() ) {
+			return getSuccessResult(model);
+		} else {
+			return getFailResult(model);
+		}
+	}
+	
+	// 호스트 월별 수입 상세보기
+	@RequestMapping("/ajaxSelectRevenueByMonth")
+	@ResponseBody
+	public Map<String, Object> ajaxSelectRevenueByMonth(@RequestParam Map<String, Object> param) {
+		log.info("호스트 수입 상세보기 ajax param={}", param.toString());
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		// 전체 or 각 숙소의 월별 수입 상세정보 가져오기
+		List<Map<String, Object>> revenueOne = roomPaymentService.selectByPaymentMonth(param);
+		log.info("호스트 수입 상세보기 revenueOne={}", revenueOne.toString());
+		model.put("revenueOne", revenueOne);
+		
+		if(!revenueOne.isEmpty() ) {
+			return getSuccessResult(model);
+		} else {
+			return getFailResult(model);
+		}
 	}
 }

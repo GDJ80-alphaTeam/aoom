@@ -31,4 +31,10 @@ public class RoomPaymentService {
 	public List<Map<String, Object>> selectByHostRevenue(Map<String, Object> param) {
 		return roomPaymentMapper.selectByHostRevenue(param);
 	}
+	
+	// 호스트 - 월별 수입에서 해당 월의 수입 상세정보 보기
+	public List<Map<String, Object>> selectByPaymentMonth(Map<String, Object> param) {
+		return roomPaymentMapper.selectByPaymentMonth(param);
+	}
+	
 }

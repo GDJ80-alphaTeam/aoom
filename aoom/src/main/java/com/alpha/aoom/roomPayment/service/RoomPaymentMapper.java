@@ -16,6 +16,9 @@ public interface RoomPaymentMapper {
 	// 예약 취소시 계좌 변경이 있으면 변경
 	int updateAccount(Map<String, Object> param);
 	
-	// 호스트의 수입 조회(전체 or 숙소별)
+	// 호스트의 월별 수입 조회(전체 or 숙소별)
 	List<Map<String, Object>> selectByHostRevenue(Map<String, Object> param);
+	
+	// 호스트 - 월별 수입에서 해당 월의 수입 상세정보 보기
+	List<Map<String, Object>> selectByPaymentMonth(Map<String, Object> param);
 }
