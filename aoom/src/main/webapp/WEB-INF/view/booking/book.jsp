@@ -19,6 +19,12 @@
         .hidden {
             display: none;
         }
+		
+        .flatpickr-day {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 <body class="container">
