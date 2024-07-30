@@ -245,29 +245,29 @@
 			    HAVING COUNT(DISTINCT AMENITIES_CODE) = #{amenitiesLength}
 		) a ON r.ROOM_ID = a.ROOM_ID 
 	    </if>
-		<if test='(startDate !=null and endDate != null) || (lowPrice !=null and highPrice != null)'>
+		<if test='(startDate !=null and !startDate.isEmpty() and endDate != null and !endDate.isEmpty()) || (lowPrice !=null and highPrice != null)'>
 		JOIN (
 		    SELECT o.ROOM_ID 
 		    FROM ONEDAY_PRICE o
 		    WHERE ONESTAT_CODE = 'one01'
-	    	<if test='startDate !=null and endDate != null'>
+	    	<if test='startDate !=null and !startDate.isEmpty() and endDate != null and !endDate.isEmpty()'>
 		        AND o.ONEDAY BETWEEN TO_DATE(#{startDate}, 'YYYY/MM/DD') AND (TO_DATE(#{endDate}, 'YYYY/MM/DD')-1)
 	        </if>
 	        <if test='lowPrice !=null and highPrice != null'>
 		        AND o.oneday_price <![CDATA[>=]]> #{lowPrice} AND o.oneday_price <![CDATA[<=]]> #{highPrice}
 		    </if>
 		    GROUP BY o.ROOM_ID 
-		    <if test='startDate !=null and endDate != null'>
+		    <if test='startDate !=null and !startDate.isEmpty() and endDate != null and !endDate.isEmpty()'>
 		    	HAVING COUNT(DISTINCT o.ONEDAY) = ((TO_DATE(#{endDate}, 'YYYY/MM/DD')-1) - TO_DATE(#{startDate}, 'YYYY/MM/DD')) + 1
 		    </if>
 		) d ON d.ROOM_ID = r.ROOM_ID
 		</if>
 		WHERE
 			roomstat_code = 'rst03'
-		<if test='address !=null and !address.equals("")'>
+		<if test='address !=null and !address.isEmpty()'>
 		    AND address LIKE '%'||#{address}||'%'  
 		</if>
-		<if test='usePeople !=null'>
+		<if test='usePeople !=null and !usePeople.isEmpty()'>
 		    AND max_people >= #{usePeople}
 		</if>
 		<if test='totalSpace !=null'>
