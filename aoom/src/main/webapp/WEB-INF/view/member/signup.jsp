@@ -51,6 +51,9 @@
 <script type="text/javascript">
 	// 비밀번호 양식
 	const PWCHECK = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+	
+	// 전화번호 정규식
+    const phoneRegex = /^\d{3}-\d{4}-\d{4}$/;
 
 	// 회원가입 버튼 클릭시 유효성 로직
 	$('#signupBtn').click(function(){
@@ -69,6 +72,32 @@
 			return;
 		}
 			
+		// 생년월일 유효성검사
+		if($('#userBirth').val() == '') {
+			alert('생년월일을 입력해주세요.');
+			$('#userBirth').focus();
+			return;
+		}
+		
+		// 이름 유효성검사
+		if($('#userName').val() == '') {
+			alert('이름을 입력해주세요.');
+			$('#userName').focus();
+			return;
+		}
+		
+		// 전화번호 유효성검사
+		if($('#userPhone').val() == '') {
+			alert('전화번호를 입력해주세요.');
+			$('#userPhone').focus();
+			return;
+		}
+		
+		if(!phoneRegex.test($('#userPhone').val())) {
+			alert('전화번호 형식이 다릅니다');
+			return;
+		}
+		
 		// 회원가입 정보 전송
 		$.ajax({
 			url:'/member/ajaxSignup',
@@ -134,6 +163,7 @@
 				if (response.result) {
 					alert(response.message);
 					$('#authNo').attr('disabled', true);
+					$('#authBtn').attr('disabled', true);
 					$('#signupBtn').attr('disabled', false);
 					$('#userId').attr('readonly', true);
 				} else {

@@ -15,4 +15,6 @@ public interface UserAuthNoMapper {
 	int selectByUserId(Map<String, Object> param);
 	// 인증번호 업데이트
 	int update(Map<String, Object> param);
+	// 회원가입 성공시 인증번호 제거
+	int delete(Map<String, Object> param);
 }

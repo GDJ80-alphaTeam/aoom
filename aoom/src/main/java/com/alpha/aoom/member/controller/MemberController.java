@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alpha.aoom.user.service.UserService;
+import com.alpha.aoom.userAuthNo.service.UserAuthNoService;
 import com.alpha.aoom.util.BaseController;
 
 import jakarta.servlet.http.HttpSession;
@@ -22,6 +23,9 @@ public class MemberController extends BaseController{
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	UserAuthNoService userAuthNoService;
 
 	// 로그인 뷰페이지 호출
 	@RequestMapping("/signin")
@@ -82,6 +86,8 @@ public class MemberController extends BaseController{
 		
 		// 회원가입 성공 분기
 		if (row == 1) {
+			// 회원가입 성공 시 인증번호 제거
+			userAuthNoService.delete(param);
 			return getSuccessResult(model,"회원가입에 성공하였습니다. 로그인 후 이용해 주세요.");
 		} else {
 			return getFailResult(model,"회원가입에 실패하였습니다. 다시 시도해 주세요.");

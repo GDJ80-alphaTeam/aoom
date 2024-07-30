@@ -68,6 +68,10 @@ public class UserAuthNoService {
 		} else {
 			return "fail";
 		}
-		
     }
+    
+    // 회원가입 성공시 인증번호 제거
+ 	public int delete(Map<String, Object> param) {
+ 		return userAuthNoMapper.delete(param);
+ 	}
 }

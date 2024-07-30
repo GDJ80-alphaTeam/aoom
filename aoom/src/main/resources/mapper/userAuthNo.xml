@@ -51,4 +51,11 @@
 			user_id = #{userId} 			
 	</update>
 	
+	<!-- 회원가입 성공시 인증번호 제거 -->
+	<delete id="delete" parameterType="map">
+		DELETE FROM 
+			user_auth_no
+		WHERE
+			user_id = #{userId}
+	</delete>
 </mapper>
