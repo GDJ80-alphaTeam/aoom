@@ -76,6 +76,7 @@
 			async:false,
 			data: $('#signup').serialize(),
 			success: function(response){
+					console.log('test : ' + response);
 				if (response.result === true) {
 					alert(response.message);
 					window.location.href = '/main';

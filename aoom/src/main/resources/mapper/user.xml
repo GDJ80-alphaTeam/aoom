@@ -25,12 +25,14 @@
 			,user_birth
 			,user_name
 			,user_phone
+			,user_image
 		) VALUES(
 		  	 #{userId}
 			,#{userPw} 
 			,TO_DATE(#{userBirth}, 'YYYY-MM-DD')
 			,#{userName}
 			,#{userPhone}
+			,'/image/etc/userDefault.png'
 		)
 	</insert>
 	
