@@ -103,6 +103,9 @@
 			booking	
 		WHERE 
 			user_id = #{userId}	
+			<if test="userSecessionChk != null and userSecessionChk == true">
+			    AND bookstat_code IN ('bst01', 'bst02')
+			</if>
 	</select>
 	
 	<!-- 예약추가 -->
