@@ -19,12 +19,12 @@
 	
 </head>
 <body>
-	<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
 	
-	<div style="width:1000px; margin: 0 auto ; min-width:600px " > 
-			<!-- 숙소 이미지 -->
+	<div class="container" > 
+		<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
+		<!-- 숙소 이미지 -->
 		<h1 style="display:flex;justify-content: space-between; margin-top: 100px;">
-			<!-- 숙소이름 -->
+		<!-- 숙소이름 -->
 			<div>
 				${roomInfo.roomName}
 			</div>			

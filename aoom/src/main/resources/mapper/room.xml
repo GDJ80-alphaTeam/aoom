@@ -226,7 +226,7 @@
 			 r.room_id
 			,r.room_name
 			,r.default_price
-			,r.address
+			,REPLACE(r.address, '^', '  ') AS address
 			,r.main_image
 			,(SELECT ROUND(AVG(r2.RATING),1)
 	         FROM REVIEW r2

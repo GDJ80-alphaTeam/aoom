@@ -125,9 +125,19 @@
 		}
 	}
 	
+	// 이메일 유효성 검사 함수
+    let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+	
 	// 이메일 인증번호 전송
 	$('#authBtn').click(function(){
-		console.log("test")
+		
+		// 이메일 유효성검사
+		if(!emailPattern.test($('#userId').val())){
+			alert('올바른 이메일 형식을 사용하세요.');
+			$('#userId').focus();
+			return;
+		} 
+		
 		$("#authBtn").hide();
 		$("#spinner").html('<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>')
 		$.ajax({
