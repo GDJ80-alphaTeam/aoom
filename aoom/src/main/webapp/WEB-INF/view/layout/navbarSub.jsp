@@ -28,11 +28,11 @@
                             <li><a class="dropdown-item" href="#">자주묻는질문</a></li>
                         </c:if>
                         <c:if test="${sessionScope.userInfo.userId != null}">
-                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/user/myPage">계정</a></li>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/user/myPage">마이페이지</a></li>
                             <li><a class="dropdown-item" href="#">메시지</a></li>
                             <li><a class="dropdown-item" href="#">알림</a></li>
                             <li><a class="dropdown-item" href="${pageContext.request.contextPath}/guest/bookList">숙소예약목록</a></li>
-                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/user/wishList">관심목록</a></li>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/user/wishList">위시리스트</a></li>
                             <li><a class="dropdown-item" href="#">자주묻는질문</a></li>
                             <li><button class="dropdown-item" type="button" id="signoutBtn">로그아웃</button></li>
                         </c:if>

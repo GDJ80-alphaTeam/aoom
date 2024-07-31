@@ -179,9 +179,9 @@
 					<div style="width:100%;height:150px; display:flex">
 						<div style="width: 70%;flex-wrap: wrap; display:flex">						
 													
-							<img style="width: 100%;height: 80%" src="${roomInfo.userImage}">					
+							<a href="${pageContext.request.contextPath}/user/profile?userId=${roomInfo.userId}"><img style="width: 100%;height: 80%" src="${roomInfo.userImage}"></a>					
 							<div style="width:100%;height:20%">
-							호스트:${roomInfo.userName}
+							호스트:<a href="${pageContext.request.contextPath}/user/profile?userId=${roomInfo.userId}">${roomInfo.userName}</a>
 							</div>
 						</div>
 						

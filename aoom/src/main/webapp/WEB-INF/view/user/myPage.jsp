@@ -11,25 +11,20 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="container">
+    <!-- AOOM 네비게이션 바 -->
+    <jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
+    
 	<div style="width: 1200px;margin: 0 auto ; text-align: center">
 		<h1>마이페이지</h1>
-		<div style="width: 100%;height: 300px;background-color: green;" onclick="window.location.href='/user/profile?userId=${sessionScope.userInfo.userId}'">
-			
+		<div style="width: 100%;height: 300px; background-color: green;" onclick="window.location.href='/user/profile?userId=${sessionScope.userInfo.userId}'">
 				프로필
-			
 		</div>
-		<div style="width: 100%;height: 300px;" id="userInfoPage" data-bs-toggle="modal" data-bs-target="#checkUserInfoModal">
+		<div style="width: 100%;height: 300px; background-color: gray;" id="userInfoPage" data-bs-toggle="modal" data-bs-target="#checkUserInfoModal">
 			<a> 
 				개인정보
 			</a>
 		</div>
-		<div style="width: 100%;height: 300px;">
-			<a>
-				결제및 대금수령
-			</a>
-		</div>
-		
 	</div>
 	
 	<!-- Modal -->

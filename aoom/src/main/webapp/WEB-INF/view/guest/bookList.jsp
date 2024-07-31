@@ -13,9 +13,9 @@
 </head>
 <body>
 
-<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
+	<div class="container">
 	
-	<div style="margin: 0 auto; width: 1500px">
+		<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
 		<h1>예약목록 페이지</h1>
 	
 		<table class="table">

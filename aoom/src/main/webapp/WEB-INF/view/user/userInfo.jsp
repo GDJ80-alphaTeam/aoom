@@ -105,7 +105,7 @@
 	<!-- 개인정보 수정 -->
 	<script type="text/javascript">
 		// 전화번호 정규식
-        const phoneRegex = /^\d{3}-\d{4}-\d{4}$/;
+        // const phoneRegex = /^\d{3}-\d{4}-\d{4}$/;
 		
 		// 수정 버튼 클릭시
 		$('#editBtn').on('click', function() {
