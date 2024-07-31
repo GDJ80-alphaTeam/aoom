@@ -369,6 +369,18 @@
 			</if>
 		WHERE
 			room_id = #{roomId}
+			<if test="userId != null and !userId.equals('')">
+				AND EXISTS (
+			        SELECT 
+			        	user_id
+			        FROM 
+			        	users
+			        WHERE 
+			        	user_id = #{userId}
+			        	AND user_pw = #{userPw}
+			        	AND userstat_code = 'ust01'
+			    )
+			</if>
 	</update>
 	
 	<!-- user가 호스팅하고있는 숙소의 갯수 -->

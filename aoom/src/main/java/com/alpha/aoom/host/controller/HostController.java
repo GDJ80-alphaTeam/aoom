@@ -1,5 +1,7 @@
 package com.alpha.aoom.host.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -100,17 +102,25 @@ public class HostController extends BaseController {
 		
 		Map<String, Object> model = new HashMap<String, Object>();
 		
+		param.put("selectRoom", param.get("roomId"));
+		param.put("hostId", param.get("userId"));
 		log.info("param={}", param);
 		
 		// 숙소의 상태 변경(rst05 - 삭제)
-		int row = roomService.update(param);
+		int bookingTotalCntByHostRoom = bookingService.selectListByUserIdCnt(param);
 		
-		// 숙소 상태 변경(rst05 - 삭제) 성공 시 
-		if(row == 1) {
-			log.info(getSuccessResult(model).toString());
-			return getSuccessResult(model);
-		} else { // 숙소 상태 변경(rst05 - 삭제) 실패 시
-			return getFailResult(model);
+		if(bookingTotalCntByHostRoom != 0) { // 숙소에 대한 예약이 있는지
+			return getFailResult(model, "호스팅 중인 숙소 중 예약이 있습니다. 예약을 없앤 후 시도해주세요!");
+		} else {
+			int row = roomService.update(param);
+			
+			// 숙소 상태 변경(rst05 - 삭제) 성공 시 
+			if(row == 1) {
+				log.info(getSuccessResult(model).toString());
+				return getSuccessResult(model, "숙소가 삭제되었습니다.");
+			} else { // 숙소 상태 변경(rst05 - 삭제) 실패 시
+				return getFailResult(model, "숙소가 삭제되지않았습니다. 다시 시도해주세요.");
+			}
 		}
 	}
 	
@@ -156,20 +166,35 @@ public class HostController extends BaseController {
 	}
 	
 	// 달력 - 숙소 기본요금 수정
-	@RequestMapping("/calendar/updateDefaultPrice")
-	public String updateDefaultPrice(@RequestParam Map<String, Object> param) {
+	@RequestMapping("/calendar/ajaxUpdateDefaultPrice")
+	@ResponseBody
+	public Map<String , Object> ajaxUpdateDefaultPrice(@RequestParam Map<String, Object> param) {
 		log.info("기본요금 수정 param={}", param.toString());
+		Map<String , Object> model = new HashMap<String, Object>();
 		
-		if(param.get("startDate") == null && param.get("endDate") == null) {
+		// 주말 요금 변경 
+		String weekendDatesStr = (String) param.get("weekendDates");
+	    List<String> weekendDates = new ArrayList<>();
+	    
+		if (weekendDatesStr != null && !weekendDatesStr.equals("")) {
+			weekendDates = Arrays.asList(weekendDatesStr.split(","));
+			param.put("weekendDates", weekendDates);
+	    }
+
+		if(param.get("startDate") == null && param.get("endDate") == null && weekendDatesStr == null) {
 			// room 테이블의 defaultPrice 수정
 			roomService.update(param);
 		}
 		
 		// oneday_price 테이블의 onedayPrice 수정
-		onedayPriceService.updateOnedayPrice(param);
-		log.info("하루숙박 가격 수정 완료");
-		
-		return "redirect:/host/calendar?roomId=" + param.get("roomId").toString();
+		int row = onedayPriceService.updateOnedayPrice(param);
+		if(row != 0) {
+			log.info("하루숙박 가격 수정 완료");
+			return getSuccessResult(model, "가격이 수정되었습니다.");
+		} else {
+			return getFailResult(model, "가격 수정에 실패했습니다. 다시시도해주세요!");
+		}
+//		return "redirect:/host/calendar?roomId=" + param.get("roomId").toString();
 	}
 
 	@RequestMapping("/bookList")

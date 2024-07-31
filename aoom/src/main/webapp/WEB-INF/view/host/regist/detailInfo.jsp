@@ -28,10 +28,10 @@
 		<div>
 			숙소 이름 : 
 			<c:if test="${roomInfo.roomName != null && roomInfo.roomName ne ''}">
-				<input type="text" name="roomName" value="${roomInfo.roomName }" required="required">
+				<input type="text" name="roomName" maxlength="25" value="${roomInfo.roomName }" required="required">
 			</c:if>
 			<c:if test="${roomInfo.roomName == null || roomInfo.roomName eq ''}">
-				<input type="text" name="roomName" required="required">
+				<input type="text" name="roomName" maxlength="25" required="required">
 			</c:if>
 		</div>
 
@@ -39,10 +39,10 @@
 		<div>
 			숙소 설명 :
 			<c:if test="${roomInfo.roomContent != null && roomInfo.roomContent ne ''}">
-				<textarea rows="10" cols="50" name="roomContent" required="required">${roomInfo.roomContent }</textarea>
+				<textarea rows="10" cols="50" name="roomContent" maxlength="1000" required="required">${roomInfo.roomContent }</textarea>
 			</c:if>
 			<c:if test="${roomInfo.roomContent == null || roomInfo.roomContent eq ''}">
-				<textarea rows="10" cols="50" name="roomContent" required="required"></textarea>
+				<textarea rows="10" cols="50" name="roomContent" maxlength="1000" required="required"></textarea>
 			</c:if>
 		</div>
 

@@ -13,29 +13,44 @@
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <style>
-        .selected-date {
-            background-color: black !important;
-        }
-        
-        .event-date {
-            background-color: #d3d3d3 !important; /* 어두운 배경색 */
-            pointer-events: none; /* 클릭 비활성화 */
-        }
-        
-        #calendar {
-            width: 80%;
-            min-height: 600px; /* 고정된 최소 높이 설정 */
-            box-sizing: border-box; /* 패딩과 테두리를 포함한 크기 조정 */
-        }
-
-        #selectDay, #notSelectDay {
-            box-sizing: border-box; /* 패딩과 테두리를 포함한 크기 조정 */
-        }
-
-        #selectDay {
-            display: none; /* 기본적으로 숨김 */
-        }
-    </style>
+		.selected-date {
+			background-color: black !important;
+		}
+		
+		.event-date {
+			background-color: #d3d3d3 !important; /* 어두운 배경색 */
+			pointer-events: none; /* 클릭 비활성화 */
+		}
+		
+		#calendar {
+			width: 80%;
+			min-height: 600px; /* 고정된 최소 높이 설정 */
+			box-sizing: border-box; /* 패딩과 테두리를 포함한 크기 조정 */
+		}
+		
+		#selectDay, #notSelectDay {
+			box-sizing: border-box; /* 패딩과 테두리를 포함한 크기 조정 */
+		}
+		
+		#selectDay {
+			display: none; /* 기본적으로 숨김 */
+		}
+		
+		.fc-day a {
+			color: black;
+			text-decoration-line: none;
+		}
+		
+		/* 일요일 날짜: 빨간색 */
+		.fc-day-sun a {
+			color: red;
+		}
+		
+		/* 토요일 날짜: 파란색 */
+		.fc-day-sat a {
+			color: blue;
+		}
+</style>
 </head>
 <body class="container">
     <jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
@@ -74,20 +89,20 @@
         
         	<!-- 닐찌 선택 안했을 때 -->
             <div style="width: 100%; display: inline-block;" id="notSelectDay">
-	            <form action="/host/calendar/updateDefaultPrice" method="post">
+	            <form id="priceForm">
 	            	<h3 id="notSelectedDateTitle"></h3>
 	            	<h3>전체 요금</h3>
 	                <div>1박당</div>
 	                <input type="hidden" name="roomId" value="${selectedRoomId }">
 	                <input type="number" min="30000" id="defaultPrice" name="defaultPrice" required="required" style="height: 35px;">원
-	                <button type="submit">설정</button>
+	                <button type="button" id="updateDefaultPriceBtn">설정</button>
 	                <br>
 	                <br>
 	                
-<!-- 	                <h3>주말 요금</h3> -->
-<!-- 	                <div>1박당</div> -->
-<!-- 	                <input type="number" min="30000" id="defaultPrice" name="defaultPrice" value="" style="height: 35px;"> -->
-<!-- 	                <button type="button">설정</button> -->
+	                <h3>주말 요금</h3>
+	                <div>1박당</div>
+                	<input type="number" min="30000" id="weekendPrice" name="weekendPrice" style="height: 35px;">
+	                <button type="button" id="updateWeekendPriceBtn">설정</button>
 	            </form>
             </div>
             
@@ -98,7 +113,7 @@
                 <br>
                 
                 <!-- 예약 상태 변경 -->
-                <form action="/host/calendar/updateDefaultPrice" method="post">
+                <form id="selectedPriceForm">
 	                <div class="d-flex align-items-center">
 						<c:forEach var="onestatCode" items="${onestatCodeList }">						
 						    <button type="button" name="onestatCode" value="${onestatCode.codeKey }">${onestatCode.codeName }</button>
@@ -111,7 +126,7 @@
 	                <input type="hidden" name="startDate" id="startOneDay">
 	                <input type="hidden" name="endDate" id="endOneDay">
 	                <input type="number" min="30000" id="defaultPriceSelected" name="defaultPrice" style="height: 35px;">원
-	                <button type="submit">설정</button>
+	                <button type="button" id="selectedPriceBtn">설정</button>
 	                <br>
                 </form>
             </div>
@@ -122,6 +137,7 @@
     	// calendar, 선택한 roomId 전역 변수 선언
 	    let calendar; 
 	    let urlRoomId;
+	    let friSatList = [];
 	    
 	    $(document).ready(function() {
 	    	
@@ -148,7 +164,7 @@
 	                method: 'get',
 	                data: {'roomId': urlRoomId},
 	                success: function(response) { // onedayPrice가져오기 성공하면
-	                	
+	                	console.log(response.roomData)
 	                	// 운영일 만큼만 달력을 보여주기 위해 startDate, endDate 가져오기
 	                    let startDate = response.roomData.startDate;
 	                    let endDate = response.roomData.endDate;
@@ -299,6 +315,8 @@
 	            }
 	        });
 	
+	        friSatList = getFriSatDays(startDate, moment(endDate).subtract(1, 'day'));
+	        console.log(friSatList);
 	        calendar.render();
 	    }
 	</script>
@@ -322,6 +340,73 @@
 					alert(response.message);
 				}
 			});
+		});
+	</script>
+	
+	<script type="text/javascript">
+	
+		// 금요일과 토요일 날짜를 가져오는 함수
+		function getFriSatDays(startDate, endDate) {
+		    let fridaySaturdayDates = [];
+		    let currentDate = moment(startDate);
+	
+		    while (currentDate.isBefore(endDate) || currentDate.isSame(endDate, 'day')) {
+		        let dayOfWeek = currentDate.day();
+		        if (dayOfWeek === 5 || dayOfWeek === 6) { // 금요일 또는 토요일
+		            fridaySaturdayDates.push(currentDate.format('YYYY-MM-DD'));
+		        }
+		        currentDate.add(1, 'day');
+		    }
+	
+		    return fridaySaturdayDates;
+		}
+		
+		$('#updateDefaultPriceBtn').click(function() {
+			$.ajax({
+				url: '/host/calendar/ajaxUpdateDefaultPrice',
+				mothod: 'get',
+				data: {
+					'roomId' : urlRoomId,
+					'defaultPrice' : $('#defaultPrice').val()
+				},
+				success: function(response) {
+					alert(response.message);
+					window.location.href = '/host/calendar?roomId=' + urlRoomId;
+				}
+			})
+		});
+		
+		$('#updateWeekendPriceBtn').click(function() {
+			$.ajax({
+				url: '/host/calendar/ajaxUpdateDefaultPrice',
+				mothod: 'get',
+				data: {
+					'roomId' : urlRoomId,
+					'weekendDates'	: friSatList.join(','),
+					'defaultPrice' : $('#weekendPrice').val()
+				},
+				success: function(response) {
+					alert(response.message);
+					window.location.href = '/host/calendar?roomId=' + urlRoomId;
+				}
+			})
+		});
+		
+		$('#selectedPriceBtn').click(function() {
+			$.ajax({
+				url: '/host/calendar/ajaxUpdateDefaultPrice',
+				mothod: 'get',
+				data: {
+					'roomId' : urlRoomId,
+					'startDate' : $('#startOneDay').val(),
+					'endDate' : $('#endOneDay').val(),
+					'defaultPrice' : $('#defaultPriceSelected').val()
+				},
+				success: function(response) {
+					alert(response.message);
+					window.location.href = '/host/calendar?roomId=' + urlRoomId;
+				}
+			})
 		});
 	</script>
 </body>

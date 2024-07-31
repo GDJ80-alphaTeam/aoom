@@ -135,8 +135,8 @@ public class UserController extends BaseController {
 		
 		if(hostRoomTotalCnt != 0) { // 호스팅중인 숙소가 있다면
 			// 로그인 유저의 호스팅중인 숙소의 예약 개수 
-			int BookingTotalCntByHostRoom = bookingService.selectListByUserIdCnt(param);
-			if(BookingTotalCntByHostRoom != 0) { // 숙소에 대한 예약이 있는지
+			int bookingTotalCntByHostRoom = bookingService.selectListByUserIdCnt(param);
+			if(bookingTotalCntByHostRoom != 0) { // 숙소에 대한 예약이 있는지
 				return getFailResult(model, "호스팅 중인 숙소 중 예약이 있습니다. 예약을 없앤 후 시도해주세요!");
 			} else { // 숙소에 대한 예약이 없다면
 				return getFailResult(model, "호스팅 중인 숙소가 있습니다. 숙소를 삭제 후 시도해주세요!");
