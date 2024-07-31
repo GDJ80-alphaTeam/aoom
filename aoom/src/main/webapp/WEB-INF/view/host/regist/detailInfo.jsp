@@ -160,18 +160,25 @@
 
 	<!-- 이미지 등록 전 미리보기 기능 -->
 	<script type="text/javascript">
-		// 미리 보기 기능 - 메인이미지
 		$('#mainImage').on('change', function() {
-			const imageSrc = URL.createObjectURL(this.files[0]);
-			$('#mainImageFile').attr('src', imageSrc);
+		    if (this.files.length > 0) {
+		        const imageSrc = URL.createObjectURL(this.files[0]);
+		        $('#mainImageFile').attr('src', imageSrc);
+		    } else {
+		        $('#mainImageFile').attr('src', '/image/etc/imageUploadIcon.png');
+		    }
 		});
 	
 		// 미리 보기 기능 - 나머지 이미지들
 		for (let i = 1; i <= 4; i++) {
-			$('#images_' + i).on('change', function() {
-				let imageSrc = URL.createObjectURL(this.files[0]);
-				$('#image_' + i + '_file').attr('src', imageSrc);
-			});
+		    $('#images_' + i).on('change', function() {
+		        if (this.files.length > 0) {
+		            let imageSrc = URL.createObjectURL(this.files[0]);
+		            $('#image_' + i + '_file').attr('src', imageSrc);
+		        } else {
+		            $('#image_' + i + '_file').attr('src', '/image/etc/imageUploadIcon.png');
+		        }
+		    });
 		}
 	</script>
 
@@ -195,6 +202,23 @@
 		}
 	</script>
 
+	<script type="text/javascript">
+		$('#mainImage').click(function() {
+			$('#mainImage').val('');
+			$('#mainImageFile').attr('src', "/image/etc/imageUploadIcon.png");
+			$('#existingMainImage').val('');
+		});
+		
+		// 나머지 이미지 제거
+		for (let i = 1; i <= 4; i++) {
+			$('#image_' + i).click(function() {
+				$('input[name="images_' + i + ']').val('');
+				$('#image_' + i + '_file').attr('src', "/image/etc/imageUploadIcon.png");
+				$('#existingImages_' + i).val('');
+			});
+		}
+	</script>
+	
 	<!-- 폼 제출 전 이미지 파일 업로드 했는지 검사 -->
 	<script type="text/javascript">
 	    $('#BtnNext').click(function(event) {

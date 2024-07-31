@@ -303,7 +303,7 @@
 		) VALUES(
 			 #{roomId}
 			,#{userId}
-			,'rst06'
+			,'rst03'
 		)
 	</insert>
 	
