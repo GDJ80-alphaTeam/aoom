@@ -18,16 +18,26 @@
 	
 	
 	<div style="width: 1200px;margin: 0 auto; text-align: center;">
-	
+		<a href="/guest/bookList">
+			<button type="button" class="btn btn-primary">숙소리스트보기</button>
+		</a>
 		<c:choose>
 			<c:when test="${bookingInfo.bookstatCode == 'bst05'}">
 				<h1>취소된예약</h1>
 			</c:when>
 			<c:when test="${paymentInfo.paytypeCode == 'pmt02' }">
+				<h1>예약상세보기</h1>
 				<h3>환불계좌:${paymentInfo.refundAccount}</h3>
+				
+				<a href="/booking/bookingCancel?bookingId=${bookingInfo.bookingId}">
+					<button type="button" class="btn btn-primary">
+						예약취소하기
+					</button>
+				</a>
 			</c:when>
 			<c:otherwise>
-				<h1>예약상세보기</h1>
+				
+				
 			</c:otherwise>
 		</c:choose>
 	

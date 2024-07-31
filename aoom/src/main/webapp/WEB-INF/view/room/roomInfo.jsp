@@ -105,8 +105,12 @@
 						<img id="reviewImg${status.count}"  src="${r.reviewImage}" style="width:100%;height:50%;"onerror="this.style.display='none'">
 						<img id="userImg${status.count}"  src="${r.userImage}" style="width:100%;height:50%;"onerror="this.style.display='none'">
 					</div>						
-					<div style="width: 80%" id="reviewContent${status.count}">
+					<div style="width: 70%" id="reviewContent${status.count}">
 						${r.reviewContent}
+					</div>
+					<div>
+						${r.rating}
+						${r.userName}
 					</div>
 				</div>
 			</c:forEach>			
@@ -198,7 +202,7 @@
 			<form action="${pageContext.request.contextPath}/booking/book" method="get" id="bookingForm">
 				<div style="width: 50% ; background-color: gray" >
 					<input type="text" id="datepicker" style="width: 300px;">
-					<input type="number" id="usePeople" value="1" name="usePeople" min="1" max="${roomInfo.maxPeople}">
+					<input type="number" id="usePeople" name="usePeople" min="1" max="${roomInfo.maxPeople}">
 					<input type="hidden" id="startDate" name="startDate" required="required">
 					<input type="hidden" id="endDate" name="endDate" required="required">
 					<input type="hidden"  value="${roomInfo.roomId}" name="roomId">
@@ -216,13 +220,20 @@
 	        event.preventDefault(); // 폼의 기본 제출 동작을 막음
 	
 	        var datepickerValue = $('#datepicker').val();
-	
+	        let usePeople = $('#usePeople').val();
+	        let maxPeople = ${roomInfo.maxPeople};
+	        console.log(maxPeople);
 	        // datepicker가 빈칸이나 null인지 확인
 	        if (!datepickerValue) {
 	            alert('날짜를 선택해주세요.');
 	            return;
 	        }
 	
+	        if (usePeople > ${roomInfo.maxPeople}){
+	        	alert("인원수를 조정해주세요")
+	        	return;
+	        }
+	        
 	        // 폼 시리얼라이즈
 	        var formData = $('#bookingForm').serialize();
 	

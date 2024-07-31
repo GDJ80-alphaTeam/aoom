@@ -14,9 +14,7 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
-	${bookingInfo.checkIn}
-	${bookingInfo.checkOut}
-	${bookingInfo.totalPrice}
+	
 	<div style="width: 1200px; margin: 0 auto">
 		<h1>예약취소페이지</h1>
 		<div style="width: 100%;display: flex;height: 200px;">
@@ -81,7 +79,12 @@
 					<!-- 무통장 입금 선택시 나올 부분 -->
 				    <select id="bank" class="hidden" name="bankCode">
 				    	<c:forEach var="bank" items="${bank}">
-				    		<option value="${bank.codeKey}">${bank.codeName}</option>
+				    		<c:if test="${bank.codeKey == paymentInfo.bankCode}">
+				    			<option value="${bank.codeKey}" selected>${bank.codeName}</option>
+				    		</c:if>
+				    		<c:if test="${bank.codeKey != paymentInfo.bankCode}">
+				    			<option value="${bank.codeKey}" selected>${bank.codeName}</option>
+				    		</c:if>	
 				    	</c:forEach>
 				    </select>
 				</c:when>

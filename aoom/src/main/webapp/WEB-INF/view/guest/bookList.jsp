@@ -41,11 +41,15 @@
 					</td>
 					<td>
 						<a href="/room/roomInfo?roomId=${b.roomId}">
-						${b.roomName}
+							${b.roomName}
 						</a>
 					</td>
 					<td>${b.checkIn} ~ ${b.checkOut}</td>
-					<td>${b.hostId}</td>
+					<td>
+						<a href="/user/profile?userId=${b.hostId}">
+							${b.hostId}
+						</a>
+					</td>
 					
 					<td>
 						<a href="/guest/bookInfo?bookingId=${b.bookingId}">
@@ -56,13 +60,16 @@
 					<td>${b.paystatName}</td>
 					<td>
 						<c:choose>
+							
 							<c:when test="${b.bookstatCode eq 'bst01' ||b.bookstatCode eq 'bst02'}">
-						
 								<button onclick="window.location.href='/booking/bookingCancel?bookingId=${b.bookingId}'">
 									예약취소하기
 								</button>
-						
 							</c:when>
+							<c:when test="${b.bookstatCode eq 'bst05'}">
+									환불처리됨
+							</c:when>
+							
 						</c:choose>
 					</td>
 				</tr>

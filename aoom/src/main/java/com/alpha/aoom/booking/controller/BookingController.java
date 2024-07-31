@@ -156,24 +156,22 @@ public class BookingController extends BaseController {
 		
 		System.out.println(param);
 		
-		if(cancelRefundService.insert(param) != 1) {
-			log.info("실패"+"");
-			return "redirect:/booking/bookList";
-		}
+		cancelRefundService.insert(param);
+		
 		
 		// 예약취소시 booking의 상태 예약취소로 업데이트
-		param.put("bookstatCode","bst05");
+		//	param.put("bookstatCode","bst05");
 		
-		bookingService.updateBookingStat(param);
+		//	bookingService.updateBookingStat(param);
 		
 		// 해당예약번호를 가진 onedayPricemap삭제
-		bookingOnedayPriceService.delete(param);
+		//	bookingOnedayPriceService.delete(param);
 		// onedayPrice 가 취소되어 기존의 onedayPrice를 활성화 시켜줘야함.
-		onedayPriceService.updateByCancel(param);
+		//onedayPriceService.updateByCancel(param);
 		// 예약취소시 계좌번호에 변동이 생기면 계좌번호 업데이트
-		if(param.get("refundAccount") != null) {
+		/*if(param.get("refundAccount") != null) {
 		roomPaymentService.updateAccount(param);
-		}
+		}*/
 		return "redirect:/guest/bookList";
 	
 	}
