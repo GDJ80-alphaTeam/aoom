@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.alpha.aoom.booking.service.BookingService;
+import com.alpha.aoom.room.service.RoomService;
 import com.alpha.aoom.user.service.UserService;
 import com.alpha.aoom.util.BaseController;
-import com.alpha.aoom.util.file.FolderCreation;
 import com.alpha.aoom.wishList.service.WishListService;
 
 import jakarta.servlet.http.HttpSession;
@@ -31,6 +32,12 @@ public class UserController extends BaseController {
 	
 	@Autowired
 	WishListService wishListService;
+	
+	@Autowired
+	RoomService roomService;
+	
+	@Autowired
+	BookingService bookingService;
 	
 	@RequestMapping("/myPage")
 	public String userPage(@RequestParam Map<String, Object> param) {
@@ -104,16 +111,49 @@ public class UserController extends BaseController {
 		// 상태를 탈퇴한 상태(ust02)로 변경하기 위해 추가
 		param.put("userstatCode", "ust02");
 		
-		log.info("고객 탈퇴 param={}", param.toString());
-		
+		log.info("고객 탈퇴 ajax param={}", param.toString());
+		param.put("hostId", param.get("userId"));
+		param.put("userSecessionChk", true);
 		Map<String, Object> model = new HashMap<String, Object>();
 		
-		int row = userService.update(param);
-		if(row != 0) {
-			session.invalidate();
-			return getSuccessResult(model, "탈퇴되었습니다. 안녕히 가세요");
-		} else {
-			return getFailResult(model, "탈퇴되지 않았습니다. 다시 시도해 주세요");
+		/* 
+		 * 고객 탈퇴 전 체크 목록
+		 * 
+		 * 1. 호스팅중인 숙소가 있다면
+		 *	1.1 숙소에 대한 예약이 있는지
+		 * 		1.1.1 예약 취소 alert 및 탈퇴 x
+		 * 	1.2 숙소에 대한 예약이 없다면
+		 * 		1.2.1 호스팅한 숙소를 삭제해야함
+		 * 2. 호스팅한 숙소가 없다면
+		 * 	2.1 해당 유저의 예약이 있는지
+		 * 		2.1.1 예약 취소하라는 alert 및 탈퇴 x
+		 * 	2.2 해당 유저의 예약이 없다면
+		 * 		2.2.2 탈퇴
+		 */
+		// 로그인 유저의 호스팅 중인 숙소개수
+		int hostRoomTotalCnt = (int) roomService.selectByTotalCnt(param).get("totalRow");
+		
+		if(hostRoomTotalCnt != 0) { // 호스팅중인 숙소가 있다면
+			// 로그인 유저의 호스팅중인 숙소의 예약 개수 
+			int BookingTotalCntByHostRoom = bookingService.selectListByUserIdCnt(param);
+			if(BookingTotalCntByHostRoom != 0) { // 숙소에 대한 예약이 있는지
+				return getFailResult(model, "호스팅 중인 숙소 중 예약이 있습니다. 예약을 없앤 후 시도해주세요!");
+			} else { // 숙소에 대한 예약이 없다면
+				return getFailResult(model, "호스팅 중인 숙소가 있습니다. 숙소를 삭제 후 시도해주세요!");
+			}
+		} else { // 호스팅한 숙소가 없다면
+			int bookingTotalCntByUser = (int) bookingService.selectByTotalCnt(param).get("totalRow");
+			if(bookingTotalCntByUser != 0) { // 해당 유저의 예약이 있는지
+				return getFailResult(model, "예약 중인 숙소가 있습니다. 예약을 취소한 후 시도해주세요!");
+			} else { // 해당 유저의 예약이 없다면
+				int row = userService.update(param);
+				if(row != 0) {
+					session.invalidate();
+					return getSuccessResult(model, "탈퇴되었습니다. 안녕히 가세요!");
+				} else {
+					return getFailResult(model, "탈퇴되지 않았습니다. 다시 시도해 주세요!");
+				}
+			}
 		}
 	}
 	
