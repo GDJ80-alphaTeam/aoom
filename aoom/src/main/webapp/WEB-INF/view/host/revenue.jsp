@@ -157,8 +157,8 @@
 	            console.log(response.revenue);
 	            
 	            // 선택된 room 이름으로 title 설정
-	            $('#revenueTitle').html($('#selectRoom').find('option:selected').text().replaceAll('=', '') + ' 수입')
-	            $('#sideTitle').html('올해 ' + $('#selectRoom').find('option:selected').text().replaceAll('=', '') + ' 수입')
+	            $('#revenueTitle').html($('#selectRoom').find('option:selected').text().replaceAll('=', '') + ' 확정 수입')
+	            $('#sideTitle').html('올해 ' + $('#selectRoom').find('option:selected').text().replaceAll('=', '') + ' 확정 수입')
 	            
 	            // response의 revenue 반복
 	            // 월별 수입을 카테고리의 값에 맞춰 보여주기 위해(7월 수입만 있을 경우 7월이 아닌 1월에 값이 들어가는 것을 방지)
@@ -207,7 +207,7 @@
 	        	},
 	        	success: function(response) {
 	        		
-	        		$('#exampleModalLabel').html(selectedMonth + '월 수입 상세보기');
+	        		$('#exampleModalLabel').html(selectedMonth + '월 확정 수입 상세보기');
 	        		// 월별 수입의 각각의 행을 추가 
 		            response.revenueOne.forEach(function(revenue) {
 		                tableRows += '<tr>'

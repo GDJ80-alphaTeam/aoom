@@ -114,12 +114,19 @@
 	        WHERE
 	            r.user_id = #{userId}
 	            AND r.roomstat_code = 'rst03'
-	            AND rp.paytype_code = 'pmt01'
 	            AND rp.booking_id NOT IN (
 	                SELECT
 	                    booking_id
 	                FROM
 	                    cancel_refund
+	            )
+	            AND rp.booking_id IN (
+	            	SELECT
+	            		booking_id
+	            	FROM
+	            		booking
+	            	WHERE
+	            		bookstat_code IN ('bst03','bst04')
 	            )
 	    ) ri
 	    <if test="roomId != null and !roomId.equals('')">
@@ -172,7 +179,7 @@
 		        SELECT booking_id
 		        FROM cancel_refund
 		    )
-		    AND b.bookstat_code != 'bst05'
+		    AND b.bookstat_code IN ('bst03', 'bst03')
 		    AND TO_CHAR(b.create_date, 'MM') = #{selectedMonth}
 		    <if test="roomId != null and !roomId.equals('')">
 		         AND b.room_id = #{roomId}

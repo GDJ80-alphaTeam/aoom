@@ -194,6 +194,7 @@
 				BOOKING_ONEDAY_PRICE_MAP
 			WHERE 
 				oneday = #{oneday}
+				AND room_id = #{roomId}
 		)
 	</update>
 	
