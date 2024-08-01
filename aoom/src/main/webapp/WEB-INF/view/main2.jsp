@@ -12,9 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AOOM 메인 페이지</title>
     <script src="https://kit.fontawesome.com/82b4a4fcad.js"></script>
-    <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/main.css">
-    <script src="js/main.js" defer></script>
+    <link rel="stylesheet" href="/resources/css/main.css">
+    <link rel="stylesheet" href="/resources/css/common.css">
+    <script src="/resources/js/main.js" defer></script>
 </head>
 
 <body>
@@ -211,7 +211,7 @@
                 </ul><!-- //nav_menu -->
 
                 <a href="#" class="logo">
-                    <img src="img/nav_1.png" alt="AOOM로고">
+                    <img src="/resources/img/nav_1.png" alt="AOOM로고">
                 </a><!-- //logo -->
 
                 <ul class="search">
@@ -232,7 +232,7 @@
                         <input type="text" value="내용을 입력해주세요.">
                     </li><!-- //traveler -->
                     <li class="s_btn">
-                        <img src="img/nav_2.png" alt="검색 아이콘">
+                        <img src="/resources/img/nav_2.png" alt="검색 아이콘">
                     </li><!-- search_btn -->
                 </ul><!-- //search -->
 
@@ -243,7 +243,7 @@
                         </a>
                     </div><!-- //host_mode -->
                     <div class="profile">
-                        <img src="img/nav_3.png" alt="유저 프로필">
+                        <img src="/resources/img/nav_3.png" alt="유저 프로필">
                         <p>로그인</p>
                         <i class="fa-solid fa-bars"></i>
                     </div><!-- //profile -->
@@ -255,56 +255,56 @@
         <div class="category">
             <ul class="inner">
                 <li class="fade_in">
-                    <img src="img/roomlist_1.png" alt="골프장">
+                    <img src="/resources/img/roomlist_1.png" alt="골프장">
                     <span>골프장</span>
                 </li>
                 <li>
-                    <img src="img/roomlist_2.png" alt="국립공원">
+                    <img src="/resources/img/roomlist_2.png" alt="국립공원">
                     <span>국립공원</span>
                 </li>
                 <li>
-                    <img src="img/roomlist_3.png" alt="농장">
+                    <img src="/resources/img/roomlist_3.png" alt="농장">
                     <span>농장</span>
                 </li>
                 <li>
-                    <img src="img/roomlist_4.png" alt="최고의 전망">
+                    <img src="/resources/img/roomlist_4.png" alt="최고의 전망">
                     <span>최고의 전망</span>
                 </li>
                 <li>
-                    <img src="img/roomlist_5.png" alt="캠핑장">
+                    <img src="/resources/img/roomlist_5.png" alt="캠핑장">
                     <span>캠핑장</span>
                 </li>
                 <li>
-                    <img src="img/roomlist_6.png" alt="컨테이너 하우스">
+                    <img src="/resources/img/roomlist_6.png" alt="컨테이너 하우스">
                     <span>컨테이너 하우스</span>
                 </li>
                 <li>
-                    <img src="img/roomlist_7.png" alt="호수 근처">
+                    <img src="/resources/img/roomlist_7.png" alt="호수 근처">
                     <span>호수 근처</span>
                 </li>
                 <li>
-                    <img src="img/roomlist_8.png" alt="풀빌라">
+                    <img src="/resources/img/roomlist_8.png" alt="풀빌라">
                     <span>풀빌라</span>
                 </li>
                 <li>
-                    <img src="img/roomlist_9.png" alt="향토적인">
+                    <img src="/resources/img/roomlist_9.png" alt="향토적인">
                     <span>향토적인</span>
                 </li>
                 <li>
-                    <img src="img/roomlist_10.png" alt="오션뷰">
+                    <img src="/resources/img/roomlist_10.png" alt="오션뷰">
                     <span>오션뷰</span>
                 </li>
                 <li>
-                    <img src="img/roomlist_11.png" alt="한옥">
+                    <img src="/resources/img/roomlist_11.png" alt="한옥">
                     <span>한옥</span>
                 </li>
                 <li>
-                    <img src="img/roomlist_12.png" alt="전문가급 주방">
+                    <img src="/resources/img/roomlist_12.png" alt="전문가급 주방">
                     <span>전문가급 주방</span>
                 </li>
                 <li class="filter">
                     <button type="button">
-                        <img src="img/roomlist_13.png" alt="필터">
+                        <img src="/resources/img/roomlist_13.png" alt="필터">
                         <span>필터</span>
                     </button>
                 </li>
@@ -319,7 +319,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -334,7 +334,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -354,7 +354,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -369,7 +369,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -389,7 +389,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -404,7 +404,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -424,7 +424,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -439,150 +439,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-            </ul>
-            <ul>
-
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -605,7 +462,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -620,7 +477,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -640,7 +497,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -655,7 +512,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -675,7 +532,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -690,7 +547,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -710,7 +567,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -725,296 +582,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-            </ul>
-            <ul>
-
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-            </ul>
-        </div><!-- //room -->
-        <div class="room">
-
-            <ul>
-
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -1037,7 +605,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -1052,7 +620,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -1072,7 +640,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -1087,7 +655,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -1107,7 +675,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -1122,7 +690,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -1142,7 +710,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -1157,150 +725,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-            </ul>
-            <ul>
-
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -1323,7 +748,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -1338,7 +763,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -1358,7 +783,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -1373,7 +798,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -1393,7 +818,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -1408,7 +833,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -1428,7 +853,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -1443,7 +868,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -1469,7 +894,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -1484,7 +909,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -1504,7 +929,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -1519,7 +944,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -1539,7 +964,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -1554,7 +979,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -1574,7 +999,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -1589,150 +1014,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-            </ul>
-            <ul>
-
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -1755,7 +1037,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -1770,7 +1052,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -1790,7 +1072,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -1805,7 +1087,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -1825,7 +1107,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -1840,7 +1122,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -1860,7 +1142,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -1875,296 +1157,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-            </ul>
-            <ul>
-
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-            </ul>
-        </div><!-- //room -->
-        <div class="room">
-
-            <ul>
-
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -2187,7 +1180,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -2202,7 +1195,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -2222,7 +1215,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -2237,7 +1230,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -2257,7 +1250,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -2272,7 +1265,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -2292,7 +1285,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -2307,150 +1300,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-            </ul>
-            <ul>
-
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -2473,7 +1323,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -2488,7 +1338,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -2508,7 +1358,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -2523,7 +1373,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -2543,7 +1393,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -2558,7 +1408,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -2578,7 +1428,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -2593,7 +1443,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -2619,7 +1469,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -2634,7 +1484,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -2654,7 +1504,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -2669,7 +1519,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -2689,7 +1539,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -2704,7 +1554,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -2724,7 +1574,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -2739,150 +1589,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-            </ul>
-            <ul>
-
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -2905,7 +1612,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -2920,7 +1627,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -2940,7 +1647,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -2955,7 +1662,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -2975,7 +1682,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -2990,7 +1697,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -3010,7 +1717,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -3025,296 +1732,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-            </ul>
-            <ul>
-
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-            </ul>
-        </div><!-- //room -->
-        <div class="room">
-
-            <ul>
-
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -3337,7 +1755,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -3352,7 +1770,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -3372,7 +1790,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -3387,7 +1805,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -3407,7 +1825,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -3422,7 +1840,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -3442,7 +1860,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -3457,150 +1875,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-            </ul>
-            <ul>
-
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -3623,7 +1898,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -3638,7 +1913,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -3658,7 +1933,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -3673,7 +1948,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -3693,7 +1968,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -3708,7 +1983,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -3728,7 +2003,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -3743,7 +2018,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -3769,7 +2044,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -3784,7 +2059,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -3804,7 +2079,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -3819,7 +2094,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -3839,7 +2114,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -3854,7 +2129,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -3874,7 +2149,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -3889,150 +2164,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-            </ul>
-            <ul>
-
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -4055,7 +2187,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -4070,7 +2202,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -4090,7 +2222,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -4105,7 +2237,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -4125,7 +2257,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -4140,7 +2272,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -4160,7 +2292,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -4175,296 +2307,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-            </ul>
-            <ul>
-
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-            </ul>
-        </div><!-- //room -->
-        <div class="room">
-
-            <ul>
-
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -4487,7 +2330,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -4502,7 +2345,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -4522,7 +2365,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -4537,7 +2380,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -4557,7 +2400,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -4572,7 +2415,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -4592,7 +2435,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -4607,150 +2450,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-            </ul>
-            <ul>
-
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -4773,7 +2473,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -4788,7 +2488,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -4808,7 +2508,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -4823,7 +2523,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -4843,7 +2543,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -4858,7 +2558,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -4878,7 +2578,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -4893,7 +2593,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -4919,7 +2619,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -4934,7 +2634,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -4954,7 +2654,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -4969,7 +2669,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -4989,7 +2689,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -5004,7 +2704,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -5024,7 +2724,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -5039,150 +2739,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-            </ul>
-            <ul>
-
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -5205,7 +2762,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -5220,7 +2777,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -5240,7 +2797,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -5255,7 +2812,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -5275,7 +2832,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -5290,7 +2847,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -5310,7 +2867,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -5325,296 +2882,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-            </ul>
-            <ul>
-
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-            </ul>
-        </div><!-- //room -->
-        <div class="room">
-
-            <ul>
-
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -5637,7 +2905,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -5652,7 +2920,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -5672,7 +2940,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -5687,7 +2955,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -5707,7 +2975,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -5722,7 +2990,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -5742,7 +3010,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -5757,150 +3025,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-            </ul>
-            <ul>
-
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -5923,7 +3048,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -5938,7 +3063,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -5958,7 +3083,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -5973,7 +3098,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -5993,7 +3118,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -6008,7 +3133,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -6028,7 +3153,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -6043,7 +3168,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -6069,7 +3194,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -6084,7 +3209,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -6104,7 +3229,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -6119,7 +3244,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -6139,7 +3264,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -6154,7 +3279,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -6174,7 +3299,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -6189,150 +3314,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-            </ul>
-            <ul>
-
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -6355,7 +3337,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -6370,7 +3352,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -6390,7 +3372,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -6405,7 +3387,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -6425,7 +3407,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -6440,7 +3422,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -6460,7 +3442,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -6475,7 +3457,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -6498,7 +3480,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -6513,7 +3495,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -6533,7 +3515,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -6548,7 +3530,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -6568,7 +3550,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -6583,7 +3565,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -6603,7 +3585,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -6618,7 +3600,150 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+            </ul>
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -6644,7 +3769,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -6659,7 +3784,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -6679,7 +3804,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -6694,7 +3819,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -6714,7 +3839,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -6729,7 +3854,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -6749,7 +3874,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -6764,150 +3889,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-            </ul>
-            <ul>
-
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -6930,7 +3912,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -6945,7 +3927,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -6965,7 +3947,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -6980,7 +3962,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -7000,7 +3982,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -7015,7 +3997,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -7035,7 +4017,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -7050,7 +4032,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -7073,7 +4055,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -7088,7 +4070,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -7108,7 +4090,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -7123,7 +4105,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -7143,7 +4125,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -7158,7 +4140,7 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->
@@ -7178,7 +4160,7 @@
                 <li>
                     <a href="#">
                         <div class="img_box">
-                            <img src="img/roomlist_17.png" alt="숙소사진">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
                             <div class="heart_btn">
                                 <i class="fa-solid fa-heart"></i>
                                 <i class="fa-regular fa-heart"></i>
@@ -7193,7 +4175,3025 @@
                                     숙소이름
                                 </div><!-- //r_name -->
                                 <div class="r_star">
-                                    <img src="img/roomlist_16.png" alt="별점">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+            </ul>
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+            </ul>
+        </div><!-- //room -->
+        <div class="room">
+
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+            </ul>
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+            </ul>
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+            </ul>
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+            </ul>
+        </div><!-- //room -->
+        <div class="room">
+
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+            </ul>
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+            </ul>
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+            </ul>
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+            </ul>
+        </div><!-- //room -->
+        <div class="room">
+
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+            </ul>
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+            </ul>
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+            </ul>
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+            </ul>
+        </div><!-- //room -->
+        <div class="room">
+
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+            </ul>
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+            </ul>
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+            </ul>
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+            </ul>
+        </div><!-- //room -->
+        <div class="room">
+
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+            </ul>
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+            </ul>
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+            </ul>
+            <ul>
+
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
+                                    <span>5.45</span>
+                                </div><!-- //t_star -->
+                            </div><!-- //t_box_top -->
+
+                            <div class="r_option">
+                                요약내용
+                            </div><!-- //r_option -->
+                            <div class="r_date">
+                                날짜
+                            </div><!-- //r_date -->
+                            <div class="r_price">
+                                가격
+                            </div><!-- //r_price -->
+                        </div><!-- //txt_box -->
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="img_box">
+                            <img src="/resources/img/roomlist_17.png" alt="숙소사진">
+                            <div class="heart_btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <i class="fa-regular fa-heart"></i>
+
+
+                            </div>
+
+                        </div><!-- //img_box -->
+                        <div class="txt_box">
+                            <div class="t_box_top">
+                                <div class="r_name">
+                                    숙소이름
+                                </div><!-- //r_name -->
+                                <div class="r_star">
+                                    <img src="/resources/img/roomlist_16.png" alt="별점">
                                     <span>5.45</span>
                                 </div><!-- //t_star -->
                             </div><!-- //t_box_top -->

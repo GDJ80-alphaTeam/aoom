@@ -2,6 +2,7 @@ package com.alpha.aoom;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.alpha.aoom.util.interceptor.SessionCheckInterceptor;
@@ -20,11 +21,19 @@ public class WebConfig implements WebMvcConfigurer{
 				.excludePathPatterns("/main", "/member/signup", "/member/ajaxSignup", "/member/ajaxSignout", 
 						"/member/signin", "/member/ajaxSignin", "/userAuthNo/ajaxSend", "/userAuthNo/ajaxAuthCheck", 
 						"/room/roomInfo", "/image/**", "/room/roomList" , "/review/ajaxReviewPaging",
-						"/room/ajaxResultRoom" , "/onedayPrice/ajaxValidDate" , "/onedayPrice/ajaxSelectDay");
+						"/room/ajaxResultRoom" , "/onedayPrice/ajaxValidDate" , "/onedayPrice/ajaxSelectDay",
+						"/css/**" , "/js/**"
+						);
 		
 		// 위 설정을 인터셉터에 적용
 		WebMvcConfigurer.super.addInterceptors(registry);
 
 	}
+	@Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**")
+                .addResourceLocations("/WEB-INF/view/resources/");
+    }
+	
 	
 }
