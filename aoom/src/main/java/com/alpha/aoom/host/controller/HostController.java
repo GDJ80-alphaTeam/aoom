@@ -270,7 +270,6 @@ public class HostController extends BaseController {
 	@ResponseBody
 	public Map<String, Object> checkOut(@RequestParam Map<String, Object> param) {
 		Map<String, Object> model = new HashMap<String, Object>();
-		
 		// 체크아웃 서비스 호출
 		int checkOutAction = bookingService.updateBookstat(param);
 		

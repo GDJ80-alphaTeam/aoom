@@ -365,24 +365,24 @@
 		WHERE
 			1 = 1
 			<if test='actionType == null or actionType.equals("")'>
-		   	    AND b.check_out = SYSDATE
+		   	    AND b.check_out = TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
 		   	    AND b.bookstat_code = 'bst02'
 			</if>
 			<if test='actionType != null and actionType.equals("hosting")'>
-		        AND b.check_in <![CDATA[<=]]> SYSDATE
-		        AND b.check_out >= SYSDATE
+		        AND b.check_in <![CDATA[<=]]> TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
+		        AND b.check_out >= TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
 		        AND b.bookstat_code = 'bst02'
 			</if>
 			<if test='actionType != null and actionType.equals("checkIn")'>
-		        AND b.check_in = SYSDATE
+		        AND b.check_in = TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
 		        AND b.bookstat_code = 'bst02'
 			</if>
 			<if test='actionType != null and actionType.equals("upComing")'>
-		        AND b.check_in > SYSDATE
+		        AND b.check_in > TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
 		        AND b.bookstat_code = 'bst02'
 			</if>
 			<if test='actionType != null and actionType.equals("pendingReview")'>
-		        AND b.check_in > SYSDATE
+		        AND b.check_in > TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
 		        AND b.bookstat_code = 'bst03'
 			</if>
 	</select>
@@ -405,35 +405,35 @@
 		WHERE
 			1 = 1
 			<if test='actionType == null or actionType.equals("")'>
-		   	    AND b.check_out = SYSDATE
+		   	    AND b.check_out = TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
 		   	    AND b.bookstat_code = 'bst02'
 			</if>
 			<if test='actionType != null and actionType.equals("hosting")'>
-		        AND b.check_in <![CDATA[<=]]> SYSDATE
-		        AND b.check_out >= SYSDATE
+		        AND b.check_in <![CDATA[<=]]> TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
+		        AND b.check_out >= TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
 		        AND b.bookstat_code = 'bst02'
 			</if>
 			<if test='actionType != null and actionType.equals("checkIn")'>
-		        AND b.check_in = SYSDATE
+		        AND b.check_in = TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
 		        AND b.bookstat_code = 'bst02'
 			</if>
 			<if test='actionType != null and actionType.equals("upComing")'>
-		        AND b.check_in > SYSDATE
+		        AND b.check_in > TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
 		        AND b.bookstat_code = 'bst02'
 			</if>
 			<if test='actionType != null and actionType.equals("pendingReview")'>
-		        AND b.check_in > SYSDATE
+		        AND b.check_in > TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
 		        AND b.bookstat_code = 'bst03'
 			</if>
 	</select>
 	
 	
-<!-- 업데이트처리 -->
+	<!-- 업데이트처리 -->
 	<update id="updateBookstat" parameterType="map">
 		UPDATE
 		    booking
 		SET
-		    bookstat_code = #{bookstatCode}
+		    bookstat_code = 'bst03'
 		WHERE
 		    booking_id = #{bookingId}
 	</update>
