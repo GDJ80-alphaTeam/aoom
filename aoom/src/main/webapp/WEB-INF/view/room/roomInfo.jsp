@@ -103,14 +103,16 @@
 				<div style="width: 45%; margin-right: 30px;margin-bottom: 30px;display: flex;">
 					<div style="height: 150px ;width: 20%;">										
 						<img id="reviewImg${status.count}"  src="${r.reviewImage}" style="width:100%;height:50%;"onerror="this.style.display='none'">
-						<img id="userImg${status.count}"  src="${r.userImage}" style="width:100%;height:50%;"onerror="this.style.display='none'">
+							<a href="/user/profile?userId=${r.userId}" id="userId${status.count}">
+								<img id="userImg${status.count}"  src="${r.userImage}" style="width:100%;height:50%;"onerror="this.style.display='none'">
+							</a>
 					</div>						
 					<div style="width: 70%" id="reviewContent${status.count}">
 						${r.reviewContent}
 					</div>
 					<div>
-						${r.rating}
-						${r.userName}
+						<div id="userRating${status.count}">${r.rating}</div>
+						<div id="userName${status.count}">${r.userName}</div>
 					</div>
 				</div>
 			</c:forEach>			
@@ -408,18 +410,23 @@
 						$('[id^="reviewContent"]').empty();
 						$('[id^="reviewImg"]').attr('src','');
 						$('[id^="userImg"]').attr('src','');
+						$('[id^="userId"]').attr('href','');
+						$('[id^="userRating"]').empty();
+						$('[id^="userName"]').empty();
 						// onError일때 display가 none이된후 사라지지않음 그래서 다시 block처리후 src가없으면 다시 none으로 변경
 						$('[id^="reviewImg"]').css('display','block');
 						$('[id^="userImg"]').css('display','block');
 						// currentpage값 바꿔줌
 						currentPage = page;
-											
 						// id의값은 1부터 시작 , list는 [0]부터 시작함 그래서 response -1
 						for (let i = 1; i < response.data.review.length+1; i++) {
 							$('#reviewContent'+i).append(response.data.review[i-1].reviewContent);
-							$('#reviewImg'+i).attr('src',response.data.review[i-1].reviewImage); // reviewImgUrl이 response에 포함되어 있다고 가정함
-			                $('#userImg'+i).attr('src',response.data.review[i-1].userImage); // userImgUrl이 response에 포함되어 있다고 가정함
-			                
+							$('#reviewImg'+i).attr('src',response.data.review[i-1].reviewImage); 
+			                $('#userImg'+i).attr('src',response.data.review[i-1].userImage);
+			                $('#userRating'+i).append(response.data.review[i-1].rating);
+              				$('#userName'+i).append(response.data.review[i-1].userName);
+              				$('#userId'+i).attr('href','/user/profile?userId='+response.data.review[i-1].userId);
+              				
 						}					
 					} else if(response.code == 01){
 						alert('후기를불러오는데 실패하였습니다.')
