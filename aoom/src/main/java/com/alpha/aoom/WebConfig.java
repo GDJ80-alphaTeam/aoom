@@ -20,9 +20,8 @@ public class WebConfig implements WebMvcConfigurer{
 				// 제외 할 호출명 설정
 				.excludePathPatterns("/main", "/member/signup", "/member/ajaxSignup", "/member/ajaxSignout", 
 						"/member/signin", "/member/ajaxSignin", "/userAuthNo/ajaxSend", "/userAuthNo/ajaxAuthCheck", 
-						"/room/roomInfo", "/image/**", "/room/roomList" , "/review/ajaxReviewPaging",
-						"/room/ajaxResultRoom" , "/onedayPrice/ajaxValidDate" , "/onedayPrice/ajaxSelectDay",
-						"/css/**" , "/js/**"
+						"/room/roomInfo", "/room/roomList" , "/review/ajaxReviewPaging",
+						"/room/ajaxResultRoom" , "/onedayPrice/ajaxValidDate" , "/onedayPrice/ajaxSelectDay","/resources/**"
 						);
 		
 		// 위 설정을 인터셉터에 적용
