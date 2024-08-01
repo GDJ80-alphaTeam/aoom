@@ -12,9 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AOOM 메인 페이지</title>
     <script src="https://kit.fontawesome.com/82b4a4fcad.js"></script>
-    <link rel="stylesheet" href="/resources/css/main.css">
-    <link rel="stylesheet" href="/resources/css/common.css">
-    <script src="/resources/js/main.js" defer></script>
+    <link rel="stylesheet" href="/style/css/main.css">
+    <link rel="stylesheet" href="/style/css/common.css">
+    <script src="/style/js/main.js" defer></script>
 </head>
 
 <body>
