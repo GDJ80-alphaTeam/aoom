@@ -1,0 +1,718 @@
+@charset "utf-8";
+
+.inner {
+    width: 1120px;
+}
+
+.fixed {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 50;
+}
+
+i {
+    font-size: 10px;
+}
+
+p {
+    font-size: 14px;
+}
+
+span {
+    font-size: 16px;
+}
+
+b.margin {
+    font-size: 22px;
+    margin-bottom: 18px;
+}
+
+.p_b {
+    padding-bottom: 33px;
+    border-bottom: 1px solid #C7C7C7;
+    padding-top: 32px;
+}
+
+header {
+
+    border-bottom: 1px solid #C7C7C7;
+    background: #fff;
+}
+
+
+header .inner {
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    align-items: center;
+}
+
+header .inner ul.nav_menu {
+    width: 240px;
+    height: 320px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 5px 5px 20px #00000017;
+    position: absolute;
+    right: 0;
+    top: 110px;
+    z-index: 60;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    display: none;
+
+}
+
+header .inner ul.nav_menu.on {
+    display: flex;
+}
+
+header .inner ul.nav_menu li {
+    width: 100%;
+    cursor: pointer;
+}
+
+header .inner ul.nav_menu li:nth-child(4),
+header .inner ul.nav_menu li:nth-child(6) {
+    padding-top: 6px;
+    margin-top: 6px;
+    border-top: 1px solid #C7C7C7;
+}
+
+header .inner ul.nav_menu li p {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+}
+
+header .inner ul.nav_menu li p:hover {
+    background: #f4f4f4;
+}
+
+header .inner ul.search {
+    width: 855px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 17px 34px;
+    border-radius: 33px;
+    border: 1px solid #C7C7C7;
+    box-shadow: 3px 3px 20px #00000017;
+}
+
+header .inner .user {
+    width: 263px;
+    height: 46px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .inner .user a {
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+header .inner .user .profile {
+    padding: 6px 14px 6px 6px;
+    width: 156px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #291B3C;
+    border-radius: 28px;
+}
+
+header .inner .user .profile p {
+    font-weight: 800;
+}
+
+
+
+
+/* 컨텐츠 시작 */
+.a_main_visual {
+    margin-top: 120px;
+    padding-top: 63px;
+
+}
+
+
+
+/* 숙소 소개 */
+.a_main_visual .a_i_top .a_tit_box {
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    display: flex;
+}
+
+.a_main_visual .a_i_top .a_tit_box b {
+    font-size: 26px;
+}
+
+.a_main_visual .a_i_top .a_tit_box .save {
+    display: flex;
+    align-items: center;
+}
+
+.a_main_visual .a_i_top .a_tit_box .save i {
+    color: #ed5977;
+    font-size: 14px;
+    margin-right: 8px;
+}
+
+.a_main_visual .a_i_top .a_tit_box .save p {
+    text-decoration: underline;
+}
+
+.a_main_visual .a_i_top .a_img_box {
+    width: 100%;
+    height: 560px;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+
+}
+
+.a_main_visual .a_i_top .a_img_box img {
+    width: 100%;
+    cursor: pointer;
+}
+
+.a_main_visual .a_i_top .a_img_box img:hover {
+    filter: brightness(0.7);
+    transition: all 0.6s;
+}
+
+.a_main_visual .a_i_top .a_img_box .a_img_box_left {
+    width: 49.5%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.a_main_visual .a_i_top .a_img_box .a_img_box_right {
+    width: 49.5%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.a_main_visual .a_i_top .a_img_box .a_img_box_right .i_box {
+    width: 100%;
+    height: 49.1%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.a_main_visual .a_i_top .a_img_box .a_img_box_right .i_box .sub_img {
+    width: 49.1%;
+    height: 100%;
+    overflow: hidden;
+    background: #eee;
+}
+
+.a_main_visual .a_i_top button.img_all {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 5;
+    width: 145px;
+    height: 38px;
+    border-radius: 8px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    box-shadow: 5px 5px 20px #00000017;
+}
+
+
+/* 숙소 설명/편의 시설/예약창 */
+.a_main_visual .a_i_bottom {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 493px;
+}
+
+
+.a_main_visual .a_i_bottom .a_i_bottom_left {
+    width: 653px;
+}
+
+.a_main_visual .a_i_bottom .a_i_bottom_left span {
+    margin-bottom: 24px;
+}
+
+/* 숙소설명 */
+.a_main_visual .a_i_bottom .a_i_bottom_left .b_left_top {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 편의 시설 */
+.a_main_visual .a_i_bottom .a_i_bottom_left .b_left_bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+
+.a_main_visual .a_i_bottom .a_i_bottom_left .b_left_bottom .option_box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.a_main_visual .a_i_bottom .a_i_bottom_left .b_left_bottom .option_box:last-child {
+    margin-bottom: 0;
+}
+
+.a_main_visual .a_i_bottom .a_i_bottom_left .b_left_bottom .option_box .option {
+    display: flex;
+    width: 33.3333%;
+
+}
+
+.a_main_visual .a_i_bottom .a_i_bottom_left .b_left_bottom .option_box .option img {
+    margin-right: 15px;
+}
+
+
+
+/* 예약창 */
+.a_main_visual .a_i_bottom .a_i_bottom_right {
+    width: 372px;
+    height: 460px;
+    margin-top: 33px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 8px 8px 40px -8px #00000017;
+    border-radius: 15px;
+    border: 1px solid #d9d9d9;
+    position: relative;
+}
+
+.a_main_visual .a_i_bottom .a_i_bottom_right .s_reservation {
+    padding: 24px 0;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.a_main_visual .a_i_bottom .a_i_bottom_right .s_reservation .price {
+    font-size: 22px;
+    margin-bottom: 24px;
+}
+
+.a_main_visual .a_i_bottom .a_i_bottom_right .s_reservation .price span {
+    color: #8f8f8f;
+}
+
+.a_main_visual .a_i_bottom .a_i_bottom_right .s_reservation .r_box {
+    border: 1px solid #d9d9d9;
+    width: 322px;
+    overflow: hidden;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.a_main_visual .a_i_bottom .a_i_bottom_right .s_reservation .r_box button {
+    background: #fff;
+    height: 57px;
+    padding-left: 10px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.a_main_visual .a_i_bottom .a_i_bottom_right .s_reservation .r_box .r_box_top {
+    display: flex;
+}
+
+.a_main_visual .a_i_bottom .a_i_bottom_right .s_reservation .r_box .r_box_top button {
+    width: 50%;
+
+}
+
+.a_main_visual .a_i_bottom .a_i_bottom_right .s_reservation .r_box .r_box_top .chk_i {
+    border-right: 1px solid #d9d9d9;
+}
+
+.a_main_visual .a_i_bottom .a_i_bottom_right .s_reservation .r_box .r_personnel {
+    border-top: 1px solid #d9d9d9;
+}
+
+.a_main_visual .a_i_bottom .a_i_bottom_right .price_guide p {
+    margin-bottom: 20px;
+}
+
+.a_main_visual .a_i_bottom .a_i_bottom_right .p_g_bottom {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: underline;
+    padding-bottom: 32px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.a_main_visual .a_i_bottom .a_i_bottom_right .r_total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.a_main_visual .a_i_bottom .a_i_bottom_right .r_pink {
+    width: 100%;
+    height: 48px;
+    background: #ed5977;
+    border-radius: 8px;
+}
+
+.a_main_visual .a_i_bottom .a_i_bottom_right .r_pink span {
+    color: #fff;
+}
+
+.a_main_visual .a_i_bottom .a_i_bottom_right .r_declaration {
+    position: absolute;
+    bottom: -30px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.a_main_visual .a_i_bottom .a_i_bottom_right .r_declaration:hover {
+    color: #ff0033;
+    transition: all 0.6s;
+}
+
+
+
+
+/* 호스트 소개 */
+.host_i {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.host_i .h_flex {
+    display: flex;
+    width: 100%;
+    height: 209px;
+    justify-content: space-between;
+}
+
+.host_i .h_flex .h_left {
+    width: 318px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0 0 28px;
+    box-shadow: 5px 5px 35px #00000017;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.host_i .h_flex .h_left .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.host_i .h_flex .h_left .profile .img_box {
+    position: relative;
+}
+
+.host_i .h_flex .h_left .profile img.u_pic {
+    width: 104px;
+    height: 104px;
+    border-radius: 50%;
+    margin-bottom: 6px;
+}
+
+.host_i .h_flex .h_left .profile b {
+    font-size: 31px;
+}
+
+.host_i .h_flex .h_left .profile p {
+    display: flex;
+    align-items: center;
+}
+
+.host_i .h_flex .h_left .profile p i {
+    margin-right: 3px;
+}
+
+.host_i .h_flex .h_left .profile img.position_a {
+    position: absolute;
+    right: 5px;
+    bottom: 0;
+}
+
+.host_i .h_flex .h_left .h_information {
+    width: 90px;
+}
+
+.host_i .h_flex .h_left .h_information .flex_info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.host_i .h_flex .h_left .h_information .flex_info:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.host_i .h_flex .h_left .h_information .flex_info b {
+    display: flex;
+    font-weight: bold;
+    font-size: 22px;
+    align-items: center;
+}
+
+.host_i .h_flex .h_left .h_information .flex_info b p {
+    margin-left: 3px;
+}
+
+.host_i .h_flex .h_right {
+    width: 786px;
+    height: 100%;
+    border-radius: 10px;
+    border: 1px solid #d9d9d9;
+    padding: 30px;
+    position: relative;
+
+}
+
+.host_i .h_flex .h_right .talk_btn {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+.host_i .h_flex .h_right .talk_btn button {
+    width: 136px;
+    height: 48px;
+    border-radius: 8px;
+    background: #291b3c;
+}
+
+.host_i .h_flex .h_right .talk_btn button span {
+    color: #fff;
+}
+
+/* 숙소 위치 */
+.l_location {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+/* 후기 */
+.review_box {
+    margin-top: 32px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.review_box .review_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.review_box .review_title b {
+    display: flex;
+    align-items: center;
+}
+
+.review_box .review_title b,
+.review_box .review_title b span {
+    font-size: 26px;
+}
+
+.review_box .review_title b i {
+    font-size: 17px;
+    margin-right: 5px;
+}
+
+.review_box .review_title form select {
+    width: 122px;
+    height: 30px;
+    font-size: 12px;
+    padding-left: 10px;
+}
+
+.review_box .page_box {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.review_box .rolling_box {
+    display: flex;
+    transition: transform 0.3s ease;
+    width: 300%;
+}
+
+
+.review_box .rolling_box .review_page {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 100px;
+}
+
+
+.review_box .review_page .user_box {
+    width: 43%;
+    height: 316px;
+    padding-top: 32px;
+}
+
+.review_box .rolling_box .review_page .user_box .u_profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.review_box .rolling_box .review_page .user_box .u_profile .user_i {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+
+}
+
+.review_box .rolling_box .review_page .user_box .u_profile .user_i img {
+    width: 100%;
+}
+
+
+.review_box .rolling_box .review_page .user_box .u_r_txt_box .star_date {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.review_box .rolling_box .review_page .user_box .u_r_txt_box .star_date .star {
+    display: flex;
+    align-items: center;
+    margin-right: 7px;
+}
+
+.review_box .rolling_box .review_page .user_box .u_picture {
+    display: flex;
+    align-items: center;
+    margin-top: 26px;
+}
+
+.review_box .rolling_box .review_page .user_box .u_picture .u_picture_box {
+    width: 110px;
+    height: 110px;
+    background: #ddd;
+    margin-right: 14px;
+}
+
+.review_box .rolling_box .review_page .user_box .u_picture .u_picture_box img {
+    width: 100%;
+}
+
+.review_box .rolling_box .review_page .user_box .u_picture .u_picture_box:last-child {
+    margin-right: 0;
+}
+
+/* 페이지 네이션 커스텀 */
+.review_box .pagination {
+    align-self: center;
+    display: flex;
+}
+
+.review_box .pagination button {
+    width: 32px;
+    height: 32px;
+    background: #D9D9D9;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+}.review_box .pagination {
+    align-self: center;
+    display: flex;
+}
+
+.review_box .pagination button {
+    width: 32px;
+    height: 32px;
+    background: #D9D9D9;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+}
+.review_box .pagination button:nth-child(3){margin: 0 5px;}
+.review_box .pagination button i{font-size: 13px;}
+.review_box .pagination button:disabled {
+    opacity: 0.5;
+}
+
+.review_box .pagination button.active {
+    background: #291B3C;
+}
+
+.review_box .pagination button.prev_btn,
+.review_box .pagination button.next_btn {
+    border-radius: 0;
+    background: transparent;color: #291B3C;
+}
+
+
+.review_box .pagination button:disabled {
+    opacity: 0.5;
+}
+
+.review_box .pagination button.active {
+    background: #291B3C;
+}
+
+.review_box .pagination button.prev_btn,
+.review_box .pagination button.next_btn {
+    border-radius: 0;
+    background: transparent;color: #291B3C;
+}

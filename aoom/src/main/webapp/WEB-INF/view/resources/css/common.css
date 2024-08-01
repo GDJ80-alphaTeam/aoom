@@ -1,0 +1,106 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/* 리셋 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #291B3C;font-weight: 500;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+i{font-style: inherit;}
+
+ul {
+    list-style: none;
+}
+
+html,
+body {
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.inner {
+    margin: 0 auto;
+}
+
+input {
+    border: 0;
+    font-size: 14px;
+    color: #888888;font-weight: 400;outline: 0;
+}
+
+button {
+    border: 0;cursor: pointer;outline: 0;background: transparent;
+}
+select{outline: 0;}
+i{cursor: pointer;}
+
+b{font-style: normal;}
+*{box-sizing: border-box;}
+.clear{clear: both;}
+
+img{
+
+    object-fit: cover;}
+/* footer */
+
+footer {
+    height: 174px;
+    font-size: 14px;
+}
+
+footer .f_top {
+    width: 100%;
+    height: 48px;
+    border-top: 1px solid #C7C7C7;
+    border-bottom: 1px solid #C7C7C7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .f_bottom {
+    width: 100%;
+    margin-top: 23px;
+}
+
+
+footer span {
+    font-size: 10px;
+}
+
+
+/*  스크롤 TOP버튼 */
+
+aside {
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 800;
+    cursor: pointer;
+
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #ed5977;
+    font-size: 15px;
+    color: #fff;
+}
+
+aside i,
+aside span {
+    color: #fff;
+}

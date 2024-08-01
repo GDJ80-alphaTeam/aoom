@@ -1,0 +1,387 @@
+@charset "utf-8";
+
+.inner {
+    width: 1120px;
+}
+
+.fixed {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 50;
+}
+
+i {
+    font-size: 10px;
+}
+
+p {
+    font-size: 14px;
+}
+
+span {
+    font-size: 16px;
+}
+
+b.margin {
+    font-size: 22px;
+    margin-bottom: 18px;
+}
+
+.p_b {
+    padding-bottom: 33px;
+    border-bottom: 1px solid #C7C7C7;
+    padding-top: 32px;
+}
+
+header {
+
+    border-bottom: 1px solid #C7C7C7;
+    background: #fff;
+}
+
+
+header .inner {
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    align-items: center;
+}
+
+header .inner ul.nav_menu {
+    width: 240px;
+    height: 320px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 5px 5px 20px #00000017;
+    position: absolute;
+    right: 0;
+    top: 110px;
+    z-index: 60;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    display: none;
+
+}
+
+header .inner ul.nav_menu.on {
+    display: flex;
+}
+
+header .inner ul.nav_menu li {
+    width: 100%;
+    cursor: pointer;
+}
+
+header .inner ul.nav_menu li:nth-child(4),
+header .inner ul.nav_menu li:nth-child(6) {
+    padding-top: 6px;
+    margin-top: 6px;
+    border-top: 1px solid #C7C7C7;
+}
+
+header .inner ul.nav_menu li p {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+}
+
+header .inner ul.nav_menu li p:hover {
+    background: #f4f4f4;
+}
+
+header .inner ul.search {
+    width: 855px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 17px 34px;
+    border-radius: 33px;
+    border: 1px solid #C7C7C7;
+    box-shadow: 3px 3px 20px #00000017;
+}
+
+header .inner .user {
+    width: 263px;
+    height: 46px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .inner .user a {
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+header .inner .user .profile {
+    padding: 6px 14px 6px 6px;
+    width: 156px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #291B3C;
+    border-radius: 28px;
+}
+
+header .inner .user .profile p {
+    font-weight: 800;
+}
+
+
+
+h2 {
+    font-size: 26px;
+}
+
+h3 {
+    font-size: 24px;
+    margin-bottom: 24px;
+    padding-top: 31px;
+}
+
+h4 {
+    font-size: 22px;
+}
+
+i {
+    font-size: 10px;
+}
+
+p {
+    font-size: 14px;
+}
+
+span {
+    font-size: 16px;
+}
+
+
+/*  컨텐츠 시작 */
+.contents {
+    /*  margin-top: 120px; */
+    padding-top: 156px;
+    height: 1150px;
+}
+
+.contents img {
+    width: 100%;
+    height: 100%;
+}
+
+.contents .title_i_txt {
+    display: flex;
+    align-items: center;
+    margin-bottom: 26px;
+}
+
+.contents .title_i_txt i {
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.contents .con_left_right {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 15px;
+}
+
+.contents .con_left_right .con_left {
+    width: 520px;
+}
+
+
+.contents .con_left_right .con_left .calendar_box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contents .con_left_right .con_left .calendar_box .calendar {
+    width: 224px;
+    max-width: 224px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contents .con_left_right .con_left .calendar_box .calendar .calendar.chk_i {
+    margin-right: 32px;
+}
+
+.contents .con_left_right .con_left .calendar_box .calendar_input {
+    width: 124px;
+    font-size: 9px;
+    height: 44px;
+    border: 1px solid #C7C7C7;
+    border-radius: 5px;
+    margin-bottom: 18px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+
+}
+
+.contents .con_left_right .con_left .calendar_box .calendar_input i {
+    font-size: 19px;
+    color: #ed5977;
+}
+
+.contents .con_left_right .con_left .calendar_box .calendar_input input {
+    width: 100%;
+}
+
+.contents .con_left_right .con_left .calendar_box .calendar_b {
+    width: 244px;
+    height: 244px;
+    background: #d2d2dd;
+}
+
+.contents .con_left_right .con_left .people_num .num_box {
+    width: 84px;
+    height: 27px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.contents .con_left_right .con_left .people_num .num_box button {
+    width: 27px;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #C7C7C7;
+}
+
+
+
+.contents .con_left_right .con_left .payment select {
+    width: 520px;
+    height: 38px;
+    padding-left: 15px;
+}
+
+.contents .con_left_right .con_left .essential .input_box {
+    display: flex;
+    height: 120px;
+    justify-content: space-between;
+}
+
+.contents .con_left_right .con_left .essential .input_box .img_box {
+    width: 120px;
+    height: 100%;
+    background: #c7c7c7;
+    position: relative;
+}
+
+.contents .con_left_right .con_left .essential .input_box .img_box .position_txt {
+    position: absolute;
+    color: #fff;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 37px;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.contents .con_left_right .con_left .essential .input_box .i_txt_box textarea {
+    width: 382px;
+    height: 120px;
+    outline: 0;
+    padding: 5px;
+}
+
+.contents .con_left_right .con_right {
+    width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.contents .con_left_right .con_right .reservation_box {
+    width: 432px;
+    height: 482px;
+    border-radius: 15px;
+    box-shadow: 3px 3px 20px #00000017;
+    padding: 25px;
+}
+
+.contents .con_left_right .con_right .reservation_box .r_box_top {
+    display: flex;
+    width: 100%;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #C7C7C7;
+}
+
+.contents .con_left_right .con_right .reservation_box .r_box_top .d_img {
+    width: 104px;
+    height: 104px;
+    background: #ddd;
+    margin-right: 12px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.contents .con_left_right .con_right .reservation_box .r_box_top .d_txt {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contents .con_left_right .con_right .reservation_box .r_box_top .d_txt .star_p {
+    display: flex;
+    align-items: center;
+}
+
+.contents .con_left_right .con_right .reservation_box .r_box_top .d_txt .star_p i {
+    margin-right: 3px;
+}
+
+.contents .con_left_right .con_right .reservation_box .r_box_middle {
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #C7C7C7;
+}
+
+.contents .con_left_right .con_right .reservation_box .r_box_middle .c_price {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contents .con_left_right .con_right .reservation_box .r_box_middle .c_price .un_line {
+    text-decoration: underline;
+}
+
+.contents .con_left_right .con_right .reservation_box .r_box_middle h4 {
+    margin-bottom: 24px;
+}
+
+.contents .con_left_right .con_right .reservation_box .r_box_bottom {
+    margin-bottom: 24px;
+}
+
+.contents .con_left_right .con_right .reservation_box .r_box_bottom .total_p {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contents .con_left_right .con_right .reservation_box button {
+    background: #ed5977;
+    margin-top: 17px;
+    width: 382px;
+    height: 48px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+}

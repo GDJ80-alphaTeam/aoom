@@ -1,0 +1,727 @@
+@charset "utf-8";
+.inner {
+    width: 1600px;
+    margin: 0 auto;
+}
+
+.fixed {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 50;
+}
+
+
+/* 로그인 모달 */
+.log_in_bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    width: 100%;
+    height: 100vh;
+    background: rgba(00, 0, 0, 0.5);
+    display: none;
+}
+
+/* .log_in_bg.on {
+    display: flex;
+} */
+
+.log_in {
+    position: absolute;
+    width: 446px;
+    height: 519px;
+    background: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 5px 5px 20px #00000017;
+    border-radius: 15px;
+}
+
+.log_in .log_in_t {
+    width: 100%;
+    height: 65px;
+    border-bottom: 1px solid #C7C7C7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 36px;
+    font-size: 19px;
+}
+
+.log_in .log_in_t i {
+    position: absolute;
+    left: 36px;
+}
+
+
+.log_in ul.log_in_b {
+    width: 100%;
+    padding: 50px 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.log_in ul.log_in_b input,
+.log_in ul.log_in_b button {
+    width: 322px;
+    height: 51px;
+    border-radius: 8px;
+    padding: 0 27px;
+    background: #e3e3e3;
+    color: #888;
+    margin-bottom: 16px;
+}
+
+.log_in ul.log_in_b input {
+    display: flex;
+    align-items: center;
+}
+
+.log_in ul.log_in_b button {
+    font-size: 16px;
+    color: #fff;
+    background: #291b3c;
+}
+
+.log_in ul.log_in_b button:last-child {
+    background: #ed5977;
+}
+
+.log_in ul.log_in_b li:first-child {
+    margin-bottom: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.log_in ul.log_in_b li .option_btn {
+    display: flex;
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.log_in ul.log_in_b li .option_btn p:first-child {
+    margin-right: 20px;
+}
+
+/* 회원가입  모달*/
+.sign_in_bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    width: 100%;
+    height: 100vh;
+    background: rgba(00, 0, 0, 0.5);
+    display: none;
+}
+
+.sign_in_bg .sign_in {
+    width: 466px;
+    height: 875px;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sign_in_bg .sign_in button {
+    background: #ed5977;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.sign_in_bg .sign_in .sign_in_t {
+    width: 100%;
+    height: 65px;
+    border-bottom: 1px solid #C7C7C7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 36px;
+    font-size: 19px;
+}
+
+.sign_in_bg .sign_in .sign_in_t i {
+    position: absolute;
+    left: 36px;
+}
+
+
+
+.sign_in_bg .sign_in .sign_in_b {
+    width: 100%;
+    padding: 33px 72px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.sign_in_bg .sign_in .sign_in_b p {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.sign_in_bg .sign_in .sign_in_b input,
+.sign_in_bg .sign_in .pink {
+    width: 350px;
+    height: 51px;
+    border: #C7C7C7 1px solid;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding-left: 27px;
+}
+
+.sign_in_bg .sign_in .sign_in_b .email .box,
+.sign_in_bg .sign_in .sign_in_b .certification .box {
+    position: relative;
+}
+
+.sign_in_bg .sign_in .sign_in_b .email .box button,
+.sign_in_bg .sign_in .sign_in_b .certification .box button {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    width: 85px;
+    height: 37px;
+
+}
+
+.sign_in_bg .sign_in .pink {
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+
+/* 필터 창 */
+
+
+.filter_bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.filter_bg .filter {
+    width: 780px;
+    height: 93vh;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.filter_bg .filter button {
+    background: #ffff;
+    border: 1px #291B3C solid;
+    color: #291B3C;
+    font-size: 16px;
+}
+
+.filter_bg .filter .filter_contents li button.active {
+    background: #291B3C;
+    color: #fff;
+    border: 0;
+}
+
+.filter_bg .filter .filter_t {
+    width: 100%;
+    height: 65px;
+    border-bottom: 1px solid #C7C7C7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 36px;
+    font-size: 19px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fff;
+}
+
+.filter_bg .filter .filter_t i {
+    position: absolute;
+    left: 36px;
+}
+
+.filter_bg .filter .filter_contents {
+    width: 650px;
+    margin-top: 65px;
+    padding-top: 34px;
+    height: calc(93vh - 146px);
+    overflow-y: hidden;
+    /* 기본 스크롤바 숨기기 */
+    position: relative;
+}
+
+.filter_bg .filter .filter_contents>li {
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #C7C7C7;
+}
+
+.filter_bg .filter .filter_contents li:last-child {
+    margin-bottom: 0;
+    border: 0;
+}
+
+.filter_bg .filter .filter_contents h2 {
+    font-size: 22px;
+    margin-bottom: 11px;
+}
+
+.filter_bg .filter .filter_contents p {
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.filter_bg .filter .filter_contents .price_box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.filter_bg .filter .filter_contents li .price_box input {
+    width: 293px;
+    height: 52px;
+    border: 1px solid #C7C7C7;
+    border-radius: 8px;
+    padding-left: 27px;
+}
+
+.filter_bg .filter .filter_contents li .click_box {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px #291B3C solid;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.filter_bg .filter .filter_contents li .click_box button {
+    width: 33.3333%;
+    height: 105%;
+    border: 0;
+    border-right: 1px #291B3C solid;
+}
+
+.filter_bg .filter .filter_contents li .click_box button.active {
+    border: 0;
+    color: #fff;
+    background: #291b3c;
+}
+
+.filter_bg .filter .filter_contents li .click_box button:last-child {
+    border: 0;
+}
+
+.filter_bg .filter .filter_contents li:nth-child(3) div {
+    margin-bottom: 24px;
+}
+
+.filter_bg .filter .filter_contents li:nth-child(3) button {
+    width: 59px;
+    height: 40px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.filter_bg .filter .filter_contents li:nth-child(3) button.active {
+    border: 0;
+    color: #fff;
+    background: #291b3c
+}
+
+.filter_bg .filter .filter_contents li:nth-child(3) button.not {
+    width: 110px;
+}
+
+.filter_bg .filter .filter_contents li>ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.filter_bg .filter .filter_contents li>ul .chk {
+    width: 25%;
+    font-size: 16px;
+    margin-left: 12px;
+    display: flex;
+    align-items: center;
+    border: 0;
+    margin-bottom: 19px;
+}
+
+.filter_bg .filter .filter_contents li .chk span {
+    margin-left: 12px;
+}
+
+.filter_bg .filter .filter_contents li .chk input[type="checkbox"] {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    accent-color: #291b3c;
+}
+
+.filter_bg .filter .filter_b {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 81px;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 14px;
+}
+
+.filter_bg .filter .filter_b button {
+    width: 168px;
+    height: 51px;
+    border-radius: 8px;
+    border: 0;
+}
+
+.filter_bg .filter .filter_b button:first-child:hover {
+    background: #e3e3e3;
+    transition: all 0.5s;
+}
+
+.filter_bg .filter .filter_b button:last-child {
+    background: #291B3C;
+    color: #fff;
+}
+
+/* 필터 커스텀 스크롤바 스타일 */
+.custom-scrollbar {
+    position: absolute;
+    top: 70px;
+    right: 10px;
+    width: 8px;
+    height: calc(93vh - 160px);
+    background: #e3e3e3;
+    border-radius: 10px;
+}
+
+.custom-scrollbar-thumb {
+    position: relative;
+    width: 100%;
+    height: 90px;
+    background: #291B3C;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* ------------header----------- */
+
+
+header {
+
+    border-bottom: 1px solid #C7C7C7;
+    background: #fff;
+}
+
+
+header .inner {
+    height: 150px;
+    display: flex;
+    padding-top: 47px;
+    justify-content: space-between;
+    position: relative;
+}
+
+header .inner ul.nav_menu {
+    width: 240px;
+    height: 147px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 5px 5px 20px #00000017;
+    position: absolute;
+    right: 0;
+    top: 110px;
+    z-index: 60;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    display: none;
+
+}
+
+header .inner ul.nav_menu.on {
+    display: flex;
+}
+
+header .inner ul.nav_menu li {
+    width: 100%;
+    cursor: pointer;
+}
+
+header .inner ul.nav_menu li:last-child {
+    padding-top: 6px;
+    margin-top: 6px;
+    border-top: 1px solid #C7C7C7;
+}
+
+header .inner ul.nav_menu li p {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+}
+
+header .inner ul.nav_menu li p:hover {
+    background: #f4f4f4;
+}
+
+header .inner ul.search {
+    width: 855px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 17px 34px;
+    border-radius: 33px;
+    border: 1px solid #C7C7C7;
+    box-shadow: 3px 3px 20px #00000017;
+}
+
+header .inner ul.search li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+header .inner ul.search li span {
+    font-size: 11px;
+}
+
+header .inner ul.search li input {}
+
+header .inner ul.search li.s_btn {
+    cursor: pointer;
+}
+
+header .inner .user {
+    width: 263px;
+    height: 46px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .inner .user a {
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+header .inner .user .profile {
+    padding: 6px 14px 6px 6px;
+    width: 156px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #291B3C;
+    border-radius: 28px;
+}
+
+header .inner .user .profile p {
+    font-weight: 800;
+}
+
+
+
+/* -----------category------------- */
+
+
+.category {
+    background: #fff;
+    border-bottom: 1px solid #C7C7C7;
+}
+
+.category ul.inner {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.category ul li {
+    display: flex;
+    width: auto;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+
+.category ul li img {
+    margin-bottom: 8px;
+}
+
+.category ul li:last-child {
+    width: 77px;
+    height: 33px;
+}
+
+.category ul li:last-child button {
+    width: 100%;
+    height: 100%;
+    background: #ed5977;
+    display: flex;
+    flex-direction: row;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.category ul li:last-child button img {
+    margin: 0;
+    margin-right: 6px;
+}
+
+.category ul li:last-child button span {
+    font-size: 14px;
+    color: #fff;
+}
+
+
+
+/* room */
+
+.room_container {
+    position: relative;
+    margin-top: 260px;
+    padding-bottom: 100px; /* footer 공간 확보 */
+    height: auto;
+}
+
+.room {
+    padding: 47px 0 0;
+    position: relative; /* absolute에서 relative로 변경 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    display: none;
+}
+
+.room.fade_in {
+    display: block;
+}
+
+.room ul {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 82px;
+}
+.room ul:last-child{padding: 0;}
+.room ul li {
+    height: 385px;
+}
+
+
+.room ul li a {
+    width: 302px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.room ul li a .img_box {
+    width: 100%;
+    height: 280px;
+    background: #ffffff;
+    position: relative;
+}
+
+.room ul li a .img_box>img {
+    width: 100%;
+    height: 100%;
+    border-radius: 13px;
+}
+
+.room ul li a .img_box .heart_btn {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    cursor: pointer;
+}
+
+.room ul li a .img_box i {
+    font-size: 26px;
+    position: absolute;
+    right: 0;
+    color: #fff;
+}
+
+
+.room ul li a .img_box i.fa-solid {
+    color: #ed5977;
+    z-index: 5;
+    display: none;
+}
+
+.room ul li a .img_box i.fa-solid.active {
+    display: block;
+}
+
+.room ul li a {
+    font-size: 14px;
+}
+
+.room ul li a .txt_box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.room ul li a .txt_box .t_box_top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.room ul li a .txt_box .r_option,
+.room ul li a .txt_box .r_date {
+    color: #8f8f8f;
+}
+
+.room ul li a .txt_box .r_price {
+    margin-top: 9px;
+    font-weight: 800;
+}
+
