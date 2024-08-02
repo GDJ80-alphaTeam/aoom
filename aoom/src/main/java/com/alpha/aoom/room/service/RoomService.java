@@ -26,7 +26,7 @@ public class RoomService {
 	@Autowired
 	ImageUpload imageUpload;
 	
-	private final int rowPerPage = 5;
+	private final int rowPerPage = 6;
 	
 	// 숙소 상세보기 조회
 	// param: room_id

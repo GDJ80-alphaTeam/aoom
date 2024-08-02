@@ -191,7 +191,7 @@ span {
 }
 
 .inner_nav ul li {
-    width: 12.5%;
+    width: 20%;
     text-align: center;
     line-height: 51px;
     height: 100%;
@@ -343,15 +343,15 @@ span {
 .r_m_list .list_style li .one {
     display: flex;
     align-items: center;
-    width: 484px;
+    width: 384px;
 }
 
 .r_m_list .list_style li .two {
-    width: 261px;
+    width: 411px;
 }
 
 .r_m_list .list_style li .three {
-    width: 172px;
+    width: 112px;
     display: flex;
     align-items: center;
 }
@@ -377,7 +377,7 @@ span {
 }
 
 .r_m_list .list_style li .fourth {
-    width: 96px;
+    width: 106px;
 }
 
 .r_m_list .list_style li .last {
@@ -535,4 +535,71 @@ span {
     height: 33px;
     border-radius: 3px;
     background: #e3e3e3;
+}
+
+/* 페이지 네이션 커스텀 */
+.pagination {
+    display: flex;
+    justify-content: center; /* 중앙 정렬 */
+    align-items: center;
+    position: absolute;
+    bottom: 0; /* 하단에 배치 */
+    left: 50%; /* 중앙 정렬 */
+    transform: translateX(-50%); /* 중앙 정렬을 위한 위치 조정 */
+    margin-bottom: 20px; /* 필요에 따라 하단 여백 추가 */
+}
+
+.pagination button {
+    width: 32px;
+    height: 32px;
+    background: #D9D9D9;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.pagination button {
+    width: 32px;
+    height: 32px;
+    background: #D9D9D9;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+.pagination button:nth-child(3){margin: 0 5px;}
+.pagination button i{font-size: 13px;}
+.pagination button:disabled {
+    opacity: 0.5;
+}
+
+.pagination button.active {
+    background: #291B3C;
+}
+
+.pagination button.prev_btn,
+.pagination button.next_btn {
+    border-radius: 0;
+    background: transparent;color: #291B3C;
+}
+
+
+.pagination button:disabled {
+    opacity: 0.5;
+}
+
+.pagination button.active {
+    background: #291B3C;
+}
+
+.pagination button.prev_btn,
+.pagination button.next_btn {
+    border-radius: 0;
+    background: transparent;color: #291B3C;
 }

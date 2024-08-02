@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // 스크롤 top버튼
-    document.querySelector('aside').addEventListener('click', function () {
+    /*document.querySelector('aside').addEventListener('click', function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    });*/
 })
 $(document).ready(function () {
     //숙소관리 nav_active
@@ -20,10 +20,11 @@ $(document).ready(function () {
         $(this).find('ul').toggleClass('on')
     })
     //썸네일 리스트 바꾸기 클릭 이벤트
-    $('.r_manage .r_m_top .position_i i').click(function () {
-        $(this).eq(0).toggleClass('view').siblings().addClass('view');
-        $('.r_m_list').toggleClass('view').siblings().toggleClass('view');
-    })
+	$('.r_manage .r_m_top .position_i i').click(function() {
+		$(this).eq(0).toggleClass('view').siblings().addClass('view');
+		$('.r_m_list').toggleClass('view').siblings().toggleClass('view');
+	})
+    
     //반려사유 클릭
     $('.view_style p.un_line').click(function () {
         $('.refuse_modal').addClass('active')

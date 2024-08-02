@@ -73,7 +73,7 @@ public class HostController extends BaseController {
 	// 호스트 모드 숙소 관리 화면 호출
 	@RequestMapping("/roomManage")
 	public String roomManage(@RequestParam Map<String, Object> param, HttpSession session, ModelMap modelMap) {
-		
+		log.info("숙소관리 param={}", param.toString());
 		// 세션에서 user정보 가져오기
 		Map<String, Object> userInfo = (HashMap<String, Object>)session.getAttribute("userInfo");
 		
@@ -82,7 +82,9 @@ public class HostController extends BaseController {
 		param.put("userId", userId);
 		
 		// currentPage가 param에 가지고있으면 param값 , 없으면 1
-		int currentPage = (String)param.get("currentPage") != null ? Integer.parseInt((String)param.get("currentPage")) : 1 ; 
+		// viewStyle 가져오기(list or thumbnail)
+		int currentPage = param.get("currentPage") != null ? Integer.parseInt((String)param.get("currentPage")) : 1 ; 
+		String viewType = param.get("viewType") != null ? (String)param.get("viewType") : "list";
 		param.put("currentPage", currentPage);
 		
 		// userId로 호스팅중인 숙소 목록 가져오기
@@ -90,10 +92,11 @@ public class HostController extends BaseController {
 		
 		// ModelMap에 담아 view로 넘겨주기
 		modelMap.addAttribute("currentPage", currentPage);
+		modelMap.addAttribute("viewType", viewType);
 		modelMap.addAttribute("pagingInfo", roomService.selectByTotalCnt(param));
 		modelMap.addAttribute("roomListByUser", roomListByUser);		
 		
-		return "/host/roomManage";
+		return "/host/roomManage2";
 	}
 	
 	// 숙소 삭제 - 숙소 상태(roomstat_code)를 삭제(rst05)로 변경
