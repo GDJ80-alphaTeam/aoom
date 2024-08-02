@@ -107,9 +107,9 @@
 			</tr>
 			<c:forEach var="todayContent" items="${todayContent}">
 				<tr>
-					<td>${todayContent.bookingId }</td>
-					<td>${todayContent.roomId }</td>
-					<td>${todayContent.userId }</td>
+					<td><a href="${pageContext.request.contextPath}/host/bookList/bookInfo?bookingId=${todayContent.bookingId }">${todayContent.bookingId }</a></td>
+					<td><a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${todayContent.roomId }">${todayContent.roomId }</a></td>
+					<td><a href="${pageContext.request.contextPath}/user/profile?userId=${todayContent.userId }">${todayContent.userId }</a></td>
 					<td>${todayContent.stayPeople } 명</td>
 					<td>${todayContent.checkIn }</td>
 					<td>${todayContent.checkOut }</td>
