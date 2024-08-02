@@ -15,10 +15,14 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <link rel="stylesheet" href="/style/css/common.css">
+    <link rel="stylesheet" href="/style/css/main.css">
+    <script src="https://kit.fontawesome.com/82b4a4fcad.js"></script>
+    <script src="/style/js/main.js" defer></script>
 </head>
-<body class="container">
+<body>
     <!-- AOOM 네비게이션 바 -->
-    <jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
+    <jsp:include page="/WEB-INF/view/layout/navbarSub2.jsp"></jsp:include>
     
     <!-- 그리드 -->
     <div class="container text-center">
@@ -279,7 +283,10 @@
 				</div>
 			</div>
 		</c:forEach>
-	</div>	
+	</div>
+	
+    <!-- AOOM 네비게이션 바 -->
+    <jsp:include page="/WEB-INF/view/layout/footer.jsp"></jsp:include>	
     
     <script>
         // Moment.js를 사용하여 오늘 날짜 문자열 생성
