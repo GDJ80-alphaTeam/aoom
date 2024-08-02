@@ -97,6 +97,24 @@ public class BookingController extends BaseController {
 	public Map<String, Object> ajaxBook(@RequestParam Map<String, Object> param, HttpSession session) {
 		Map<String, Object> model = new HashMap<String, Object>(); // ajax 결과 담을 맵
 		
+		// 예약할 조건의 상태 조회(비정상적인 접근으로 예약되어있는날 예약하는 것을 방지)
+        List<Map<String, Object>> list = onedayPriceService.selectListByDate(param);
+        // result 변수 초기화
+        int result = 0;
+        // 반복문을 통해 list의 각 항목을 처리
+        for (Map<String, Object> item : list) {
+            // onestatCode 값을 가져옴
+            String onestatCode = (String) item.get("onestatCode");
+            // onestatCode가 "one02"일 경우 result 값을 1 증가
+            if (onestatCode.equals("one02")) {
+                result++;
+            }
+        }
+        
+        if (result >= 1) {
+        	return getFailResult(model,"예약할 수 없는 조건입니다.");
+        }
+		
 	    // 세션에서 userInfo를 가져옴 -> userInfo에서 userId를 추출
 	    Map<String, Object> userInfo = (Map<String, Object>) session.getAttribute("userInfo");
 	    String userId = (String) userInfo.get("userId");
@@ -112,7 +130,7 @@ public class BookingController extends BaseController {
 	    if(booking == 1) {
 	    	return getSuccessResult(model,"예약 성공");
 	    }else {
-	    	return getFailResult(model,"예약 실패");
+	    	return getFailResult(model,"예약할 수 없는 조건입니다.");
 	    }
 	}
 	 

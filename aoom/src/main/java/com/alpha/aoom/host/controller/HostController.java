@@ -47,6 +47,7 @@ public class HostController extends BaseController {
 		Map<String, Object> userInfo = (HashMap<String, Object>)session.getAttribute("userInfo");
 		String userId = (String) userInfo.get("userId");
 		param.put("userId", userId);
+		System.out.println("유저아이디 : "+userId);
 		
 		// 대시보드 출력물 호출
 		List<Map<String, Object>> todayContent = bookingService.selectListBySysdate(param);

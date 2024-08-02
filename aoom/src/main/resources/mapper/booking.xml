@@ -353,7 +353,7 @@
 		    ,TO_CHAR(b.total_price, '999,999,999') AS total_price
 		FROM 
 		    booking b
-		LEFT JOIN
+		INNER JOIN
 		    (SELECT	
 		        room_id
 		    FROM
@@ -382,7 +382,7 @@
 		        AND b.bookstat_code = 'bst02'
 			</if>
 			<if test='actionType != null and actionType.equals("pendingReview")'>
-		        AND b.check_in > TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
+		        AND b.check_out >= TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
 		        AND b.bookstat_code = 'bst03'
 			</if>
 	</select>

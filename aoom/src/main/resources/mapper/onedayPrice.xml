@@ -210,4 +210,16 @@
 		    AND oneday BETWEEN TO_DATE(#{checkIn}, 'YY-MM-DD') AND TO_DATE(#{checkOut}, 'YY-MM-DD') - 1
 		    AND onestat_code = 'one02'
 	</update>
+	
+	<!-- 예약가능한 날짜인지 조회 -->
+	<select id="selectListByDate" parameterType="map" resultType="camelCaseMap">
+		SELECT
+		     onestat_code
+		FROM
+		    oneday_price
+		WHERE
+		    room_id = #{roomId}
+		    AND oneday >= #{startDate}
+		    AND oneday <![CDATA[<]]> #{endDate}
+	</select>
 </mapper>

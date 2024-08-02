@@ -186,7 +186,11 @@ public class OnedayPriceService {
 	
 	// 예약취소한 bookingOnedayPricemap목록
 	public int updateByCancel(Map<String, Object> param){
-		
 		return onedayPriceMapper.updateByCancel(param);
+	}
+	
+	// 예약가능한 날짜인지 조회
+	public List<Map<String, Object>> selectListByDate(Map<String, Object> param) {
+		return onedayPriceMapper.selectListByDate(param);
 	}
 }
