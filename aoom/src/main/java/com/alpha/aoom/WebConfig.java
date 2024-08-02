@@ -21,7 +21,8 @@ public class WebConfig implements WebMvcConfigurer{
 				.excludePathPatterns("/main", "/member/signup", "/member/ajaxSignup", "/member/ajaxSignout", 
 						"/member/signin", "/member/ajaxSignin", "/userAuthNo/ajaxSend", "/userAuthNo/ajaxAuthCheck", 
 						"/image/**" , "/room/roomInfo", "/room/roomList" , "/review/ajaxReviewPaging",
-						"/room/ajaxResultRoom" , "/onedayPrice/ajaxValidDate" , "/onedayPrice/ajaxSelectDay","/style/**"
+						"/room/ajaxResultRoom" , "/onedayPrice/ajaxValidDate" , "/onedayPrice/ajaxSelectDay","/style/**",
+						"/image/**", "/img/**", "/favicon.ico", "/error"
 						);
 		
 		// 위 설정을 인터셉터에 적용
@@ -32,6 +33,8 @@ public class WebConfig implements WebMvcConfigurer{
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/style/**")
                 .addResourceLocations("/WEB-INF/view/style/");
+        registry.addResourceHandler("/img/**")
+        		.addResourceLocations("/WEB-INF/view/style/img/");
     }
 	
 	
