@@ -118,7 +118,7 @@
 							</div>
 							<!-- 버튼이름 -->
 							<div class="modal-footer">	
-								<button type="button" class="btn btn-secondary"data-bs-dismiss="modal">닫기</button>
+								<button type="button" id="closeBtn" class="btn btn-secondary"data-bs-dismiss="modal">닫기</button>
 								<button type="button" id="submitBtn" class="btn btn-primary">작성하기</button>
 							</div>
 						</div>
@@ -143,10 +143,29 @@
 		});
 		
 		// 이미지 제거
-		$('#reviewImage').click(function() {
+		$('#reviewImageRemove').click(function() {
 			$('#reviewImage').val("");
 			$('#reviewImageFile').attr('src', "/image/etc/imageUploadIcon.png");
 		});
+		
+		$('#reviewModal').on('hidden.bs.modal', function (e) {
+            // 텍스트 영역 초기화
+            $('#reviewContent').val('');
+
+            // 별점 초기화 (임시로 값 변경 - 실제 별점 관리 방식에 따라 수정 필요)
+            $('#rating').val('0');
+
+            // 이미지 파일 제거
+            $('#reviewImageFile').attr('src', '/image/etc/imageUploadIcon.png');
+            $('#reviewImage').val('');
+			
+            for (let i = 1; i <= 5; i++) {
+                const star = document.getElementById('star' + i);
+                star.innerHTML = '⚝';
+            }
+            // 필요에 따라 추가적인 초기화 작업
+            // 예: $('#star1').removeClass('selected'); 등
+        });
 		
 		function stars(num) {
 			$('#rating').val(num)
