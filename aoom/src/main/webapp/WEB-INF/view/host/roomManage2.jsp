@@ -16,6 +16,7 @@
 
     <link rel="stylesheet" href="/style/css/common.css">
     <link rel="stylesheet" href="/style/css/roomManage.css">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
@@ -55,8 +56,8 @@
 
                 <div class="user">
                     <div class="profile">
-                        <img src="/style/img/n_2.png" alt="유저 프로필">
-                        <p>이름</p>
+                        <img src="${sessionScope.userInfo.userImage }" alt="유저 프로필">
+                        <p>${sessionScope.userInfo.userName }</p>
                         <i class="fa-solid fa-bars"></i>
                     </div><!-- //profile -->
                 </div><!--//user -->
@@ -88,8 +89,14 @@
                     </select>
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <div class="position_i">
-					    <i id="listViewIcon" class="fa-solid fa-table-cells-large view"></i>
-					    <i id="thumbnailViewIcon" class="fa-solid fa-table-list"></i>
+						<c:if test="${viewType == 'list'}">
+							<i id="thumbnailViewIcon" class="fa-solid fa-table-cells-large view"></i>
+							<i id="listViewIcon" class="fa-solid fa-table-list "></i>
+						</c:if>
+						<c:if test="${viewType == 'thumbnail'}">
+							<i id="thumbnailViewIcon" class="fa-solid fa-table-cells-large "></i>
+							<i id="listViewIcon" class="fa-solid fa-table-list view"></i>
+						</c:if>
 					</div><!-- //position_i -->
                    	<form action="/host/roomManage/setupRoom" method="post" style="height: 100%;">
 						<button type="submit" style="height: 100%;">
@@ -390,27 +397,27 @@
 	</script>
 	
 	<script type="text/javascript">
-	    $(document).ready(function() {
-	        $('.position_i .fa-solid').click(function() {
-	            var isListView = $(this).hasClass('list-icon');
-	            var newViewMode = isListView ? 'list' : 'thumbnail';
+		$(document).ready(function() {
+		    // 리스트 뷰 아이콘과 썸네일 뷰 아이콘에 대한 클릭 이벤트 처리
+		    $('#listViewIcon, #thumbnailViewIcon').click(function() {
+		        // 클릭된 아이콘의 ID 가져오기
+		        var clickedIconId = $(this).attr('id');
+		        console.log('Clicked Icon ID:', clickedIconId);
 	
-	            // URL에 viewType 파라미터 추가하여 새로고침
-	            var currentPage = '${currentPage}'; // currentPage 값을 JSP에서 가져오기
-	            var url = '/host/roomManage?currentPage=' + currentPage + '&viewType=' + newViewMode;
+		        // 리스트 뷰인지 썸네일 뷰인지 판별
+		        var newViewMode = (clickedIconId === 'listViewIcon') ? 'list' : 'thumbnail';
+		        console.log('New View Mode:', newViewMode);
 	
-	            // 아이콘 및 리스트 요소에 'view' 클래스를 토글
-	            $(this).addClass('view').siblings().removeClass('view');
-	            if (newViewMode === 'list') {
-	                $('.r_m_list').addClass('view').siblings('.r_m_thumbnail').removeClass('view');
-	            } else {
-	                $('.r_m_thumbnail').addClass('view').siblings('.r_m_list').removeClass('view');
-	            }
+		        // URL에 viewType 파라미터 추가하여 새로고침
+		        var currentPage = '${currentPage}'; // currentPage 값을 JSP에서 가져오기
+		        var url = '/host/roomManage?currentPage=' + currentPage + '&viewType=' + newViewMode;
+		        console.log('New URL:', url);
 	
-	            // 페이지 새로고침
-	            window.location.href = url;
-	        });
-	    });
+		        // 페이지 새로고침
+		        window.location.href = url;
+		    });
+		});
+
 	</script>
 
 </body>

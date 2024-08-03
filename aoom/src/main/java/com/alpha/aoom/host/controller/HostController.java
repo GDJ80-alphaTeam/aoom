@@ -146,7 +146,7 @@ public class HostController extends BaseController {
 		modelMap.addAttribute("roomList", roomService.selectByUserId(userInfo));
 		modelMap.addAttribute("selectedRoomId", param.get("roomId"));
 	
-		return "/host/calendar";
+		return "/host/calendar2";
 	}
 	
 	// 달력 - 해당하는 숙소의 onedayPrice, 운영기간 가져오기

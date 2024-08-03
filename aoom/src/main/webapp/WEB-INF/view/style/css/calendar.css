@@ -1,0 +1,319 @@
+@charset "UTF-8";
+
+.selected-date {
+	background-color: black !important;
+}
+
+.event-date {
+	background-color: #d3d3d3 !important; /* 어두운 배경색 */
+	pointer-events: none; /* 클릭 비활성화 */
+}
+
+#calendar {
+	width: 80%;
+	min-height: 600px; /* 고정된 최소 높이 설정 */
+	box-sizing: border-box; /* 패딩과 테두리를 포함한 크기 조정 */
+}
+
+#selectDay, #notSelectDay {
+	box-sizing: border-box; /* 패딩과 테두리를 포함한 크기 조정 */
+}
+
+#selectDay {
+	display: none; /* 기본적으로 숨김 */
+}
+
+.fc-day a {
+	color: black;
+	text-decoration-line: none;
+}
+
+/* 일요일 날짜: 빨간색 */
+.fc-day-sun a {
+	color: red;
+}
+
+/* 토요일 날짜: 파란색 */
+.fc-day-sat a {
+	color: blue;
+}
+
+.inner {
+    width: 1120px;
+    position: relative;
+}
+
+
+.fixed {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 50;
+}
+
+i {
+    font-size: 10px;
+}
+
+p {
+    font-size: 14px;
+}
+
+span {
+    font-size: 16px;
+}
+
+b.margin {
+    font-size: 22px;
+    margin-bottom: 18px;
+}
+
+.p_b {
+    padding-bottom: 33px;
+    border-bottom: 1px solid #C7C7C7;
+    padding-top: 32px;
+}
+
+header {
+
+    border-bottom: 1px solid #C7C7C7;
+    background: #fff;
+}
+
+
+header .inner {
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    align-items: center;
+}
+
+header .inner ul.nav_menu {
+    width: 240px;
+    height: 320px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 5px 5px 20px #00000017;
+    position: absolute;
+    right: 0;
+    top: 110px;
+    z-index: 60;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    display: none;
+
+}
+
+header .inner ul.nav_menu.on {
+    display: flex;
+}
+
+header .inner ul.nav_menu li {
+    width: 100%;
+    cursor: pointer;
+}
+
+header .inner ul.nav_menu li:nth-child(4),
+header .inner ul.nav_menu li:nth-child(6) {
+    padding-top: 6px;
+    margin-top: 6px;
+    border-top: 1px solid #C7C7C7;
+}
+
+header .inner ul.nav_menu li p {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+}
+
+header .inner ul.nav_menu li p:hover {
+    background: #f4f4f4;
+}
+
+header .inner ul.search {
+    width: 855px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 17px 34px;
+    border-radius: 33px;
+    border: 1px solid #C7C7C7;
+    box-shadow: 3px 3px 20px #00000017;
+}
+
+header .inner .user {
+    width: 263px;
+    height: 46px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+header .inner .user a {
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+header .inner .user .profile {
+    padding: 6px 14px 6px 6px;
+    width: 156px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #291B3C;
+    border-radius: 28px;
+}
+
+header .inner .user .profile p {
+    font-weight: 800;
+}
+
+header .inner .user .profile img {
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 1px solid black;
+}
+/* 
+
+h2 {
+    font-size: 26px;
+}
+
+h3 {
+    font-size: 24px;
+    margin-bottom: 24px;
+    padding-top: 31px;
+} */
+h4 {
+    font-size: 22px;
+}
+
+h5 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+i {
+    font-size: 10px;
+}
+
+p {
+    font-size: 14px;
+}
+
+p.gray_c {
+    color: #888;
+}
+
+span {
+    font-size: 16px;
+}
+
+.inner_nav {
+    margin-top: 120px;
+    width: 100%;
+    height: 123px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.inner_nav ul {
+    width: 860px;
+    height: 52px;
+    display: flex;
+}
+
+.inner_nav ul li {
+    width: 20%;
+    text-align: center;
+    line-height: 51px;
+    height: 100%;
+    cursor: pointer;
+}
+
+.inner_nav ul li.active {
+    border-bottom: 4px solid #ED5977;
+    color: #ed5977;
+}
+
+.cal {
+    width: 100%;
+    padding-top: 47px;
+}
+
+.cal .cal_top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}
+
+.cal .cal_top .t_right {
+    display: flex;
+    width: 400px;
+    height: 38px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cal .cal_top .t_right select {
+    width: 134px;
+    height: 100%;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+input {
+    width: 130px;
+    height: 38px;
+    border-radius: 5px;
+    padding-left: 5px;
+    border: 1.5px solid #D9D9D9;
+    font-size: 13px;
+}
+
+button.pink {
+	background: #ed5977;
+    width: 105px;
+    height: 38px;
+    border-radius: 5px;
+    border: 0;
+    margin-right: 0;
+}
+
+button.pink span {
+    color: #fff;
+}
+
+button.dark_navy {
+	background: #291B3C;
+    width: 105px;
+    height: 38px;
+    border-radius: 5px;
+    border: 0;
+    margin-right: 0;
+}
+
+button.dark_navy span {
+    color: #ffffff;
+}
+
+.fc-event-main span, .fc-event-main div {
+    color: #ffffff !important;
+}
+
+.fc-icon-chevron-right::before,
+.fc-icon-chevron-left::before {
+	color: #ffffff !important;
+}
