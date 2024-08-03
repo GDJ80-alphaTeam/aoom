@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alpha.aoom.message.service.MessageMapper">
+	<!-- 메시지 리스트 조회-->
+	<select id="selectList" parameterType="map" resultType="camelCaseMap">
+		SELECT 
+    		CASE 
+        	WHEN m1.SEND_USER_ID = #{userId} THEN m1.RECEIVER_USER_ID
+        	ELSE m1.SEND_USER_ID
+   			END AS USER_ID,
+    		m3.USER_NAME,
+    		m1.CONTENT,
+    		TO_CHAR(m1.CREATE_DATE,'YYYY-MM-DD') as CREATE_DATE
+		FROM 
+    		message m1
+			JOIN 
+			    (
+			        SELECT 
+			            LEAST(SEND_USER_ID, RECEIVER_USER_ID) AS USER1,
+			            GREATEST(SEND_USER_ID, RECEIVER_USER_ID) AS USER2,
+			            MAX(CREATE_DATE) AS MAX_CREATE_DATE
+			        FROM 
+			            message
+			        GROUP BY 
+			            LEAST(SEND_USER_ID, RECEIVER_USER_ID), 
+			            GREATEST(SEND_USER_ID, RECEIVER_USER_ID)
+			    ) m2 
+			ON 
+			    LEAST(m1.SEND_USER_ID, m1.RECEIVER_USER_ID) = m2.USER1 
+			    AND GREATEST(m1.SEND_USER_ID, m1.RECEIVER_USER_ID) = m2.USER2
+			    AND m1.CREATE_DATE = m2.MAX_CREATE_DATE
+			JOIN users m3
+			ON m3.USER_ID = CASE 
+			                    WHEN m1.SEND_USER_ID = #{userId} THEN m1.RECEIVER_USER_ID
+			                    ELSE m1.SEND_USER_ID
+			                END
+			WHERE 
+			    m1.SEND_USER_ID = #{userId} OR m1.RECEIVER_USER_ID = #{userId}
+			    ORDER BY CREATE_DATE DESC 
+
+	</select>
+	
+	<select id="selectUserList" parameterType="map" resultType="camelCaseMap">
+	   SELECT 
+		 m.RECEIVER_USER_ID
+		,m.SEND_USER_ID
+		,TO_CHAR(m.CREATE_DATE, 'YYYY-MM-DD HH24:MI:SS') as create_date
+		,TO_CHAR(m.CREATE_DATE, 'YYYY-MM-DD') as create_ymd
+		,TO_CHAR(m.CREATE_DATE, 'HH24:MI:SS') as create_time
+		,m.CONTENT
+		FROM MESSAGE m
+		JOIN USERS u1 ON m.SEND_USER_ID = u1.USER_ID
+		JOIN USERS u2 ON m.RECEIVER_USER_ID = u2.USER_ID
+		WHERE (m.SEND_USER_ID = #{sendUserId} AND m.RECEIVER_USER_ID = #{receiverUserId})
+		OR (m.SEND_USER_ID = #{receiverUserId} AND m.RECEIVER_USER_ID = #{sendUserId})
+		ORDER BY m.CREATE_DATE
+	</select>
+	
+	<insert id="insert" parameterType="map">
+		insert into MESSAGE(
+				send_user_id
+				,receiver_user_id
+				,create_date
+				,content
+			)values(
+				#{sendId}
+				,#{receiverId}
+				,SYSDATE
+				,#{message}
+			)
+	</insert>
+
+	
+	
+</mapper>
