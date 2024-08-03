@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>AOOM 메인페이지</title>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -15,14 +16,10 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <link rel="stylesheet" href="/style/css/common.css">
-    <link rel="stylesheet" href="/style/css/main.css">
-    <script src="https://kit.fontawesome.com/82b4a4fcad.js"></script>
-    <script src="/style/js/main.js" defer></script>
 </head>
-<body>
+<body class="container">
     <!-- AOOM 네비게이션 바 -->
-    <jsp:include page="/WEB-INF/view/layout/navbarSub2.jsp"></jsp:include>
+    <jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
     
     <!-- 그리드 -->
     <div class="container text-center">
@@ -94,7 +91,7 @@
                                     <input type="radio" id="totalBath1" name="totalBath" value="1" checked>1
                                     <input type="radio" id="totalBath2" name="totalBath" value="2">2
                                     <input type="radio" id="totalBath3" name="totalBath" value="3">3
-                                    <input type="radio" id="totalBath4" name="totalBath" value="4">
+                                    <input type="radio" id="totalBath4" name="totalBath" value="4">4
                                     <input type="radio" id="totalBath5" name="totalBath" value="5">5+
 
                                     <h3>편의 시설</h3>
@@ -292,7 +289,7 @@
         // Moment.js를 사용하여 오늘 날짜 문자열 생성
         let today = moment().format("YYYY/MM/DD");
         
-            // 달력 API
+        // 달력 API
         $(function() {
             $('#daterange').daterangepicker({
                 minDate: today, // 오늘날짜 이전 선택불가

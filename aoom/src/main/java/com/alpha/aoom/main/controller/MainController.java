@@ -75,6 +75,6 @@ public class MainController {
 			modelMap.addAttribute("userWishRoom", wishListService.select(wishListParam));
 		}
 		
-		return "main";
+		return "main2";
 	}
 }

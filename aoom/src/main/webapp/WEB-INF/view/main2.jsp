@@ -11,6 +11,12 @@
     <meta name="keywords" content="AOOM, 웹디자인, 포트폴리오, 디자이너, 웹 포트폴리오">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AOOM 메인 페이지</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <link rel="stylesheet" href="/style/css/common.css">
     <link rel="stylesheet" href="/style/css/main.css">
     <script src="https://kit.fontawesome.com/82b4a4fcad.js"></script>
@@ -19,470 +25,404 @@
 
 <body>
 
-    <div class="log_in_bg"><!-- 로그인 모달 -->
-        <div class="log_in">
-            <div class="log_in_t">
-                <i class="fa-solid fa-xmark"></i>
-                <p>로그인</p>
-            </div><!--// log_in_t -->
-
-            <ul class="log_in_b">
-                <li>
-                    <input type="text" value="이메일을 입력해주세요">
-                    <input type="text" value="비밀번호를 입력해주세요">
-                    <div class="option_btn">
-                        <p>이메일 찾기</p>
-                        <p>비밀번호 변경</p>
-                    </div><!-- option_btn -->
-                </li>
-                <li class="login_btn">
-                    <button type="submit">로그인</button>
-                    <button>회원가입</button>
-                </li><!-- //login_btn -->
-            </ul> <!-- //log_in_b -->
-        </div><!-- //log_in -->
-    </div><!-- //log_in_bg -->
-
-    <div class="sign_in_bg"><!-- 회원가입 모달 -->
-        <div class="sign_in">
-            <div class="sign_in_t">
-                <i class="fa-solid fa-xmark"></i>
-                <p>회원가입</p>
-            </div><!--// sign_in -->
-            <div class="sign_in_b">
-                <div class="email">
-                    <p>이메일</p>
-                    <div class="box">
-                        <input type="text" value="이메일을 입력해주세요">
-                        <button>인증</button>
-                    </div><!-- //box -->
-
-                </div><!-- //email -->
-                <div class="certification">
-                    <p>인증번호</p>
-                    <div class="box">
-                        <input type="text" value="인증번호를 입력해주세요">
-                        <button>확인</button>
-                    </div><!-- //box -->
-                </div><!-- //certification -->
-                <div>
-                    <p>비밀번호</p>
-                    <input type="text" value="비밀번호를 입력(문자, 숫자, 특수문자 포함 8~20자)">
-                </div>
-                <div>
-                    <p>비밀번호 확인</p>
-                    <input type="text" value="비밀번호 재입력">
-                </div>
-                <div>
-                    <p>생년월일</p>
-                    <input type="text" value="생년월일을 입력해주세요">
-                </div>
-                <div>
-                    <p>이름</p>
-                    <input type="text" value="생년월일을 입력해주세요">
-                </div>
-                <div>
-                    <p>전화번호</p>
-                    <input type="text" value="휴대폰 번호 입력( - 제외 11자리 입력 )">
-                </div>
-            </div><!-- //sign_in_b -->
-            <button class="pink">회원가입</button>
-        </div><!-- //sign_in -->
-    </div><!-- //sign_in_bg -->
-
-    <div class="filter_bg"><!-- 필터창 -->
-        <div class="filter">
-            <div class="filter_t">
-                <i class="fa-solid fa-xmark"></i>
-                <p>필터</p>
-            </div><!--// filter_t -->
-            <ul class="filter_contents">
-                <li>
-                    <h2>가격</h2>
-                    <p>1박 요금( 수수료 및 세금 포함)</p>
-                    <div class="price_box">
-                        <input type="text" placeholder="최소 가격">
-                        <input type="text" placeholder="최대 가격">
-                    </div><!-- //price_box -->
-                </li>
-                <li>
-                    <h2>숙소 유형</h2>
-                    <p>방, 집 전체 등 원하는 숙소 유형을 검색해보세요.</p>
-                    <div class="click_box">
-                        <button class="active">전체 보기</button>
-                        <button>게스트 하우스</button>
-                        <button>일반 숙소</button>
-                    </div><!-- //click_box -->
-                </li>
-                <li>
-                    <h2>침실 · 침대 · 화장실 </h2>
-                    <div class="bedroom">
-                        <p>침실</p>
-                        <button class="not active">상관없음</button>
-                        <button>1</button>
-                        <button>2</button>
-                        <button>3</button>
-                        <button>4</button>
-                        <button>5+</button>
-                    </div><!-- //bedroom -->
-                    <div class="bed">
-                        <p>침대</p>
-                        <button class="not active">상관없음</button>
-                        <button>1</button>
-                        <button>2</button>
-                        <button>3</button>
-                        <button>4</button>
-                        <button>5+</button>
-                    </div><!-- //bed -->
-                    <div class="restroom">
-                        <p>화장실</p>
-                        <button class="not active">상관없음</button>
-                        <button>1</button>
-                        <button>2</button>
-                        <button>3</button>
-                        <button>4</button>
-                        <button>5+</button>
-                    </div><!-- //restroom -->
-                </li>
-                <li>
-                    <h2>편의시설</h2>
-                    <ul>
-                        <li class="chk"> <input type="checkbox"> <label for="check_btn"><span>와이파이</span></label></li>
-                        <li class="chk"> <input type="checkbox"> <label for="check_btn"><span>주차장</span></label></li>
-                        <li class="chk"> <input type="checkbox"> <label for="check_btn"><span>에어컨</span></label></li>
-                        <li class="chk"> <input type="checkbox"> <label for="check_btn"><span>주방</span></label></li>
-                        <li class="chk"> <input type="checkbox"> <label for="check_btn"><span>엘리베이터</span></label></li>
-                        <li class="chk"> <input type="checkbox"> <label for="check_btn"><span>드라이기</span></label></li>
-                        <li class="chk"> <input type="checkbox"> <label for="check_btn"><span>냉장고</span></label></li>
-                        <li class="chk"> <input type="checkbox"> <label for="check_btn"><span>ott</span></label></li>
-                    </ul>
-                    <div class="chk">
-
-                    </div><!-- //chk -->
-                    <div class="chk">
-
-                    </div><!-- //chk -->
-                    <div class="chk">
-
-                    </div><!-- //chk -->
-                    <div class="chk">
-
-                    </div><!-- //chk -->
-                    <div class="chk">
-
-                    </div><!-- //chk -->
-                    <div class="chk">
-
-                    </div><!-- //chk -->
-                    <div class="chk">
-
-                    </div><!-- //chk -->
-                    <div class="chk">
-
-                    </div><!-- //chk -->
-                </li>
-            </ul><!-- //filter_contents -->
-            <div class="filter_b">
-                <button>전체해제</button>
-                <button>필터적용</button>
-            </div>
-            <div class="custom-scrollbar">
-                <div class="custom-scrollbar-thumb"></div>
-            </div>
-        </div><!-- //filter -->
-    </div><!-- filter -->
-
-    <div class="fixed">
-        <header>
-            <div class="inner">
-
-                <ul class="nav_menu">
-                    <li>
-                        <p>로그인</p>
-                    </li>
-                    <li>
-                        <p>회원가입</p>
-                    </li>
-                    <li>
-                        <p>자주묻는 질문</p>
-                    </li>
-                </ul><!-- //nav_menu -->
-
-                <a href="#" class="logo">
-                    <img src="${pageContext.request.contextPath}/img/nav_1.png" alt="AOOM로고">
-                </a><!-- //logo -->
-
-                <ul class="search">
-                    <li class="destination">
-                        <span>여행지</span>
-                        <input type="text" value="내용을 입력해주세요.">
-                    </li><!-- //destination -->
-                    <li class="check_in">
-                        <span>체크인</span>
-                        <input type="date" value="날짜 추가">
-                    </li><!-- //check_in -->
-                    <li class="check_out">
-                        <span>체크아웃</span>
-                        <input type="date" value="날짜 추가">
-                    </li><!-- //check_out -->
-                    <li class="traveler">
-                        <span>여행자</span>
-                        <input type="text" value="내용을 입력해주세요.">
-                    </li><!-- //traveler -->
-                    <li class="s_btn">
-                        <img src="${pageContext.request.contextPath}/img/nav_2.png" alt="검색 아이콘">
-                    </li><!-- search_btn -->
-                </ul><!-- //search -->
-
-                <div class="user">
-                    <div class="host_mode">
-                        <a href="">
-                            호스트 모드
-                        </a>
-                    </div><!-- //host_mode -->
-                    <div class="profile">
-                        <img src="${pageContext.request.contextPath}/img/nav_3.png" alt="유저 프로필">
-                        <p>로그인</p>
-                        <i class="fa-solid fa-bars"></i>
-                    </div><!-- //profile -->
-                </div><!--//user -->
-
-            </div><!-- //inner -->
-        </header><!--//header-->
-
-        <div class="category">
-            <ul class="inner">
-                <li class="fade_in">
-                    <img src="${pageContext.request.contextPath}/img/roomlist_1.png" alt="골프장">
-                    <span>골프장</span>
-                </li>
-                <li>
-                    <img src="${pageContext.request.contextPath}/img/roomlist_2.png" alt="국립공원">
-                    <span>국립공원</span>
-                </li>
-                <li>
-                    <img src="${pageContext.request.contextPath}/img/roomlist_3.png" alt="농장">
-                    <span>농장</span>
-                </li>
-                <li>
-                    <img src="${pageContext.request.contextPath}/img/roomlist_4.png" alt="최고의 전망">
-                    <span>최고의 전망</span>
-                </li>
-                <li>
-                    <img src="${pageContext.request.contextPath}/img/roomlist_5.png" alt="캠핑장">
-                    <span>캠핑장</span>
-                </li>
-                <li>
-                    <img src="${pageContext.request.contextPath}/img/roomlist_6.png" alt="컨테이너 하우스">
-                    <span>컨테이너 하우스</span>
-                </li>
-                <li>
-                    <img src="${pageContext.request.contextPath}/img/roomlist_7.png" alt="호수 근처">
-                    <span>호수 근처</span>
-                </li>
-                <li>
-                    <img src="${pageContext.request.contextPath}/img/roomlist_8.png" alt="풀빌라">
-                    <span>풀빌라</span>
-                </li>
-                <li>
-                    <img src="${pageContext.request.contextPath}/img/roomlist_9.png" alt="향토적인">
-                    <span>향토적인</span>
-                </li>
-                <li>
-                    <img src="${pageContext.request.contextPath}/img/roomlist_10.png" alt="오션뷰">
-                    <span>오션뷰</span>
-                </li>
-                <li>
-                    <img src="${pageContext.request.contextPath}/img/roomlist_11.png" alt="한옥">
-                    <span>한옥</span>
-                </li>
-                <li>
-                    <img src="${pageContext.request.contextPath}/img/roomlist_12.png" alt="전문가급 주방">
-                    <span>전문가급 주방</span>
-                </li>
-                <li class="filter">
-                    <button type="button">
-                        <img src="${pageContext.request.contextPath}/img/roomlist_13.png" alt="필터">
-                        <span>필터</span>
-                    </button>
-                </li>
-            </ul>
-        </div><!-- //category -->
-    </div>
+    <!-- AOOM 네비게이션 바 -->
+    <jsp:include page="/WEB-INF/view/layout/navbarMain.jsp"></jsp:include>
 
     <div class="room_container inner">
         <div class="room fade_in">
+        
+          	<!-- 숙소 출력 반복 -->
+       		<!-- 조회수 TOP 4 -->
             <ul>
-
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="${pageContext.request.contextPath}/img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="${pageContext.request.contextPath}/img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="${pageContext.request.contextPath}/img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="${pageContext.request.contextPath}/img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="${pageContext.request.contextPath}/img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="${pageContext.request.contextPath}/img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="img_box">
-                            <img src="${pageContext.request.contextPath}/img/roomlist_17.png" alt="숙소사진">
-                            <div class="heart_btn">
-                                <i class="fa-solid fa-heart"></i>
-                                <i class="fa-regular fa-heart"></i>
-
-
-                            </div>
-
-                        </div><!-- //img_box -->
-                        <div class="txt_box">
-                            <div class="t_box_top">
-                                <div class="r_name">
-                                    숙소이름
-                                </div><!-- //r_name -->
-                                <div class="r_star">
-                                    <img src="${pageContext.request.contextPath}/img/roomlist_16.png" alt="별점">
-                                    <span>5.45</span>
-                                </div><!-- //t_star -->
-                            </div><!-- //t_box_top -->
-
-                            <div class="r_option">
-                                요약내용
-                            </div><!-- //r_option -->
-                            <div class="r_date">
-                                날짜
-                            </div><!-- //r_date -->
-                            <div class="r_price">
-                                가격
-                            </div><!-- //r_price -->
-                        </div><!-- //txt_box -->
-                    </a>
-                </li>
+           		<c:forEach var="viewsDesc" items="${viewsDesc}">
+	                <li>
+	                    <a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${viewsDesc.roomId}">
+	                        <div class="img_box">
+	                            <img src="${viewsDesc.mainImage}" alt="숙소사진">
+	                            <div class="heart_btn">
+									<button type="button" name="wishListBtn_${viewsDesc.roomId}" style="position: absolute; top: 0; right: 0; border: 0; background-color: transparent;">
+										<c:set var="isWishRoom" value="false"></c:set>
+										<c:forEach var="uwr" items="${userWishRoom }">
+											<c:if test="${uwr.roomId == viewsDesc.roomId }">
+												<c:set var="isWishRoom" value="true"></c:set>
+											</c:if>
+										</c:forEach>
+										<c:if test="${isWishRoom}">
+											&#129505;
+										</c:if>
+										<c:if test="${!isWishRoom}">
+											&#129293;
+										</c:if>
+									</button>	                            	
+	                            </div>
+	                        </div>
+	                        <div class="txt_box">
+	                            <div class="t_box_top">
+	                                <div class="r_name">
+	                                    ${viewsDesc.roomName}
+	                                </div>
+	                                <div class="r_star">
+	                                    <img src="${pageContext.request.contextPath}/img/roomlist_16.png" alt="별점">
+	                                    <span>${viewsDesc.avgRating}</span>
+	                                </div>
+	                            </div>
+	                            <div class="r_option">
+	                                ${viewsDesc.address}
+	                            </div>
+	                            <div class="r_price">
+	                                ${viewsDesc.defaultPrice} 원
+	                            </div>
+	                        </div>
+	                    </a>
+	                </li>
+                </c:forEach>
             </ul>
-        </div><!-- //room -->
-    </div><!-- //room_container -->
+            
+          	<!-- 예약 TOP 4 -->
+            <ul>    
+           		<c:forEach var="bookingDesc" items="${bookingDesc}">
+	                <li>
+	                    <a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${bookingDesc.roomId}">
+	                        <div class="img_box">
+	                            <img src="${bookingDesc.mainImage}" alt="숙소사진">
+	                            <div class="heart_btn">
+									<button type="button" name="wishListBtn_${bookingDesc.roomId}" style="position: absolute; top: 0; right: 0; border: 0; background-color: transparent;">
+										<c:set var="isWishRoom" value="false"></c:set>
+										<c:forEach var="uwr" items="${userWishRoom }">
+											<c:if test="${uwr.roomId == bookingDesc.roomId }">
+												<c:set var="isWishRoom" value="true"></c:set>
+											</c:if>
+										</c:forEach>
+										<c:if test="${isWishRoom}">
+											&#129505;
+										</c:if>
+										<c:if test="${!isWishRoom}">
+											&#129293;
+										</c:if>
+									</button>
+	                            </div>
+	                        </div>
+	                        <div class="txt_box">
+	                            <div class="t_box_top">
+	                                <div class="r_name">
+	                                    ${bookingDesc.roomName}
+	                                </div>
+	                                <div class="r_star">
+	                                    <img src="${pageContext.request.contextPath}/img/roomlist_16.png" alt="별점">
+	                                    <span>${bookingDesc.avgRating}</span>
+	                                </div>
+	                            </div>
+	                            <div class="r_option">
+	                                ${bookingDesc.address}
+	                            </div>
+	                            <div class="r_price">
+	                                ${bookingDesc.defaultPrice} 원
+	                            </div>
+	                        </div>
+	                    </a>
+	                </li>
+                </c:forEach>
+            </ul>
+          	
+          	<!-- 위시리스트 TOP 4 -->
+            <ul>    
+           		<c:forEach var="wishListDesc" items="${wishListDesc}">
+	                <li>
+	                    <a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${wishListDesc.roomId}">
+	                        <div class="img_box">
+	                            <img src="${wishListDesc.mainImage}" alt="숙소사진">
+	                            <div class="heart_btn">
+									<button type="button" name="wishListBtn_${wishListDesc.roomId}" style="position: absolute; top: 0; right: 0; border: 0; background-color: transparent;">
+										<c:set var="isWishRoom" value="false"></c:set>
+										<c:forEach var="uwr" items="${userWishRoom }">
+											<c:if test="${uwr.roomId == wishListDesc.roomId }">
+												<c:set var="isWishRoom" value="true"></c:set>
+											</c:if>
+										</c:forEach>
+										<c:if test="${isWishRoom}">
+											&#129505;
+										</c:if>
+										<c:if test="${!isWishRoom}">
+											&#129293;
+										</c:if>
+									</button>
+	                            </div>
+	                        </div>
+	                        <div class="txt_box">
+	                            <div class="t_box_top">
+	                                <div class="r_name">
+	                                    ${wishListDesc.roomName}
+	                                </div>
+	                                <div class="r_star">
+	                                    <img src="${pageContext.request.contextPath}/img/roomlist_16.png" alt="별점">
+	                                    <span>${wishListDesc.avgRating}</span>
+	                                </div>
+	                            </div>
+	                            <div class="r_option">
+	                                ${wishListDesc.address}
+	                            </div>
+	                            <div class="r_price">
+	                                ${wishListDesc.defaultPrice} 원
+	                            </div>
+	                        </div>
+	                    </a>
+	                </li>
+                </c:forEach>
+            </ul>
+            
+			<!-- 별점 TOP 4 -->
+            <ul>    
+           		<c:forEach var="ratingDesc" items="${ratingDesc}">
+	                <li>
+	                    <a href="${pageContext.request.contextPath}/room/roomInfo?roomId=${ratingDesc.roomId}">
+	                        <div class="img_box">
+	                            <img src="${ratingDesc.mainImage}" alt="숙소사진">
+	                            <div class="heart_btn">
+									<button type="button" name="wishListBtn_${ratingDesc.roomId}" style="position: absolute; top: 0; right: 0; border: 0; background-color: transparent;">
+										<c:set var="isWishRoom" value="false"></c:set>
+										<c:forEach var="uwr" items="${userWishRoom }">
+											<c:if test="${uwr.roomId == ratingDesc.roomId }">
+												<c:set var="isWishRoom" value="true"></c:set>
+											</c:if>
+										</c:forEach>
+										<c:if test="${isWishRoom}">
+											&#129505;
+										</c:if>
+										<c:if test="${!isWishRoom}">
+											&#129293;
+										</c:if>
+									</button>
+	                            </div>
+	                        </div>
+	                        <div class="txt_box">
+	                            <div class="t_box_top">
+	                                <div class="r_name">
+	                                    ${ratingDesc.roomName}
+	                                </div>
+	                                <div class="r_star">
+	                                    <img src="${pageContext.request.contextPath}/img/roomlist_16.png" alt="별점">
+	                                    <span>${ratingDesc.avgRating}</span>
+	                                </div>
+	                            </div>
+	                            <div class="r_option">
+	                                ${ratingDesc.address}
+	                            </div>
+	                            <div class="r_price">
+	                                ${ratingDesc.defaultPrice} 원
+	                            </div>
+	                        </div>
+	                    </a>
+	                </li>
+                </c:forEach>
+            </ul>
+        </div>
+    </div>
 
-
-    <footer class="inner clear">
-        <div class="f_top">
-            <div class="ft_left">
-                <p>© 2024 Airbnb, Inc. · 개인정보 처리방침 · 이용약관 · 사이트맵 · 환불 정책 · 회사 세부정보</p>
-            </div>
-            <div class="ft_right">
-                <p>자주 묻는 질문</p>
-            </div>
-        </div><!-- //f_top -->
-        <div class="f_bottom">
-            <span>
-	            웹사이트제공자:GDJ80alphaTeam,privateunlimitedcompany,8HanoverQuayDublin2,D02DP23Ireland|팀장:이용훈|VAT번호:IE12345678L사업자등록번호:IE123456|연락처:newlife5991@naver.com,
-	            웹사이트,010-7635-9302|호스팅서비스제공업체:아마존웹서비스|<br>
-	            AOOM은 통신판매중개자로AOOM플랫폼을통하여게스트와호스트사이에이루어지는통신판매의당사자가아닙니다.AOOM플랫폼을통하여 예약된 숙소, 호스트 서비스에 관한 의무와 책임은 해당 서비스를 제공하는
-	            호스트에게 있습니다.
-            </span>
-        </div><!-- //f_bottom -->
-    </footer>
-
+	<!-- 푸터  -->
+    <jsp:include page="/WEB-INF/view/layout/footer.jsp"></jsp:include>
+	
+	<!-- 위로가기 -->
     <aside>
         <i class="fa-solid fa-chevron-up"></i>
         <span>TOP</span>
     </aside>
 
-</body>
+    <script type="text/javascript">
+    
+	    // Moment.js를 사용하여 오늘 날짜 문자열 생성
+	    let today = moment().format("YYYY/MM/DD");
+	    
+	    // 달력 API
+	    $(function() {
+	        $('#daterange').daterangepicker({
+	            minDate: today, // 오늘날짜 이전 선택불가
+	            showDropdowns: true, // 연도와 월을 선택할 수 있는 드롭다운 생성
+	             autoApply: false, // 적용버튼 누르기 전 까지 적용 안되게
+	            autoUpdateInput: false, // 날짜 범위도 적용 누르기 전까지 적용 안 되게
+	            locale: {
+	                "format" : "YYYY/MM/DD", // 연월일 포맷설정
+	                "separator" : " ~ ", // 캘린더 우측아래 범위 표현
+	                "applyLabel" : "적용", // 적용버튼 스트링값
+	                "cancelLabel" : "비우기", // 취소버튼 스트링값
+	                "customRangeLabel" : "Custom", // 커스텀방식
+	                "daysOfWeek" : [ "일", "월", "화", "수", "목", "금", "토" ], // 요일표시방식
+	                "monthNames" : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월" ] // 월 표시방식
+	            }
+	        });
+	        // 캘린더 '적용' 눌렀을 때 이벤트처리
+	        $('#daterange').on('apply.daterangepicker', function(ev, picker) {
+	            let startDate = picker.startDate; // 첫번째 선택날짜 선언
+	            let endDate = picker.endDate; // 두번째 선택날짜 선언
+	            // 선택날 두 날이 같을 시 조건문
+	            if (startDate.isSame(endDate, 'day')) { // 같을 때
+	                alert("체크인과 체크아웃 날짜가 같을 수 없습니다.");
+	                $('#daterange').val(''); // 비우기
+	                $('#startDate').val('');
+	                $('#endDate').val('');
+	            } else { // 그렇지 않은 모든경우에 : 선택한 첫날과 마지막날을 hidden안에 담는다 
+	                $(this).val(startDate.format('MM/DD/YYYY') + ' - ' + endDate.format('MM/DD/YYYY'));
+	                $('#startDate').val(startDate.format('YYYY/MM/DD'));
+	                $('#endDate').val(endDate.format('YYYY/MM/DD'));
+	            }
+	        })
+	    });
+    	
+		// 필터링 버튼을 눌렀을 때
+		$('#filterBtn').click(function() {
+		    let baseUrl = "${pageContext.request.contextPath}/room/roomList?";
+		    let params = $('#filterForm').serializeArray();
+		    let queryString = '';
+		    
+		    let lowPrice = parseInt($('input[name="lowPrice"]').val());
+            let highPrice = parseInt($('input[name="highPrice"]').val());
 
+            // 유효성 검사
+            if (highPrice < lowPrice) {
+                alert("최고 가격은 최저 가격보다 작을 수 없습니다.");
+                return; // 유효성 검사를 통과하지 못하면 URL 생성 중단
+            }
+
+		    $.each(params, function(index, param) {
+		        if (param.name === 'amenities') {
+		            if (queryString.indexOf('amenities=') > -1) {
+		                queryString += ',' + encodeURIComponent(param.value);
+		            } else {
+		                if (queryString.length > 0) {
+		                    queryString += '&';
+		                }
+		                queryString += param.name + '=' + encodeURIComponent(param.value);
+		            }
+		        } else {
+		            if (queryString.length > 0) {
+		                queryString += '&';
+		            }
+		            queryString += param.name + '=' + encodeURIComponent(param.value);
+		        }
+		    });
+		    
+		    window.location.href = baseUrl + queryString;
+		});
+	    
+	    // 침실 버튼 클릭 시
+	    $('#totalSpace0').click(function(){
+	    	$('#totalSpace').val('0');
+	    })
+	    $('#totalSpace1').click(function(){
+	    	$('#totalSpace').val('1');
+	    })
+	    $('#totalSpace2').click(function(){
+	    	$('#totalSpace').val('2');
+	    })
+	    $('#totalSpace3').click(function(){
+	    	$('#totalSpace').val('3');
+	    })
+	    $('#totalSpace4').click(function(){
+	    	$('#totalSpace').val('4');
+	    })
+	    $('#totalSpace5').click(function(){
+	    	$('#totalSpace').val('5');
+	    })
+	    
+	    // 침대 버튼 클릭 시
+   	    $('#totalBed0').click(function(){
+	    	$('#totalBed').val('0');
+	    })
+   	    $('#totalBed1').click(function(){
+	    	$('#totalBed').val('1');
+	    })
+   	    $('#totalBed2').click(function(){
+	    	$('#totalBed').val('2');
+	    })
+   	    $('#totalBed3').click(function(){
+	    	$('#totalBed').val('3');
+	    })
+   	    $('#totalBed4').click(function(){
+	    	$('#totalBed').val('4');
+	    })
+   	    $('#totalBed5').click(function(){
+	    	$('#totalBed').val('5');
+	    })
+	    
+	    // 화장실 버튼 클릭 시
+   	    $('#totalBath0').click(function(){
+	    	$('#totalBath').val('0');
+	    })
+   	    $('#totalBath1').click(function(){
+	    	$('#totalBath').val('1');
+	    })
+   	    $('#totalBath2').click(function(){
+	    	$('#totalBath').val('2');
+	    })
+   	    $('#totalBath3').click(function(){
+	    	$('#totalBath').val('3');
+	    })
+   	    $('#totalBath4').click(function(){
+	    	$('#totalBath').val('4');
+	    })
+   	    $('#totalBath5').click(function(){
+	    	$('#totalBath').val('5');
+	    })
+	    		
+	    // 필터 초기화 버튼 이벤트
+        $('#clearFilter').click(function() {
+        	// input태그들 value비우기
+            $('#filterForm')[0].reset();
+        	
+        	// 전체선택에 active클래스 부여
+            $('#guestHouse').removeClass('active');
+            $('#normalHouse').removeClass('active');
+            $('#allHouse').addClass('active')
+        	
+        	// 침실, 침대, 욕실 값 0으로 만들고 상관없음태그에 active클래스 부여
+            $('#totalSpace').val('0');
+            $('#totalSpace1').removeClass('active');
+            $('#totalSpace2').removeClass('active');
+            $('#totalSpace3').removeClass('active');
+            $('#totalSpace4').removeClass('active');
+            $('#totalSpace5').removeClass('active');
+            $('#totalSpace0').addClass('active')
+            $('#totalBed').val('0');
+            $('#totalBed1').removeClass('active');
+            $('#totalBed2').removeClass('active');
+            $('#totalBed3').removeClass('active');
+            $('#totalBed4').removeClass('active');
+            $('#totalBed5').removeClass('active');
+            $('#totalBed0').addClass('active')
+            $('#totalBath').val('0');
+            $('#totalBath1').removeClass('active');
+            $('#totalBath2').removeClass('active');
+            $('#totalBath3').removeClass('active');
+            $('#totalBath4').removeClass('active');
+            $('#totalBath5').removeClass('active');
+            $('#totalBath0').addClass('active')
+        });
+	    
+	    // 위시리스트에 숙소 추가, 삭제
+		let userId = '${sessionScope.userInfo.userId}';
+		$('button[name^="wishListBtn_"]').click(function() {
+			if(userId === ''){
+				alert('로그인이 필요한 기능입니다');
+			}
+			const wishListBtnRoomId = $(this).attr('name');
+			const roomId = wishListBtnRoomId.split('_')[1];
+
+			$.ajax({
+				url : '/ajaxWishList',
+				method : 'get',
+				data : {
+					'userId' : userId,
+					'roomId' : roomId
+				},
+				success : function(response) {
+					if (response.result) {
+						alert(response.message);
+						window.location.href = "/main";
+					}
+				}
+			});
+		});
+		
+	</script>
+	
+</body>
 </html>
