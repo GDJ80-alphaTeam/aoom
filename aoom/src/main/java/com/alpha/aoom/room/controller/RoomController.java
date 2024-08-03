@@ -1,6 +1,5 @@
 package com.alpha.aoom.room.controller;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.alpha.aoom.amenities.service.AmenitiesService;
 import com.alpha.aoom.code.service.CodeService;
 import com.alpha.aoom.onedayPrice.service.OnedayPriceService;
+import com.alpha.aoom.profile.service.ProfileService;
 import com.alpha.aoom.review.service.ReviewService;
 import com.alpha.aoom.room.service.RoomService;
 import com.alpha.aoom.roomImage.service.RoomImageService;
@@ -43,6 +43,8 @@ public class RoomController extends BaseController {
 	OnedayPriceService onedayPriceService;
 	@Autowired
 	WishListService wishListService;
+	@Autowired
+	ProfileService profileService;
 	
 	// 숙소상세보기 뷰페이지 호출
 	// param: userId(get)
@@ -66,20 +68,23 @@ public class RoomController extends BaseController {
 		
 		// 숙소 호스트가 받은 총합 후기수
 		Map<String, Object> hostReviewTotal = reviewService.selectByHostTotalCnt(param);
-				
+		
+		// 호스트 유저 프로필검색
+		List<Map<String, Object>> hostProfile = profileService.selectListByuserId(param);
+		
 		// user의 세션이 있다면 해당 숙소가 위시리스트에 존재하는지 확인, 존재하면 modelMap으로 view에 보내기
 		if(session.getAttribute("userInfo") != null) {
 			Map<String, Object> wishListParam = new HashMap<String, Object>();
 			wishListParam.put("roomId", param.get("roomId"));
 			wishListParam.put("userId", ((Map<String, Object>) session.getAttribute("userInfo")).get("userId"));
-//			log.info(wishListService.select(wishListParam).toString());
+			//log.info(wishListService.select(wishListParam).toString());
 			modelMap.addAttribute("userWishRoom", wishListService.select(wishListParam));
 		}
 		
 		//log.info("숙소상세보기 호출값" + roomInfo);
 		//log.info("숙소편의시설 호출값" + roomAmenities);
-		//log.info("리뷰목록 호출값"+reviewList);
-		log.info("해당숙소의 리뷰 평점 및 리뷰값"+reviewCntAvg);
+		log.info("리뷰목록 호출값"+reviewList);
+		//log.info("해당숙소의 리뷰 평점 및 리뷰값"+reviewCntAvg);
 		//log.info("해당숙소의 이미지 url 조회"+roomImages);
 		
 		modelMap.addAttribute("roomInfo",roomInfo);
@@ -88,8 +93,8 @@ public class RoomController extends BaseController {
 		modelMap.addAttribute("reviewCntAvg",reviewCntAvg);		
 		modelMap.addAttribute("roomImages",roomImages);
 		modelMap.addAttribute("hostReview",hostReviewTotal);		
-		
-		return "/room/roomInfo";
+		modelMap.addAttribute("hostProfile",hostProfile);
+		return "/room/roomInfo2";
 	}
 	
 	// 숙소 목록 출력(검색, 필터, 카테고리 조건)

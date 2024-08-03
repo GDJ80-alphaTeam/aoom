@@ -22,7 +22,19 @@
 		ON
 			c.code_key = p.proitem_code				
 		WHERE
-			user_id = #{userId}		
+			1=1
+			<if test="roomId != null">
+			AND user_id = (SELECT 
+				user_id
+			 FROM	
+			 	room
+			 WHERE
+			 	room_id = #{roomId}	
+			 )
+			</if>
+			<if test="userId != null">
+			AND user_id = #{userId}
+			</if>		
 			<if test="codeKey != null">
 			AND proitem_code = #{codeKey}
 			</if>

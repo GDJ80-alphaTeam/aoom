@@ -14,10 +14,20 @@
     <title>AOOM 숙소상세</title>
     <script src="https://kit.fontawesome.com/82b4a4fcad.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="/style/js/roominfo.js" defer></script>
-
+    
+    <!-- style -->
     <link rel="stylesheet" href="/style/css/common.css">
     <link rel="stylesheet" href="/style/css/roominfo.css">
+    
+    <!-- 카카오지도 -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f0842831d9c350ed32adefb11b6cd5f6&libraries=services"></script>
+    <!-- flat 피커 -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
+	<!-- 모멘트js -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 </head>
 
 <body>
@@ -79,9 +89,17 @@
 
                 <div class="a_tit_box">
                     <b class="title">${roomInfo.roomName}</b>
-                    <div class="save">
-                        <i class="fa-solid fa-heart"></i>
-                        <p>저장</p>
+                    <div class="save" id="wishListBtn">
+                    
+                    	<c:if test="${userWishRoom[0] != null }">
+							<i class="fa-solid fa-heart"></i>
+                        	<p>저장</p>
+						</c:if>
+						<c:if test="${userWishRoom[0] == null }">
+							<i class="fa-regular fa-heart" aria-hidden="true" style="display: block;"></i>
+                        	<p>저장</p>
+						</c:if>
+                        
                     </div><!-- //save -->
                 </div><!-- //a_tit_box -->
 
@@ -144,8 +162,8 @@
                         		<c:if test="${a.codeKey == 'ame02'}">	
                         			<div class="option">
 		                                <div class="icon_b"></div>
-		                                <img src="/style/img/icon_2.png" >
-		                                <p>${a.codeName}</p>
+		                                <img src="/style/img/icon_4.png" >
+		                                <p>${a.codeName}</p> <!-- 엘베 -->
 	                            	</div><!-- //option -->
                         		</c:if>
                         		
@@ -160,7 +178,7 @@
                         		<c:if test="${a.codeKey == 'ame04'}">	
                         			<div class="option">
 		                                <div class="icon_b"></div>
-		                                <img src="/style/img/icon_4.png" >
+		                                <img src="/style/img/icon_7.png" >
 		                                <p>${a.codeName}</p>
 	                            	</div><!-- //option -->
                         		</c:if>
@@ -168,7 +186,7 @@
                         		<c:if test="${a.codeKey == 'ame05'}">	
                         			<div class="option">
 		                                <div class="icon_b"></div>
-		                                <img src="/style/img/icon_5.png" >
+		                                <img src="/style/img/icon_2.png" >
 		                                <p>${a.codeName}</p>
 	                            	</div><!-- //option -->
                         		</c:if>
@@ -176,7 +194,7 @@
                         		<c:if test="${a.codeKey == 'ame06'}">	
                         			<div class="option">
 		                                <div class="icon_b"></div>
-		                                <img src="/style/img/icon_6.png" >
+		                                <img src="/style/img/icon_5.png" >
 		                                <p>${a.codeName}</p>
 	                            	</div><!-- //option -->
                         		</c:if>
@@ -184,7 +202,7 @@
                         		<c:if test="${a.codeKey == 'ame07'}">	
                         			<div class="option">
 		                                <div class="icon_b"></div>
-		                                <img src="/style/img/icon_7.png" >
+		                                <img src="/style/img/icon_6.png" >
 		                                <p>${a.codeName}</p>
 	                            	</div><!-- //option -->
                         		</c:if>
@@ -197,112 +215,64 @@
 	                            	</div><!-- //option -->
                         		</c:if>
                         		
-                        		
-                        		
-                        		
-                        		<c:if test="${status.index % 4 == 1 || status.last}">
-					            	</div><!-- //i_box -->
-					        	</c:if>
+                        		<c:if test="${status.index % 3 == 2 || status.last}">
+							        </div><!-- //option_box -->
+							    </c:if>
                         	</c:forEach>
- 	                       <!-- <div class="option_box">
-	                            <div class="option">
-	                                <div class="icon_b"></div>
-	                                <img src="img/icon_1.png" alt="와이파이">
-	                                <p>와이파이</p>
-	                            </div>//option
-	                            
-	                            <div class="option">
-	                                <div class="icon_b"></div>
-	                                <img src="img/icon_2.png" alt="엘리베이터">
-	                                <p>엘리베이터</p>
-	                            </div>//option
-	                            <div class="option">
-	                                <div class="icon_b"></div>
-	                                <img src="img/icon_3.png" alt="에어컨">
-	                                <p>에어컨</p>
-	                            </div>//option
-    	                    </div>//option_box
-	                        <div class="option_box">
-	                            <div class="icon_b"></div>
-	                            <div class="option">
-	                                <img src="img/icon_4.png" alt="주차장">
-	                                <p>주차장</p>
-	                            </div>//option
-	                            <div class="option">
-	                                <div class="icon_b"></div>
-	                                <img src="img/icon_5.png" alt="드라이기">
-	                                <p>드라이기</p>
-	                            </div>//option
-	                            <div class="option">
-	                                <div class="icon_b"></div>
-	                                <img src="img/icon_6.png" alt="냉장고">
-	                                <p>냉장고</p>
-	                            </div>//option
-	                        </div>//option_box
-	                        <div class="option_box">
-	                            <div class="option">
-	                                <div class="icon_b"></div>
-	                                <img src="img/icon_7.png" alt="주방">
-	                                <p>주방</p>
-	                            </div>//option
-	                            <div class="option">
-	                                <div class="icon_b"></div>
-	                                <img src="img/icon_8.png" alt="ott">
-	                                <p>ott</p>
-	                            </div>//option
-                     	   </div>//option_box -->
-
                     </div><!-- //b_left_bottom -->
                 </div><!-- //a_i_bottom_left -->
-
-                <div class="a_i_bottom_right">
-                    <div class="s_reservation">
-                        <span class="price">
-                            <b>₩가격 </b><span>/박</span>
-                        </span><!-- //price -->
-
-                        <div class="r_box">
-                            <div class="r_box_top">
-                                <button class="chk_i">
-                                    <div class="title_chk_i"><i>체크인</i></div>
-                                    <div class="date_box">
-                                        <input type="date">
-                                    </div>
-                                </button><!-- //chk_i -->
-                                <button class="chk_o">
-                                    <div class="title_chk_o"><i>체크아웃</i></div>
-                                    <div class="date_box">
-                                        <input type="date">
-                                    </div>
-                                </button><!-- //chk_o -->
-                            </div><!-- r_box_top -->
-                            <button class="r_personnel">
-                                <div class="title_chk_o"><i>인원</i></div>
-                                <div class="date_box">
-                                    <input type="text" value="인원 수를 입력해주세요">
-                                </div>
-                            </button><!-- //r_personnel -->
-                        </div><!-- //r_box -->
-
-                        <div class="price_guide">
-                            <p>예약 확정 전에는 요금이 청구되지 않습니다.</p>
-                            <div class="p_g_bottom">
-                                <span>₩가격 x 3</span>
-                                <span>₩가격</span>
-                            </div><!-- //p_g_bottom -->
-                        </div><!-- //price_guide -->
-
-                        <div class="r_total">
-                            <span>총 합계</span>
-                            <span>₩가격</span>
-                        </div><!-- /r_total -->
-                        <button class="r_pink">
-                            <span>예약하기</span>
-                        </button><!-- //r_pink -->
-                    </div><!-- //s_reservation -->
-                    <p class="r_declaration">숙소 신고하기</p>
-                </div><!-- //a_i_bottom_right 간이예약창 전체영역-->
-
+					<form action="${pageContext.request.contextPath}/booking/book" method="get" id="bookingForm">
+		                <div class="a_i_bottom_right">
+		                    <div class="s_reservation">
+		                        <span class="price">
+		                            <b>₩가격 </b><span>/박</span>
+		                        </span><!-- //price -->
+							
+		                        <div class="r_box">
+		                            <div class="r_box_top" id="datepicker">
+			                                <button class="chk_i" type="button">
+			                                    <div class="title_chk_i"><i>체크인</i></div>
+			                                    <div class="date_box">
+			                                    	<input type="hidden" id="startDate" name="startDate">
+			                                        <input type="date" id="startDate2" readonly="readonly">
+			                                    </div>
+			                                </button><!-- //chk_i -->
+			                                <button class="chk_o" type="button">
+			                                    <div class="title_chk_o"><i>체크아웃</i></div>
+			                                    <div class="date_box">
+			                                        <input type="date" id="endDate2" readonly="readonly">
+		                                        	<input type="hidden" id="endDate" name="endDate">
+			                                    </div>
+			                                </button><!-- //chk_o -->
+		                            </div><!-- r_box_top -->
+		                            <button class="r_personnel" type="button">
+		                                <div class="title_chk_o"><i>인원</i></div>
+		                                <div class="date_box">
+		                                    <input type="number" min ="1" max="${roomInfo.maxPeople}" id="usePeople" value="1"  >
+		                                </div>
+		                            </button><!-- //r_personnel -->
+		                        </div><!-- //r_box -->
+		
+		                        <div class="price_guide">
+		                            <p>예약 확정 전에는 요금이 청구되지 않습니다.</p>
+		                            <div class="p_g_bottom">
+		                                <span id="priceDetail">₩가격 x 1</span>
+		                                <span id="priceDetailTotal">₩가격</span>
+		                            </div><!-- //p_g_bottom -->
+		                        </div><!-- //price_guide -->
+		
+		                        <div class="r_total">
+		                            <span>총 합계</span>
+		                            <span id="totalPrice">₩가격</span>
+		                        </div><!-- /r_total -->
+		                        <button class="r_pink" type="button" id="bookingBtn">
+		                            <span>예약하기</span>
+		                        </button><!-- //r_pink -->
+		                    </div><!-- //s_reservation -->
+		                    <p class="r_declaration">숙소 신고하기</p>
+		                </div><!-- //a_i_bottom_right 간이예약창 전체영역-->
+		                <input type="hidden"  value="${roomInfo.roomId}" name="roomId">
+					</form>
             </div><!-- //a_i_bottom -->
 
         </div><!-- ////a_introduction  -->
@@ -317,23 +287,26 @@
             <div class="h_flex">
                 <div class="h_left">
                     <div class="profile">
+                    
                         <div class="img_box">
-                            <img src="img/pic.png" alt="임시사진" class="u_pic">
-                            <img src="img/icon_9.png" alt="인증마크" class="position_a">
+                        	<a href="${pageContext.request.contextPath}/user/profile?userId=${roomInfo.userId}">
+                            	<img src="${roomInfo.userImage}" alt="임시사진" class="u_pic">
+                            </a>
+                            <img src="/style/img/icon_9.png" alt="인증마크" class="position_a">
                             <!-- 호스트 프로필사진 자리 -->
                         </div><!--  //img_box-->
-                        <b class="host_name">이름</b>
+                        <b class="host_name">${roomInfo.userName}</b>
                         <p><i class="fa-solid fa-user"></i>호스트</p>
                     </div><!-- //profile -->
 
                     <div class="h_information">
                         <div class="h_review flex_info">
                             <i>후기</i>
-                            <b>147<p>개</p></b>
+                            <b>${hostReview.cnt}<p>개</p></b>
                         </div><!-- //h_review -->
                         <div class="h_grade flex_info">
                             <i>평점</i>
-                            <b>4.83<p><i class="fa-solid fa-star"></i></p></b>
+                            <b>${hostReview.avg}<p><i class="fa-solid fa-star"></i></p></b>
                         </div><!-- //h_grade 평점 -->
                         <div class="h_career flex_info">
                             <i>호스팅 경력</i>
@@ -342,8 +315,11 @@
                     </div><!-- //h_information -->
                 </div><!-- //h_left -->
                 <div class="h_right">
-                    <span>해발 500m에 고지의 시원하고, 공기좋고,물맛좋은 용문산 어비계곡 상류에 위치하고 있고, 마을규모는
-                        40여가구 90 여명의 주민이 버스도 운행하지 않고 마트도 없는 한적한 곳에서 조용히 지낼수 있습니다.</span>
+                	<c:forEach var="hp" items="${hostProfile}">
+                   		<c:if test="${hp.proitemCode == 'pfi09'}">
+                    	<span>${hp.content}</span>
+                    	</c:if>
+                    </c:forEach>
                     <div class="talk_btn">
                         <button class="h_talk">
                             <span>대화 하기</span>
@@ -358,14 +334,15 @@
 
 
         <!-- ★숙소위치★----------------------------------------------------------------------------------------------->
+        
         <div class="l_location p_b">
             <b class="margin">
-                숙소 위치
+                숙소 위치 
             </b>
-            <div class="map">
-                <img src="img/location.png" alt="임시사진">
+            
+                <div id="map" style="width:100%; height:400px;"></div>
                 <!-- 지도 자리 입니다람쥐 -->
-            </div><!-- //map -->
+            
         </div><!--  //l_location -->
         <!-- 숙소위치 끝---------------------------------------------------------------------------------->
 
@@ -374,7 +351,7 @@
         <!-- ★후기★---------------------------------------------------------------------------------------------------->
         <div class="review_box">
             <div class="review_title">
-                <b class="fw_bold"><i class="fa-solid fa-star"></i>3.14 · <span>후기</span> 59 <span>개</span></b>
+                <b class="fw_bold"><i class="fa-solid fa-star"></i>${reviewCntAvg.avg} · <span>후기</span> ${reviewCntAvg.cnt} <span>개</span></b>
                 <form>
                     <select>
                         <option value="1">최신순</option>
@@ -383,703 +360,112 @@
                     </select>
                 </form>
             </div><!-- //review_title -->
+            
             <div class="page_box ">
                 <div class="single-item-rtl rolling_box">
                     <div class="review_page">
-                      
+                    	<c:forEach var="r" items="${reviewList.review}" varStatus="status">
                             <div class="user_box">
                                 <div class="u_profile">
                                     <div class="user_i">
-                                        <img src="img/user.png" alt="임시">
+                                    	<a href="/user/profile?userId=${r.userId}" id="userId${status.count}">
+                                        	<img id="userImg${status.count}" src="${r.userImage}" onerror="this.style.display='none'">
+                                        </a>
                                     </div><!-- //user_i -->
                                     <div class="u_name_date">
-                                        <span class="u_name">
-                                            이름
+                                        <span class="u_name" id="userName${status.count}">
+                                            ${r.userName}
                                         </span><!-- //u_name -->
-                                        <p class="u_date">
-                                            에어비앤비 가입기간
+                                        <p class="u_date" id="userSubDate${status.count}">
+                                            에어비앤비 가입기간:${r.userSubDate}일
                                         </p><!-- //u_date -->
                                     </div><!-- //u_name_date -->
                                 </div><!-- //u_profile -->
                                 <div class="u_r_txt_box">
                                     <div class="star_date">
-                                        <div class="star">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
+                                        <div class="star" id="userRating${status.count}">
+                                            <c:forEach var="i" begin="1" end="${r.rating}">
+                                    			<i class="fa-solid fa-star" ></i>
+                                			</c:forEach>
                                         </div><!-- //star -->
-                                        <p>3주 전</p>
+                                        <p id="reviewCreationDate${status.count}">${r.creationDate}일 전</p>
                                     </div><!-- //star_date -->
-                                    <p class="txt">회사 워크샵으로 다녀왔습니다. 정말 산속이라 풍경도 좋고 시원했습니다. 여러모로
-                                        즐겁게 보내다 올 수 있는 멋진 숙소였습니다. 가능하다면 위치 때문에 차를 가져오는
-                                        것이 좋습니다.
-                                    </p>
+                                    <p class="txt" id="reviewContent${status.count}">${r.reviewContent}</p>
                                     <div class="u_picture">
-                                        <div class="u_picture_box"></div>
-                                        <div class="u_picture_box"></div>
-                                        <div class="u_picture_box"></div>
-                                        <div class="u_picture_box"></div>
-    
+                                        <div class="u_picture_box">
+                                        	<img id="reviewImg${status.count}"  src="${r.reviewImage}" style="width:100%;height:50%;"onerror="this.style.display='none'">
+                                        </div>
                                         <!-- 후기사진 들어갈자리 -->
                                     </div><!-- //u_picture -->
                                 </div><!-- //u_r_txt_box -->
                             </div><!-- //user_box -->
-                            <div class="user_box">
-                                <div class="u_profile">
-                                    <div class="user_i">
-                                        <img src="img/user.png" alt="임시">
-                                    </div><!-- //user_i -->
-                                    <div class="u_name_date">
-                                        <span class="u_name">
-                                            이름
-                                        </span><!-- //u_name -->
-                                        <p class="u_date">
-                                            에어비앤비 가입기간
-                                        </p><!-- //u_date -->
-                                    </div><!-- //u_name_date -->
-                                </div><!-- //u_profile -->
-                                <div class="u_r_txt_box">
-                                    <div class="star_date">
-                                        <div class="star">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div><!-- //star -->
-                                        <p>3주 전</p>
-                                    </div><!-- //star_date -->
-                                    <p class="txt">회사 워크샵으로 다녀왔습니다. 정말 산속이라 풍경도 좋고 시원했습니다. 여러모로
-                                        즐겁게 보내다 올 수 있는 멋진 숙소였습니다. 가능하다면 위치 때문에 차를 가져오는
-                                        것이 좋습니다.
-                                    </p>
-                                    <div class="u_picture">
-                                        <div class="u_picture_box"></div>
-                                        <div class="u_picture_box"></div>
-                                        <div class="u_picture_box"></div>
-                                        <div class="u_picture_box"></div>
-    
-                                        <!-- 후기사진 들어갈자리 -->
-                                    </div><!-- //u_picture -->
-                                </div><!-- //u_r_txt_box -->
-                            </div><!-- //user_box -->
-                            <div class="user_box">
-                                <div class="u_profile">
-                                    <div class="user_i">
-                                        <img src="img/user.png" alt="임시">
-                                    </div><!-- //user_i -->
-                                    <div class="u_name_date">
-                                        <span class="u_name">
-                                            이름
-                                        </span><!-- //u_name -->
-                                        <p class="u_date">
-                                            에어비앤비 가입기간
-                                        </p><!-- //u_date -->
-                                    </div><!-- //u_name_date -->
-                                </div><!-- //u_profile -->
-                                <div class="u_r_txt_box">
-                                    <div class="star_date">
-                                        <div class="star">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div><!-- //star -->
-                                        <p>3주 전</p>
-                                    </div><!-- //star_date -->
-                                    <p class="txt">회사 워크샵으로 다녀왔습니다. 정말 산속이라 풍경도 좋고 시원했습니다. 여러모로
-                                        즐겁게 보내다 올 수 있는 멋진 숙소였습니다. 가능하다면 위치 때문에 차를 가져오는
-                                        것이 좋습니다.
-                                    </p>
-                                    <div class="u_picture">
-                                        <div class="u_picture_box"></div>
-                                        <div class="u_picture_box"></div>
-    
-                                        <!-- 후기사진 들어갈자리 -->
-                                    </div><!-- //u_picture -->
-                                </div><!-- //u_r_txt_box -->
-                            </div><!-- //user_box -->
-                            <div class="user_box">
-                                <div class="u_profile">
-                                    <div class="user_i">
-                                        <img src="img/user.png" alt="임시">
-                                    </div><!-- //user_i -->
-                                    <div class="u_name_date">
-                                        <span class="u_name">
-                                            이름
-                                        </span><!-- //u_name -->
-                                        <p class="u_date">
-                                            에어비앤비 가입기간
-                                        </p><!-- //u_date -->
-                                    </div><!-- //u_name_date -->
-                                </div><!-- //u_profile -->
-                                <div class="u_r_txt_box">
-                                    <div class="star_date">
-                                        <div class="star">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div><!-- //star -->
-                                        <p>3주 전</p>
-                                    </div><!-- //star_date -->
-                                    <p class="txt">회사 워크샵으로 다녀왔습니다. 정말 산속이라 풍경도 좋고 시원했습니다. 여러모로
-                                        즐겁게 보내다 올 수 있는 멋진 숙소였습니다. 가능하다면 위치 때문에 차를 가져오는
-                                        것이 좋습니다.
-                                    </p>
-                                    <div class="u_picture">
-                                        <div class="u_picture_box"></div>
-                                        <div class="u_picture_box"></div>
-    
-                                        <!-- 후기사진 들어갈자리 -->
-                                    </div><!-- //u_picture -->
-                                </div><!-- //u_r_txt_box -->
-                            </div><!-- //user_box -->
-                            <div class="user_box">
-                                <div class="u_profile">
-                                    <div class="user_i">
-                                        <img src="img/user.png" alt="임시">
-                                    </div><!-- //user_i -->
-                                    <div class="u_name_date">
-                                        <span class="u_name">
-                                            이름
-                                        </span><!-- //u_name -->
-                                        <p class="u_date">
-                                            에어비앤비 가입기간
-                                        </p><!-- //u_date -->
-                                    </div><!-- //u_name_date -->
-                                </div><!-- //u_profile -->
-                                <div class="u_r_txt_box">
-                                    <div class="star_date">
-                                        <div class="star">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div><!-- //star -->
-                                        <p>3주 전</p>
-                                    </div><!-- //star_date -->
-                                    <p class="txt">회사 워크샵으로 다녀왔습니다. 정말 산속이라 풍경도 좋고 시원했습니다. 여러모로
-                                        즐겁게 보내다 올 수 있는 멋진 숙소였습니다. 가능하다면 위치 때문에 차를 가져오는
-                                        것이 좋습니다.
-                                    </p>
-                                    <div class="u_picture">
-                                        <div class="u_picture_box"></div>
-                                        <div class="u_picture_box"></div>
-    
-                                        <!-- 후기사진 들어갈자리 -->
-                                    </div><!-- //u_picture -->
-                                </div><!-- //u_r_txt_box -->
-                            </div><!-- //user_box -->
-                            <div class="user_box">
-                                <div class="u_profile">
-                                    <div class="user_i">
-                                        <img src="img/user.png" alt="임시">
-                                    </div><!-- //user_i -->
-                                    <div class="u_name_date">
-                                        <span class="u_name">
-                                            이름
-                                        </span><!-- //u_name -->
-                                        <p class="u_date">
-                                            에어비앤비 가입기간
-                                        </p><!-- //u_date -->
-                                    </div><!-- //u_name_date -->
-                                </div><!-- //u_profile -->
-                                <div class="u_r_txt_box">
-                                    <div class="star_date">
-                                        <div class="star">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div><!-- //star -->
-                                        <p>3주 전</p>
-                                    </div><!-- //star_date -->
-                                    <p class="txt">회사 워크샵으로 다녀왔습니다. 정말 산속이라 풍경도 좋고 시원했습니다. 여러모로
-                                        즐겁게 보내다 올 수 있는 멋진 숙소였습니다. 가능하다면 위치 때문에 차를 가져오는
-                                        것이 좋습니다.
-                                    </p>
-                                    <div class="u_picture">
-                                        <div class="u_picture_box"></div>
-    
-                                        <!-- 후기사진 들어갈자리 -->
-                                    </div><!-- //u_picture -->
-                                </div><!-- //u_r_txt_box -->
-                            </div><!-- //user_box -->
-                     
-                        
-                    </div><!-- //review_page -->
-                    <div class="review_page">
-                        <div class="user_box">
-                            <div class="u_profile">
-                                <div class="user_i">
-                                    <img src="img/user.png" alt="임시">
-                                </div><!-- //user_i -->
-                                <div class="u_name_date">
-                                    <span class="u_name">
-                                        이름
-                                    </span><!-- //u_name -->
-                                    <p class="u_date">
-                                        에어비앤비 가입기간
-                                    </p><!-- //u_date -->
-                                </div><!-- //u_name_date -->
-                            </div><!-- //u_profile -->
-                            <div class="u_r_txt_box">
-                                <div class="star_date">
-                                    <div class="star">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </div><!-- //star -->
-                                    <p>3주 전</p>
-                                </div><!-- //star_date -->
-                                <p class="txt">회사 워크샵으로 다녀왔습니다. 정말 산속이라 풍경도 좋고 시원했습니다. 여러모로
-                                    즐겁게 보내다 올 수 있는 멋진 숙소였습니다. 가능하다면 위치 때문에 차를 가져오는
-                                    것이 좋습니다.
-                                </p>
-                                <div class="u_picture">
-                                    <div class="u_picture_box"></div>
-                                    <div class="u_picture_box"></div>
-
-                                    <!-- 후기사진 들어갈자리 -->
-                                </div><!-- //u_picture -->
-                            </div><!-- //u_r_txt_box -->
-                        </div><!-- //user_box -->
-                        <div class="user_box">
-                            <div class="u_profile">
-                                <div class="user_i">
-                                    <img src="img/user.png" alt="임시">
-                                </div><!-- //user_i -->
-                                <div class="u_name_date">
-                                    <span class="u_name">
-                                        이름
-                                    </span><!-- //u_name -->
-                                    <p class="u_date">
-                                        에어비앤비 가입기간
-                                    </p><!-- //u_date -->
-                                </div><!-- //u_name_date -->
-                            </div><!-- //u_profile -->
-                            <div class="u_r_txt_box">
-                                <div class="star_date">
-                                    <div class="star">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </div><!-- //star -->
-                                    <p>3주 전</p>
-                                </div><!-- //star_date -->
-                                <p class="txt">회사 워크샵으로 다녀왔습니다. 정말 산속이라 풍경도 좋고 시원했습니다. 여러모로
-                                    즐겁게 보내다 올 수 있는 멋진 숙소였습니다. 가능하다면 위치 때문에 차를 가져오는
-                                    것이 좋습니다.
-                                </p>
-                                <div class="u_picture">
-                                    <div class="u_picture_box"></div>
-                                    <div class="u_picture_box"></div>
-                                    <div class="u_picture_box"></div>
-                                    <div class="u_picture_box"></div>
-
-                                    <!-- 후기사진 들어갈자리 -->
-                                </div><!-- //u_picture -->
-                            </div><!-- //u_r_txt_box -->
-                        </div><!-- //user_box -->
-                        <div class="user_box">
-                            <div class="u_profile">
-                                <div class="user_i">
-                                    <img src="img/user.png" alt="임시">
-                                </div><!-- //user_i -->
-                                <div class="u_name_date">
-                                    <span class="u_name">
-                                        이름
-                                    </span><!-- //u_name -->
-                                    <p class="u_date">
-                                        에어비앤비 가입기간
-                                    </p><!-- //u_date -->
-                                </div><!-- //u_name_date -->
-                            </div><!-- //u_profile -->
-                            <div class="u_r_txt_box">
-                                <div class="star_date">
-                                    <div class="star">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </div><!-- //star -->
-                                    <p>3주 전</p>
-                                </div><!-- //star_date -->
-                                <p class="txt">회사 워크샵으로 다녀왔습니다. 정말 산속이라 풍경도 좋고 시원했습니다. 여러모로
-                                    즐겁게 보내다 올 수 있는 멋진 숙소였습니다. 가능하다면 위치 때문에 차를 가져오는
-                                    것이 좋습니다.
-                                </p>
-                                <div class="u_picture">
-                                    <div class="u_picture_box"></div>
-                                    <div class="u_picture_box"></div>
-
-                                    <!-- 후기사진 들어갈자리 -->
-                                </div><!-- //u_picture -->
-                            </div><!-- //u_r_txt_box -->
-                        </div><!-- //user_box -->
-                        <div class="user_box">
-                            <div class="u_profile">
-                                <div class="user_i">
-                                    <img src="img/user.png" alt="임시">
-                                </div><!-- //user_i -->
-                                <div class="u_name_date">
-                                    <span class="u_name">
-                                        이름
-                                    </span><!-- //u_name -->
-                                    <p class="u_date">
-                                        에어비앤비 가입기간
-                                    </p><!-- //u_date -->
-                                </div><!-- //u_name_date -->
-                            </div><!-- //u_profile -->
-                            <div class="u_r_txt_box">
-                                <div class="star_date">
-                                    <div class="star">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </div><!-- //star -->
-                                    <p>3주 전</p>
-                                </div><!-- //star_date -->
-                                <p class="txt">회사 워크샵으로 다녀왔습니다. 정말 산속이라 풍경도 좋고 시원했습니다. 여러모로
-                                    즐겁게 보내다 올 수 있는 멋진 숙소였습니다. 가능하다면 위치 때문에 차를 가져오는
-                                    것이 좋습니다.
-                                </p>
-                                <div class="u_picture">
-                                    <div class="u_picture_box"></div>
-                                    <div class="u_picture_box"></div>
-
-                                    <!-- 후기사진 들어갈자리 -->
-                                </div><!-- //u_picture -->
-                            </div><!-- //u_r_txt_box -->
-                        </div><!-- //user_box -->
-                        <div class="user_box">
-                            <div class="u_profile">
-                                <div class="user_i">
-                                    <img src="img/user.png" alt="임시">
-                                </div><!-- //user_i -->
-                                <div class="u_name_date">
-                                    <span class="u_name">
-                                        이름
-                                    </span><!-- //u_name -->
-                                    <p class="u_date">
-                                        에어비앤비 가입기간
-                                    </p><!-- //u_date -->
-                                </div><!-- //u_name_date -->
-                            </div><!-- //u_profile -->
-                            <div class="u_r_txt_box">
-                                <div class="star_date">
-                                    <div class="star">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </div><!-- //star -->
-                                    <p>3주 전</p>
-                                </div><!-- //star_date -->
-                                <p class="txt">회사 워크샵으로 다녀왔습니다. 정말 산속이라 풍경도 좋고 시원했습니다. 여러모로
-                                    즐겁게 보내다 올 수 있는 멋진 숙소였습니다. 가능하다면 위치 때문에 차를 가져오는
-                                    것이 좋습니다.
-                                </p>
-                                <div class="u_picture">
-                                    <div class="u_picture_box"></div>
-                                    <div class="u_picture_box"></div>
-
-                                    <!-- 후기사진 들어갈자리 -->
-                                </div><!-- //u_picture -->
-                            </div><!-- //u_r_txt_box -->
-                        </div><!-- //user_box -->
-                        <div class="user_box">
-                            <div class="u_profile">
-                                <div class="user_i">
-                                    <img src="img/user.png" alt="임시">
-                                </div><!-- //user_i -->
-                                <div class="u_name_date">
-                                    <span class="u_name">
-                                        이름
-                                    </span><!-- //u_name -->
-                                    <p class="u_date">
-                                        에어비앤비 가입기간
-                                    </p><!-- //u_date -->
-                                </div><!-- //u_name_date -->
-                            </div><!-- //u_profile -->
-                            <div class="u_r_txt_box">
-                                <div class="star_date">
-                                    <div class="star">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </div><!-- //star -->
-                                    <p>3주 전</p>
-                                </div><!-- //star_date -->
-                                <p class="txt">회사 워크샵으로 다녀왔습니다. 정말 산속이라 풍경도 좋고 시원했습니다. 여러모로
-                                    즐겁게 보내다 올 수 있는 멋진 숙소였습니다. 가능하다면 위치 때문에 차를 가져오는
-                                    것이 좋습니다.
-                                </p>
-                                <div class="u_picture">
-                                    <div class="u_picture_box"></div>
-                                    <div class="u_picture_box"></div>
-
-                                    <!-- 후기사진 들어갈자리 -->
-                                </div><!-- //u_picture -->
-                            </div><!-- //u_r_txt_box -->
-                        </div><!-- //user_box -->
-                    </div><!-- //review_page -->
-                    <div class="review_page">
-                        <div class="user_box">
-                            <div class="u_profile">
-                                <div class="user_i">
-                                    <img src="img/user.png" alt="임시">
-                                </div><!-- //user_i -->
-                                <div class="u_name_date">
-                                    <span class="u_name">
-                                        이름
-                                    </span><!-- //u_name -->
-                                    <p class="u_date">
-                                        에어비앤비 가입기간
-                                    </p><!-- //u_date -->
-                                </div><!-- //u_name_date -->
-                            </div><!-- //u_profile -->
-                            <div class="u_r_txt_box">
-                                <div class="star_date">
-                                    <div class="star">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </div><!-- //star -->
-                                    <p>3주 전</p>
-                                </div><!-- //star_date -->
-                                <p class="txt">회사 워크샵으로 다녀왔습니다. 정말 산속이라 풍경도 좋고 시원했습니다. 여러모로
-                                    즐겁게 보내다 올 수 있는 멋진 숙소였습니다. 가능하다면 위치 때문에 차를 가져오는
-                                    것이 좋습니다.
-                                </p>
-                                <div class="u_picture">
-                                    <div class="u_picture_box"></div>
-                                    <div class="u_picture_box"></div>
-
-                                    <!-- 후기사진 들어갈자리 -->
-                                </div><!-- //u_picture -->
-                            </div><!-- //u_r_txt_box -->
-                        </div><!-- //user_box -->
-                        <div class="user_box">
-                            <div class="u_profile">
-                                <div class="user_i">
-                                    <img src="img/user.png" alt="임시">
-                                </div><!-- //user_i -->
-                                <div class="u_name_date">
-                                    <span class="u_name">
-                                        이름
-                                    </span><!-- //u_name -->
-                                    <p class="u_date">
-                                        에어비앤비 가입기간
-                                    </p><!-- //u_date -->
-                                </div><!-- //u_name_date -->
-                            </div><!-- //u_profile -->
-                            <div class="u_r_txt_box">
-                                <div class="star_date">
-                                    <div class="star">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </div><!-- //star -->
-                                    <p>3주 전</p>
-                                </div><!-- //star_date -->
-                                <p class="txt">회사 워크샵으로 다녀왔습니다. 정말 산속이라 풍경도 좋고 시원했습니다. 여러모로
-                                    즐겁게 보내다 올 수 있는 멋진 숙소였습니다. 가능하다면 위치 때문에 차를 가져오는
-                                    것이 좋습니다.
-                                </p>
-                                <div class="u_picture">
-                                    <div class="u_picture_box"></div>
-                                    <div class="u_picture_box"></div>
-                                    <div class="u_picture_box"></div>
-                                    <div class="u_picture_box"></div>
-
-                                    <!-- 후기사진 들어갈자리 -->
-                                </div><!-- //u_picture -->
-                            </div><!-- //u_r_txt_box -->
-                        </div><!-- //user_box -->
-                        <div class="user_box">
-                            <div class="u_profile">
-                                <div class="user_i">
-                                    <img src="img/user.png" alt="임시">
-                                </div><!-- //user_i -->
-                                <div class="u_name_date">
-                                    <span class="u_name">
-                                        이름
-                                    </span><!-- //u_name -->
-                                    <p class="u_date">
-                                        에어비앤비 가입기간
-                                    </p><!-- //u_date -->
-                                </div><!-- //u_name_date -->
-                            </div><!-- //u_profile -->
-                            <div class="u_r_txt_box">
-                                <div class="star_date">
-                                    <div class="star">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </div><!-- //star -->
-                                    <p>3주 전</p>
-                                </div><!-- //star_date -->
-                                <p class="txt">회사 워크샵으로 다녀왔습니다. 정말 산속이라 풍경도 좋고 시원했습니다. 여러모로
-                                    즐겁게 보내다 올 수 있는 멋진 숙소였습니다. 가능하다면 위치 때문에 차를 가져오는
-                                    것이 좋습니다.
-                                </p>
-                                <div class="u_picture">
-                                    <div class="u_picture_box"></div>
-                                    <div class="u_picture_box"></div>
-
-                                    <!-- 후기사진 들어갈자리 -->
-                                </div><!-- //u_picture -->
-                            </div><!-- //u_r_txt_box -->
-                        </div><!-- //user_box -->
-                        <div class="user_box">
-                            <div class="u_profile">
-                                <div class="user_i">
-                                    <img src="img/user.png" alt="임시">
-                                </div><!-- //user_i -->
-                                <div class="u_name_date">
-                                    <span class="u_name">
-                                        이름
-                                    </span><!-- //u_name -->
-                                    <p class="u_date">
-                                        에어비앤비 가입기간
-                                    </p><!-- //u_date -->
-                                </div><!-- //u_name_date -->
-                            </div><!-- //u_profile -->
-                            <div class="u_r_txt_box">
-                                <div class="star_date">
-                                    <div class="star">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </div><!-- //star -->
-                                    <p>3주 전</p>
-                                </div><!-- //star_date -->
-                                <p class="txt">회사 워크샵으로 다녀왔습니다. 정말 산속이라 풍경도 좋고 시원했습니다. 여러모로
-                                    즐겁게 보내다 올 수 있는 멋진 숙소였습니다. 가능하다면 위치 때문에 차를 가져오는
-                                    것이 좋습니다.
-                                </p>
-                                <div class="u_picture">
-                                    <div class="u_picture_box"></div>
-                                    <div class="u_picture_box"></div>
-
-                                    <!-- 후기사진 들어갈자리 -->
-                                </div><!-- //u_picture -->
-                            </div><!-- //u_r_txt_box -->
-                        </div><!-- //user_box -->
-                        <div class="user_box">
-                            <div class="u_profile">
-                                <div class="user_i">
-                                    <img src="img/user.png" alt="임시">
-                                </div><!-- //user_i -->
-                                <div class="u_name_date">
-                                    <span class="u_name">
-                                        이름
-                                    </span><!-- //u_name -->
-                                    <p class="u_date">
-                                        에어비앤비 가입기간
-                                    </p><!-- //u_date -->
-                                </div><!-- //u_name_date -->
-                            </div><!-- //u_profile -->
-                            <div class="u_r_txt_box">
-                                <div class="star_date">
-                                    <div class="star">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </div><!-- //star -->
-                                    <p>3주 전</p>
-                                </div><!-- //star_date -->
-                                <p class="txt">회사 워크샵으로 다녀왔습니다. 정말 산속이라 풍경도 좋고 시원했습니다. 여러모로
-                                    즐겁게 보내다 올 수 있는 멋진 숙소였습니다. 가능하다면 위치 때문에 차를 가져오는
-                                    것이 좋습니다.
-                                </p>
-                                <div class="u_picture">
-                                    <div class="u_picture_box"></div>
-                                    <div class="u_picture_box"></div>
-
-                                    <!-- 후기사진 들어갈자리 -->
-                                </div><!-- //u_picture -->
-                            </div><!-- //u_r_txt_box -->
-                        </div><!-- //user_box -->
-                        <div class="user_box">
-                            <div class="u_profile">
-                                <div class="user_i">
-                                    <img src="img/user.png" alt="임시">
-                                </div><!-- //user_i -->
-                                <div class="u_name_date">
-                                    <span class="u_name">
-                                        이름
-                                    </span><!-- //u_name -->
-                                    <p class="u_date">
-                                        에어비앤비 가입기간
-                                    </p><!-- //u_date -->
-                                </div><!-- //u_name_date -->
-                            </div><!-- //u_profile -->
-                            <div class="u_r_txt_box">
-                                <div class="star_date">
-                                    <div class="star">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                    </div><!-- //star -->
-                                    <p>3주 전</p>
-                                </div><!-- //star_date -->
-                                <p class="txt">회사 워크샵으로 다녀왔습니다. 정말 산속이라 풍경도 좋고 시원했습니다. 여러모로
-                                    즐겁게 보내다 올 수 있는 멋진 숙소였습니다. 가능하다면 위치 때문에 차를 가져오는
-                                    것이 좋습니다.
-                                </p>
-                                <div class="u_picture">
-                                    <div class="u_picture_box"></div>
-                                    <div class="u_picture_box"></div>
-
-                                    <!-- 후기사진 들어갈자리 -->
-                                </div><!-- //u_picture -->
-                            </div><!-- //u_r_txt_box -->
-                        </div><!-- //user_box -->
+                       </c:forEach>
                     </div><!-- //review_page -->
                 </div><!-- //review_page -->
             </div><!-- //page_box  페이지 들어갈 자리-->
-            <div class="pagination">
-                <button class="prev_btn" disabled><i class="fa-solid fa-chevron-left"></i></button>
-                <button class="page_btn" data-index="0">1</button>
-                <button class="page_btn" data-index="1">2</button>
-                <button class="page_btn" data-index="2">3</button>
-                <button class="next_btn"><i class="fa-solid fa-chevron-right"></i></button>
-            </div>
+            
+            <!-- 페이징 자리 -->
+            <!-- 페이징 총숫자에맞춰서 1~10 ,11~20이런식으로 만들어야됨  -->
+        <div class="pagination">    
+			<c:choose>
+				<c:when test="${reviewCntAvg.lastPage == 0 }">
+					
+				</c:when>
+				<c:otherwise>
+				      <!-- paging 이전버튼 -->
+				        <c:choose>			        
+				          <c:when test="${reviewList.currentPage == 1}">
+				            <button class="prev_btn" disabled id="previous" type="button">
+				           		 <i class="fa-solid fa-chevron-left"></i>
+				            </button>
+				          </c:when>
+				          
+				          <c:otherwise>
+				            <button class="prev_btn" id="previous" type="button">
+				           		 <i class="fa-solid fa-chevron-left"></i>
+				            </button>
+				          </c:otherwise>
+				          
+				        </c:choose>
+					
+						<!-- paging 숫자버튼 -->
+				      <c:forEach var="i" begin="1" end="${reviewCntAvg.lastPage}">
+				          <c:choose>
+				          
+				            <c:when test="${reviewList.currentPage == i}">
+		                   		<button class="page-link active" type="button" id="page${i}" value="${i}" data-index="0">${i}</button>
+				            </c:when>
+				         
+				            <c:otherwise>
+				              <button class="page-link" type="button" id="page${i}" value="${i}" data-index="0">${i}</button>
+				            </c:otherwise>
+				            
+				          </c:choose>
+				      </c:forEach>
+						<!-- paging 다음버튼 -->
+				        <c:choose>
+				          <c:when test="${reviewList.currentPage == reviewCntAvg.lastPage}">
+				            <button class="next_btn" type="button" id="next"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+				          </c:when>
+				          
+				          <c:otherwise>
+				            <button class="next_btn" type="button" id="next"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+				          </c:otherwise>
+				          
+				        </c:choose>
+				</c:otherwise>
+			</c:choose>
+            
+            
+                
+                	
+                
+       	</div>
+            
         </div><!-- //review_box -->
         <!--   후기 끝 ---------------------------------------------------------------------------------->
     </div><!-- //main_visual -->
-    ]
+    
 
 
     <footer class="inner clear">
@@ -1109,4 +495,14 @@
 
 </body>
 
+<script type="text/javascript">
+	let address = "${roomInfo.address}";
+	let roomId = "${roomInfo.roomId}";
+	let maxPeople = "${roomInfo.maxPeople}";
+	let currentPage = parseInt("${reviewList.currentPage}");
+	let lastPage = parseInt("${reviewCntAvg.lastPage}");
+	let userId = '${sessionScope.userInfo.userId}';
+</script>
+
+<script src="/style/js/roominfo.js" defer></script>
 </html>

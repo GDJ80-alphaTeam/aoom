@@ -50,7 +50,7 @@
     <!-- 사용자가 선택한날로부터 예약가능한날짜 표시 -->
     <select id = "selectByOneday" parameterType="map" resultType="camelCaseMap">
     	SELECT 
-    		*
+    		* 
    		FROM 
     		oneday_price 
    		WHERE
@@ -102,7 +102,9 @@
     <!-- 숙박일정에 따른 숙박가격 조회 합계 -->
     <select id="selectByBookingDate" parameterType="map" resultType="camelCaseMap">
 	    SELECT
-		    TO_CHAR(SUM(oneday_price), '999,999,999') AS sum
+		     TO_CHAR(SUM(oneday_price), '999,999,999') AS sum
+		    ,TRUNC(AVG(oneday_price)) AS avg
+		    ,COUNT(oneday_price) AS cnt
 		FROM
 		    oneday_price
 		WHERE

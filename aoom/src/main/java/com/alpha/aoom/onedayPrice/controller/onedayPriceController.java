@@ -40,7 +40,7 @@ public class onedayPriceController extends BaseController {
 		  }		  			  
 	  }
 	 
-	  // param : selectDate
+	  // param : selectDate , 
 	  // 예약가능한 날짜(달력에서 날짜를 선택했을때)
 	  @RequestMapping("/ajaxSelectDay")
 	  @ResponseBody

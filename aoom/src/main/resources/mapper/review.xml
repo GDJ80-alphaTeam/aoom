@@ -15,29 +15,33 @@
 	
 	<!-- 숙소 리뷰 목록 조회-->
 	<select id="selectList" parameterType="map" resultType="camelCaseMap">
-	 SELECT
-        *
-        FROM
-        ( 
-            SELECT 
-                ROWNUM as rn 
-               ,<include refid="review_col"/>         
-            FROM (
-                SELECT 
-                 <include refid="review_col"/>
-                FROM 
-                    review
-                WHERE 
-                    room_id = #{roomId}	 
-                ORDER BY create_date DESC  
-            )  
-         ) r
-         LEFT JOIN
-            users
-         ON
-         	r.user_id = users.user_id
-         WHERE
-			rn <![CDATA[>]]> #{beginRow} and rn <![CDATA[<=]]> #{endRow}
+		SELECT
+        r.*,
+        users.*,
+        TRUNC(SYSDATE - users.create_date) AS user_sub_date
+	    FROM (
+	        SELECT
+	            ROWNUM AS rn,
+	            r1.*,
+	            TRUNC(SYSDATE - r1.create_date) AS creation_date
+	        FROM (
+	            SELECT 
+	                <include refid="review_col"/>
+	            FROM 
+	                review
+	            WHERE 
+	                room_id = #{roomId}
+	            ORDER BY 
+	                create_date DESC
+	        ) r1
+	    ) r
+	    LEFT JOIN
+	        users
+	    ON
+	        r.user_id = users.user_id
+	    WHERE
+	        r.rn <![CDATA[>]]> #{beginRow} 
+	        AND r.rn <![CDATA[<=]]> #{endRow}
 	</select>
 	
 	<!-- 해당하는 숙소의 리뷰 총 개수 및 총개수rating 평균 -->

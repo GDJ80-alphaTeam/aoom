@@ -581,7 +581,7 @@ header .inner .user .profile p {
 .review_box .rolling_box {
     display: flex;
     transition: transform 0.3s ease;
-    width: 300%;
+    width: 100%;
 }
 
 
@@ -599,6 +599,7 @@ header .inner .user .profile p {
     width: 43%;
     height: 316px;
     padding-top: 32px;
+    display: inline-table;
 }
 
 .review_box .rolling_box .review_page .user_box .u_profile {
@@ -642,7 +643,6 @@ header .inner .user .profile p {
 .review_box .rolling_box .review_page .user_box .u_picture .u_picture_box {
     width: 110px;
     height: 110px;
-    background: #ddd;
     margin-right: 14px;
 }
 

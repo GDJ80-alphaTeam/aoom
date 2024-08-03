@@ -11,9 +11,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f0842831d9c350ed32adefb11b6cd5f6&libraries=services"></script>
+	<!-- flat 피커 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+	<!-- 모멘트js -->
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
 	
@@ -181,9 +183,13 @@
 					<div style="width:100%;height:150px; display:flex">
 						<div style="width: 70%;flex-wrap: wrap; display:flex">						
 													
-							<a href="${pageContext.request.contextPath}/user/profile?userId=${roomInfo.userId}"><img style="width: 100%;height: 80%" src="${roomInfo.userImage}"></a>					
+							<a href="${pageContext.request.contextPath}/user/profile?userId=${roomInfo.userId}">
+								<img style="width: 100%;height: 80%" src="${roomInfo.userImage}">
+							</a>					
 							<div style="width:100%;height:20%">
-							호스트:<a href="${pageContext.request.contextPath}/user/profile?userId=${roomInfo.userId}">${roomInfo.userName}</a>
+							호스트:<a href="${pageContext.request.contextPath}/user/profile?userId=${roomInfo.userId}">
+								${roomInfo.userName}
+								</a>
 							</div>
 						</div>
 						
@@ -268,7 +274,7 @@
 		            data: {"roomId":"${roomInfo.roomId}"},
 		            dataType: 'json',
 		            success: function(response) {
-		            	
+		            	console.log(response);
 		            	instance.set('disable', []);
 		            	
 		                // 서버에서 받은 비활성화할 날짜 배열
@@ -289,15 +295,16 @@
 				
 				// 날짜형식 변경 yyyy/mm/dd
             	let formattedDates = moment(selectedDates[0]).format('YYYY/MM/DD');
+            	let startDate = moment(selectedDates[0]).format('YYYY/MM/DD');
+ 	            let endDate = moment(selectedDates[1]).format('YYYY/MM/DD');
                 console.log("Selected range (formatted): ", formattedDates);
 				console.log( $("#usePeople").val());
 				$.ajax({
-		            url: '/onedayPrice/ajaxSelectDay',
+		            url: '/onedayPrice/ajaxBookingDay',
 		            method: 'post',
-		            data: {"roomId":"${roomInfo.roomId}" , "selectedDate" : formattedDates ,"usePeople" : $("#usePeople").val()},
+		            data: {"roomId" : "${roomInfo.roomId}", "selectedDate" : formattedDates, "startDate" : startDate, "endDate" : endDate, "usePeople" : $("#usePeople").val()},
 		            dataType: 'json',
 		            success: function(response) {
-		            			            			                
 	                    // 서버에서 받은 비활성화할 날짜 배열
 		                let disableDates = response.data.map(item => item.oneday);		
 		                // Flatpickr 인스턴스 업데이트
