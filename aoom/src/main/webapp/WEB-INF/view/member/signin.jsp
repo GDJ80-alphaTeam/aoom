@@ -2,31 +2,31 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="loginModalLabel">로그인</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- 로그인 폼 내용 -->
-                <form id="signin">
-					<div>
-						이메일 : <input type="email" id="signinUserId" name="userId" placeholder="이메일을 입력해주세요" required="required">
-					</div>
-					<div>
-						비밀번호 : <input type="password" id="signinUserPw" name="userPw" required="required" value="qwer1234!">
-					</div>
-				</form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                <button type="button" id="signinBtn" class="btn btn-primary">로그인</button>
-            </div>
-        </div>
-    </div>
-</div>
+<div class="log_in_bg"><!-- 로그인 모달 -->
+    <div class="log_in">
+        <div class="log_in_t">
+            <i class="fa-solid fa-xmark"></i>
+            <p>로그인</p>
+        </div><!--// log_in_t -->
+
+        <ul class="log_in_b">
+            <li>
+            	<form id="signin">
+	                <input type="email" id="signinUserId" name="userId" placeholder="이메일을 입력해주세요" required="required">
+	                <input type="password" id="signinUserPw" name="userPw" placeholder="비밀번호를 입력해주세요" required="required" value="qwer1234!">
+            	</form>
+                <div class="option_btn">
+                    <p>이메일 찾기</p>
+                    <p>비밀번호 변경</p>
+                </div><!-- option_btn -->
+            </li>
+            <li class="login_btn">
+                <button type="button" id="signinBtn">로그인</button>
+                <button>회원가입</button>
+            </li><!-- //login_btn -->
+        </ul> <!-- //log_in_b -->
+    </div><!-- //log_in -->
+</div><!-- //log_in_bg -->
 <script type="text/javascript">
 	// 로그인 버튼 클릭시
 	$('#signinBtn').click(function(){
@@ -44,7 +44,7 @@
 		// 비밀번호 유효성검사
 		if(!PWCHECK.test($('#signinUserPw').val())){
 			alert('비밀번호는 영문자+숫자+특수문자 조합으로 8~25자리 사용해야 합니다.');
-			$('#userPw').focus();
+			$('#signinUserPw').focus();
 			return;
 		} 
 		

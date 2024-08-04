@@ -222,8 +222,7 @@
 	
 	<!-- 검색, 필터, 카테고리 조건으로 조회 -->
 	<select id="selectBySearch" parameterType="map" resultType="camelCaseMap">
-	<!-- 다량 출력시 캐시문제로 8개만 출력되게 함(임시) -->
-    SELECT * FROM (
+
         SELECT DISTINCT 
              r.room_id
             ,r.room_name
@@ -284,8 +283,6 @@
         <if test='category !=null'>
             AND roomcate_code = #{category}
         </if>
-    )
-    WHERE ROWNUM <![CDATA[<=]]> 8
 	</select>
 	
 	<!-- 숙소 등록 - 숙소 등록 1단계 전 숙소 초기화 -->

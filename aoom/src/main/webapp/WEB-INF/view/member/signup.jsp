@@ -2,50 +2,51 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="signupModalLabel">회원가입</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- 회원가입 폼 내용 -->
-				<form id="signup">
-					<div>
-						이메일: <input type="text" name="userId" maxlength="50" placeholder="이메일을 입력해주세요" id="userId"  required="required">
-						<button type="button" id="authBtn">인증하기</button>
-						<span id="userIdMsg"></span>
-						<span id="spinner"></span>
-					</div>
-					<div>
-						인증번호 : <input type="text" name="authNo" id="authNo" required="required">
-						<button type="button" id="authCheck">인증번호 확인</button>
-					</div>
-					<div>
-						비밀번호 : <input type="password" name="userPw" id="userPw" min="8" max="15" required="required">
-					</div>
-					<div>
-						비밀번호 확인 : <input type="password" name="userPwCheck" id="userPwCheck" required="required">
-						<div id="pwMsg"></div>
-					</div>
-					<div>
-						생년월일 : <input type="date" name="userBirth" id="userBirth" required="required">
-					</div>
-					<div>
-						이름 : <input type="text" name="userName" id="userName" minlength="2" required="required" onkeyup="chk_han('userName')">
-					</div>
-					<div>
-						전화번호 : <input type="tel" name="userPhone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" id="userPhone" required="required" placeholder="ex)010-1111-1111">
-					</div>
-				</form>
-					
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                <button type="button" id="signupBtn" disabled="disabled" class="btn btn-primary">회원가입</button>
-            </div>
+<div class="sign_in_bg">
+    <div class="sign_in">
+        <div class="sign_in_t">
+            <i class="fa-solid fa-xmark"></i>
+            <p>회원가입</p>
         </div>
+        <form id="signup">
+	        <div class="sign_in_b">
+	            <div class="email">
+	                <p>이메일</p>
+	                <div class="box">
+	                    <input type="text" name="userId" maxlength="50" placeholder="이메일을 입력해주세요" id="userId"  required="required">
+	                    <button type="button" id="authBtn">인증</button>
+	                </div>
+	            </div>
+	            <div class="certification">
+	                <p>인증번호</p>
+	                <div class="box">
+	                    <input type="text" name="authNo" id="authNo" placeholder="인증번호를 입력해주세요" required="required">
+	                    <button type="button" id="authCheck">확인</button>
+	                </div>
+	            </div>
+	            <div>
+	                <p>비밀번호</p>
+	                <input type="password" name="userPw" id="userPw" min="8" max="15" placeholder="비밀번호를 입력(문자, 숫자, 특수문자 포함 8~15자)" required="required">
+	            </div>
+	            <div>
+	                <p>비밀번호 확인</p>
+	                <input type="password" name="userPwCheck" id="userPwCheck" placeholder="비밀번호 확인" required="required">
+	            </div>
+	            <div>
+	                <p>생년월일</p>
+	                <input type="date" name="userBirth" id="userBirth" placeholder="생년월일을 입력해주세요" required="required">
+	            </div>
+	            <div>
+	                <p>이름</p>
+	                <input type="text" name="userName" id="userName" minlength="2" placeholder="이름을 입력해주세요" required="required" onkeyup="chk_han('userName')">
+	            </div>
+	            <div>
+	                <p>전화번호</p>
+	                <input type="tel" name="userPhone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" id="userPhone" required="required" placeholder="ex) 010-7635-9301">
+	            </div>
+	        </div>
+        </form>
+        <button type="button" class="pink" id="signupBtn" disabled="disabled" class="btn btn-primary">회원가입</button>
     </div>
 </div>
 <script type="text/javascript">
@@ -138,8 +139,9 @@
 			return;
 		} 
 		
-		$("#authBtn").hide();
-		$("#spinner").html('<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>')
+		$("#authBtn").html('전송중...');
+		/* $("#authBtn").hide(); */
+		/* $("#spinner").html('<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>') */
 		$.ajax({
 			url:'/userAuthNo/ajaxSend',
 			method:'post',
@@ -150,8 +152,9 @@
 				}else{
 					alert(response.message);
 				}
-				$("#authBtn").show();
-				$("#spinner").html('');
+				/* $("#authBtn").show(); */
+				/* $("#spinner").html(''); */
+				$("#authBtn").html('인증');
 			},
 	        error: function(jqXHR, textStatus, errorThrown) {
 	            console.error('AJAX Error: ' + textStatus + ': ' + errorThrown);

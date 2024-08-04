@@ -114,6 +114,7 @@ public class RoomController extends BaseController {
 		modelMap.addAttribute("roomType", roomType);
 		modelMap.addAttribute("amenities", amenities);
 		modelMap.addAttribute("searchResult", searchResult);
+		modelMap.addAttribute("param", param);
 		
 		
 		// user의 세션이 있다면 위시리스트 목록을 modelMap으로 보내기
