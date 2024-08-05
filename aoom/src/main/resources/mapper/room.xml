@@ -47,6 +47,9 @@
 			 <include refid="room_col" />
 			,u.user_name
 			,u.user_image
+			,TRUNC(MONTHS_BETWEEN(SYSDATE, u.create_date)) as month
+	        ,TRUNC(MONTHS_BETWEEN(SYSDATE, u.create_date) / 12) as year
+	        ,TRUNC(MOD(MONTHS_BETWEEN(SYSDATE, u.create_date), 12)) as left_month
 		FROM 
 			room r	
 		LEFT JOIN

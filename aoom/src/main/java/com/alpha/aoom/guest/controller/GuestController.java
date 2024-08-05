@@ -50,7 +50,7 @@ public class GuestController {
 		modelMap.addAttribute("pagingInfo",bookingService.selectByTotalCnt(param));
 		modelMap.addAttribute("currentPage", currentPage);
 		
-		return "/guest/bookList";
+		return "/guest/bookList2";
 	}
 	
 	// param : roomId 

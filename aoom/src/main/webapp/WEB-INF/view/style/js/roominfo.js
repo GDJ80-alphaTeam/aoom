@@ -195,7 +195,7 @@ $('#bookingBtn').click(function(event) {
 	        console.log(usePeople+"userPeople")
 	        console.log(maxPeople);
 	        // datepicker가 빈칸이나 null인지 확인
-	        if (!startDateValue || !endDateValue) {
+	        if (!startDateValue || !endDateValue || startDateValue == endDateValue) {
 	            alert('날짜를 선택해주세요.');
 	            return;
 	        }

@@ -27,7 +27,7 @@ public class ReviewService {
 	
 	@Autowired
 	FolderCreation folderCreation;
-	private final int rowPerPage = 2;
+	private final int rowPerPage = 6;
 	
 	// param : String room_id , int currentPage , int beginRow , int endRow
 	// 숙소리뷰 리스트

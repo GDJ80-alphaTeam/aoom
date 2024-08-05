@@ -11,14 +11,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- 플랫피커 -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
     <style>
-        .hidden {
-            display: none;
-        }
+        
 		
         .flatpickr-day {
             display: flex;
@@ -75,13 +74,13 @@
 				<!-- 우 -->
 				<div class="col">
 					<div class="card" style="width: 18rem;">
-						<img src="${roomInfo.mainImage }" class="card-img-top" alt="...">
+						<img src="${roomInfo.mainImage}" class="card-img-top" alt="...">
 						<div class="card-body">
 							<h5 class="card-title">${roomInfo.roomName }</h5>
 								<p class="card-text">
-									${roomInfo.category }
+									${roomInfo.category}
 									<br>
-									⭐${ratingReview.avg }점
+									⭐${ratingReview.avg}점
 									(후기 ${ratingReview.cnt }개)
 								</p>
 						</div>
@@ -97,7 +96,7 @@
 							<li class="list-group-item">
 								<h5 class="card-title">총합계</h5>
 								<p class="card-text"  id="totalPrice">
-									${bookingPrice.sum } 원
+									${bookingPrice.sum} 원
 								</p>
 								<input type="hidden" id="paymentPrice" name="paymentPrice" value="${bookingPrice.sum }">
 							</li>
@@ -140,7 +139,7 @@
 	    });
 	
 	    let isInitializing = false;
-	
+		
 	    const bookingDate = "${bookingDate}";
 	    let defaultDates = [];
 	    if (bookingDate) {
@@ -166,7 +165,7 @@
 	                $.ajax({
 	                    url: '/onedayPrice/ajaxValidDate',
 	                    method: 'post',
-	                    data: {"roomId":"${roomId}"},
+	                    data: {"roomId": roomId},
 	                    dataType: 'json',
 	                    success: function(response) {
 	                        instance.set('disable', []);
@@ -199,7 +198,7 @@
 	            $.ajax({
 	                url: '/onedayPrice/ajaxBookingDay',
 	                method: 'post',
-	                data: {"roomId" : "${roomId}", "selectedDate" : formattedDates, "startDate" : startDate, "endDate" : endDate, "usePeople" : usePeople},
+	                data: {"roomId" : roomId, "selectedDate" : formattedDates, "startDate" : startDate, "endDate" : endDate, "usePeople" : usePeople},
 	                dataType: 'json',
 	                success: function(response) {
 	                	console.log(response)

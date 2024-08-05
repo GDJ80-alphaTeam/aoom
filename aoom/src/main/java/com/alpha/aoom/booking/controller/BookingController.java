@@ -23,6 +23,8 @@ import com.alpha.aoom.util.BaseController;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Slf4j
 @RequestMapping("/booking")
@@ -87,7 +89,7 @@ public class BookingController extends BaseController {
 		modelMap.addAttribute("bank", codeService.selectByGroupKey("bank"));
 		modelMap.addAttribute("card", codeService.selectByGroupKey("card"));
 		
-		return "/booking/book";
+		return "/booking/book2";
 	}
 	
 	// 예약하기 버튼 클릭 ajax
@@ -193,4 +195,12 @@ public class BookingController extends BaseController {
 		return "redirect:/guest/bookList";
 	
 	}
+	
+	@RequestMapping("/test")
+	@ResponseBody
+	public String requestMethodName(@RequestParam Map<String, Object> param) {
+		System.out.println(param);
+		return null;
+	}
+	
 }

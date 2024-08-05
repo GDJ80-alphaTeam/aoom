@@ -31,54 +31,7 @@
 </head>
 
 <body>
-    <div class="fixed">
-        <header>
-
-            <div class="inner">
-
-                <ul class="nav_menu">
-                    <li>
-                        <p>계정</p>
-                    </li>
-                    <li>
-                        <p>메세지</p>
-                    </li>
-                    <li>
-                        <p>알림</p>
-                    </li>
-                    <li>
-                        <p>숙소예약목록</p>
-                    </li>
-                    <li>
-                        <p>관심목록</p>
-                    </li>
-                    <li>
-                        <p>자주묻는질문</p>
-                    </li>
-                    <li>
-                        <p>로그아웃</p>
-                    </li>
-                </ul><!-- //nav_menu -->
-                <a href="#" class="logo">
-                    <img src="img/n_1.png" alt="AOOM로고">
-                </a><!-- //logo -->
-
-                <div class="user">
-                    <div class="host_mode">
-                        <a href="">
-                            호스트 모드
-                        </a>
-                    </div><!-- //host_mode -->
-                    <div class="profile">
-                        <img src="img/n_2.png" alt="유저 프로필">
-                        <p>이름</p>
-                        <i class="fa-solid fa-bars"></i>
-                    </div><!-- //profile -->
-                </div><!--//user -->
-
-            </div><!-- //inner -->
-        </header><!--//header-->
-    </div><!-- //fixed -->
+    <jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
 
     <div class="a_main_visual inner "><!-- 컨텐츠 시작 -->
 
@@ -105,8 +58,8 @@
 
                 <div class="a_img_box">
                     <div class="a_img_box_left">
-                        <div class="main_img">
-                            <img src="${roomInfo.mainImage}" alt="임시이미지입니다">
+                        <div class="main_img" style="height: 100%">
+                            <img src="${roomInfo.mainImage}" alt="임시이미지입니다" style="height: 100%">
                         </div><!-- //main_img 큰 이미지 자리 -->
                         
                     </div><!-- //a_img_box_left -->
@@ -117,7 +70,7 @@
 					        </c:if>
 					
 					        <div class="sub_img">
-					            <img src="${image.image}" alt="임시이미지입니다">
+					            <img src="${image.image}" alt="임시이미지입니다" style="height:100%">
 					        </div>
 					        <!-- //main_img 작은이미지 자리 -->
 					
@@ -225,7 +178,7 @@
 		                <div class="a_i_bottom_right">
 		                    <div class="s_reservation">
 		                        <span class="price">
-		                            <b>₩가격 </b><span>/박</span>
+		                            <b>예약 </b><span></span>
 		                        </span><!-- //price -->
 							
 		                        <div class="r_box">
@@ -248,7 +201,7 @@
 		                            <button class="r_personnel" type="button">
 		                                <div class="title_chk_o"><i>인원</i></div>
 		                                <div class="date_box">
-		                                    <input type="number" min ="1" max="${roomInfo.maxPeople}" id="usePeople" value="1"  >
+		                                    <input type="number" min ="1" max="${roomInfo.maxPeople}" id="usePeople" name="usePeople" value="1"  >
 		                                </div>
 		                            </button><!-- //r_personnel -->
 		                        </div><!-- //r_box -->
@@ -310,7 +263,29 @@
                         </div><!-- //h_grade 평점 -->
                         <div class="h_career flex_info">
                             <i>호스팅 경력</i>
-                            <b>5<p>년</p></b>
+                            
+                            <b>
+                            <c:choose>
+							    <c:when test="${roomInfo.year == 0}">
+							        <c:choose>
+							            <c:when test="${roomInfo.month != 0}">
+							                ${roomInfo.month}<p>월</p>
+							            </c:when>
+							            <c:otherwise>
+							                신규 
+							            </c:otherwise>
+							        </c:choose>
+							    </c:when>
+							    <c:when test="${roomInfo.year != 0}">
+							        ${roomInfo.year}<p>년</p>
+							        <c:choose>
+							            <c:when test="${roomInfo.leftMonth != 0}">
+							                ${roomInfo.leftMonth}<p>월</p>
+							            </c:when>
+							        </c:choose>
+							    </c:when>
+							</c:choose>
+                            </b>
                         </div><!-- //h_career호스팅 경력 -->
                     </div><!-- //h_information -->
                 </div><!-- //h_left -->
@@ -352,13 +327,7 @@
         <div class="review_box">
             <div class="review_title">
                 <b class="fw_bold"><i class="fa-solid fa-star"></i>${reviewCntAvg.avg} · <span>후기</span> ${reviewCntAvg.cnt} <span>개</span></b>
-                <form>
-                    <select>
-                        <option value="1">최신순</option>
-                        <option value="2">높은 평점순</option>
-                        <option value="3">낮은 평점순</option>
-                    </select>
-                </form>
+            
             </div><!-- //review_title -->
             
             <div class="page_box ">
@@ -367,11 +336,11 @@
                     	<c:forEach var="r" items="${reviewList.review}" varStatus="status">
                             <div class="user_box">
                                 <div class="u_profile">
-                                    <div class="user_i">
-                                    	<a href="/user/profile?userId=${r.userId}" id="userId${status.count}">
-                                        	<img id="userImg${status.count}" src="${r.userImage}" onerror="this.style.display='none'">
-                                        </a>
-                                    </div><!-- //user_i -->
+                                	<a href="/user/profile?userId=${r.userId}" id="userId${status.count}">
+                                    	<div class="user_i">
+                                        	<img id="userImg${status.count}" src="${r.userImage}" onerror="this.style.display='none'" style="height: 100%">
+                                    	</div><!-- //user_i -->
+									</a>											                                    	
                                     <div class="u_name_date">
                                         <span class="u_name" id="userName${status.count}">
                                             ${r.userName}
@@ -393,7 +362,7 @@
                                     <p class="txt" id="reviewContent${status.count}">${r.reviewContent}</p>
                                     <div class="u_picture">
                                         <div class="u_picture_box">
-                                        	<img id="reviewImg${status.count}"  src="${r.reviewImage}" style="width:100%;height:50%;"onerror="this.style.display='none'">
+                                        	<img id="reviewImg${status.count}"  src="${r.reviewImage}" style="width:100%;height:100%;"onerror="this.style.display='none'">
                                         </div>
                                         <!-- 후기사진 들어갈자리 -->
                                     </div><!-- //u_picture -->
