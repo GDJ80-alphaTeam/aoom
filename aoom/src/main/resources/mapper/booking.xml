@@ -353,7 +353,7 @@
 		    ,TO_CHAR(b.total_price, '999,999,999') AS total_price
 		FROM 
 		    booking b
-		INNER JOIN
+		LEFT JOIN
 		    (SELECT	
 		        room_id
 		    FROM

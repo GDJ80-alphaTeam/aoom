@@ -24,7 +24,7 @@
 	                <li><a href="#">메시지</a></li>
 	                <li><a href="${pageContext.request.contextPath}/guest/bookList">숙소예약목록</a></li>
 	                <li><a href="${pageContext.request.contextPath}/user/wishList">위시리스트</a></li>
-	                <li><button class="dropdown-item" type="button" id="signoutBtn">로그아웃</button></li>
+	                <li><a id="signoutBtn">로그아웃</a></li>
 		        </ul>			
 			</c:if>
 			

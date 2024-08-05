@@ -67,7 +67,7 @@ public class HostController extends BaseController {
 		modelMap.addAttribute("roomRating", bookingService.selectListByAvgRating(param)); // 호스트의 숙소별 예약수
 		modelMap.addAttribute("wishlistCnt", bookingService.selectListByWishlistCnt(param)); // 호스트의 숙소별 예약수
 		
-		return "/host/main";
+		return "/host/main2";
 	}
 	
 	// 호스트 모드 숙소 관리 화면 호출

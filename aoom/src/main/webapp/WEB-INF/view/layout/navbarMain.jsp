@@ -92,7 +92,7 @@
 		        <ul class="nav_menu">
 		            <li><p>로그인</p></li>
 		            <li><p>회원가입</p></li>
-		            <li><p>숙소리스트</p></li>
+		            <li><a href="${pageContext.request.contextPath}/room/roomList">숙소리스트</a></li>
 		            <li><p>도움말센터</p></li>
 		            <li><p>자주묻는질문</p></li>
 		        </ul>
@@ -175,7 +175,7 @@
 		                <img src="${pageContext.request.contextPath}/img/roomlist_1.png" alt="골프장">
             		</c:if>
             		<c:if test="${param.category == 'rct01'}">
-		                <img src="${pageContext.request.contextPath}/img/step1_1on.png" alt="골프장">
+		                <img src="${pageContext.request.contextPath}/img/rct01on.png" alt="골프장">
             		</c:if>
             	</a>
             	<a href="${pageContext.request.contextPath}/room/roomList?category=rct01" id="rct01">
@@ -188,7 +188,7 @@
 		                <img src="${pageContext.request.contextPath}/img/roomlist_2.png" alt="국립공원">
             		</c:if>
             		<c:if test="${param.category == 'rct02'}">
-		                <img src="${pageContext.request.contextPath}/img/step1_2on.png" alt="골프장">
+		                <img src="${pageContext.request.contextPath}/img/rct02on.png" alt="골프장">
             		</c:if>
             	</a>
             	<a href="${pageContext.request.contextPath}/room/roomList?category=rct02" id="rct02">
@@ -201,7 +201,7 @@
 		                <img src="${pageContext.request.contextPath}/img/roomlist_3.png" alt="농장">
             		</c:if>
             		<c:if test="${param.category == 'rct03'}">
-		                <img src="${pageContext.request.contextPath}/img/step1_3on.png" alt="골프장">
+		                <img src="${pageContext.request.contextPath}/img/rct03on.png" alt="골프장">
             		</c:if>
             	</a>
             	<a href="${pageContext.request.contextPath}/room/roomList?category=rct03" id="rct03">
@@ -214,7 +214,7 @@
 		                <img src="${pageContext.request.contextPath}/img/roomlist_4.png" alt="최고의 전망">
             		</c:if>
             		<c:if test="${param.category == 'rct04'}">
-		                <img src="${pageContext.request.contextPath}/img/step1_4on.png" alt="골프장">
+		                <img src="${pageContext.request.contextPath}/img/rct04on.png" alt="골프장">
             		</c:if>
             	</a>
             	<a href="${pageContext.request.contextPath}/room/roomList?category=rct04" id="rct04">
@@ -227,7 +227,7 @@
 		                <img src="${pageContext.request.contextPath}/img/roomlist_5.png" alt="캠핑장">
             		</c:if>
             		<c:if test="${param.category == 'rct05'}">
-		                <img src="${pageContext.request.contextPath}/img/step1_5on.png" alt="골프장">
+		                <img src="${pageContext.request.contextPath}/img/rct05on.png" alt="골프장">
             		</c:if>
             	</a>
             	<a href="${pageContext.request.contextPath}/room/roomList?category=rct05" id="rct05">
@@ -240,7 +240,7 @@
 		                <img src="${pageContext.request.contextPath}/img/roomlist_6.png" alt="컨테이너 하우스">
             		</c:if>
             		<c:if test="${param.category == 'rct06'}">
-		                <img src="${pageContext.request.contextPath}/img/step1_6on.png" alt="골프장">
+		                <img src="${pageContext.request.contextPath}/img/rct06on.png" alt="골프장">
             		</c:if>
             	</a>
             	<a href="${pageContext.request.contextPath}/room/roomList?category=rct06" id="rct06">
@@ -253,7 +253,7 @@
 		                <img src="${pageContext.request.contextPath}/img/roomlist_7.png" alt="호수 근처">
             		</c:if>
             		<c:if test="${param.category == 'rct07'}">
-		                <img src="${pageContext.request.contextPath}/img/step1_7on.png" alt="골프장">
+		                <img src="${pageContext.request.contextPath}/img/rct07on.png" alt="골프장">
             		</c:if>
             	</a>
             	<a href="${pageContext.request.contextPath}/room/roomList?category=rct07" id="rct07">
@@ -266,7 +266,7 @@
 		                <img src="${pageContext.request.contextPath}/img/roomlist_8.png" alt="풀빌라">
             		</c:if>
             		<c:if test="${param.category == 'rct08'}">
-		                <img src="${pageContext.request.contextPath}/img/step1_8on.png" alt="골프장">
+		                <img src="${pageContext.request.contextPath}/img/rct08on.png" alt="골프장">
             		</c:if>
             	</a>
             	<a href="${pageContext.request.contextPath}/room/roomList?category=rct08" id="rct08">
@@ -279,7 +279,7 @@
 		                <img src="${pageContext.request.contextPath}/img/roomlist_9.png" alt="향토적인">
             		</c:if>
             		<c:if test="${param.category == 'rct09'}">
-		                <img src="${pageContext.request.contextPath}/img/step1_9on.png" alt="골프장">
+		                <img src="${pageContext.request.contextPath}/img/rct09on.png" alt="골프장">
             		</c:if>
             	</a>
             	<a href="${pageContext.request.contextPath}/room/roomList?category=rct09" id="rct09">
@@ -292,7 +292,7 @@
 		                <img src="${pageContext.request.contextPath}/img/roomlist_10.png" alt="오션뷰">
             		</c:if>
             		<c:if test="${param.category == 'rct10'}">
-		                <img src="${pageContext.request.contextPath}/img/step1_10on.png" alt="골프장">
+		                <img src="${pageContext.request.contextPath}/img/rct10on.png" alt="골프장">
             		</c:if>
             	</a>
             	<a href="${pageContext.request.contextPath}/room/roomList?category=rct10" id="rct10">
@@ -305,7 +305,7 @@
 		                <img src="${pageContext.request.contextPath}/img/roomlist_11.png" alt="한옥">
             		</c:if>
             		<c:if test="${param.category == 'rct11'}">
-		                <img src="${pageContext.request.contextPath}/img/step1_11on.png" alt="골프장">
+		                <img src="${pageContext.request.contextPath}/img/rct11on.png" alt="골프장">
             		</c:if>
             	</a>
             	<a href="${pageContext.request.contextPath}/room/roomList?category=rct11" id="rct11">
@@ -318,7 +318,7 @@
 		                <img src="${pageContext.request.contextPath}/img/roomlist_12.png" alt="전문가급 주방">
             		</c:if>
             		<c:if test="${param.category == 'rct12'}">
-		                <img src="${pageContext.request.contextPath}/img/step1_12on.png" alt="골프장">
+		                <img src="${pageContext.request.contextPath}/img/rct12on.png" alt="골프장">
             		</c:if>
             	</a>
             	<a href="${pageContext.request.contextPath}/room/roomList?category=rct12" id="rct12">
