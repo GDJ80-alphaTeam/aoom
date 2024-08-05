@@ -179,8 +179,9 @@
 		        SELECT booking_id
 		        FROM cancel_refund
 		    )
-		    AND b.bookstat_code IN ('bst03', 'bst03')
+		    AND b.bookstat_code IN ('bst03', 'bst04')
 		    AND TO_CHAR(b.create_date, 'MM') = #{selectedMonth}
+		    AND r.user_id = #{userId}
 		    <if test="roomId != null and !roomId.equals('')">
 		         AND b.room_id = #{roomId}
 		    </if>

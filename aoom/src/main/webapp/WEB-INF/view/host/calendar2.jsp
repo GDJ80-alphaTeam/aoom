@@ -154,7 +154,7 @@
 		            </div>
 		        </div>
 		    </div>
-        </div><!-- //r_ manage -->
+        </div><!-- //cal -->
 		
     </div><!-- //inner -->
 

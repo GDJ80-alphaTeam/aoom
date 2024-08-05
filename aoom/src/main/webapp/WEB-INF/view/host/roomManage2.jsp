@@ -22,11 +22,7 @@
 <body>
     <div class="fixed">
         <header>
-
-
             <div class="inner">
-
-
                 <ul class="nav_menu">
                     <li>
                         <p>계정</p>
@@ -208,13 +204,17 @@
 						                </div><!-- //t_left -->
 						                <i class="fa-solid fa-ellipsis-vertical">
 						                    <ul class="option_box">
-						                        <li>
-						                            <p>수정</p>
-						                        </li>
-						                        <li>
-						                            <p>삭제</p>
-						                        </li>
-						                    </ul>
+		                                        <li>
+		                                            <p>
+		                                            	<button type="button" onclick="location.replace('/host/roomManage/registRoom/basicInfo?roomId=${room.roomId}');">수정</button>
+	                                            	</p>
+		                                        </li>
+		                                        <li>
+		                                            <p>
+		                                            	<button type="button" data-bs-toggle="modal" data-bs-target="#roomDeleteModal" name="btnDeleteRoom" data-room-id="${room.roomId }">삭제</button>
+		                                            </p>
+		                                        </li>
+		                                    </ul>
 						                </i>
 						            </div><!-- //img_re_top -->
 						            <c:if test="${room.mainImage != null && room.mainImage ne ''}">
@@ -337,67 +337,66 @@
         </div><!-- //f_bottom -->
     </footer>
 
-	<!-- Modal -->
-	<div class="modal fade" id="roomDeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title" id="exampleModalLabel">숙소 삭제 확인</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-				</div>
-				
-				<form id="checkDeleteRoomForm">
-					<!-- 내용 -->
-					<div class="modal-body">
-						<div>
-							<h6><b>아이디</b></h6>
-							<input type="text" id="deleteRoomUserId" name="userId" value="${sessionScope.userInfo.userId}" readonly="readonly" style="border-width: 0; outline: none;">
-							
-							<h6><b>비밀번호</b></h6>
-							<input type="password" id="deleteRoomUserPw" name="userPw" style="width: 70%;">
-
-						</div>
-					</div>
-					
-					<!-- 버튼이름 -->
-					<div class="modal-footer">	
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-						<button type="button" id="deleteRoomBtn" class="btn btn-primary">삭제</button>
-					</div>
-				</form>
-			</div>
-		</div>
+	<!-- 숙소 삭제 모달 -->
+	<div class="room_delete_bg" style="display: none;">
+	    <div class="room_delete">
+	        <div class="room_delete_t">
+	            <i class="fa-solid fa-xmark" id="closeModal"></i>
+	            <p>숙소 삭제 확인</p>
+	        </div>
+	        <ul class="room_delete_b">
+	            <li>
+	                <form id="checkDeleteRoomForm">
+                        <div>
+                            <h6><b>아이디</b></h6>
+                            <input type="text" id="deleteRoomUserId" name="userId" value="${sessionScope.userInfo.userId}" readonly="readonly">
+                            <h6><b>비밀번호</b></h6>
+                            <input type="password" id="deleteRoomUserPw" name="userPw">
+                        </div>
+	                    <div class="c_b_btn">
+	                        <button class="c_btn" type="button" id="cancelDeleteRoomBtn">취소</button>
+	                        <button class="d_btn"  type="button" id="deleteRoomBtn">삭제</button>
+	                    </div>
+	                </form>
+	            </li>
+	        </ul>
+	    </div>
 	</div>
 
 	<!-- 숙소 삭제 버튼(roomstatCode를 삭제로 변경하는 것, DELETE 아님) -->
 	<script type="text/javascript">
 	
-		$('button[name="btnDeleteRoom"]').click(function() {
-			
-			// 클릭한 버튼의 roomId 가져오기
-			let roomId = $(this).data('room-id'); 
-			console.log(roomId);
-			$('#deleteRoomBtn').click(function() {
-				$.ajax({
-					url: '/host/roomManage/ajaxDeleteRoom',
-					method: 'post',
-					data: {
-						'roomId' : roomId,
-						'roomstatCode' : 'rst05',
-						'userId' : $('#deleteRoomUserId').val(),
-						'userPw' : $('#deleteRoomUserPw').val()
-					},
-					success: function(response) {
-						if(response.result){
-							alert(response.message);
-			                window.location.href = "/host/roomManage";
-						} else {
-							alert(response.message);
-						}
-					}
-				});
-			})
-		});
+	 	$('button[name="btnDeleteRoom"]').click(function() {
+	        let roomId = $(this).data('room-id');
+	        console.log(roomId);
+	        
+	        $('.room_delete_bg').show();
+
+	        $('#deleteRoomBtn').click(function() {
+	            $.ajax({
+	                url: '/host/roomManage/ajaxDeleteRoom',
+	                method: 'post',
+	                data: {
+	                    'roomId': roomId,
+	                    'roomstatCode': 'rst05',
+	                    'userId': $('#deleteRoomUserId').val(),
+	                    'userPw': $('#deleteRoomUserPw').val()
+	                },
+	                success: function(response) {
+	                    if (response.result) {
+	                        alert(response.message);
+	                        window.location.href = "/host/roomManage";
+	                    } else {
+	                        alert(response.message);
+	                    }
+	                }
+	            });
+	        });
+	    });
+
+	    $('#cancelDeleteRoomBtn, #closeModal').click(function() {
+	        $('.room_delete_bg').hide();
+	    });
 	</script>
 	
 	<script type="text/javascript">

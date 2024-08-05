@@ -430,7 +430,7 @@ span {
     color: #fff;
 }
 
-.r_m_thumbnail ul {
+.r_m_thumbnail .thumbnail_style {
     width: 100%;
     display: flex;
     justify-content: flex-start;
@@ -439,6 +439,7 @@ span {
 
 .r_m_thumbnail ul li {
     width: 304px;
+    height: 370px;
 
 }
 
@@ -610,4 +611,115 @@ span {
 .pagination button.next_btn {
     border-radius: 0;
     background: transparent;color: #291B3C;
+}
+
+/* 숙소 삭제 모달 */
+.room_delete_bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    width: 100%;
+    height: 100vh;
+    background: rgba(00, 0, 0, 0.5);
+    display: none;
+}
+
+/* .room_delete_bg.on {
+    display: flex;
+} */
+
+.room_delete {
+    position: absolute;
+    width: 446px;
+    height: 389px;
+    background: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 5px 5px 20px #00000017;
+    border-radius: 15px;
+}
+
+.room_delete .room_delete_t {
+    width: 100%;
+    height: 65px;
+    border-bottom: 1px solid #C7C7C7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 36px;
+    font-size: 19px;
+}
+
+.room_delete .room_delete_t i {
+    position: absolute;
+    left: 36px;
+    font-size: 19px;
+}
+
+
+.room_delete ul.room_delete_b {
+    width: 100%;
+    padding: 50px 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.room_delete ul.room_delete_b input,
+.room_delete ul.room_delete_b button {
+    width: 322px;
+    height: 51px;
+    border-radius: 8px;
+    padding: 0 27px;
+    background: #e3e3e3;
+    color: #888;
+    margin-bottom: 16px;
+}
+
+.room_delete .c_btn,
+.room_delete .d_btn {
+	width: 151px !important; 
+}
+
+.room_delete ul.room_delete_b .c_b_btn{
+    display: flex;
+	justify-content: space-between;
+	margin-top: 40px;
+}
+
+.room_delete ul.room_delete_b input {
+    display: flex;
+    align-items: center;
+}
+
+.room_delete ul.room_delete_b button {
+    font-size: 16px;
+    color: #fff;
+    background: #291b3c;
+}
+
+.room_delete ul.room_delete_b button:last-child {
+    background: #ed5977;
+}
+
+.room_delete ul.room_delete_b li:first-child {
+    margin-bottom: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.room_delete ul.room_delete_b li .option_btn {
+    display: flex;
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.room_delete ul.room_delete_b li .option_btn p:first-child {
+    margin-right: 20px;
 }

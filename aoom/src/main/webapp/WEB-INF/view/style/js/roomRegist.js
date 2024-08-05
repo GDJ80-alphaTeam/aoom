@@ -11,9 +11,9 @@ $(document).ready(function () {
 
     // 증가 버튼 클릭 이벤트
 	$('.plus_btn').click(function () {
-	    var $input = $(this).siblings('.result').find('input'); // .result 내부의 input 요소 선택
-	    var currentValue = parseInt($input.val(), 10); // 현재 값 가져오기
-	    var maxValue = parseInt($input.attr('max'), 10); // max 값 가져오기
+	    let $input = $(this).siblings('.result').find('input'); // .result 내부의 input 요소 선택
+	    let currentValue = parseInt($input.val(), 10); // 현재 값 가져오기
+	    let maxValue = parseInt($input.attr('max'), 10); // max 값 가져오기
 	    if (!isNaN(currentValue) && (!isNaN(maxValue) && currentValue < maxValue)) {
 	        $input.val(currentValue + 1); // 값 증가
 	    }
@@ -21,24 +21,24 @@ $(document).ready(function () {
 	
 	// 감소 버튼 클릭 이벤트
 	$('.minus_btn').click(function () {
-	    var $input = $(this).siblings('.result').find('input'); // .result 내부의 input 요소 선택
-	    var currentValue = parseInt($input.val(), 10); // 현재 값 가져오기
+	    let $input = $(this).siblings('.result').find('input'); // .result 내부의 input 요소 선택
+	    let currentValue = parseInt($input.val(), 10); // 현재 값 가져오기
 	    if (!isNaN(currentValue) && currentValue > 0) {
 	        $input.val(currentValue - 1); // 값 감소
 	    }
 	});
 
     $('.page_rolling .s_category .icon_box li').click(function () {
-        var $this = $(this);
-        var index = $this.index();
-        var $img = $this.find('img');
+        let $this = $(this);
+        let index = $this.index();
+        let $img = $this.find('img');
 
         // 클릭된 li 요소에 'on' 클래스를 추가하고 다른 li 요소의 'on' 클래스를 제거
         $('.page_rolling .icon_box li').removeClass('on');
         $this.addClass('on');
 
         // 클릭된 li 요소의 라디오 버튼을 체크하고 나머지 라디오 버튼은 체크 해제
-        var radioId = $this.find('input[type="radio"]').attr('id');
+        let radioId = $this.find('input[type="radio"]').attr('id');
         $('input[name="roomcateCode"]').prop('checked', false); // 모든 라디오 버튼 체크 해제
         $('#' + radioId).prop('checked', true); // 클릭된 li의 라디오 버튼 체크
 
@@ -61,7 +61,7 @@ $(document).ready(function () {
         $('input[name="roomtypeCode"]').prop('checked', false);
 
         // 버튼의 data-radio-id 속성에서 ID를 가져와서 해당 라디오 버튼을 체크
-        var radioInput = $(this).next('input[name="roomtypeCode"]');
+        let radioInput = $(this).next('input[name="roomtypeCode"]');
         console.log(radioInput);
     	radioInput.prop('checked', true);
 
@@ -74,9 +74,9 @@ $(document).ready(function () {
     
     // 편의시설 li 클릭 시 이벤트 처리
     $('.page_rolling .p_bottom .icon_box li').click(function () {
-        var $this = $(this);
-        var $checkbox = $this.find('input[type="checkbox"]');
-        var $img = $this.find('img');
+        let $this = $(this);
+        let $checkbox = $this.find('input[type="checkbox"]');
+        let $img = $this.find('img');
 
         // 클릭된 li 요소에 'on' 클래스 토글
         $this.toggleClass('on');

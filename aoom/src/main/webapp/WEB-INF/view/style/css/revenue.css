@@ -1,43 +1,5 @@
 @charset "UTF-8";
 
-.selected-date {
-	background-color: gray !important;
-}
-
-.event-date {
-	background-color: #d3d3d3 !important; /* 어두운 배경색 */
-	pointer-events: none; /* 클릭 비활성화 */
-}
-
-#calendar {
-	width: 80%;
-	min-height: 600px; /* 고정된 최소 높이 설정 */
-	box-sizing: border-box; /* 패딩과 테두리를 포함한 크기 조정 */
-}
-
-#selectDay, #notSelectDay {
-	box-sizing: border-box; /* 패딩과 테두리를 포함한 크기 조정 */
-}
-
-#selectDay {
-	display: none; /* 기본적으로 숨김 */
-}
-
-.fc-day a {
-	color: black;
-	text-decoration-line: none;
-}
-
-/* 일요일 날짜: 빨간색 */
-.fc-day-sun a {
-	color: red;
-}
-
-/* 토요일 날짜: 파란색 */
-.fc-day-sat a {
-	color: blue;
-}
-
 .inner {
     width: 1120px;
     position: relative;
@@ -247,19 +209,19 @@ span {
     color: #ed5977;
 }
 
-.cal {
+.revenue {
     width: 100%;
     padding-top: 47px;
 }
 
-.cal .cal_top {
+.revenue .revenue_top {
     width: 100%;
     display: flex;
     justify-content: space-between;
     margin-bottom: 32px;
 }
 
-.cal .cal_top .t_right {
+.revenue .revenue_top .t_right {
     display: flex;
     width: 400px;
     height: 38px;
@@ -267,7 +229,7 @@ span {
     justify-content: space-between;
 }
 
-.cal .cal_top .t_right select {
+.revenue .revenue_top .t_right select {
     width: 134px;
     height: 100%;
     padding: 5px;
@@ -316,4 +278,119 @@ button.dark_navy span {
 .fc-icon-chevron-right::before,
 .fc-icon-chevron-left::before {
 	color: #ffffff !important;
+}
+
+/* 월 수입 상세보기 모달 */
+.revnenue_detail_bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    width: 100%;
+    height: 100vh;
+    background: rgba(00, 0, 0, 0.5);
+    display: none;
+}
+
+/* .revnenue_detail_bg.on {
+    display: flex;
+} */
+
+.revnenue_detail {
+    position: absolute;
+    width: 1400px;
+    height: 90%;
+    background: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 5px 5px 20px #00000017;
+    border-radius: 15px;
+    overflow: auto;
+}
+
+.revnenue_detail .revnenue_detail_t {
+    width: 100%;
+    height: 65px;
+    border-bottom: 1px solid #C7C7C7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 36px;
+    font-size: 19px;
+}
+
+.revnenue_detail .revnenue_detail_t i {
+    position: absolute;
+    left: 36px;
+    font-size: 19px;
+}
+
+
+.revnenue_detail ul.revnenue_detail_b {
+    width: 100%;
+    padding: 50px 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    margin-left: 12px;
+    display: flex;
+    align-items: center;
+
+}
+
+.revnenue_detail_b li.list_top {
+	display: flex;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 64px;
+    border-bottom: 1px solid #C7C7C7;
+}
+
+.revnenue_detail_b li.list_con {
+	display: flex;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 64px;
+    border-bottom: 1px solid #C7C7C7;
+}
+
+.revnenue_detail_b li .one {
+    align-items: center;
+    width: 9%;
+}
+
+.revnenue_detail_b li .two {
+    width: 24%;
+}
+
+.revnenue_detail_b li .three {
+    width: 20%;
+    align-items: center;
+}
+
+.revnenue_detail_b li .fourth {
+    width: 6%;
+}
+
+.revnenue_detail_b li .five {
+    width: 8%;
+}
+
+
+.revnenue_detail_b li .six {
+    width: 14%;
+}
+
+
+.revnenue_detail_b li .seven {
+    width: 10%;
+}
+
+
+.revnenue_detail_b li .last {
+    position: relative;
 }

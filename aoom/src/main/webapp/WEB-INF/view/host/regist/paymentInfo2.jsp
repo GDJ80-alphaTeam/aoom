@@ -139,11 +139,11 @@
 	                            </div><!-- //r_top -->
 	                            <div class="r_bottom">
 	                                <div class="cute_2">
-	                                    <img src="/style/img/cute2.png" alt="귀여움ㅋㅎ">
-	                                    <img src="/style/img/cute3.png" alt="귀여움ㅋㅎ">
+	                                    <img src="/style/img/cute2.png" alt="aoom마스코트">
+	                                    <img src="/style/img/cute3.png" alt="aoom마스코트">
 	                                </div><!-- //cute_2 -->
 	                                <div class="cute_1">
-	                                    <img src="/style/img/cute1.png" alt="귀여움ㅋㅎ">
+	                                    <img src="/style/img/cute1.png" alt="aoom마스코트">
 	                                </div><!-- //cute_1 -->
 	
 	                            </div><!-- //r_bottom -->
@@ -160,7 +160,7 @@
 				<button type="submit" class="next">
 					<span>다음 단계</span>
 				</button>
-	        </div><!-- //pagenation_box -->>
+	        </div><!-- //pagenation_box -->
         </form>
     </div><!-- //inner -->
 	
