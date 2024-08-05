@@ -1,14 +1,3 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // 클릭시 nav 등장 ~ 퇴장
-    document.querySelector('header .inner .user .profile i').addEventListener('click', function () {
-        document.querySelector('header .inner ul.nav_menu').classList.toggle('on');
-    });
-
-    // 스크롤 top버튼
-    document.querySelector('aside').addEventListener('click', function () {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-})
 $(document).ready(function() {
     let currentIndex = 0;
     const $pages = $('.review_page');

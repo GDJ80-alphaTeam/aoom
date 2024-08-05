@@ -25,60 +25,14 @@
 	
     <link rel="stylesheet" href="/style/css/common.css">
     <link rel="stylesheet" href="/style/css/booking.css">
+    <link rel="stylesheet" href="/style/css/navSub.css">
+    <script src="/style/js/navbarSub.js" defer></script>
+	
 </head>
 
 <body>
-    <div class="fixed">
-        <header>
-
-
-            <div class="inner">
-
-
-                <ul class="nav_menu">
-                    <li>
-                        <p>계정</p>
-                    </li>
-                    <li>
-                        <p>메세지</p>
-                    </li>
-                    <li>
-                        <p>알림</p>
-                    </li>
-                    <li>
-                        <p>숙소예약목록</p>
-                    </li>
-                    <li>
-                        <p>관심목록</p>
-                    </li>
-                    <li>
-                        <p>자주묻는질문</p>
-                    </li>
-                    <li>
-                        <p>로그아웃</p>
-                    </li>
-                </ul><!-- //nav_menu -->
-                <a href="#" class="logo">
-                    <img src="img/n_1.png" alt="AOOM로고">
-                </a><!-- //logo -->
-
-                <div class="user">
-                    <div class="host_mode">
-                        <a href="">
-                            호스트 모드
-                        </a>
-                    </div><!-- //host_mode -->
-                    <div class="profile">
-                        <img src="img/n_2.png" alt="유저 프로필">
-                        <p>이름</p>
-                        <i class="fa-solid fa-bars"></i>
-                    </div><!-- //profile -->
-                </div><!--//user -->
-
-            </div><!-- //inner -->
-        </header><!--//header-->
-    </div><!-- //fixed -->
-
+   
+	<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
 
     <!-- ---------------컨텐츠 시작------------------------>
 

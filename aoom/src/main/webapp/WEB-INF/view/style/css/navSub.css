@@ -1,0 +1,337 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/* 로그인 모달 */
+.log_in_bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    width: 100%;
+    height: 100vh;
+    background: rgba(00, 0, 0, 0.5);
+    display: none;
+}
+
+/* .log_in_bg.on {
+    display: flex;
+} */
+
+.log_in {
+    position: absolute;
+    width: 446px;
+    height: 519px;
+    background: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 5px 5px 20px #00000017;
+    border-radius: 15px;
+}
+
+.log_in .log_in_t {
+    width: 100%;
+    height: 65px;
+    border-bottom: 1px solid #C7C7C7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 36px;
+    font-size: 19px;
+}
+
+.log_in .log_in_t i {
+    position: absolute;
+    left: 36px;
+}
+
+
+.log_in ul.log_in_b {
+    width: 100%;
+    padding: 50px 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.log_in ul.log_in_b input,
+.log_in ul.log_in_b button {
+    width: 322px;
+    height: 51px;
+    border-radius: 8px;
+    padding: 0 27px;
+    background: #e3e3e3;
+    color: #888;
+    margin-bottom: 16px;
+}
+
+.log_in ul.log_in_b input {
+    display: flex;
+    align-items: center;
+}
+
+.log_in ul.log_in_b button {
+    font-size: 16px;
+    color: #fff;
+    background: #291b3c;
+}
+
+.log_in ul.log_in_b button:last-child {
+    background: #ed5977;
+}
+
+.log_in ul.log_in_b li:first-child {
+    margin-bottom: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.log_in ul.log_in_b li .option_btn {
+    display: flex;
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.log_in ul.log_in_b li .option_btn p:first-child {
+    margin-right: 20px;
+}
+
+/* 회원가입  모달*/
+.sign_in_bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    width: 100%;
+    height: 100vh;
+    background: rgba(00, 0, 0, 0.5);
+    display: none;
+}
+
+.sign_in_bg .sign_in {
+    width: 466px;
+    height: 875px;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sign_in_bg .sign_in button {
+    background: #ed5977;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.sign_in_bg .sign_in .sign_in_t {
+    width: 100%;
+    height: 65px;
+    border-bottom: 1px solid #C7C7C7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 36px;
+    font-size: 19px;
+}
+
+.sign_in_bg .sign_in .sign_in_t i {
+    position: absolute;
+    left: 36px;
+}
+
+
+
+.sign_in_bg .sign_in .sign_in_b {
+    width: 100%;
+    padding: 33px 72px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.sign_in_bg .sign_in .sign_in_b p {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.sign_in_bg .sign_in .sign_in_b input,
+.sign_in_bg .sign_in .pink {
+    width: 350px;
+    height: 51px;
+    border: #C7C7C7 1px solid;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding-left: 27px;
+}
+
+.sign_in_bg .sign_in .sign_in_b .email .box,
+.sign_in_bg .sign_in .sign_in_b .certification .box {
+    position: relative;
+}
+
+.sign_in_bg .sign_in .sign_in_b .email .box button,
+.sign_in_bg .sign_in .sign_in_b .certification .box button {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    width: 85px;
+    height: 37px;
+
+}
+
+.sign_in_bg .sign_in .pink {
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+header {
+
+    border-bottom: 1px solid #C7C7C7;
+    background: #fff;
+}
+
+
+header .inner {
+    height: 120px;
+    display: flex;
+    padding-top: 47px;
+    justify-content: space-between;
+    position: relative;
+}
+
+header .inner ul.nav_menu {
+    width: 240px;
+    height: 240px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 5px 5px 20px #00000017;
+    position: absolute;
+    right: 0;
+    top: 110px;
+    z-index: 60;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    display: none;
+
+}
+
+header .inner ul.nav_menu.on {
+    display: flex;
+}
+
+header .inner ul.nav_menu li {
+    width: 100%;
+    cursor: pointer;
+}
+
+header .inner ul.nav_menu li:last-child {
+    padding-top: 6px;
+    margin-top: 6px;
+    border-top: 1px solid #C7C7C7;
+}
+
+header .inner ul.nav_menu li p {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+}
+
+header .inner ul.nav_menu li p:hover {
+    background: #f4f4f4;
+}
+
+header .inner ul.nav_menu li a {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+}
+
+header .inner ul.nav_menu li a:hover {
+    background: #f4f4f4;
+}
+
+header .inner ul.nav_menu li buttom {
+    padding-left: 20px;
+/*     display: flex; */
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+}
+
+header .inner ul.nav_menu li button:hover {
+    background: #f4f4f4;
+}
+
+header .inner ul.search {
+    width: 855px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 17px 34px;
+    border-radius: 33px;
+    border: 1px solid #C7C7C7;
+    box-shadow: 3px 3px 20px #00000017;
+}
+
+header .inner ul.search li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+header .inner ul.search li span {
+    font-size: 11px;
+}
+
+header .inner ul.search li input {}
+
+header .inner ul.search li.s_btn {
+    cursor: pointer;
+}
+
+header .inner .user {
+    width: 263px;
+    height: 46px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .inner .user a {
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+header .inner .user .profile {
+    padding: 6px 14px 6px 6px;
+    width: 156px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #291B3C;
+    border-radius: 28px;
+}
+
+header .inner .user .profile p {
+    font-weight: 800;
+}

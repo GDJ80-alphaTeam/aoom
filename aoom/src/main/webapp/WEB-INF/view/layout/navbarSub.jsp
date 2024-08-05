@@ -10,16 +10,18 @@
 			
 			<!-- 로그인 안 했을 때 -->
 			<c:if test="${sessionScope.userInfo.userId == null}">
-		        <ul class="nav_menu">
+		        <ul class="nav_menu" id="navMenu1">
 		            <li><p>로그인</p></li>
 		            <li><p>회원가입</p></li>
+		            <li onclick="window.location.href='${pageContext.request.contextPath}/room/roomList'"><p>숙소리스트</p></li>
+		            <li><p>도움말센터</p></li>
 		            <li><p>자주묻는질문</p></li>
 		        </ul>
 			</c:if>
 			
 			<!-- 로그인 했을 때 -->
 			<c:if test="${sessionScope.userInfo.userId != null}">
-		        <ul class="nav_menu">
+		        <ul class="nav_menu" id="navMenu2">
 	                <li><a href="${pageContext.request.contextPath}/user/myPage">마이페이지</a></li>
 	                <li><a href="#">메시지</a></li>
 	                <li><a href="${pageContext.request.contextPath}/guest/bookList">숙소예약목록</a></li>
