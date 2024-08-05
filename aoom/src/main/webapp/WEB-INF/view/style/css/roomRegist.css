@@ -146,6 +146,14 @@ header .inner .user .profile p {
     font-weight: 800;
 }
 
+header .inner .user .profile img {
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 1px solid black;
+}
+
 /*  컨텐츠 시작 */
 .registration {
     margin-top: 120px;
@@ -225,7 +233,7 @@ button.pink span {
 }
 
 .page_move {
-    width: 300%;
+    width: 100%;
     display: flex;
 }
 
@@ -441,6 +449,15 @@ button.pink span {
     margin-bottom: 5px;
 }
 
+.count input {
+	width: 24px;
+	text-align: center;
+}
+
+.maximum_p input{
+	width: 24px;
+	text-align: center;
+}
 
 /* STEP2 시작 */
 .page_r2 {
@@ -495,7 +512,6 @@ button.pink span {
 .page_r2 .p_top .pt_right .l_pic .pic {
     background: #ddd;
     position: relative;
-    cursor: pointer;
 }
 
 .page_r2 .p_top .pt_right .l_pic .pic img {
@@ -506,12 +522,12 @@ button.pink span {
 .page_r2 .p_top .pt_right .l_pic .pic .bg_box {
     position: absolute;
     color: #fff;
-    line-height: 40px;
+    line-height: 35px;
     bottom: 0;
     left: 0;
     font-weight: 300;
     width: 100%;
-    height: 40px;
+    height: 35px;
     text-align: center;
     background: rgba(0, 0, 0, 0.3);
 }
@@ -718,4 +734,17 @@ button.pink span {
 
 .pagenation_box button span {
     color: #fff;
+}
+
+input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

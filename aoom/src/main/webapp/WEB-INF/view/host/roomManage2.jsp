@@ -167,10 +167,14 @@
 		                                <i class="fa-solid fa-ellipsis-vertical">
 		                                    <ul class="option_box">
 		                                        <li>
-		                                            <p>수정</p>
+		                                            <p>
+		                                            	<button type="button" onclick="location.replace('/host/roomManage/registRoom/basicInfo?roomId=${room.roomId}');">수정</button>
+	                                            	</p>
 		                                        </li>
 		                                        <li>
-		                                            <p>삭제</p>
+		                                            <p>
+		                                            	<button type="button" data-bs-toggle="modal" data-bs-target="#roomDeleteModal" name="btnDeleteRoom" data-room-id="${room.roomId }">삭제</button>
+		                                            </p>
 		                                        </li>
 		                                    </ul>
 		                                </i>
