@@ -16,54 +16,14 @@
 
     <link rel="stylesheet" href="/style/css/common.css">
     <link rel="stylesheet" href="/style/css/roomRegist.css">
+    <link rel="stylesheet" href="/style/css/hostNavbar.css">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 </head>
 <body>
-	<div class="fixed">
-        <header>
-            <div class="inner">
-                <ul class="nav_menu">
-                    <li>
-                        <p>계정</p>
-                    </li>
-                    <li>
-                        <p>메세지</p>
-                    </li>
-                    <li>
-                        <p>알림</p>
-                    </li>
-                    <li>
-                        <p>숙소관리</p>
-                    </li>
-                    <li>
-                        <p>관심목록</p>
-                    </li>
-                    <li>
-                        <p>자주묻는질문</p>
-                    </li>
-                    <li>
-                        <p>로그아웃</p>
-                    </li>
-                </ul><!-- //nav_menu -->
-                <a href="${pageContext.request.contextPath}/main" class="logo">
-                    <img src="/style/img/n_1.png" alt="AOOM로고">
-                </a><!-- //logo -->
-
-                <div class="user">
-                    <div class="profile">
-                        <img src="${sessionScope.userInfo.userImage }" alt="유저 프로필">
-                        <p>${sessionScope.userInfo.userName}</p>
-                        <i class="fa-solid fa-bars"></i>
-                    </div><!-- //profile -->
-                </div><!--//user -->
-
-            </div><!-- //inner -->
-        </header><!--//header-->
-    </div><!-- //fixed -->
-    
+	<jsp:include page="/WEB-INF/view/layout/navbarHost.jsp"></jsp:include>
 
 	<!----------------------------------- 컨텐츠 시작! --------------------------------------------------->
     <div class="registration inner">
