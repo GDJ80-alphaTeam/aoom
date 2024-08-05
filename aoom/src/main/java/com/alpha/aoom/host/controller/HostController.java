@@ -240,7 +240,7 @@ public class HostController extends BaseController {
 		modelMap.addAttribute("currentPage", currentPage); // 현재페이지
 		modelMap.addAttribute("lastPage", lastPage); // 마지막페이지
 		
-		return "/host/bookList";
+		return "/host/bookList2";
 	}
 	
 	// 달력 - 숙소의 oneday의 상태 변경
@@ -266,7 +266,7 @@ public class HostController extends BaseController {
 	@RequestMapping("/bookList/bookInfo")
 	public String bookInfo(@RequestParam Map<String, Object> param, ModelMap modelMap) {
 		modelMap.addAttribute("bookInfo", bookingService.selectByBookingId(param));
-		return "/host/bookList/bookInfo";
+		return "/host/bookList/bookInfo2";
 	}
 	
 	// 체크아웃 하기
