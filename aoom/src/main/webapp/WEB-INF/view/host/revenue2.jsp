@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="/style/css/common.css">
     <link rel="stylesheet" href="/style/css/revenue.css">
     <link rel="stylesheet" href="/style/css/hostNavbar.css">
-    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://uicdn.toast.com/chart/latest/toastui-chart.min.js"></script>
 	<link rel="stylesheet" href="https://uicdn.toast.com/chart/latest/toastui-chart.min.css" />
@@ -271,6 +270,14 @@
 	
 	    });
 	    
+	</script>
+	
+	<script type="text/javascript">
+	    $(document).ready(function() {
+	        $('.fa-bars').click(function() {
+	            $('.nav_menu').toggle();
+	        });
+	    });
 	</script>
 </body>
 </html>

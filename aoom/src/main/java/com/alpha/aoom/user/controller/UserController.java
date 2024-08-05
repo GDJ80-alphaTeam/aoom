@@ -167,7 +167,7 @@ public class UserController extends BaseController {
 		
 		modelMap.addAttribute("userWishList", userWishList);
 		
-		return "/user/wishList";
+		return "/user/wishList2";
 	}
 	
 	// 유저 프로필 사진수정
