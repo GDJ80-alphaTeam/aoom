@@ -56,15 +56,16 @@
                 </div><!-- //t_right -->
             </div><!-- //r_m_top 썸네일, 리스트 형식 공통  사용-->
 		    
-		    <div style="display: flex;">
+		    <div style="display: flex; gap: 10px;">
 		        <div id='calendar'></div>
 		        
 		        <div style="width: 280px; box-sizing: border-box;">
 		        
 		        	<!-- 닐찌 선택 안했을 때 -->
-		            <div style="width: 840; display: inline-block;" id="notSelectDay">
+		            <div style="display: inline-block;" id="notSelectDay">
 			            <form id="priceForm">
 			            	<h3 id="notSelectedDateTitle"></h3>
+			            	<br>
 			            	<h3>전체 요금</h3>
 			                <div>1박당</div>
 			                <input type="hidden" name="roomId" value="${selectedRoomId }">
@@ -91,10 +92,14 @@
 			                <div class="d-flex align-items-center">
 								<c:forEach var="onestatCode" items="${onestatCodeList }">
 									<c:if test="${onestatCode.codeKey == 'one01'}">
-									    <button class="pink" type="button" name="onestatCode" value="${onestatCode.codeKey }"><span>${onestatCode.codeName }</span></button>
+									    <button class="pink" type="button" name="onestatCode" value="${onestatCode.codeKey }" style="width: 85px;">
+									    	<span>${onestatCode.codeName }</span>
+									    </button>
 									</c:if>
 									<c:if test="${onestatCode.codeKey == 'one02'}">
-									    <button class=dark_navy type="button" name="onestatCode" value="${onestatCode.codeKey }"><span>${onestatCode.codeName }</span></button>
+									    <button class=dark_navy type="button" name="onestatCode" value="${onestatCode.codeKey }" style="width: 85px;">
+									    	<span>${onestatCode.codeName }</span>
+									    </button>
 									</c:if>					
 								</c:forEach>
 			                </div>
@@ -105,7 +110,9 @@
 			                <input type="hidden" name="startDate" id="startOneDay">
 			                <input type="hidden" name="endDate" id="endOneDay">
 			                <input type="number" min="30000" id="defaultPriceSelected" name="defaultPrice" style="height: 35px;">원
-			                <button class="pink" type="button" id="selectedPriceBtn"><span>설정</span></button>
+			                <button class="pink" type="button" id="selectedPriceBtn" style="width: 85px;">
+			                	<span>설정</span>
+			                </button>
 			                <br>
 		                </form>
 		            </div>
@@ -172,7 +179,7 @@
 	                    let startDate = response.roomData.startDate;
 	                    let endDate = response.roomData.endDate;
 	                    // 날짜 선택하지 않았을 때 title 설정
-	                    $('#notSelectedDateTitle').html(startDate + ' ~ ' + endDate);
+	                    $('#notSelectedDateTitle').html(startDate + ' ~ ' + endDate + '<br>요금 설정');
 	                    
 	                    // 실제 운영기간보다 1일 더 작게나와 1일 추가
 	                    endDate = moment(endDate).add(1, 'day').format('YYYY-MM-DD');
@@ -301,7 +308,7 @@
 	                    let endOneDay = moment(info.endStr).subtract(1, 'day').format('YYYY-MM-DD');
 
 	                    if (startOneDay === endOneDay) {
-	                        $('#selectedDateTitle').html(startOneDay + ' 요금 설정');
+	                        $('#selectedDateTitle').html(startOneDay + '<br>요금 설정');
 	                    } else {
 	                        $('#selectedDateTitle').html(startOneDay + ' ~ ' + endOneDay + '<br>요금 설정');
 	                    }
@@ -413,5 +420,42 @@
 		});
 	</script>
 
+	<script type="text/javascript">
+		$('#defaultPrice').blur(function() {
+			// 입력한 금액 가져오기
+			let originalPrice = $('#defaultPrice').val();
+			console.log(originalPrice);
+			
+			// 1원단위 절사(내림)
+			let truncationPrice = Math.floor(originalPrice/10) * 10;
+			console.log(truncationPrice);
+			
+			$('#defaultPrice').val(truncationPrice);
+		});
+		
+		$('#weekendPrice').blur(function() {
+			// 입력한 금액 가져오기
+			let originalPrice = $('#weekendPrice').val();
+			console.log(originalPrice);
+			
+			// 1원단위 절사(내림)
+			let truncationPrice = Math.floor(originalPrice/10) * 10;
+			console.log(truncationPrice);
+			
+			$('#weekendPrice').val(truncationPrice);
+		});
+		
+		$('#defaultPriceSelected').blur(function() {
+			// 입력한 금액 가져오기
+			let originalPrice = $('#defaultPriceSelected').val();
+			console.log(originalPrice);
+			
+			// 1원단위 절사(내림)
+			let truncationPrice = Math.floor(originalPrice/10) * 10;
+			console.log(truncationPrice);
+			
+			$('#defaultPriceSelected').val(truncationPrice);
+		});
+	</script>
 </body>
 </html>

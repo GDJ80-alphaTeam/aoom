@@ -97,6 +97,11 @@ span {
     cursor: pointer;
 }
 
+.inner_nav ul li a {
+	width: auto;
+	display: block;
+}
+
 .inner_nav ul li.active {
     border-bottom: 4px solid #ED5977;
     color: #ed5977;

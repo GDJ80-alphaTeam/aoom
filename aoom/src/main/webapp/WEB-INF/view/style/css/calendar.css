@@ -10,7 +10,7 @@
 }
 
 #calendar {
-	width: 80%;
+	width: 87%;
 	min-height: 600px; /* 고정된 최소 높이 설정 */
 	box-sizing: border-box; /* 패딩과 테두리를 포함한 크기 조정 */
 }
@@ -134,6 +134,11 @@ span {
     cursor: pointer;
 }
 
+.inner_nav ul li a {
+	width: auto;
+	display: block;
+}
+
 .inner_nav ul li.active {
     border-bottom: 4px solid #ED5977;
     color: #ed5977;
@@ -167,7 +172,7 @@ span {
 }
 
 input {
-    width: 130px;
+    width: 120px;
     height: 38px;
     border-radius: 5px;
     padding-left: 5px;
