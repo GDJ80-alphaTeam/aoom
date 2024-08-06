@@ -6,81 +6,124 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>숙소등록 3단계</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</head>
-<body class="container">
+    <meta name="description" content="AOOM 웹 사이트 입니다">
+    <meta name="keywords" content="AOOM, 웹디자인, 포트폴리오, 디자이너, 웹 포트폴리오">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>숙소 등록</title>
+    <script src="https://kit.fontawesome.com/82b4a4fcad.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/style/js/roomRegist.js" defer></script>
 
-	<h1>숙소 등록 3단계</h1>
+    <link rel="stylesheet" href="/style/css/common.css">
+    <link rel="stylesheet" href="/style/css/roomRegist.css">
+    <link rel="stylesheet" href="/style/css/navSub.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+</head>
+<body>
+	<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
 	
-	<!-- 나가기 버튼 -->
-	<div class="d-flex">
-		<button id="BtnQuit" class="btn btn-danger ms-auto">나가기</button>
-	</div>
+	<!----------------------------------- 컨텐츠 시작! --------------------------------------------------->
 	
-	<form action="/host/roomManage/registRoom/registPaymentInfo" id="paymentForm" method="post">
-		<!-- roomId -->
-		<input type="hidden" name="roomId" value="${roomId }">
-		
-		<!-- 예약 확정 방식 설정 - 현재 기능 구현 X -->
-		<h4>예약 확정 방식</h4>
-		<div>
-			<button type="button" id="instantBooking" disabled="disabled">즉시 예약</button>
-			<button type="button" id="wan01" disabled="disabled">사진</button>
-			<button type="button" id="wan02" disabled="disabled">여행 목적</button>
-			<button type="button" id="wan03" disabled="disabled">체크인 시간</button>
-			<button type="button" id="wan04" disabled="disabled">숙소 선택 이유</button>
-		</div>
-		<br>
-		
-		<!-- 기본 요금 설정 -->
-		<div>
-			<h4 style="display: inline;	">기본 요금</h4>
-			<span style="color: red;">플랫폼 수수료 10%</span><br>
-			<span>숙소 요금은 10원단위로 절사(내림)됩니다.</span><br>
-			<input type="number" id="defaultPrice" name="defaultPrice" min="30000" value="${roomInfo.originalDefaultPrice }" placeholder="금액을 입력해주세요" required="required">원
-		</div>
-		<br>
-		
-		<!-- 환불 정책 설정 - 현재 기능 구현 X -->
-		<h4>환불 정책 설정</h4>
-		<div>
-			<select>
-				<c:forEach var="rf" items="${refundme }">
-					<option>${rf.codeDesc }</option>
-				</c:forEach>
-			</select>			
-		</div>
-		<br>
-		
-		<!-- 대금 수령 계좌 설정 -->
-		<h4>대금 수령 계좌 설정</h4>
-		<div>
-			<!-- 은행 선택 -->
-			<select name="bankCode" required="required">
-				<c:forEach var="b" items="${bank }">
-					<c:if test="${roomInfo.bankCode eq b.codeKey }">
-						<option value="${b.codeKey }" selected="selected">${b.codeName }</option>
-					</c:if>
-					<c:if test="${roomInfo.bankCode ne b.codeKey }">
-						<option value="${b.codeKey }">${b.codeName }</option>
-					</c:if>
-				</c:forEach>
-			</select>
-			
-			<!-- 계좌번호 정규식 적용 -->
-			<input type="text" id="accountNo" name="accountNo" placeholder="'-'를 포함하여 입력해주세요" required="required" value="${roomInfo.accountNo }" pattern="^(\d{1,})(-(\d{1,})){1,}" style="width: 250px;">
-		</div>
-		<br>
-		
-		<!-- 이전페이지 버튼, 다음 버튼-->
-		<div class="d-flex">
-			<button type="button" id="BtnBefore" onclick="window.location.href = '/host/roomManage/registRoom/detailInfo?roomId=${roomInfo.roomId}';" class="btn btn-secondary ms-auto">이전</button>
-			<button type="submit" class="btn btn-primary">다음</button>
-		</div>
-	</form>
+    <div class="registration inner">
+	    <form action="/host/roomManage/registRoom/registPaymentInfo" id="paymentForm" method="post">
+	        <div class="title">
+	            <h2>숙소등록</h2>
+	        </div>
+	        <div class="pro">
+	            <img src="/style/img/pro3.png" alt="프로그래스바" class="active">
+	        </div><!-- //pro -->
+	        
+	        <div class="page_ac">
+	            <div class="page_move">
+	                <div class="page_rolling page_r3">
+	                    <div class="page_r3">
+	                        <div class="p3_left">
+	                        	<!-- roomId -->
+								<input type="hidden" name="roomId" value="${roomId }">
+								
+	                            <div class="l_top">
+	                                <h4>기본 요금 <p>* 플랫폼 수수료 10%</p>
+	                                </h4>
+	                                <input type="number" id="defaultPrice" name="defaultPrice" min="30000" value="${roomInfo.originalDefaultPrice }" placeholder="금액을 입력해주세요" required="required"> 원
+	                            </div><!-- //l_top -->
+	                            <div class="l_middle">
+	                                <h4>환불정책 설정</h4>
+	                                <div class="select_btn">
+	                                    <select>
+											<c:forEach var="rf" items="${refundme }">
+												<option>${rf.codeDesc }</option>
+											</c:forEach>
+										</select>	
+	                                </div><!-- //slect_btn -->
+	                            </div><!-- //l_middle -->
+	                            <div class="l_bottom">
+	                                <h4>대금 수령 계좌 입력</h4>
+	                                <div class="i_box">
+	                                    <!-- 은행 선택 -->
+										<select name="bankCode" required="required">
+											<c:forEach var="b" items="${bank }">
+												<c:if test="${roomInfo.bankCode eq b.codeKey }">
+													<option value="${b.codeKey }" selected="selected">${b.codeName }</option>
+												</c:if>
+												<c:if test="${roomInfo.bankCode ne b.codeKey }">
+													<option value="${b.codeKey }">${b.codeName }</option>
+												</c:if>
+											</c:forEach>
+										</select>
+	                                    <input type="text" id="accountNo" name="accountNo" placeholder="'-'를 포함하여 입력해주세요" required="required" value="${roomInfo.accountNo }" pattern="^(\d{1,})(-(\d{1,})){1,}" style="width: 250px;">
+	                                </div><!-- //i_box -->
+	                            </div><!-- //l_bottom -->
+	                        </div><!-- //p3_left -->
+	                        <div class="p3_right">
+	                            <div class="r_top">
+	                                <h4>예약 확정 방식</h4>
+	                                <div class="select_btn">
+	                                    <button type="button" class="on"> <i class="fa-solid fa-check"></i>
+	                                        <p>즉시 예약</p>
+	                                    </button>
+	                                    <button type="button"> <i class="fa-solid fa-check"></i>
+	                                        <p>사진 요청</p>
+	                                    </button>
+	                                    <button type="button"> <i class="fa-solid fa-check"></i>
+	                                        <p>여행 목적 요청</p>
+	                                    </button>
+	                                    <button type="button"> <i class="fa-solid fa-check"></i>
+	                                        <p>체크인 시간 요청</p>
+	                                    </button>
+	                                    <button type="button"> <i class="fa-solid fa-check"></i>
+	                                        <p>선택 이유 요청</p>
+	                                    </button>
+	                                </div><!-- //select_btn -->
+	                            </div><!-- //r_top -->
+	                            <div class="r_bottom">
+	                                <div class="cute_2">
+	                                    <img src="/style/img/cute2.png" alt="aoom마스코트">
+	                                    <img src="/style/img/cute3.png" alt="aoom마스코트">
+	                                </div><!-- //cute_2 -->
+	                                <div class="cute_1">
+	                                    <img src="/style/img/cute1.png" alt="aoom마스코트">
+	                                </div><!-- //cute_1 -->
+	
+	                            </div><!-- //r_bottom -->
+	
+	                        </div><!-- //p3_right -->
+	                    </div><!-- //page_r3 -->
+	                </div><!-- page_rolling//page_r3 -->
+	            </div><!-- //page_move -->
+	        </div>
+	        <div class="pagenation_box">
+		        <button type="button" class="prev" onclick="window.location.href = '/host/roomManage/registRoom/detailInfo?roomId=${roomInfo.roomId}';">
+	        		<span>이전 단계</span>
+	        	</button>
+				<button type="submit" class="next">
+					<span>다음 단계</span>
+				</button>
+	        </div><!-- //pagenation_box -->
+        </form>
+    </div><!-- //inner -->
 	
 	<!-- 숙소 기본 요금 설정 시 10원단위로 절사 및 1000원단위로 콤마 표시 기능 -->
 	<script type="text/javascript">
@@ -95,15 +138,6 @@
 			
 			$('#defaultPrice').val(truncationPrice);
 		});
-	</script>
-	
-	<!-- 나가기 버튼 클릭시 이벤트 -->
-	<script type="text/javascript">
-		$('#BtnQuit').click(function() {
-			if (confirm("나가실 경우 해당 페이지의 내용은 저장 되지않습니다")) {
-                window.location.href = "/host/roomManage";
-            }
-		});	
 	</script>
 </body>
 </html>

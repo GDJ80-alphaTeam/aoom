@@ -27,6 +27,16 @@
 		SELECT
 			 <include refid="wishList_col"/>
 			,<include refid="com.alpha.aoom.room.service.RoomMapper.room_col"></include>
+			,NVL((
+				SELECT 
+					ROUND(AVG(r2.RATING),1)
+             	FROM 
+             		REVIEW r2
+             	WHERE 
+             		r.ROOM_ID = r2.ROOM_ID 
+             	GROUP BY 
+             		(r2.ROOM_ID)
+     		 ), 0)AS avg
 		FROM
 			wishlist wl
 		LEFT JOIN

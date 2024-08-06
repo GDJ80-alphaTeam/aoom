@@ -6,118 +6,152 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>숙소 등록 2단계</title>
-	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <meta name="description" content="AOOM 웹 사이트 입니다">
+    <meta name="keywords" content="AOOM, 웹디자인, 포트폴리오, 디자이너, 웹 포트폴리오">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>숙소 등록</title>
+    <script src="https://kit.fontawesome.com/82b4a4fcad.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/style/js/roomRegist.js" defer></script>
+
+    <link rel="stylesheet" href="/style/css/common.css">
+    <link rel="stylesheet" href="/style/css/roomRegist.css">
+    <link rel="stylesheet" href="/style/css/navSub.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 </head>
-<body class="container">
+<body>
+	<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
 
-	<h1>숙소 등록 2단계</h1>
+	<!----------------------------------- 컨텐츠 시작! --------------------------------------------------->
+    <div class="registration inner">
+	    <form action="/host/roomManage/registRoom/registDetailInfo" enctype="multipart/form-data" method="post">
+	        <div class="title">
+	            <h2>숙소등록</h2>
+	        </div>
+	        <div class="pro">
+	            <img src="/style/img/pro2.png" alt="프로그래스바" class="active">
+	        </div><!-- //pro -->
+	        
+	        <div class="page_ac">
+	            <div class="page_move">
+	                <div class="page_rolling page_r2">
+	                    <div class="p_top">
+	                        <div class="pt_left">
+	                        	<!-- roomId -->
+								<input type="hidden" name="roomId" value="${roomId }">
+	                            <div class="l_name">
+	                                <h4>숙소 이름</h4>
+	                                <c:if test="${roomInfo.roomName != null && roomInfo.roomName ne ''}">
+										<input type="text" name="roomName" maxlength="25" value="${roomInfo.roomName }" required="required">
+									</c:if>
+									<c:if test="${roomInfo.roomName == null || roomInfo.roomName eq ''}">
+										<input type="text" name="roomName" maxlength="25" required="required">
+									</c:if>
+	                            </div><!-- //d_name 숙소이름-->
+	                            <div class="l_explanation">
+	                                <h4>숙소 설명</h4>
+	                                <c:if test="${roomInfo.roomContent != null && roomInfo.roomContent ne ''}">
+										<textarea rows="10" cols="50" name="roomContent" maxlength="1000" required="required">${roomInfo.roomContent }</textarea>
+									</c:if>
+									<c:if test="${roomInfo.roomContent == null || roomInfo.roomContent eq ''}">
+										<textarea rows="10" cols="50" name="roomContent" maxlength="1000" required="required"></textarea>
+									</c:if>
+	                            </div><!-- //l_explanation 숙소설명-->
+	                        </div><!-- //pt_left -->
+	                        <div class="pt_right">
+	                            <h4>사진 추가하기</h4>
+	                            <div class="l_pic">
+	                                <div class="main_pic pic">
+	                                	<button type="button" id="mainImageRemove" style="position: absolute; top: 0; right: 0;">X</button>
+										<label for="mainImage">
+											<c:if test="${roomInfo.mainImage != null && roomInfo.mainImage ne ''}">
+												<img src="${roomInfo.mainImage }" id="mainImageFile"> 
+											</c:if>
+											<c:if test="${roomInfo.mainImage == null || roomInfo.mainImage eq ''}">
+												<img src="/image/etc/imageUploadIcon.png" id="mainImageFile"> 
+											</c:if>
+											<input type="file" id="mainImage" name="mainImage" accept="image/*" style="display: none;">
+								            <input type="hidden" id="existingMainImage" value="${roomInfo.mainImage}">
+										</label> 
+	                                    <div class="bg_box">대표 사진</div>
+	                                </div><!-- //main_pic 대표사진-->
+	                                <div class="sub">
+	                                    <c:forEach var="i" begin="1" end="4">
+										    <c:if test="${i % 2 == 1 }">
+										        <div class="sub_pic">
+										    </c:if>
+										    <div class="s_p pic">
+										        <button type="button" id="image_${i}_remove" style="position: absolute; top: 0; right: 0;">X</button>
+										        <label for="images_${i}">
+										            <c:if test="${roomInfo.roomImages[i-1].image != null && roomInfo.roomImages[i-1].image ne ''}">
+										                <img src="${roomInfo.roomImages[i-1].image}" id="image_${i}_file">
+										            </c:if>
+										            <c:if test="${roomInfo.roomImages[i-1].image == null || roomInfo.roomImages[i-1].image eq ''}">
+										                <img src="/image/etc/imageUploadIcon.png" id="image_${i}_file">
+										            </c:if>
+										            <input type="file" id="images_${i}" name="images_${i}" accept="image/*" style="display: none;">
+										            <input type="hidden" id="existingImages_${i }" value="${roomInfo.roomImages[i-1].image }">
+										        </label>
+										        <div class="bg_box">사진 ${i }</div>
+									        </div>
+										    <c:if test="${i % 2 == 0 }">
+										        </div>
+										    </c:if>
+										</c:forEach>
+	                                </div>
 	
-	<!-- 나가기 버튼 -->
-	<div class="d-flex">
-		<button id="BtnQuit" class="btn btn-danger ms-auto">나가기</button>
-	</div>
 	
-	<form action="/host/roomManage/registRoom/registDetailInfo" enctype="multipart/form-data" method="post">
-		<!-- roomId -->
-		<input type="hidden" name="roomId" value="${roomId }">
-
-		<!-- 숙소 이름 설정 -->
-		<div>
-			숙소 이름 : 
-			<c:if test="${roomInfo.roomName != null && roomInfo.roomName ne ''}">
-				<input type="text" name="roomName" maxlength="25" value="${roomInfo.roomName }" required="required">
-			</c:if>
-			<c:if test="${roomInfo.roomName == null || roomInfo.roomName eq ''}">
-				<input type="text" name="roomName" maxlength="25" required="required">
-			</c:if>
-		</div>
-
-		<!-- 숙소 설명 설정 -->
-		<div>
-			숙소 설명 :
-			<c:if test="${roomInfo.roomContent != null && roomInfo.roomContent ne ''}">
-				<textarea rows="10" cols="50" name="roomContent" maxlength="1000" required="required">${roomInfo.roomContent }</textarea>
-			</c:if>
-			<c:if test="${roomInfo.roomContent == null || roomInfo.roomContent eq ''}">
-				<textarea rows="10" cols="50" name="roomContent" maxlength="1000" required="required"></textarea>
-			</c:if>
-		</div>
-
-		<!-- 숙소 편의시설 설정 -->
-		<div>
-			편의시설 :
-			<c:forEach var="amenity" items="${amenities }">
-				<label for="${amenity.codeKey }" class="btn btn-light">${amenity.codeName }</label>
-				<c:set var="isCheckd" value="false"></c:set>
-				<c:forEach var="ra" items="${roomInfo.roomAmenities}">
-					<c:if test="${ra.codeKey eq amenity.codeKey }">
-						<input type="checkbox" id="${amenity.codeKey }" name="checkAmenities" checked="checked" value="${amenity.codeKey }" style="display: none">
-						<c:set var="isCheckd" value="true"></c:set>
-					</c:if>
-				</c:forEach>
-				<c:if test="${!isCheckd}">
-					<input type="checkbox" id="${amenity.codeKey }" name="checkAmenities" value="${amenity.codeKey }" style="display: none">
-				</c:if>
-			</c:forEach>
-				
-			<input type="hidden" name="amenities" id="amenities">
-		</div>
-
-		<!-- 사진 등록 -->
-		<div style="display: inline-block;">
-			<!-- 메인이미지 -->
-			<div style="display: inline-block; position: relative;">
-				<button type="button" id="mainImageRemove" style="position: absolute; top: 0; right: 0;">X</button>
-				<label for="mainImage">
-					<c:if test="${roomInfo.mainImage != null && roomInfo.mainImage ne ''}">
-						<img src="${roomInfo.mainImage }" style="width: 300px; height: 300px; display: block;" id="mainImageFile"> 
-					</c:if>
-					<c:if test="${roomInfo.mainImage == null || roomInfo.mainImage eq ''}">
-						<img src="/image/etc/imageUploadIcon.png" style="width: 300px; height: 300px; display: block;" id="mainImageFile"> 
-					</c:if>
-					<input type="file" id="mainImage" name="mainImage" accept="image/*" style="display: none;">
-		            <input type="hidden" id="existingMainImage" value="${roomInfo.mainImage}">
-				</label> 
-			</div>
-
-			<!-- 나머지 이미지들 -->
-			<div style="display: inline-block;">
-				<div>
-					<c:forEach var="i" begin="1" end="4">
-					    <c:if test="${i % 2 == 1 }">
-					        <div>
-					    </c:if>
-					    <div style="position: relative; display: inline-block;">
-					        <button type="button" id="image_${i}_remove" style="position: absolute; top: 0; right: 0;">X</button>
-					        <label for="images_${i}">
-					            <c:if test="${roomInfo.roomImages[i-1].image != null && roomInfo.roomImages[i-1].image ne ''}">
-					                <img src="${roomInfo.roomImages[i-1].image}" style="width: 150px; height: 150px; display: block;" id="image_${i}_file">
-					            </c:if>
-					            <c:if test="${roomInfo.roomImages[i-1].image == null || roomInfo.roomImages[i-1].image eq ''}">
-					                <img src="/image/etc/imageUploadIcon.png" style="width: 150px; height: 150px; display: block;" id="image_${i}_file">
-					            </c:if>
-					            <input type="file" id="images_${i}" name="images_${i}" accept="image/*" style="display: none;">
-					            <input type="hidden" id="existingImages_${i }" value="${roomInfo.roomImages[i-1].image }">
-					        </label>
-					    </div>
-					    <c:if test="${i % 2 == 0 }">
-					        </div>
-					    </c:if>
-					</c:forEach>
-				</div>
-			</div>
-		</div>
-
-		<br>
-		<!-- 이전페이지 버튼, 다음 버튼-->
-		<div class="d-flex">
-			<button type="button" id="BtnBefore" onclick="window.location.href = '/host/roomManage/registRoom/basicInfo?roomId=${roomInfo.roomId}';" class="btn btn-secondary ms-auto">이전</button>
-			<button type="submit" id="BtnNext" class="btn btn-primary">다음</button>
-		</div>
-	</form>
+	                            </div><!-- //l_pic -->
+	                        </div><!-- //pt_right -->
+	                    </div><!-- //p2_top -->
+	                    <div class="p_bottom">
+	                        <h4>편의시설</h4>
+	                        <ul class="icon_box">
+	                            <c:forEach var="amenity" items="${amenities }">
+									<c:set var="isCheckd" value="false"></c:set>
+									<c:forEach var="ra" items="${roomInfo.roomAmenities}">
+										<c:if test="${ra.codeKey eq amenity.codeKey }">
+											<li class="on">
+												<i class="fa-solid fa-check"></i>
+				                                <div class="img_b">
+				                                    <img src="/style/img/${amenity.codeKey }on.png" alt="${ra.codeName }">
+				                                </div>
+				                                <h5>${amenity.codeName }</h5>
+												<input type="checkbox" id="${amenity.codeKey }" name="checkAmenities" checked="checked" value="${amenity.codeKey }" style="display: none">
+											</li>
+											<c:set var="isCheckd" value="true"></c:set>
+										</c:if>
+									</c:forEach>
+									<c:if test="${!isCheckd}">
+										<li>
+											<i class="fa-solid fa-check"></i>
+			                                <div class="img_b">
+			                                    <img src="/style/img/${amenity.codeKey }.png" alt="${ra.codeName }">
+			                                </div>
+			                                <h5>${amenity.codeName }</h5>
+											<input type="checkbox" id="${amenity.codeKey }" name="checkAmenities" value="${amenity.codeKey }" style="display: none">
+										</li>
+									</c:if>
+								</c:forEach>
+								<input type="hidden" name="amenities" id="amenities">
+	                        </ul>
+	                    </div><!-- //p_bottom -->
+	                </div><!-- page_rolling//page_r2 -->
+	            </div><!-- //page_move -->
+	        </div>
+	        <div class="pagenation_box">
+		        <button type="button" class="prev" onclick="window.location.href = '/host/roomManage/registRoom/basicInfo?roomId=${roomInfo.roomId}';">
+	        		<span>이전 단계</span>
+	        	</button>
+				<button type="submit" class="next" id="btnNext">
+					<span>다음 단계</span>
+				</button>
+	        </div><!-- //pagenation_box -->
+        </form>
+    </div><!-- //inner -->
 
 	<!-- amenities 선택 후 배열로 넘기기 및 버튼 방식 기능 -->
 	<script>
@@ -128,8 +162,6 @@
 		    $('input[name="checkAmenities"]').each(function() {
 		        if ($(this).is(':checked')) {
 		            let amenityCode = $(this).val();
-		            $('label[for="' + amenityCode + '"]').removeClass('btn-light')
-		            $('label[for="' + amenityCode + '"]').addClass('btn-primary');
 		            amenityList.push(amenityCode);
 		        }
 		        
@@ -143,11 +175,6 @@
 		            let amenityCode = $(this).val();
 		            if ($(this).is(":checked")) {
 		                amenityList.push(amenityCode);
-		                $('label[for="' + amenityCode + '"]').removeClass('btn-light');
-		                $('label[for="' + amenityCode + '"]').addClass('btn-primary');
-		            } else {
-		                $('label[for="' + amenityCode + '"]').removeClass('btn-primary');
-		                $('label[for="' + amenityCode + '"]').addClass('btn-light');
 		            }
 		        });
 	
@@ -220,7 +247,7 @@
 	
 	<!-- 폼 제출 전 이미지 파일 업로드 했는지 검사 -->
 	<script type="text/javascript">
-	    $('#BtnNext').click(function(event) {
+	    $('#btnNext').click(function(event) {
 	        // 메인 이미지 검사
 	        if ($('#mainImage').val() == '' && $('#existingMainImage').val() == '') {
 	            alert('숙소 이미지를 추가해주세요!');
@@ -237,14 +264,5 @@
 	    });
 	</script>
 
-	
-	<!-- 나가기 버튼 클릭시 이벤트 -->
-	<script type="text/javascript">
-		$('#BtnQuit').click(function() {
-			if (confirm("나가실 경우 해당 페이지의 내용은 저장 되지않습니다")) {
-                window.location.href = "/host/roomManage";
-            }
-		});	
-	</script>
 </body>
 </html>

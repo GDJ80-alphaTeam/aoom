@@ -95,7 +95,7 @@ public class RegistRoomController extends BaseController{
 		modelMap.put("roomcate", roomcate);
 		modelMap.put("roomtype", roomtype);
 		
-		return "/host/regist/basicInfo2";
+		return "/host/regist/basicInfo";
 	}
 	
 	// 숙소 등록 - 숙소 등록 1단계 정보 DB 입력 및 숙소 등록 2단계 페이지 이동
@@ -140,7 +140,7 @@ public class RegistRoomController extends BaseController{
 		// modelMap에 amenities 목록 추가
 		modelMap.put("amenities", amenities);
 		
-		return "/host/regist/detailInfo2";
+		return "/host/regist/detailInfo";
 	}
 	
 	// 숙소 등록 - 숙소 등록 2단계 정보 DB 입력 및 숙소 등록 3단계 페이지 이동
@@ -220,7 +220,7 @@ public class RegistRoomController extends BaseController{
 		modelMap.put("bank", bank);
 		
 		
-		return "/host/regist/paymentInfo2";
+		return "/host/regist/paymentInfo";
 	}
 	
 	// 숙소 등록 - 숙소 등록 3단계 정보 DB 입력 및 숙소 등록 전 미리보기 페이지 이동
@@ -258,7 +258,7 @@ public class RegistRoomController extends BaseController{
 		
 		modelMap.put("roomInfo", roomInfo);
 		
-		return "/host/regist/preview2";
+		return "/host/regist/preview";
 	}
 	
 	// 숙소 최종 등록 - 숙소 상태 변경(등록중 -> 승인 대기)

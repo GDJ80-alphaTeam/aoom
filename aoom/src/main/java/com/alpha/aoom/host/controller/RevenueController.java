@@ -42,7 +42,7 @@ public class RevenueController extends BaseController {
 		modelMap.addAttribute("selectedRoomId", param.get("roomId"));
 		
 		
-		return "/host/revenue2";
+		return "/host/revenue";
 	}
 	
 	// 호스트 수입 불러오는 ajax

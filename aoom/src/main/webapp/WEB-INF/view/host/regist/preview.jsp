@@ -6,67 +6,80 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>숙소 미리보기</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</head>	
-<body class="container">
+    <meta name="description" content="AOOM 웹 사이트 입니다">
+    <meta name="keywords" content="AOOM, 웹디자인, 포트폴리오, 디자이너, 웹 포트폴리오">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>숙소 등록</title>
+    <script src="https://kit.fontawesome.com/82b4a4fcad.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/style/js/roomRegist.js" defer></script>
 
-	<h1>숙소 미리 보기</h1>
+    <link rel="stylesheet" href="/style/css/common.css">
+    <link rel="stylesheet" href="/style/css/roomRegist.css">
+    <link rel="stylesheet" href="/style/css/navSub.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+</head>	
+<body>
+	<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
+	<!----------------------------------- 컨텐츠 시작! --------------------------------------------------->
 	
-	<!-- 나가기 버튼 -->
-	<div class="d-flex">
-		<button id="BtnQuit" class="btn btn-danger ms-auto">나가기</button>
-	</div>
-	
-	<div>
-		<table class="table" style="vertical-align: middle; text-align: center;">
-			<thead>
-				<tr>
-					<td>메인 이미지</td>
-					<td>숙소 이름</td>
-					<td>주소</td>
-					<td>기본가</td>
-					<td>운영일</td>
-				</tr>
-			</thead>
-			
-			<tbody>
-				<tr>
-					<td>
-						<img alt="" src="${roomInfo.mainImage }" style="width: 300px; height: 300px;">
-					</td>
-					<td>${roomInfo.roomName }</td>
-					<td>${roomInfo.address }</td>
-					<td>${roomInfo.defaultPrice }원</td>
-					<td>
-						${roomInfo.startDate } ~ ${roomInfo.endDate }
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		
-		<!-- 이전페이지 버튼, 최종 등록 -->
-		<div class="d-flex">
-			<button id="BtnBefore" onclick="window.location.href = '/host/roomManage/registRoom/paymentInfo?roomId=${roomInfo.roomId}';" class="btn btn-secondary ms-auto">이전</button>
-			<button id="BtnFinalRegist" class="btn btn-primary">최종 등록</button>
-		</div>
-		
-	</div>
-	
-	<!-- 나가기 버튼 클릭시 이벤트 -->
-	<script type="text/javascript">
-		$('#BtnQuit').click(function() {
-			if (confirm("나가실 경우 해당 페이지의 내용은 저장 되지않습니다")) {
-                window.location.href = "/host/roomManage";
-            }
-		});	
-	</script>
+    <div class="registration inner">
+	    <form action="/host/roomManage/registRoom/registPaymentInfo" id="paymentForm" method="post">
+	        <div class="title">
+	            <h2>숙소등록</h2>
+	        </div>
+	        <div class="pro">
+	            <img src="/style/img/pro3.png" alt="프로그래스바" class="active">
+	        </div><!-- //pro -->
+	        
+	        <div class="page_ac">
+	            <div class="page_move">
+	                <div class="page_rolling page_r3" style="height: 416px;">
+	                    <table style="vertical-align: middle; text-align: center; width: 100%;">
+							<thead>
+								<tr>
+									<td>메인 이미지</td>
+									<td>숙소 이름</td>
+									<td>주소</td>
+									<td>기본가</td>
+									<td>운영일</td>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<tr>
+									<td>
+										<img alt="" src="${roomInfo.mainImage }" style="width: 300px; height: 300px;">
+									</td>
+									<td>${roomInfo.roomName }</td>
+									<td>${roomInfo.address }</td>
+									<td>${roomInfo.defaultPrice }원</td>
+									<td>
+										${roomInfo.startDate } ~ ${roomInfo.endDate }
+									</td>
+								</tr>
+							</tbody>
+						</table>
+	                </div><!-- page_rolling//page_r3 -->
+	            </div><!-- //page_move -->
+	        </div>
+	        <div class="pagenation_box">
+		        <button type="button" class="prev" onclick="window.location.href='/host/roomManage/registRoom/paymentInfo?roomId=${roomInfo.roomId}';">
+	        		<span>이전 단계</span>
+	        	</button>
+				<button type="button" id="btnFinalRegist" class="next">
+					<span>최종 등록</span>
+				</button>
+	        </div><!-- //pagenation_box -->
+        </form>
+    </div><!-- //inner -->
 	
 	<!-- 최종 등록 버튼 클릭 시 이벤트 -->
 	<script type="text/javascript">
-		$('#BtnFinalRegist').click(function() {
+		$('#btnFinalRegist').click(function() {
 			$.ajax({
 				url: '/host/roomManage/registRoom/ajaxFinalRegist',
 				method: 'post',

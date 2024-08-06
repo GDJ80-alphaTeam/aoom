@@ -76,7 +76,7 @@ public class UserController extends BaseController {
 		if(editAuth != null && editAuth) { // 권한 있을 때
 			// session 제거 - 새로고침, 다른페이지에서 접근 막기
 			session.removeAttribute("userInfoAccess");
-			return "/user/userInfo2";
+			return "/user/userInfo";
 		} else { // 권한 없을 때
 			return "redirect:/user/myPage";
 		}
@@ -167,7 +167,7 @@ public class UserController extends BaseController {
 		
 		modelMap.addAttribute("userWishList", userWishList);
 		
-		return "/user/wishList2";
+		return "/user/wishList";
 	}
 	
 	// 유저 프로필 사진수정

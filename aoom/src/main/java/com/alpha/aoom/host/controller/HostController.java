@@ -96,7 +96,7 @@ public class HostController extends BaseController {
 		modelMap.addAttribute("pagingInfo", roomService.selectByTotalCnt(param));
 		modelMap.addAttribute("roomListByUser", roomListByUser);		
 		
-		return "/host/roomManage2";
+		return "/host/roomManage";
 	}
 	
 	// 숙소 삭제 - 숙소 상태(roomstat_code)를 삭제(rst05)로 변경
@@ -146,7 +146,7 @@ public class HostController extends BaseController {
 		modelMap.addAttribute("roomList", roomService.selectByUserId(userInfo));
 		modelMap.addAttribute("selectedRoomId", param.get("roomId"));
 	
-		return "/host/calendar2";
+		return "/host/calendar";
 	}
 	
 	// 달력 - 해당하는 숙소의 onedayPrice, 운영기간 가져오기

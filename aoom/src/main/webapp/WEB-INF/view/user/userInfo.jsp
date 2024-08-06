@@ -6,100 +6,106 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<body class="container">
-	<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
+    <meta name="description" content="AOOM 웹 사이트 입니다">
+    <meta name="keywords" content="AOOM, 웹디자인, 포트폴리오, 디자이너, 웹 포트폴리오">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개인정보</title>
+    <script src="https://kit.fontawesome.com/82b4a4fcad.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="/style/js/navbarSub.js" defer></script>
 	
-	<div style="width: 80%; margin: auto;">
-		<form id="editUserInfoForm">
-			<h1>개인정보</h1>
-			<br>
-			
-			<div>
-				<h5><b>이름</b></h5>
-				<input type="text" id="editUserName" name="userName" value="${sessionScope.userInfo.userName }" onkeyup="chk_han('editUserName')" required="required"> 
+    <link rel="stylesheet" href="/style/css/common.css">
+    <link rel="stylesheet" href="/style/css/userInfo.css">
+    <link rel="stylesheet" href="/style/css/navSub.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+	<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
+	<div class="inner" style="width: 660px;">
+		<div class="user_info">
+			<form id="editUserInfoForm">
+				<h1>개인정보</h1>
 				<br>
-			</div>
-			<hr>
-			
-			<div>
-				<h5><b>아이디</b></h5>
-				<input type="text" name="userId" value="${sessionScope.userInfo.userId}" readonly="readonly" style="border-width: 0; outline: none;">
-				<br>
-			</div>
-			<hr>
-			
-			<div>
-				<h5><b>생년월일</b></h5>
-				${sessionScope.userInfo.userBirth }
-				<br>
-			</div>
-			<hr>
-			
-			<div>
-				<h5><b>전화번호</b></h5>
-				<input type="text" name="userPhone" id="editUserPhone" value="${sessionScope.userInfo.userPhone }" required="required" placeholder="ex)010-1111-1111">
-				<br>
-			</div>
-			<hr>
-			
-			<div>
-				<h5><b>비밀번호</b></h5>
-			
-				<h6>새 비밀번호</h6>
-				<input type="password" id="editUserPw" name="editUserPw">
-			
-				<h6>비밀번호 확인</h6>
-				<input type="password" id="editUserPwcheck" name="editUserPwCheck">
-			</div>
-			<hr>
-			
-			<div>
-				<h5><b>계정 탈퇴</b></h5>
-				<a data-bs-toggle="modal" data-bs-target="#secessionModal" style="color: blue;">계정 탈퇴</a>
-				<br>
-			</div>
-			<hr>
-			<br>
-			
-			<button type="button" onclick="window.location.href='/user/myPage'">나가기</button>
-			<button type="button" id="editBtn">수정하기</button>
-		</form>
+				
+				<div>
+					<h5><b>이름</b></h5>
+					<input type="text" id="editUserName" name="userName" value="${sessionScope.userInfo.userName }" onkeyup="chk_han('editUserName')" required="required"> 
+					<br>
+				</div>
+				<hr>
+				
+				<div>
+					<h5><b>아이디</b></h5>
+					<input type="text" name="userId" value="${sessionScope.userInfo.userId}" readonly="readonly" style="border-width: 0; outline: none;">
+					<br>
+				</div>
+				<hr>
+				
+				<div>
+					<h5><b>생년월일</b></h5>
+					<input type="text" value="${sessionScope.userInfo.userBirth }" readonly="readonly" style="border-width: 0; outline: none;">
+					<br>
+				</div>
+				<hr>
+				
+				<div>
+					<h5><b>전화번호</b></h5>
+					<input type="text" name="userPhone" id="editUserPhone" value="${sessionScope.userInfo.userPhone }" required="required" placeholder="ex)010-1111-1111">
+					<br>
+				</div>
+				<hr>
+				
+				<div>
+					<h5><b>비밀번호</b></h5>
+				
+					<h6>새 비밀번호</h6>
+					<input type="password" id="editUserPw" name="editUserPw">
+				
+					<h6>비밀번호 확인</h6>
+					<input type="password" id="editUserPwcheck" name="editUserPwCheck">
+				</div>
+				<hr>
+				
+				<div>
+					<h5><b>계정 탈퇴</b></h5>
+					<a onclick="$('.secession_bg').show();" style="color: blue;">계정 탈퇴</a>
+					<br>
+				</div>
+				<hr>
+				
+				<div class="c_e_btn">
+					<button class="cancel_btn" type="button" onclick="window.location.href='/user/myPage'">나가기</button>
+					<button class="edit_btn" type="button" id="editBtn"><span style="color: white;">수정하기</span></button>
+				</div>
+			</form>
+		</div>
 	</div>
 	
-	<!-- Modal -->
-	<div class="modal fade" id="secessionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title" id="exampleModalLabel">계정 탈퇴</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-				</div>
-				
-				<form id="checkSecessionForm">
-					<!-- 내용 -->
-					<div class="modal-body">
-						<div>
-							<h6><b>아이디</b></h6>
-							<input type="text" id="secessionUserId" name="userId" value="${sessionScope.userInfo.userId}" readonly="readonly" style="border-width: 0; outline: none;">
-							
-							<h6><b>비밀번호</b></h6>
-							<input type="password" id="secessionUserPw" name="userPw" style="width: 70%;">
-
-						</div>
-					</div>
-					
-					<!-- 버튼이름 -->
-					<div class="modal-footer">	
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-						<button type="button" id="secessionBtn" class="btn btn-primary">탈퇴하기</button>
-					</div>
-				</form>
-			</div>
-		</div>
+	<!-- 계정 탈퇴 모달 -->
+	<div class="secession_bg" style="display: none;">
+	    <div class="secession">
+	        <div class="secession_t">
+	            <i class="fa-solid fa-xmark" id="closeModal"></i>
+	            <p>계정 탈퇴</p>
+	        </div>
+	        <ul class="secession_b">
+	            <li>
+	                <form id="checkSecessionForm">
+                        <div>
+                            <h6><b>아이디</b></h6>
+                            <input type="text" id="secessionUserId" name="userId" value="${sessionScope.userInfo.userId}" readonly="readonly">
+                            <h6><b>비밀번호</b></h6>
+                            <input type="password" id="secessionUserPw" name="userPw">
+                        </div>
+	                    <div class="c_b_btn">
+	                        <button class="c_btn" type="button" id="cancelSecessionBtn">취소</button>
+	                        <button class="d_btn"  type="button" id="secessionBtn">탈퇴하기</button>
+	                    </div>
+	                </form>
+	            </li>
+	        </ul>
+	    </div>
 	</div>
 	
 	<!-- 개인정보 수정 -->
@@ -186,6 +192,10 @@
 				}
 			});
 		});
+		
+		$('#cancelSecessionBtn, #closeModal').click(function() {
+	        $('.secession_bg').hide();
+	    });
 	</script>
 </body>
 </html>

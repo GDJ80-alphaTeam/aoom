@@ -6,96 +6,111 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>호스트 수입</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-	<script src="https://uicdn.toast.com/chart/latest/toastui-chart.min.js"></script>
-	<link rel="stylesheet" href="https://uicdn.toast.com/chart/latest/toastui-chart.min.css" />
-<body class="container">
-	
-	<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
-	
-	<!-- 호스트 모드 메뉴 -->
-	<br>
-	<div>
-		<a class="btn btn-outline-danger" href="/host/main">메인</a>
-		<a class="btn btn-outline-danger" href="/host/calendar">달력</a>
-		<a class="btn btn-outline-danger" href="/host/roomManage">숙소 관리</a>
-		<a class="btn btn-outline-danger" href="/host/bookList">예약 목록</a>
-		<a class="btn btn-danger" href="/host/revenue">수입</a>
-	</div>
-	<br>
-	
-	<h2 id="revenueTitle"></h2>
-	
-	<div>
-        <select id="selectRoom" name="selectRoom">
-            <!-- 숙소 상태가 활성화인것만 나오게 설정 -->
-            <option value="">=== 전체 ===</option>
-            <c:forEach var="room" items="${roomList }">
-                <c:if test="${room.roomstatCode == 'rst03' and room.roomstatCode eq 'rst03'}">
-                    <c:if test="${room.roomId == selectedRoomId}">
-                        <option value="${room.roomId }" selected="selected">${room.roomName }</option>
-                    </c:if>
-                    <c:if test="${room.roomId != selectedRoomId}">
-                        <option value="${room.roomId }">${room.roomName }</option>
-                    </c:if>
-                </c:if>
-            </c:forEach>
-        </select>
-    </div>
-    
-    <!-- 수입 차트 -->
-    <div class="row">
-	    <div id="chart" style="width: 80%;"></div>
-	    <div style="width: 20%;">
-	    	<h2 id="sideTitle"></h2>
-	    	<br>
-	    	<div id="totalPrice"></div>
-	    </div>
-    </div>
+    <meta name="description" content="AOOM 웹 사이트 입니다">
+    <meta name="keywords" content="AOOM, 웹디자인, 포트폴리오, 디자이너, 웹 포트폴리오">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수입</title>
+    <script src="https://kit.fontawesome.com/82b4a4fcad.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-	<!-- 해당 월의 수입 상세 정보 Modal -->
-	<div class="modal fade modal-xl" id="paymentInfoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title" id="exampleModalLabel">${selectedMonth }월 수입 상세보기</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    <link rel="stylesheet" href="/style/css/common.css">
+    <link rel="stylesheet" href="/style/css/revenue.css">
+    <link rel="stylesheet" href="/style/css/navSub.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://uicdn.toast.com/chart/latest/toastui-chart.min.js"></script>
+	<link rel="stylesheet" href="https://uicdn.toast.com/chart/latest/toastui-chart.min.css" />
+</head>
+<body>
+	<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
+    
+	<div class="inner">
+        <div class="inner_nav">
+            <ul>
+                <li><a href="/host/main">메인</a></li>
+                <li><a href="/host/calendar">달력</a></li>
+                <li><a href="/host/roomManage">숙소 관리</a></li>
+                <li><a href="/host/bookList">예약 목록</a></li>
+                <li class="active"><a href="/host/revenue">수입</a></li>
+            </ul>
+        </div><!-- //inner_nav 숙소관리 네비 -->
+        <div class="revenue">
+           	<div class="revenue_top">
+                <h4 id="revenueTitle"></h4>
+                <div class="t_right">
+                    <select id="selectRoom" name="selectRoom">
+			            <!-- 숙소 상태가 활성화인것만 나오게 설정 -->
+			            <option value="">=== 전체 ===</option>
+			            <c:forEach var="room" items="${roomList }">
+			                <c:if test="${room.roomstatCode == 'rst03' and room.roomstatCode eq 'rst03'}">
+			                    <c:if test="${room.roomId == selectedRoomId}">
+			                        <option value="${room.roomId }" selected="selected">${room.roomName }</option>
+			                    </c:if>
+			                    <c:if test="${room.roomId != selectedRoomId}">
+			                        <option value="${room.roomId }">${room.roomName }</option>
+			                    </c:if>
+			                </c:if>
+			            </c:forEach>
+			        </select>
+                </div><!-- //t_right -->
+            </div><!-- //r_m_top 썸네일, 리스트 형식 공통  사용-->
+            
+		    <!-- 수입 차트 -->
+		    <div style="display: flex;">
+			    <div id="chart" style="width: 80%;"></div>
+			    <div style="width: 20%;">
+			    	<h2 id="sideTitle"></h2>
+			    	<br>
+			    	<div id="totalPrice"></div>
+			    </div>
+		    </div>
+        </div><!-- //revenue -->
+	
+		<!-- 월 수입 상세보기 모달 -->
+		<div class="revnenue_detail_bg" id="paymentInfoModal" style="display: none;">
+			<div class="revnenue_detail">
+				<div class="revnenue_detail_t">
+					<i class="fa-solid fa-xmark" id="closeModal"></i>
+					<p id="modalTitle">${selectedMonth }월수입 상세보기</p>
 				</div>
-				
-				<!-- 내용 -->
-				<div class="modal-body">
-					<div>
-						<table class="table">
-							<thead>
-								<tr>
-									<td>예약 번호</td>
-									<td>숙소 이름</td>
-									<td>유저 아이디</td>
-									<td>숙박 인원</td>
-									<td>예약 상태</td>
-									<td>예약 일자</td>
-									<td>숙박 요금</td>
-									<td>결제 유형</td>
-								</tr>
-							</thead>
-							<tbody id="modalTableBody">
-								<tr>
-									<td colspan="8" style="text-align: center;">
-										<div class="spinner-border" role="status">
-										  <span class="visually-hidden">Loading...</span>
-										</div>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
+				<ul class="revnenue_detail_b" id="revenueDetailList">
+				    <li class="list_top">
+				        <div class="one">예약번호</div>
+				        <div class="two">숙소 이름</div>
+				        <div class="three">유저 아이디</div>
+				        <div class="fourth">숙박 인원</div>
+				        <div class="five">예약 상태</div>
+				        <div class="six">예약 일자</div>
+				        <div class="seven">숙박 요금</div>
+				        <div class="last">결제 유형</div>
+				    </li>
+				</ul>
 			</div>
 		</div>
-	</div>
+		
+		
+    </div><!-- //inner -->
+    
+    <!-- ---------------컨텐츠 끝------------------------>
+    <footer class="inner clear">
+        <div class="f_top">
+            <div class="ft_left">
+                <p>© 2024 Airbnb, Inc. · 개인정보 처리방침 · 이용약관 · 사이트맵 · 환불 정책 · 회사 세부정보</p>
+            </div>
+            <div class="ft_right">
+                <p>자주 묻는 질문</p>
+            </div>
+        </div><!-- //f_top -->
+        <div class="f_bottom">
+            <span>
+                웹사이트제공자:GDJ80alphaTeam,privateunlimitedcompany,8HanoverQuayDublin2,D02DP23Ireland|팀장:이용훈|VAT번호:IE12345678L사업자등록번호:IE123456|연락처:newlife5991@naver.com,
+                웹사이트,010-7635-9302|호스팅서비스제공업체: <br>아마존웹서비스|알파비앤비는
+                통신판매중개자로알파비앤비플랫폼을통하여게스트와호스트사이에이루어지는통신판매의당사자가아닙니다.알파비앤비플랫폼을통하여 예약된 숙소, 호스트 서비스에 관한 의무와 책임은 해당 서비스를
+                제공하는
+                호스트에게 있습니다.
+            </span>
+        </div><!-- //f_bottom -->
+    </footer>
+    
 	<script type="text/javascript">
 		// 전체 금액 변수 선언
 		let totalPrice = 0;
@@ -158,7 +173,7 @@
 	            
 	            // 선택된 room 이름으로 title 설정
 	            $('#revenueTitle').html($('#selectRoom').find('option:selected').text().replaceAll('=', '') + ' 확정 수입')
-	            $('#sideTitle').html('올해 ' + $('#selectRoom').find('option:selected').text().replaceAll('=', '') + ' 확정 수입')
+	            $('#sideTitle').html('올해<br>' + $('#selectRoom').find('option:selected').text().replaceAll('=', '') + '<br>확정 수입')
 	            
 	            // response의 revenue 반복
 	            // 월별 수입을 카테고리의 값에 맞춰 보여주기 위해(7월 수입만 있을 경우 7월이 아닌 1월에 값이 들어가는 것을 방지)
@@ -191,8 +206,7 @@
 	    	// 선택한 그래프의 월 값 가져오기(ex.7월을 07로 변환)
 	    	let selectedMonth = ev.column[0].data.category.match(/\d+/)[0].padStart(2, '0');
 	    	
-	    	// bootstrap 모달 초기화
-	        let paymentInfoModal = new bootstrap.Modal($('#paymentInfoModal'));
+	        let paymentInfoModal = $('#paymentInfoModal');
 	    	
 	    	// ajax로 불러온 월별 수입 상세정보를 담을 변수
 	        let tableRows = '';
@@ -203,29 +217,40 @@
 	        	method: 'get',
 	        	data: {
 	        		'roomId' : urlRoomId,
+	        		'userId' : '${sessionScope.userInfo.userId}',
 	        		'selectedMonth' : selectedMonth
 	        	},
 	        	success: function(response) {
 	        		
-	        		$('#exampleModalLabel').html(selectedMonth + '월 확정 수입 상세보기');
+	        		$('#modalTitle').html(selectedMonth + '월 확정 수입 상세보기');
 	        		// 월별 수입의 각각의 행을 추가 
-		            response.revenueOne.forEach(function(revenue) {
-		                tableRows += '<tr>'
-										+ '<td>' + revenue.bookingId + '</td>'
-		                                + '<td>' + revenue.roomName + '</td>'
-		                                + '<td>' + revenue.userId + '</td>'
-		                                + '<td>' + revenue.stayPeople + '</td>'
-		                                + '<td>' + revenue.bookstatName + '</td>'
-		                                + '<td>' + revenue.bookingDay + '</td>'
-		                                + '<td>' + revenue.paymentPrice.toLocaleString('ko-KR') + ' 원' + '</td>'
-		                                + '<td>' + revenue.paytypeName + '</td>'
-	                                + '</tr>';
-		            });
-		            $('#modalTableBody').html(tableRows);
+	                response.revenueOne.forEach(function(revenue) {
+	                    tableRows += '<li class="list_con">'
+	                                    + '<div class="one">' + revenue.bookingId + '</div>'
+	                                    + '<div class="two">' + revenue.roomName + '</div>'
+	                                    + '<div class="three">' + revenue.userId + '</div>'
+	                                    + '<div class="fourth">' + revenue.stayPeople + '</div>'
+	                                    + '<div class="five">' + revenue.bookstatName + '</div>'
+	                                    + '<div class="six">' + revenue.bookingDay + '</div>'
+	                                    + '<div class="seven">' + revenue.paymentPrice.toLocaleString('ko-KR') + ' 원' + '</div>'
+	                                    + '<div class="last">' + revenue.paytypeName + '</div>'
+	                                + '</li>';
+	                });
+	                
+	                // list_top을 제외한 나머지 부분을 초기화하고 결과를 추가
+		            $('#revenueDetailList').find('li:not(.list_top)').remove();
+		            $('#revenueDetailList').append(tableRows);
+	                
+	                // 모달 창 표시
+	                paymentInfoModal.show();
 				}
 	        });
 	        
 	        paymentInfoModal.show();
+	    });
+		
+	    $('#closeModal').click(function() {
+	        $('.revnenue_detail_bg').hide();
 	    });
     </script>
 
@@ -245,6 +270,14 @@
 	
 	    });
 	    
+	</script>
+	
+	<script type="text/javascript">
+	    $(document).ready(function() {
+	        $('.fa-bars').click(function() {
+	            $('.nav_menu').toggle();
+	        });
+	    });
 	</script>
 </body>
 </html>

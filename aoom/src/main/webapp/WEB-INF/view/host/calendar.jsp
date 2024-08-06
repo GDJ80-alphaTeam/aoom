@@ -5,135 +5,145 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
+    <meta name="description" content="AOOM 웹 사이트 입니다">
+    <meta name="keywords" content="AOOM, 웹디자인, 포트폴리오, 디자이너, 웹 포트폴리오">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>달력</title>
+    <script src="https://kit.fontawesome.com/82b4a4fcad.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/style/js/roomManage.js" defer></script>
+
+    <link rel="stylesheet" href="/style/css/common.css">
+    <link rel="stylesheet" href="/style/css/calendar.css">
+    <link rel="stylesheet" href="/style/css/navSub.css">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <style>
-		.selected-date {
-			background-color: black !important;
-		}
-		
-		.event-date {
-			background-color: #d3d3d3 !important; /* 어두운 배경색 */
-			pointer-events: none; /* 클릭 비활성화 */
-		}
-		
-		#calendar {
-			width: 80%;
-			min-height: 600px; /* 고정된 최소 높이 설정 */
-			box-sizing: border-box; /* 패딩과 테두리를 포함한 크기 조정 */
-		}
-		
-		#selectDay, #notSelectDay {
-			box-sizing: border-box; /* 패딩과 테두리를 포함한 크기 조정 */
-		}
-		
-		#selectDay {
-			display: none; /* 기본적으로 숨김 */
-		}
-		
-		.fc-day a {
-			color: black;
-			text-decoration-line: none;
-		}
-		
-		/* 일요일 날짜: 빨간색 */
-		.fc-day-sun a {
-			color: red;
-		}
-		
-		/* 토요일 날짜: 파란색 */
-		.fc-day-sat a {
-			color: blue;
-		}
-</style>
 </head>
-<body class="container">
+<body>
     <jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
-    
-	<!-- 호스트 모드 메뉴 -->
-	<br>
-	<div>
-		<a class="btn btn-outline-danger" href="/host/main">메인</a>
-		<a class="btn btn-danger" href="/host/calendar">달력</a>
-		<a class="btn btn-outline-danger" href="/host/roomManage">숙소 관리</a>
-		<a class="btn btn-outline-danger" href="/host/bookList">예약 목록</a>
-		<a class="btn btn-outline-danger" href="/host/revenue">수입</a>
-	</div>
-	<br>
-    
-    <div>
-        <select id="selectRoom" name="selectRoom">
-            <!-- 숙소 상태가 활성화인것만 나오게 설정 -->
-            <c:forEach var="room" items="${roomList }">
-                <c:if test="${room.roomstatCode == 'rst03' and room.roomstatCode eq 'rst03'}">
-                    <c:if test="${room.roomId == selectedRoomId}">
-                        <option value="${room.roomId }" selected="selected">${room.roomName }</option>
-                    </c:if>
-                    <c:if test="${room.roomId != selectedRoomId}">
-                        <option value="${room.roomId }">${room.roomName }</option>
-                    </c:if>
-                </c:if>
-            </c:forEach>
-        </select>
-    </div>
-    
-    <div style="display: flex;">
-        <div id='calendar'></div>
-        
-        <div id="DivSelectDay" style="width: 20%; box-sizing: border-box;">
-        
-        	<!-- 닐찌 선택 안했을 때 -->
-            <div style="width: 100%; display: inline-block;" id="notSelectDay">
-	            <form id="priceForm">
-	            	<h3 id="notSelectedDateTitle"></h3>
-	            	<h3>전체 요금</h3>
-	                <div>1박당</div>
-	                <input type="hidden" name="roomId" value="${selectedRoomId }">
-	                <input type="number" min="30000" id="defaultPrice" name="defaultPrice" required="required" style="height: 35px;">원
-	                <button type="button" id="updateDefaultPriceBtn">설정</button>
-	                <br>
-	                <br>
-	                
-	                <h3>주말 요금</h3>
-	                <div>1박당</div>
-                	<input type="number" min="30000" id="weekendPrice" name="weekendPrice" style="height: 35px;">
-	                <button type="button" id="updateWeekendPriceBtn">설정</button>
-	            </form>
+    <!-- ---------------컨텐츠 시작------------------------>
+
+    <div class="inner">
+        <div class="inner_nav">
+            <ul>
+                <li><a href="/host/main">메인</a></li>
+                <li class="active"><a href="/host/calendar">달력</a></li>
+                <li><a href="/host/roomManage">숙소 관리</a></li>
+                <li><a href="/host/bookList">예약 목록</a></li>
+                <li><a href="/host/revenue">수입</a></li>
+            </ul>
+        </div><!-- //inner_nav 숙소관리 네비 -->
+        <div class="cal">
+           	<div class="cal_top">
+                <h4>달력</h4>
+                <div class="t_right">
+                    <select id="selectRoom" name="selectRoom">
+			            <!-- 숙소 상태가 활성화인것만 나오게 설정 -->
+			            <c:forEach var="room" items="${roomList }">
+			                <c:if test="${room.roomstatCode == 'rst03' and room.roomstatCode eq 'rst03'}">
+			                    <c:if test="${room.roomId == selectedRoomId}">
+			                        <option value="${room.roomId }" selected="selected">${room.roomName }</option>
+			                    </c:if>
+			                    <c:if test="${room.roomId != selectedRoomId}">
+			                        <option value="${room.roomId }">${room.roomName }</option>
+			                    </c:if>
+			                </c:if>
+			            </c:forEach>
+			        </select>
+                </div><!-- //t_right -->
+            </div><!-- //r_m_top 썸네일, 리스트 형식 공통  사용-->
+		    
+		    <div style="display: flex; gap: 10px;">
+		        <div id='calendar'></div>
+		        
+		        <div style="width: 280px; box-sizing: border-box;">
+		        
+		        	<!-- 닐찌 선택 안했을 때 -->
+		            <div style="display: inline-block;" id="notSelectDay">
+			            <form id="priceForm">
+			            	<h3 id="notSelectedDateTitle"></h3>
+			            	<br>
+			            	<h3>전체 요금</h3>
+			                <div>1박당</div>
+			                <input type="hidden" name="roomId" value="${selectedRoomId }">
+			                <input type="number" min="30000" id="defaultPrice" name="defaultPrice" required="required" style="height: 35px;">원
+			                <button class="pink" type="button" id="updateDefaultPriceBtn"><span>설정</span></button>
+			                <br>
+			                <br>
+			                
+			                <h3>주말 요금</h3>
+			                <div>1박당</div>
+		                	<input type="number" min="30000" id="weekendPrice" name="weekendPrice" style="height: 35px;">원
+			                <button class="pink" type="button" id="updateWeekendPriceBtn"><span>설정</span></button>
+			            </form>
+		            </div>
+		            
+		            <!-- 닐찌 선택 했을 때 -->
+		            <div style="width: 100%;" id="selectDay">
+		            	<!-- 선택한 날짜 표시 -->
+		                <h3 id="selectedDateTitle"></h3>
+		                <br>
+		                
+		                <!-- 예약 상태 변경 -->
+		                <form id="selectedPriceForm">
+			                <div class="d-flex align-items-center">
+								<c:forEach var="onestatCode" items="${onestatCodeList }">
+									<c:if test="${onestatCode.codeKey == 'one01'}">
+									    <button class="pink" type="button" name="onestatCode" value="${onestatCode.codeKey }" style="width: 85px;">
+									    	<span>${onestatCode.codeName }</span>
+									    </button>
+									</c:if>
+									<c:if test="${onestatCode.codeKey == 'one02'}">
+									    <button class=dark_navy type="button" name="onestatCode" value="${onestatCode.codeKey }" style="width: 85px;">
+									    	<span>${onestatCode.codeName }</span>
+									    </button>
+									</c:if>					
+								</c:forEach>
+			                </div>
+			                <br>
+		                
+			                <div>1박당</div>
+			                <input type="hidden" name="roomId" value="${selectedRoomId }">
+			                <input type="hidden" name="startDate" id="startOneDay">
+			                <input type="hidden" name="endDate" id="endOneDay">
+			                <input type="number" min="30000" id="defaultPriceSelected" name="defaultPrice" style="height: 35px;">원
+			                <button class="pink" type="button" id="selectedPriceBtn" style="width: 85px;">
+			                	<span>설정</span>
+			                </button>
+			                <br>
+		                </form>
+		            </div>
+		        </div>
+		    </div>
+        </div><!-- //cal -->
+		
+    </div><!-- //inner -->
+
+	<!-- ---------------컨텐츠 끝------------------------>
+    <footer class="inner clear">
+        <div class="f_top">
+            <div class="ft_left">
+                <p>© 2024 Airbnb, Inc. · 개인정보 처리방침 · 이용약관 · 사이트맵 · 환불 정책 · 회사 세부정보</p>
             </div>
-            
-            <!-- 닐찌 선택 했을 때 -->
-            <div style="width: 100%;" id="selectDay">
-            	<!-- 선택한 날짜 표시 -->
-                <h3 id="selectedDateTitle"></h3>
-                <br>
-                
-                <!-- 예약 상태 변경 -->
-                <form id="selectedPriceForm">
-	                <div class="d-flex align-items-center">
-						<c:forEach var="onestatCode" items="${onestatCodeList }">						
-						    <button type="button" name="onestatCode" value="${onestatCode.codeKey }">${onestatCode.codeName }</button>
-						</c:forEach>
-	                </div>
-	                <br>
-                
-	                <div>1박당</div>
-	                <input type="hidden" name="roomId" value="${selectedRoomId }">
-	                <input type="hidden" name="startDate" id="startOneDay">
-	                <input type="hidden" name="endDate" id="endOneDay">
-	                <input type="number" min="30000" id="defaultPriceSelected" name="defaultPrice" style="height: 35px;">원
-	                <button type="button" id="selectedPriceBtn">설정</button>
-	                <br>
-                </form>
+            <div class="ft_right">
+                <p>자주 묻는 질문</p>
             </div>
-        </div>
-    </div>
-    
-    <script type="text/javascript">
+        </div><!-- //f_top -->
+        <div class="f_bottom">
+            <span>
+                웹사이트제공자:GDJ80alphaTeam,privateunlimitedcompany,8HanoverQuayDublin2,D02DP23Ireland|팀장:이용훈|VAT번호:IE12345678L사업자등록번호:IE123456|연락처:newlife5991@naver.com,
+                웹사이트,010-7635-9302|호스팅서비스제공업체: <br>아마존웹서비스|알파비앤비는
+                통신판매중개자로알파비앤비플랫폼을통하여게스트와호스트사이에이루어지는통신판매의당사자가아닙니다.알파비앤비플랫폼을통하여 예약된 숙소, 호스트 서비스에 관한 의무와 책임은 해당 서비스를
+                제공하는
+                호스트에게 있습니다.
+            </span>
+        </div><!-- //f_bottom -->
+    </footer>
+
+	<script type="text/javascript">
     	// calendar, 선택한 roomId 전역 변수 선언
 	    let calendar; 
 	    let urlRoomId;
@@ -169,7 +179,7 @@
 	                    let startDate = response.roomData.startDate;
 	                    let endDate = response.roomData.endDate;
 	                    // 날짜 선택하지 않았을 때 title 설정
-	                    $('#notSelectedDateTitle').html(startDate + '<br>~' + endDate);
+	                    $('#notSelectedDateTitle').html(startDate + ' ~ ' + endDate + '<br>요금 설정');
 	                    
 	                    // 실제 운영기간보다 1일 더 작게나와 1일 추가
 	                    endDate = moment(endDate).add(1, 'day').format('YYYY-MM-DD');
@@ -197,7 +207,7 @@
 	                                    description: item.onedayPrice + '원', // onedayPrice 표시
 	                                    start: oneday, // oneday
 	                                    end: moment(oneday).add(1, 'day').format('YYYY-MM-DD'), // ondey + 1 (퇴실날)
-	                                    color: item.onestatCode === 'one01' ? 'green' : 'red',
+	                                    color: item.onestatCode === 'one01' ? '#ed5977' : '#291B3C'
 	                                });
 	                            }
 	                        });
@@ -300,7 +310,7 @@
 	                    if (startOneDay === endOneDay) {
 	                        $('#selectedDateTitle').html(startOneDay + '<br>요금 설정');
 	                    } else {
-	                        $('#selectedDateTitle').html(startOneDay + '<br>~' + endOneDay + '<br>요금 설정');
+	                        $('#selectedDateTitle').html(startOneDay + ' ~ ' + endOneDay + '<br>요금 설정');
 	                    }
 
 	                    $('#startOneDay').val(startOneDay);
@@ -364,7 +374,7 @@
 		$('#updateDefaultPriceBtn').click(function() {
 			$.ajax({
 				url: '/host/calendar/ajaxUpdateDefaultPrice',
-				mothod: 'get',
+				method: 'get',
 				data: {
 					'roomId' : urlRoomId,
 					'defaultPrice' : $('#defaultPrice').val()
@@ -379,7 +389,7 @@
 		$('#updateWeekendPriceBtn').click(function() {
 			$.ajax({
 				url: '/host/calendar/ajaxUpdateDefaultPrice',
-				mothod: 'get',
+				method: 'get',
 				data: {
 					'roomId' : urlRoomId,
 					'weekendDates'	: friSatList.join(','),
@@ -395,7 +405,7 @@
 		$('#selectedPriceBtn').click(function() {
 			$.ajax({
 				url: '/host/calendar/ajaxUpdateDefaultPrice',
-				mothod: 'get',
+				method: 'get',
 				data: {
 					'roomId' : urlRoomId,
 					'startDate' : $('#startOneDay').val(),
@@ -407,6 +417,44 @@
 					window.location.href = '/host/calendar?roomId=' + urlRoomId;
 				}
 			})
+		});
+	</script>
+
+	<script type="text/javascript">
+		$('#defaultPrice').blur(function() {
+			// 입력한 금액 가져오기
+			let originalPrice = $('#defaultPrice').val();
+			console.log(originalPrice);
+			
+			// 1원단위 절사(내림)
+			let truncationPrice = Math.floor(originalPrice/10) * 10;
+			console.log(truncationPrice);
+			
+			$('#defaultPrice').val(truncationPrice);
+		});
+		
+		$('#weekendPrice').blur(function() {
+			// 입력한 금액 가져오기
+			let originalPrice = $('#weekendPrice').val();
+			console.log(originalPrice);
+			
+			// 1원단위 절사(내림)
+			let truncationPrice = Math.floor(originalPrice/10) * 10;
+			console.log(truncationPrice);
+			
+			$('#weekendPrice').val(truncationPrice);
+		});
+		
+		$('#defaultPriceSelected').blur(function() {
+			// 입력한 금액 가져오기
+			let originalPrice = $('#defaultPriceSelected').val();
+			console.log(originalPrice);
+			
+			// 1원단위 절사(내림)
+			let truncationPrice = Math.floor(originalPrice/10) * 10;
+			console.log(truncationPrice);
+			
+			$('#defaultPriceSelected').val(truncationPrice);
 		});
 	</script>
 </body>
