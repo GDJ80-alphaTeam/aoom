@@ -68,8 +68,8 @@
 				<hr>
 				
 				<div>
-					<h5><b>계정 탈퇴</b></h5>
-					<a onclick="$('.secession_bg').show();" style="color: blue;">계정 탈퇴</a>
+					<h5><b>계정 비활성화</b></h5>
+					<a onclick="$('.secession_bg').show();" style="color: #747474; text-decoration: underline; cursor: pointer;">계정 비활성화</a>
 					<br>
 				</div>
 				<hr>

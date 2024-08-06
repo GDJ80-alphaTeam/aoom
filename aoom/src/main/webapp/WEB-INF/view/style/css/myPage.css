@@ -1,79 +1,5 @@
 @charset "UTF-8";
 
-.inner {
-    width: 1120px;
-    position: relative;
-}
-
-
-.fixed {
-    width: 100%;
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 50;
-}
-
-i {
-    font-size: 10px;
-}
-
-p {
-    font-size: 14px;
-}
-
-span {
-    font-size: 16px;
-}
-
-b.margin {
-    font-size: 22px;
-    margin-bottom: 18px;
-}
-
-.p_b {
-    padding-bottom: 33px;
-    border-bottom: 1px solid #C7C7C7;
-    padding-top: 32px;
-}
-
-/* 
-
-h2 {
-    font-size: 26px;
-}
-
-h3 {
-    font-size: 24px;
-    margin-bottom: 24px;
-    padding-top: 31px;
-} */
-
-h4 {
-    font-size: 22px;
-}
-
-h5 {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-i {
-    font-size: 10px;
-}
-
-p {
-    font-size: 14px;
-}
-
-p.gray_c {
-    color: #888;
-}
-
-span {
-    font-size: 16px;
-}
-
 /* 계정 탈퇴 모달 */
 .check_userinfo_bg {
     position: fixed;
@@ -183,4 +109,212 @@ span {
 
 .check_userinfo ul.check_userinfo_b li .option_btn p:first-child {
     margin-right: 20px;
+}
+
+.my_p {
+    padding-top: 184px;
+    margin-bottom: 68px;
+}
+
+.my_p .my_p_top {
+    margin-bottom: 51px;
+}
+
+.my_p .my_p_top h3 {
+    font-size: 36px;
+    font-weight: 400;
+    margin-bottom: 12px;
+}
+
+.my_p .my_p_top span {
+    color: #747474;
+}
+
+.my_p .my_p_top span.un_l {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.my_p .my_p_top h3 b {
+    font-size: 38px;
+    color: #ed5977;
+    font-weight: 700;
+}
+
+.my_p .my_p_bottom {
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+}
+
+.my_p .my_p_bottom .mpb_left {
+    width: 400px;
+    height: 410px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 35px #00000017;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 45px 0;
+}
+
+.my_p .my_p_bottom .mpb_left .pro_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.my_p .my_p_bottom .mpb_left .pro_box .my_pro {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.my_p .my_p_bottom .mpb_left .pro_box .my_pro img {
+    width: 100%;
+   	height: 100%;
+    object-fit: cover;
+}
+
+.my_p .my_p_bottom .mpb_left .pro_box h5 {
+    font-size: 18px;
+    margin: 18px 0 8px;
+}
+
+.my_p .my_p_bottom .mpb_left .my_p_btn button {
+    width: 150px;
+    height: 48px;
+    border-radius: 8px;
+    font-size: 16px;
+
+}
+
+.my_p .my_p_bottom .mpb_left .my_p_btn button.left {
+    border: 1px solid #9e9e9e;
+    color: #9e9e9e;
+}
+
+.my_p .my_p_bottom .mpb_left .my_p_btn button.right {
+    background: #291B3C;
+    color: #fff;
+    margin-left: 8px;
+}
+
+.my_p .my_p_bottom .mpb_right .mpb_r_top {
+    width: 100%;
+    margin-bottom: 136px;
+}
+
+.my_p .my_p_bottom .mpb_right .mpb_r_top li {
+    width: 100%;
+    padding: 0 15px 0 0;
+    height: 118px;
+    border-bottom: 1px solid #d9d9d9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.my_p .my_p_bottom .mpb_right .mpb_r_top li i {
+    font-size: 15px;
+}
+
+.my_p .my_p_bottom .mpb_right .mpb_r_top li:hover i {
+    animation: move infinite 1s;
+}
+
+@keyframes move {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    100% {
+        transform: translateX(0px);
+    }
+
+}
+
+.my_p .my_p_bottom .mpb_right .mpb_r_top li .menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.my_p .my_p_bottom .mpb_right .mpb_r_top li .menu img {
+    margin-bottom: 18px;
+}
+
+.my_p .my_p_bottom .mpb_right .mpb_r_top li .menu p {
+    color: #9e9e9e;
+}
+
+.my_p .my_p_bottom .mpb_right .mpb_r_bottom {
+    width: 100%;
+    height: 230px;
+    position: relative;
+    display: flex;
+}
+
+.my_p .my_p_bottom .mpb_right .mpb_r_bottom .pos {
+    position: absolute;
+}
+
+.my_p .my_p_bottom .mpb_right .mpb_r_bottom .bg {
+    bottom: 0;
+    left: 0;
+}
+
+.my_p .my_p_bottom .mpb_right .mpb_r_bottom .body {
+    left: 56%;
+    bottom: 0;
+    z-index: 1;
+}
+
+.my_p .my_p_bottom .mpb_right .mpb_r_bottom .shake {
+    left: 68%;
+    bottom: 22%;
+    animation: shake 2s infinite ;
+    transform-origin: bottom;
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(35deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.my_p .my_p_bottom .mpb_right .mpb_r_bottom .fly {
+    bottom: 77%;
+    animation: fly 8s infinite;
+}
+
+@keyframes fly {
+    0% {bottom: 60%;
+        left: 5%;
+        
+    }
+
+
+
+    100% {
+        left: 99%;
+        opacity: 0;
+        bottom: 88%;
+        transform: scale(0.5);
+    }
 }

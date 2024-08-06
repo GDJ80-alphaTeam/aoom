@@ -15,26 +15,62 @@
 	<link rel="stylesheet" href="/style/css/navSub.css">
 	<link rel="stylesheet" href="/style/css/common.css">
 	<link rel="stylesheet" href="/style/css/myPage.css">
+	<link rel="stylesheet" href="/style/css/userCommon.css">
 	<script src="/style/js/navbarSub.js" defer></script>
 </head>
 <body>
     <!-- AOOM 네비게이션 바 -->
     <jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
     
-    <div class="inner">
-    	<div style="margin-top: 140px;">
-			<h4>마이페이지</h4>
-			<div style="width: 100%;height: 300px; background-color: green;" onclick="window.location.href='/user/profile?userId=${sessionScope.userInfo.userId}'">
-					프로필
-			</div>
-			<div style="width: 100%;height: 300px; background-color: gray;" onclick="$('.check_userinfo_bg').show();">
-				<a> 
-					개인정보
-				</a>
-			</div>
-		</div>
-    </div>
-    
+    <div class="my_p inner">
+        <div class="my_p_top">
+            <h2>마이페이지</h2>
+            <h3><b>${sessionScope.userInfo.userName} 님</b> 환영합니다. <br>자유롭게 계정을 설정해보세요.</h3>
+        </div><!-- //my_p_top -->
+        <div class="my_p_bottom">
+            <div class="mpb_left">
+                <h4>내 프로필</h4>
+                <div class="pro_box">
+                    <div class="my_pro">
+                        <img src="${sessionScope.userInfo.userImage}" alt="임시 이미지">
+                    </div><!-- //my_pro -->
+                    <h5>${sessionScope.userInfo.userName}</h5>
+                    <p>${sessionScope.userInfo.userId}</p>
+                </div><!-- //pro_box -->
+
+                <div class="my_p_btn">
+                    <button class="left" onclick="window.location.href='/user/profileUpdate?userId=${userInfo.userId}'">프로필 수정</button>
+                        <button class="right" onclick="window.location.href='/user/profile?userId=${sessionScope.userInfo.userId}'">프로필 보기</button>
+                </div><!-- //my_p_btn  -->
+            </div><!-- //mpb_left -->
+            <div class="mpb_right">
+                <ul class="mpb_r_top">
+                    <li onclick="$('.check_userinfo_bg').show();">
+                        <div class="menu">
+                            <img src="/style/img/pu_3.png" alt="개인정보 ">
+                            <span>개인정보 </span>
+                            <p>개인정보 및 연락처 변경 </p>
+                        </div><!-- //menu -->
+                        <i class="fas fa-chevron-right"></i>
+                    </li>
+                    <li>
+                        <div class="menu">
+                            <img src="/style/img/my_p1.png" alt="결제 및 대금 수령 ">
+                            <span>결제 및 대금 수령 </span>
+                            <p>결제수단 등록, 환불 관리 </p>
+                        </div><!-- //menu -->
+                        <i class="fas fa-chevron-right"></i>
+                    </li>
+                </ul><!-- //mpb_r_top -->
+                <div class="mpb_r_bottom">
+                    <img src="/style/img/cute_il3.png" alt="바다 배경과 캐릭터" class="pos fly">
+                    <img src="/style/img/cute_il2.png" alt="바다 배경과 캐릭터" class="pos shake">
+                    <img src="/style/img/cute_il1.png" alt="바다 배경과 캐릭터" class="pos body">
+                    <img src="/style/img/cute_il.png" alt="바다 배경과 캐릭터">
+                </div><!-- //mpb_r_bottom -->
+            </div><!-- //mpb_right -->
+        </div><!-- //my_p_bottom -->
+    </div><!-- //inner -->
     
     <!-- footer -->
 	<jsp:include page="/WEB-INF/view/layout/footer.jsp"></jsp:include>
