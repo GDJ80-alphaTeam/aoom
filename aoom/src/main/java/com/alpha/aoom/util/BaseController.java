@@ -19,8 +19,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 public class BaseController implements BaseConstant{
 
-	
-	
 	/** success시 **/
 	//ajax 성공 결과 (맵반환)
 	public Map<String, Object> getSuccessResult(Map<String, Object> model) {
@@ -51,8 +49,6 @@ public class BaseController implements BaseConstant{
 		model.put("message", message);
 		return model;
 	}
-	
-	
 	
 	/** FAIL 시 **/
 	//ajax 실패 결과 (맵반환)
