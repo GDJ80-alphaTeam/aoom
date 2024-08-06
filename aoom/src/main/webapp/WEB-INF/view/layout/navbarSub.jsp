@@ -23,7 +23,7 @@
 			<c:if test="${sessionScope.userInfo.userId != null}">
 		        <ul class="nav_menu" id="navMenu2">
 	                <li><a href="${pageContext.request.contextPath}/user/myPage">마이페이지</a></li>
-	                <li><a href="#">메시지</a></li>
+	                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/message/messageList">메시지</a></li>
 	                <li><a href="${pageContext.request.contextPath}/guest/bookList">숙소예약목록</a></li>
 	                <li><a href="${pageContext.request.contextPath}/user/wishList">위시리스트</a></li>
 	                <li><a id="signoutBtn">로그아웃</a></li>

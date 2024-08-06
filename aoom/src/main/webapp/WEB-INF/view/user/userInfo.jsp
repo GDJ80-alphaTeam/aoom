@@ -25,7 +25,7 @@
 	<div class="inner" style="width: 660px;">
 		<div class="user_info">
 			<form id="editUserInfoForm">
-				<h1>개인정보</h1>
+				<h1>개인정보 수정</h1>
 				<br>
 				
 				<div>

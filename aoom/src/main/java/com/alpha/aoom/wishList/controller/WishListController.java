@@ -44,7 +44,7 @@ public class WishListController extends BaseController {
 			int row = wishListService.insert(param);
 			
 			if(row != 0) {
-				return getSuccessResult(model, "위시리스트에서 추가되었습니다!");
+				return getSuccessResult(model, "위시리스트에 추가되었습니다!");
 			} else {
 				return getFailResult(model);
 			}
