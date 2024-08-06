@@ -90,8 +90,8 @@
 			<!-- 로그인 안 했을 때 -->
 			<c:if test="${sessionScope.userInfo.userId == null}">
 		        <ul class="nav_menu">
-		            <li><p>로그인</p></li>
-		            <li><p>회원가입</p></li>
+		            <li id="signinCall"><p>로그인</p></li>
+		            <li id="signupCall"><p>회원가입</p></li>
 		            <li><a href="${pageContext.request.contextPath}/room/roomList">숙소리스트</a></li>
 		            <li><p>도움말센터</p></li>
 		            <li><p>자주묻는질문</p></li>

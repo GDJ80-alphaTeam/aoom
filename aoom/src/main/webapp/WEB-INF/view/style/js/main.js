@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // 로그인 창 열기 닫기
-    document.querySelector('header .inner ul.nav_menu li:first-child').addEventListener('click', function () {
+    document.querySelector('#signinCall').addEventListener('click', function () {
         document.querySelector('.log_in_bg').style.display = 'flex';
     });
 
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     //회원가입 창 열기 닫기
-    document.querySelector('header .inner ul.nav_menu li:nth-child(2)').addEventListener('click', function () {
+    document.querySelector('#signupCall').addEventListener('click', function () {
         document.querySelector('.sign_in_bg').style.display = 'flex';
     })
     document.querySelector('.sign_in_bg .sign_in .sign_in_t i').addEventListener('click', function () {
