@@ -1,0 +1,186 @@
+@charset "UTF-8";
+
+.inner {
+    width: 1120px;
+    position: relative;
+}
+
+
+.fixed {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 50;
+}
+
+i {
+    font-size: 10px;
+}
+
+p {
+    font-size: 14px;
+}
+
+span {
+    font-size: 16px;
+}
+
+b.margin {
+    font-size: 22px;
+    margin-bottom: 18px;
+}
+
+.p_b {
+    padding-bottom: 33px;
+    border-bottom: 1px solid #C7C7C7;
+    padding-top: 32px;
+}
+
+/* 
+
+h2 {
+    font-size: 26px;
+}
+
+h3 {
+    font-size: 24px;
+    margin-bottom: 24px;
+    padding-top: 31px;
+} */
+
+h4 {
+    font-size: 22px;
+}
+
+h5 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+i {
+    font-size: 10px;
+}
+
+p {
+    font-size: 14px;
+}
+
+p.gray_c {
+    color: #888;
+}
+
+span {
+    font-size: 16px;
+}
+
+/* 계정 탈퇴 모달 */
+.check_userinfo_bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    width: 100%;
+    height: 100vh;
+    background: rgba(00, 0, 0, 0.5);
+    display: none;
+}
+
+/* .check_userinfo_bg.on {
+    display: flex;
+} */
+
+.check_userinfo {
+    position: absolute;
+    width: 446px;
+    height: 389px;
+    background: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 5px 5px 20px #00000017;
+    border-radius: 15px;
+}
+
+.check_userinfo .check_userinfo_t {
+    width: 100%;
+    height: 65px;
+    border-bottom: 1px solid #C7C7C7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 36px;
+    font-size: 19px;
+}
+
+.check_userinfo .check_userinfo_t i {
+    position: absolute;
+    left: 36px;
+    font-size: 19px;
+}
+
+
+.check_userinfo ul.check_userinfo_b {
+    width: 100%;
+    padding: 50px 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.check_userinfo ul.check_userinfo_b input,
+.check_userinfo ul.check_userinfo_b button {
+    width: 322px;
+    height: 51px;
+    border-radius: 8px;
+    padding: 0 27px;
+    background: #e3e3e3;
+    color: #888;
+    margin-bottom: 16px;
+}
+
+.check_userinfo .c_btn,
+.check_userinfo .d_btn {
+	width: 151px !important; 
+}
+
+.check_userinfo ul.check_userinfo_b .c_b_btn{
+    display: flex;
+	justify-content: space-between;
+	margin-top: 40px;
+}
+
+.check_userinfo ul.check_userinfo_b input {
+    display: flex;
+    align-items: center;
+}
+
+.check_userinfo ul.check_userinfo_b button {
+    font-size: 16px;
+    color: #fff;
+    background: #291b3c;
+}
+
+.check_userinfo ul.check_userinfo_b button:last-child {
+    background: #ed5977;
+}
+
+.check_userinfo ul.check_userinfo_b li:first-child {
+    margin-bottom: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.check_userinfo ul.check_userinfo_b li .option_btn {
+    display: flex;
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.check_userinfo ul.check_userinfo_b li .option_btn p:first-child {
+    margin-right: 20px;
+}
