@@ -77,6 +77,9 @@
         </form>
     </div><!-- //inner -->
 	
+	<!-- footer -->
+	<jsp:include page="/WEB-INF/view/layout/footer.jsp"></jsp:include>
+	
 	<!-- 최종 등록 버튼 클릭 시 이벤트 -->
 	<script type="text/javascript">
 		$('#btnFinalRegist').click(function() {

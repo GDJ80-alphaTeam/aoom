@@ -34,6 +34,10 @@
 			</div>
 		</div>
     </div>
+    
+    
+    <!-- footer -->
+	<jsp:include page="/WEB-INF/view/layout/footer.jsp"></jsp:include>
 	
 	<!-- 개인 정보 수정 모달 -->
 	<div class="check_userinfo_bg" style="display: none;">

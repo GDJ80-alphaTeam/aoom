@@ -153,6 +153,9 @@
         </form>
     </div><!-- //inner -->
 
+	<!-- footer -->
+	<jsp:include page="/WEB-INF/view/layout/footer.jsp"></jsp:include>
+
 	<!-- amenities 선택 후 배열로 넘기기 및 버튼 방식 기능 -->
 	<script>
 		$(document).ready(function() {

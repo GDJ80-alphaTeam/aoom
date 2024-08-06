@@ -79,6 +79,9 @@
 	        WHERE
 	        	r.user_id = #{userId}
 	        	AND r.roomstat_code !='rst05'
+	        	<if test="rstCode != null and !rstCode.equals('')">
+		       		AND r.roomstat_code = #{rstCode} 
+	       		</if>
 	        ORDER BY
 	        	r.create_date DESC
          ) r
@@ -396,6 +399,9 @@
 		WHERE 
 			user_id = #{userId}
 			AND roomstat_code !='rst05'
+			<if test="rstCode != null and !rstCode.equals('')">
+	       		AND roomstat_code = #{rstCode} 
+       		</if>
 	</select>
 	
 	<!-- 숙소의 카테고리 이름 조회 -->

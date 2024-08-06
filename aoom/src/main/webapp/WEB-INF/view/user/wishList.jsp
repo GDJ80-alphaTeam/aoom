@@ -106,6 +106,10 @@
         </c:choose>
         </div>
     </div>
+    
+    <!-- footer -->
+	<jsp:include page="/WEB-INF/view/layout/footer.jsp"></jsp:include>
+    
 	<!-- 위시리스트에 있는 숙소 제거 -->
 	<script type="text/javascript">
 		$('button[name^="wishListBtn_"]').click(function() {

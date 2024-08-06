@@ -237,6 +237,9 @@
         </form>
     </div><!-- //inner -->
 	
+	<!-- footer -->
+	<jsp:include page="/WEB-INF/view/layout/footer.jsp"></jsp:include>
+	
 	<!-- 카카오 주소 찾기 API -->
 	<script>
 	    function searchAddress() {

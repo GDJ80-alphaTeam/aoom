@@ -82,6 +82,8 @@
 		</div>
 	</div>
 	
+	<!-- footer -->
+	<jsp:include page="/WEB-INF/view/layout/footer.jsp"></jsp:include>
 	<!-- 계정 탈퇴 모달 -->
 	<div class="secession_bg" style="display: none;">
 	    <div class="secession">

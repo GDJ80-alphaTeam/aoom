@@ -125,6 +125,9 @@
         </form>
     </div><!-- //inner -->
 	
+	<!-- footer -->
+	<jsp:include page="/WEB-INF/view/layout/footer.jsp"></jsp:include>
+	
 	<!-- 숙소 기본 요금 설정 시 10원단위로 절사 및 1000원단위로 콤마 표시 기능 -->
 	<script type="text/javascript">
 		$('#defaultPrice').blur(function() {

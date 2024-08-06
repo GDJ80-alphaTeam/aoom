@@ -11,8 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>수입</title>
     <script src="https://kit.fontawesome.com/82b4a4fcad.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+	<script src="/style/js/navbarSub.js" defer></script>
     <link rel="stylesheet" href="/style/css/common.css">
     <link rel="stylesheet" href="/style/css/revenue.css">
     <link rel="stylesheet" href="/style/css/navSub.css">
@@ -91,25 +90,8 @@
     </div><!-- //inner -->
     
     <!-- ---------------컨텐츠 끝------------------------>
-    <footer class="inner clear">
-        <div class="f_top">
-            <div class="ft_left">
-                <p>© 2024 Airbnb, Inc. · 개인정보 처리방침 · 이용약관 · 사이트맵 · 환불 정책 · 회사 세부정보</p>
-            </div>
-            <div class="ft_right">
-                <p>자주 묻는 질문</p>
-            </div>
-        </div><!-- //f_top -->
-        <div class="f_bottom">
-            <span>
-                웹사이트제공자:GDJ80alphaTeam,privateunlimitedcompany,8HanoverQuayDublin2,D02DP23Ireland|팀장:이용훈|VAT번호:IE12345678L사업자등록번호:IE123456|연락처:newlife5991@naver.com,
-                웹사이트,010-7635-9302|호스팅서비스제공업체: <br>아마존웹서비스|알파비앤비는
-                통신판매중개자로알파비앤비플랫폼을통하여게스트와호스트사이에이루어지는통신판매의당사자가아닙니다.알파비앤비플랫폼을통하여 예약된 숙소, 호스트 서비스에 관한 의무와 책임은 해당 서비스를
-                제공하는
-                호스트에게 있습니다.
-            </span>
-        </div><!-- //f_bottom -->
-    </footer>
+    <!-- footer -->
+	<jsp:include page="/WEB-INF/view/layout/footer.jsp"></jsp:include>
     
 	<script type="text/javascript">
 		// 전체 금액 변수 선언

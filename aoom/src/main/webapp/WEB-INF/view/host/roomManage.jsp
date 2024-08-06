@@ -13,7 +13,7 @@
     <script src="https://kit.fontawesome.com/82b4a4fcad.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/style/js/roomManage.js" defer></script>
-
+	<script src="/style/js/navbarSub.js" defer></script>
     <link rel="stylesheet" href="/style/css/common.css">
     <link rel="stylesheet" href="/style/css/roomManage.css">
     <link rel="stylesheet" href="/style/css/navSub.css">
@@ -39,10 +39,18 @@
             <div class="r_m_top">
                 <h4>숙소 관리</h4>
                 <div class="t_right">
-                    <select>
-                        <option>전체 보기</option>
-                        <option>운영중 보기</option>
-                        <option>비활성화만 보기</option>
+                    <select id="selectRoomstatCode">
+                        <option value="">===전체 보기===</option>
+                    	<c:forEach var="roomstat" items="${roomstatCodeList }">
+                    		<c:if test="${roomstat.codeKey != 'rst05'}">
+                    			<c:if test="${roomstat.codeKey == rstCode}">
+		                    		<option value="${roomstat.codeKey }" selected="selected">${roomstat.codeName }만 보기</option>
+                    			</c:if>
+                    			<c:if test="${roomstat.codeKey != rstCode}">
+		                    		<option value="${roomstat.codeKey }">${roomstat.codeName }만 보기</option>
+                    			</c:if>
+                    		</c:if>
+                    	</c:forEach>
                     </select>
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <div class="position_i">
@@ -222,7 +230,7 @@
 								</c:when>
 			
 								<c:otherwise>
-									<button class="prev_btn" type="button" onclick="window.location.href='/host/roomManage?currentPage=${currentPage - 1}&viewType=${viewType }'">
+									<button class="prev_btn" type="button" onclick="window.location.href='/host/roomManage?currentPage=${currentPage - 1}&viewType=${viewType }&rstCode=${rstCode }'">
 										<i class="fa-solid fa-chevron-left"></i>
 									</button>
 								</c:otherwise>
@@ -232,12 +240,12 @@
 							<c:forEach var="i" begin="1" end="${pagingInfo.lastPage}">
 									<c:choose>
 										<c:when test="${currentPage == i}">
-											<button class="page_btn active" data-index="${i}" type="button" onclick="window.location.href='/host/roomManage?currentPage=${i}&viewType=${viewType }'">
+											<button class="page_btn active" data-index="${i}" type="button" onclick="window.location.href='/host/roomManage?currentPage=${i}&viewType=${viewType }&rstCode=${rstCode }'">
 												${i}
 											</button>
 										</c:when>
 										<c:otherwise>
-											<button class="page_btn" data-index="${i}" type="button" onclick="window.location.href='/host/roomManage?currentPage=${i}&viewType=${viewType }'">
+											<button class="page_btn" data-index="${i}" type="button" onclick="window.location.href='/host/roomManage?currentPage=${i}&viewType=${viewType }&rstCode=${rstCode }'">
 												${i}
 											</button>
 										</c:otherwise>
@@ -252,7 +260,7 @@
 									</button>
 								</c:when>
 								<c:otherwise>
-									<button class="next_btn" type="button" onclick="window.location.href='/host/roomManage?currentPage=${currentPage + 1}&viewType=${viewType }'">
+									<button class="next_btn" type="button" onclick="window.location.href='/host/roomManage?currentPage=${currentPage + 1}&viewType=${viewType }&rstCode=${rstCode }'">
 										<i class="fa-solid fa-chevron-right"></i>
 									</button>
 								</c:otherwise>
@@ -278,25 +286,8 @@
     </div><!-- //inner -->
 
 	<!-- ---------------컨텐츠 끝------------------------>
-    <footer class="inner clear">
-        <div class="f_top">
-            <div class="ft_left">
-                <p>© 2024 Airbnb, Inc. · 개인정보 처리방침 · 이용약관 · 사이트맵 · 환불 정책 · 회사 세부정보</p>
-            </div>
-            <div class="ft_right">
-                <p>자주 묻는 질문</p>
-            </div>
-        </div><!-- //f_top -->
-        <div class="f_bottom">
-            <span>
-                웹사이트제공자:GDJ80alphaTeam,privateunlimitedcompany,8HanoverQuayDublin2,D02DP23Ireland|팀장:이용훈|VAT번호:IE12345678L사업자등록번호:IE123456|연락처:newlife5991@naver.com,
-                웹사이트,010-7635-9302|호스팅서비스제공업체: <br>아마존웹서비스|알파비앤비는
-                통신판매중개자로알파비앤비플랫폼을통하여게스트와호스트사이에이루어지는통신판매의당사자가아닙니다.알파비앤비플랫폼을통하여 예약된 숙소, 호스트 서비스에 관한 의무와 책임은 해당 서비스를
-                제공하는
-                호스트에게 있습니다.
-            </span>
-        </div><!-- //f_bottom -->
-    </footer>
+    <!-- footer -->
+	<jsp:include page="/WEB-INF/view/layout/footer.jsp"></jsp:include>
 
 	<!-- 숙소 삭제 모달 -->
 	<div class="room_delete_bg" style="display: none;">
@@ -362,23 +353,21 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
-		    // 리스트 뷰 아이콘과 썸네일 뷰 아이콘에 대한 클릭 이벤트 처리
+			console.log('${rstCode}');
 		    $('#listViewIcon, #thumbnailViewIcon').click(function() {
-		        // 클릭된 아이콘의 ID 가져오기
-		        var clickedIconId = $(this).attr('id');
-		        console.log('Clicked Icon ID:', clickedIconId);
-	
-		        // 리스트 뷰인지 썸네일 뷰인지 판별
-		        var newViewMode = (clickedIconId === 'listViewIcon') ? 'list' : 'thumbnail';
-		        console.log('New View Mode:', newViewMode);
-	
-		        // URL에 viewType 파라미터 추가하여 새로고침
-		        var currentPage = '${currentPage}'; // currentPage 값을 JSP에서 가져오기
-		        var url = '/host/roomManage?currentPage=' + currentPage + '&viewType=' + newViewMode;
-		        console.log('New URL:', url);
-	
-		        // 페이지 새로고침
-		        window.location.href = url;
+		        let viewIcon = $(this).attr('id');
+		        let changeView = (viewIcon === 'listViewIcon') ? 'list' : 'thumbnail';
+		        
+		        let currentPage = '${currentPage}'; 
+		        let rstCode = $('#selectRoomstatCode').val();
+		        
+		        window.location.href = '/host/roomManage?currentPage=' + currentPage + '&viewType=' + changeView + '&rstCode=' + rstCode;
+		    });
+		    
+		    $('#selectRoomstatCode').change(function() {
+		        let rstCode = $('#selectRoomstatCode').val();
+		        let viewType = '${viewType}'
+		        window.location.href = '/host/roomManage?viewType=' + viewType + '&rstCode=' + rstCode;
 		    });
 		});
 

@@ -94,7 +94,9 @@ public class HostController extends BaseController {
 		modelMap.addAttribute("currentPage", currentPage);
 		modelMap.addAttribute("viewType", viewType);
 		modelMap.addAttribute("pagingInfo", roomService.selectByTotalCnt(param));
-		modelMap.addAttribute("roomListByUser", roomListByUser);		
+		modelMap.addAttribute("roomListByUser", roomListByUser);
+		modelMap.addAttribute("roomstatCodeList", codeService.selectByGroupKey("roomstat"));
+		modelMap.addAttribute("rstCode", param.get("rstCode"));
 		
 		return "/host/roomManage";
 	}
