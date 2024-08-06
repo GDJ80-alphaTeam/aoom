@@ -16,6 +16,7 @@
 
     <link rel="stylesheet" href="/style/css/common.css">
     <link rel="stylesheet" href="/style/css/roomRegist.css">
+    <link rel="stylesheet" href="/style/css/preview.css">
     <link rel="stylesheet" href="/style/css/navSub.css">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -24,58 +25,69 @@
 </head>	
 <body>
 	<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
-	<!----------------------------------- 컨텐츠 시작! --------------------------------------------------->
-	
-    <div class="registration inner">
-	    <form action="/host/roomManage/registRoom/registPaymentInfo" id="paymentForm" method="post">
-	        <div class="title">
-	            <h2>숙소등록</h2>
-	        </div>
-	        <div class="pro">
-	            <img src="/style/img/pro3.png" alt="프로그래스바" class="active">
-	        </div><!-- //pro -->
-	        
-	        <div class="page_ac">
-	            <div class="page_move">
-	                <div class="page_rolling page_r3" style="height: 416px;">
-	                    <table style="vertical-align: middle; text-align: center; width: 100%;">
-							<thead>
-								<tr>
-									<td>메인 이미지</td>
-									<td>숙소 이름</td>
-									<td>주소</td>
-									<td>기본가</td>
-									<td>운영일</td>
-								</tr>
-							</thead>
-							
-							<tbody>
-								<tr>
-									<td>
-										<img alt="" src="${roomInfo.mainImage }" style="width: 300px; height: 300px;">
-									</td>
-									<td>${roomInfo.roomName }</td>
-									<td>${roomInfo.address }</td>
-									<td>${roomInfo.defaultPrice }원</td>
-									<td>
-										${roomInfo.startDate } ~ ${roomInfo.endDate }
-									</td>
-								</tr>
-							</tbody>
-						</table>
-	                </div><!-- page_rolling//page_r3 -->
-	            </div><!-- //page_move -->
-	        </div>
-	        <div class="pagenation_box">
-		        <button type="button" class="prev" onclick="window.location.href='/host/roomManage/registRoom/paymentInfo?roomId=${roomInfo.roomId}';">
+	<!-- ----------------------------------------------컨텐츠 시작----------------------------------- -->
+    <div class="preview inner">
+        <h2>숙소 미리 보기</h2>
+        <h5>훌륭합니다! <b>숙소 등록 전 세부 정보</b>가 <br>
+            올바른지 확인하세요.</h5>
+        <span class="gray">
+            게스트에게 표시되는 숙소 정보는 다음과 같습니다.
+        </span><!-- //gray -->
+        <div class="pre_con">
+            <div class="p_con_left">
+                <div class="pic_box">
+                    <img alt="" src="${roomInfo.mainImage }">
+                </div><!-- //pic_box -->
+                <div class="title">
+                    <p>${roomInfo.roomName }</p> 
+                    <i class="fas fa-star">신규</i>
+                </div><!-- //title -->
+                <p class="gray">${roomInfo.address }</p>
+            </div><!-- //p_con_left -->
+            <div class="p_con_right">
+                <h2>세부 정보</h2>
+                <ul>
+                    <li>
+                        <div class="left">
+                            <img src="/style/img/pre1.png" alt="${roomInfo.roomName }">
+                            <p>숙소 이름 : ${roomInfo.roomName }</p>
+                        </div><!-- //left -->
+                    </li>
+                    <li>
+                        <div class="left">
+                            <img src="/style/img/pre2.png" alt="${roomInfo.address }">
+                            <p>주소 : ${roomInfo.address }</p>
+                        </div><!-- //left -->
+                    </li>
+                    <li>
+                        <div class="left">
+                            <div class="icon_box">
+                                <img src="/style/img/pre3.png" alt="기본 가격">
+                            </div>
+                            <p>기본 가격 : ${roomInfo.defaultPrice }원</p>
+                        </div><!-- //left -->
+                    </li>
+                    <li>
+                        <div class="left">
+                            <img src="/style/img/pre4.png" alt="운영일">
+                            <p>운영일 : ${roomInfo.startDate } ~ ${roomInfo.endDate }</p>
+                        </div><!-- //left -->
+                    </li>
+                </ul>
+            </div><!-- //p_con_right -->
+        </div><!-- // pre_con-->
+        <div class="pre_btn">
+            <div class="btn_right">
+                <button type="button" class="prev" onclick="window.location.href='/host/roomManage/registRoom/paymentInfo?roomId=${roomInfo.roomId}';">
 	        		<span>이전 단계</span>
 	        	</button>
-				<button type="button" id="btnFinalRegist" class="next">
+                <button type="button" id="btnFinalRegist" class="next">
 					<span>최종 등록</span>
 				</button>
-	        </div><!-- //pagenation_box -->
-        </form>
-    </div><!-- //inner -->
+            </div><!-- //btn_right -->
+        </div><!-- /pre_btn -->
+    </div><!-- //preview -->
+    <!-- ----------------------------------------------컨텐츠 끝----------------------------------- -->
 	
 	<!-- footer -->
 	<jsp:include page="/WEB-INF/view/layout/footer.jsp"></jsp:include>
