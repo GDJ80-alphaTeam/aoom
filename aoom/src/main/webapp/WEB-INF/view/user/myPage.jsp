@@ -10,15 +10,17 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/82b4a4fcad.js"></script>
 <link rel="stylesheet" href="/style/css/navSub.css">
-<script src="/style/js/navbarSub.js" defer></script>
 <link rel="stylesheet" href="/style/css/common.css">
+<script src="/style/js/navbarSub.js" defer></script>
+
 </head>
 <body class="container">
     <!-- AOOM 네비게이션 바 -->
     <jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
     
-	<div>
+	<div style="width: 1200px;margin: 0 auto ; text-align: center">
 		<h1>마이페이지</h1>
 		<div style="width: 100%;height: 300px; background-color: green;" onclick="window.location.href='/user/profile?userId=${sessionScope.userInfo.userId}'">
 				프로필

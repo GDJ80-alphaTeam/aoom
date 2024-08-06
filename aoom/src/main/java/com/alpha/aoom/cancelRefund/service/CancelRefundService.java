@@ -36,7 +36,7 @@ public class CancelRefundService {
 	
 	
 	// 예약취소	
-	// param : bookingId , refuntPrice , cancelreaCode , cancelContent ,   
+	// param : bookingId , refundPrice , cancelreaCode , cancelContent , paymentId , stayPeople , checkIn , checkOut , bankCode   
 	@Transactional(rollbackFor=Exception.class)
 	public int insert(Map<String, Object> param) {
 		

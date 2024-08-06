@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     //회원가입 창 열기 닫기
-    document.querySelector('#navMenu2 li:nth-child(2)').addEventListener('click', function () {
+    document.querySelector('#navMenu1 li:nth-child(2)').addEventListener('click', function () {
         document.querySelector('.sign_in_bg').style.display = 'flex';
     });
     

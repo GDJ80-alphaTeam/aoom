@@ -148,7 +148,6 @@ public class BookingController extends BaseController {
 		if(bookingService.selectByInvalidAccess(param) == 0) {
 			return "redirect:/main";
 		}
-		
 		codeService.selectByGroupKey("cancelrea");
 		
 		// 페이징을 하지않아도 같은 쿼리를 사용해서 넣어줘야함
@@ -165,12 +164,15 @@ public class BookingController extends BaseController {
 		modelMap.addAttribute("bank", codeService.selectByGroupKey("bank"));
 		// 카드
 		modelMap.addAttribute("card", codeService.selectByGroupKey("card"));
+		// 해당 숙소의 리뷰
+		modelMap.addAttribute("reviewCntAvg", reviewService.selectByRatingAvgReviewCnt((bookingService.selectListByGuestId(param).get(0))));
 		
-		return "/booking/bookingCancel";
+		return "/booking/bookingCancel2";
+		
 	}
 	
 	// 예약취소 이벤트	
-	// param : bookingId , refundPrice , cancelreaCode , cancelContent 
+	// param : bookingId , refundPrice , cancelreaCode , cancelContent ,
 	@RequestMapping("/bookingCancelEvent")
 	public String dobookingCancel(@RequestParam Map<String, Object> param , ModelMap modelMap) {
 		
@@ -198,9 +200,9 @@ public class BookingController extends BaseController {
 	
 	@RequestMapping("/test")
 	@ResponseBody
-	public String requestMethodName(@RequestParam Map<String, Object> param) {
+	public Map<String, Object> requestMethodName(@RequestParam Map<String, Object> param) {
 		System.out.println(param);
-		return null;
+		return param;
 	}
 	
 }
