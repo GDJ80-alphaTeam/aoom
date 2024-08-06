@@ -12,51 +12,59 @@
     <script src="/style/js/roomManage.js" defer></script>
     <link rel="stylesheet" href="/style/css/roomManage.css">
     <link rel="stylesheet" href="/style/css/common.css">
-    <link rel="stylesheet" href="/style/css/hostNavbar.css">
+    
+    <script src="/style/js/navbarSub.js" defer></script>
+    <link rel="stylesheet" href="/style/css/navSub.css">
 </head>
 <style>
 	.pinkBtn {
-    width: 140px;
-    height: 48px;
-    display: inline-block; /* 링크를 블록처럼 취급하여 width와 height가 적용되도록 함 */
-    border: 1px solid #ed5977;
-    background: #ed5977;
-    border-radius: 8px;
-    text-align: center; /* 텍스트를 가운데 정렬 */
-    line-height: 48px; /* 세로 중앙 정렬을 위해 라인 높이를 버튼 높이와 동일하게 설정 */
-    text-decoration: none; /* 링크의 기본 밑줄 제거 */
-    color: #ed5977; /* 텍스트 색상 설정 */
+		width: 140px;
+		height: 48px;
+		display: inline-block; /* 링크를 블록처럼 취급하여 width와 height가 적용되도록 함 */
+		border: 1px solid #ed5977;
+		background: #ed5977;
+		border-radius: 8px;
+		text-align: center; /* 텍스트를 가운데 정렬 */
+		line-height: 48px; /* 세로 중앙 정렬을 위해 라인 높이를 버튼 높이와 동일하게 설정 */
+		text-decoration: none; /* 링크의 기본 밑줄 제거 */
+		color: #ed5977; /* 텍스트 색상 설정 */
 	}
 	
 	.whiteBtn {
-    width: 140px;
-    height: 48px;
-    display: inline-block; /* 링크를 블록처럼 취급하여 width와 height가 적용되도록 함 */
-    border: 1px solid #ed5977;
-    background: #fff;
-    border-radius: 8px;
-    text-align: center; /* 텍스트를 가운데 정렬 */
-    line-height: 48px; /* 세로 중앙 정렬을 위해 라인 높이를 버튼 높이와 동일하게 설정 */
-    text-decoration: none; /* 링크의 기본 밑줄 제거 */
-    color: #ed5977; /* 텍스트 색상 설정 */
+		width: 140px;
+		height: 48px;
+		display: inline-block; /* 링크를 블록처럼 취급하여 width와 height가 적용되도록 함 */
+		border: 1px solid #ed5977;
+		background: #fff;
+		border-radius: 8px;
+		text-align: center; /* 텍스트를 가운데 정렬 */
+		line-height: 48px; /* 세로 중앙 정렬을 위해 라인 높이를 버튼 높이와 동일하게 설정 */
+		text-decoration: none; /* 링크의 기본 밑줄 제거 */
+		color: #ed5977; /* 텍스트 색상 설정 */
 	}
-
+	
 	.pinkBtn span {
-	    color: #fff;
+		color: #fff;
 	}
 	
 	.whiteBtn span {
-	    color: #000;
+		color: #000;
 	}
-  table, th, td {
-    text-align: center;
-    vertical-align: middle;
-  }
+	
+	table, th, td {
+		text-align: center;
+		vertical-align: middle;
+	}
+	
+	.inner_nav ul li a {
+		width: auto;
+		display: block;
+	}
 </style>
 <body>
 
 	<!-- 네비게이션바 -->
-	<jsp:include page="/WEB-INF/view/layout/navbarHost.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
 	
     <div class="inner">
     	

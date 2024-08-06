@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>숙소 관리</title>
     <script src="https://kit.fontawesome.com/82b4a4fcad.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
    	<link rel="stylesheet" href="https://uicdn.toast.com/chart/latest/toastui-chart.min.css" />
 	<script src="https://uicdn.toast.com/chart/latest/toastui-chart.min.js"></script>
     
@@ -20,8 +20,8 @@
 
     <link rel="stylesheet" href="/style/css/common.css">
     <link rel="stylesheet" href="/style/css/hostMain.css">
-    <link rel="stylesheet" href="/style/css/hostNavbar.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/style/css/navSub.css">
+    <script src="/style/js/navbarSub.js" defer></script>
 </head>
 <style>
 	
@@ -58,10 +58,15 @@
 	.whiteBtn span {
 	    color: #000;
 	}
+	.inner_nav ul li a {
+	   width: auto;
+	   display: block;
+	}
 </style>
 <body>
+
 	<!-- 네비게이션바 -->
-	<jsp:include page="/WEB-INF/view/layout/navbarHost.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
 
     <div class="inner">
     	
@@ -162,7 +167,7 @@
 		                        <div class="seven">${todayContent.totalPrice } 원</div>
 		                        <div class="eight">
 									<c:if test="${actionType == 'checkOut'}">
-										<button type="button" id="checkOutBtn" class="whiteBtn" data-booking-id="${todayContent.bookingId }" ><span>체크아웃</span></button>
+										<button type="button" id="checkOutBtn" class="whiteBtn" data-booking-id="${todayContent.bookingId }" style="width: 110px;"><span>체크아웃</span></button>
 									</c:if>		                        
 		                        </div>
 							</li>
@@ -173,7 +178,7 @@
 			
 			<br><br>
 			<!-- 차트 -->
-			<h5>&nbsp;&nbsp;&nbsp;&nbsp;${userInfo.userName }님의 차트</h5>
+			<h5>&nbsp;&nbsp;&nbsp;&nbsp;${userInfo.userName }님의 통계</h5>
 			
 			<br><br>
 			
@@ -219,6 +224,33 @@
 	        </span>
 	    </div>
 	</footer>
+	
+	<script type="text/javascript">
+	
+		// 체크아웃 ajax
+		$('#checkOutBtn').click(function(event){
+			// 예약id 가져오기
+			var bookingId = $(this).data('booking-id');
+			$.ajax({
+				url: '/host/ajaxCheckOut',
+				type: 'POST',
+				data: {
+					'bookingId': bookingId
+				},
+				success: function(response){
+					if (response.result) {
+						alert(response.message);
+						window.location.href = "/host/main";
+					} else{
+						alert(response.message);
+						window.location.href = "/host/main";
+					}
+				}
+			})
+		})
+	
+	</script>
+	
 	<script type="text/javascript">
 	
 		/* 첫번째 차트 : 월별 예약수 */

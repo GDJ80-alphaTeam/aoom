@@ -251,14 +251,14 @@ span {
 }
 
 .r_m_list .list_style li .three {
-	width: 140px;	
+	width: 240px;	
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .r_m_list .list_style li .four {
-	width: 140px;	
+	width: 80px;	
     display: flex;
     justify-content: center;
     align-items: center;	

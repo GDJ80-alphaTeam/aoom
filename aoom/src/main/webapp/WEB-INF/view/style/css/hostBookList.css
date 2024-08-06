@@ -1,0 +1,222 @@
+@charset "UTF-8";
+
+select {
+    width: 200px;
+    height: 44px;
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 10px; /* 셀렉트 태그와 다른 요소들 사이에 간격을 줍니다 */
+}
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+}
+.calendar {
+    max-width: 224px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+.calendar_input {
+    width: 100%;
+    font-size: 14px;
+    height: 44px;
+    border: 1px solid #C7C7C7;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+}
+.calendar_input i {
+    font-size: 19px;
+    color: #ed5977;
+}
+.calendar_input input {
+    width: 100%;
+    border: none;
+    outline: none;
+}
+.status-container {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+.status-container label {
+    margin-right: 5px;
+}
+.status-container input[type="radio"] {
+    margin-right: 5px;
+}
+.pinkBtn {
+    width: 140px;
+    height: 48px;
+    display: inline-block; /* 링크를 블록처럼 취급하여 width와 height가 적용되도록 함 */
+border: 1px solid #ed5977;
+background: #ed5977;
+border-radius: 8px;
+text-align: center; /* 텍스트를 가운데 정렬 */
+line-height: 48px; /* 세로 중앙 정렬을 위해 라인 높이를 버튼 높이와 동일하게 설정 */
+text-decoration: none; /* 링크의 기본 밑줄 제거 */
+color: #ed5977; /* 텍스트 색상 설정 */
+}
+.pinkBtn span {
+   	color: #fff;
+}
+.r_manage {
+    width: 100%;
+    padding-top: 47px;
+}
+
+.r_manage .r_m_top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}
+.view_style {
+    width: 100%;
+    position: relative;
+    height: 384px;
+}
+
+/* 리스트 스타일 css */
+.r_m_list {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+}
+
+.r_m_list.view {
+    display: block;
+}
+
+.r_m_list .list_style li {
+    margin-left: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.r_m_list .list_style li .one {
+	width: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.r_m_list .list_style li .two {
+	width: 300px;	
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.r_m_list .list_style li .three {
+	width: 140px;	
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.r_m_list .list_style li .four {
+	width: 140px;	
+    display: flex;
+    justify-content: center;
+    align-items: center;	
+}
+
+.r_m_list .list_style li .five {
+	width: 100px;	
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.r_m_list .list_style li .six {
+	width: 140px;	
+    display: flex;
+    justify-content: center;
+    align-items: center;	
+}
+
+.r_m_list .list_style li .seven {
+	width: 100px;	
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.r_m_list .list_style li.list_top {
+    width: 100%;
+    height: 64px;
+    border-bottom: 1px solid #C7C7C7;
+}
+
+.r_m_list .list_style li.list_con {
+    height: 64px;
+    width: 100%;
+}
+
+.r_m_list .list_style li.list_con .img_box {
+    width: 90px;
+    height: 90px;
+    margin-right: 22px;
+    background: #ddd;
+}		
+.inner_nav ul li a {
+   width: auto;
+   display: block;
+}
+
+/* 페이지 네이션 커스텀 */
+.pagination {
+    display: flex;
+    justify-content: center; /* 중앙 정렬 */
+align-items: center;
+margin-top: 20px; /* 필요에 따라 상단 여백 추가 */
+margin-bottom: 20px; /* 필요에 따라 하단 여백 추가 */
+position: relative; /* 절대 위치에서 상대 위치로 변경 */
+}
+
+.pagination ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pagination li {
+    margin: 0 5px; /* 버튼 간격 조정 */
+}
+
+.pagination button {
+    width: 32px;
+    height: 32px;
+    background: #D9D9D9;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination button.active {
+    background: #291B3C;
+}
+
+.pagination button.prev_btn,
+.pagination button.next_btn {
+    background: transparent;
+    color: #291B3C;
+    border: none;
+    font-size: 1.2em;
+}
