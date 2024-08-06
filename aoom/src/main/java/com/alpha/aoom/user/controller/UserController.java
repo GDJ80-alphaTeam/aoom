@@ -76,7 +76,7 @@ public class UserController extends BaseController {
 		if(editAuth != null && editAuth) { // 권한 있을 때
 			// session 제거 - 새로고침, 다른페이지에서 접근 막기
 			session.removeAttribute("userInfoAccess");
-			return "/user/userInfo";
+			return "/user/userInfo2";
 		} else { // 권한 없을 때
 			return "redirect:/user/myPage";
 		}

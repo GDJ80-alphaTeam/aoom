@@ -16,14 +16,14 @@
 
     <link rel="stylesheet" href="/style/css/common.css">
     <link rel="stylesheet" href="/style/css/calendar.css">
-    <link rel="stylesheet" href="/style/css/hostNavbar.css">
+    <link rel="stylesheet" href="/style/css/navSub.css">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 </head>
 <body>
-    <jsp:include page="/WEB-INF/view/layout/navbarHost.jsp"></jsp:include>
+    <jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
     <!-- ---------------컨텐츠 시작------------------------>
 
     <div class="inner">

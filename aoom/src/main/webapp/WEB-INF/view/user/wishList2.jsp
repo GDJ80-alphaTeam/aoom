@@ -24,11 +24,11 @@
 	
 	<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
 	
-	<br>
-	<h2>${sessionScope.userInfo.userId}님의 위시리스트</h2>
-	<br>
+	<div class="room_container inner" style="width: 1300px;">
 	
-	<div class="room_container inner">
+		<br>
+		<h2 style="margin-top: 140px;">${sessionScope.userInfo.userId}님의 위시리스트</h2>
+		<br>
         <div class="room fade_in">
         
         <c:choose>

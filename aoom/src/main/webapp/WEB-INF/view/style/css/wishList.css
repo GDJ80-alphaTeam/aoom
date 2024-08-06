@@ -108,7 +108,7 @@ span {
 }
 
 .room {
-    padding: 47px 0 0;
+    padding: 27px 0 0;
     position: relative; /* absolute에서 relative로 변경 */
     left: 0;
     top: 0;

@@ -15,13 +15,13 @@
 
     <link rel="stylesheet" href="/style/css/common.css">
     <link rel="stylesheet" href="/style/css/revenue.css">
-    <link rel="stylesheet" href="/style/css/hostNavbar.css">
+    <link rel="stylesheet" href="/style/css/navSub.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://uicdn.toast.com/chart/latest/toastui-chart.min.js"></script>
 	<link rel="stylesheet" href="https://uicdn.toast.com/chart/latest/toastui-chart.min.css" />
 </head>
 <body>
-	<jsp:include page="/WEB-INF/view/layout/navbarHost.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
     
 	<div class="inner">
         <div class="inner_nav">

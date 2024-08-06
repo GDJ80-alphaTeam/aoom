@@ -16,12 +16,12 @@
 
     <link rel="stylesheet" href="/style/css/common.css">
     <link rel="stylesheet" href="/style/css/roomManage.css">
-    <link rel="stylesheet" href="/style/css/hostNavbar.css">
+    <link rel="stylesheet" href="/style/css/navSub.css">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
-    <jsp:include page="/WEB-INF/view/layout/navbarHost.jsp"></jsp:include>
+    <jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
     <!-- ---------------컨텐츠 시작------------------------>
 
     <div class="inner">

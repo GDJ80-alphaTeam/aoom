@@ -18,7 +18,7 @@
     <!-- AOOM 네비게이션 바 -->
     <jsp:include page="/WEB-INF/view/layout/navbarSub.jsp"></jsp:include>
     
-	<div style="width: 1200px;margin: 0 auto ; text-align: center">
+	<div>
 		<h1>마이페이지</h1>
 		<div style="width: 100%;height: 300px; background-color: green;" onclick="window.location.href='/user/profile?userId=${sessionScope.userInfo.userId}'">
 				프로필
