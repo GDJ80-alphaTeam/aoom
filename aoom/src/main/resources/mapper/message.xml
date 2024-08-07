@@ -9,6 +9,7 @@
         	ELSE m1.SEND_USER_ID
    			END AS USER_ID,
     		m3.USER_NAME,
+    		m3.USER_IMAGE,
     		m1.CONTENT,
     		TO_CHAR(m1.CREATE_DATE,'YYYY-MM-DD') as CREATE_DATE
 		FROM 

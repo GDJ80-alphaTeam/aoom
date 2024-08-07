@@ -52,10 +52,10 @@ h4 {
     font-size: 22px;
 }
 
-h5 {
+/* h5 {
     font-size: 18px;
     font-weight: bold;
-}
+} */
 
 i {
     font-size: 10px;
@@ -99,4 +99,64 @@ span {
 .inner_nav ul li.active {
     border-bottom: 4px solid #ED5977;
     color: #ed5977;
+}
+
+.inner .msg {
+	display: flex;
+	margin-top: 150px;
+}
+
+.inner .msg-l {
+	width: 30%;
+	height: 900px;
+	padding: 15px;
+	border: 1px solid #EBEBEB;
+}
+
+.inner .msg-l h3 {
+	font-size: 15px;
+}
+
+.inner .msg-l h5 {
+	font-size: 12px;
+}
+
+.inner .msg-l .msg_summary {
+	width: 100%;
+	cursor: pointer;
+	display: flex;
+    /* justify-content: space-between; */
+    gap: 20px;
+    margin-bottom: 15px;
+	padding: 10px;
+}
+
+.inner .msg-l .active {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+.inner .msg-l .msg_summary .sender_img img {
+	width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.sender_con {
+    width: 100%;
+    display: grid;
+}
+
+.sender_con .con_top {
+	display: flex;
+    justify-content: space-between;
+    height: 10px;
+}
+
+.inner .msg-r {
+	width: 65%;
+	border: 1px solid #EBEBEB;
+	border-left: none;
+    padding: 10px 20px;
 }

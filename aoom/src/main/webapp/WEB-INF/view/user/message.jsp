@@ -15,8 +15,8 @@
 	<script src="/style/js/navbarSub.js" defer></script>
 
     <link rel="stylesheet" href="/style/css/common.css">
-    <link rel="stylesheet" href="/style/css/wishList.css">
     <link rel="stylesheet" href="/style/css/navSub.css">
+    <link rel="stylesheet" href="/style/css/message.css">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     
@@ -44,18 +44,28 @@
 	<div class="inner">
 		<input type="hidden" id="sendUserId">
 		
-		<div style="display: flex; margin-top: 150px;">
-			<div style="width: 30%;">
+		<div class="msg">
+			<div class="msg-l">
 				<c:forEach var="message" items="${selectList }">
-					<div style="width:90%; cursor: pointer;" onclick="ajaxMessage('${message.userId}');">
-						<h3>${message.userName}<h3>
-						<h3>${message.content}<h3>
-						<h3>${message.createDate}<h3>
+					<div class="msg_summary" onclick="ajaxMessage(this,'${message.userId}');">
+						<div class="sender_img">
+							<img alt="" src="${message.userImage }">
+						</div>
+						
+						<div class="sender_con">
+							<div class="con_top">
+								<h3>${message.userName}</h3>
+								<h5>${message.createDate}</h5>						
+							</div>
+							<div class="con_bottom">
+								<h3>${message.content}</h3>
+							</div>
+						</div>
 					</div>
 				</c:forEach>
 			</div>
-		
-			<div style="width: 65%;">
+			
+			<div class="msg-r">
 				<div class="messageList"></div>
 				<div class="inputMessageDiv"></div>
 			</div>
@@ -66,9 +76,13 @@
 	
 	<!-- 메시지 리스트 보여주기 -->
 	<script type="text/javascript">
-		function ajaxMessage(sendUserId){
+		function ajaxMessage(element, sendUserId){
 			$("#sendUserId").val(sendUserId); //send쪽 userid 보관
 			let receiverUserId = "${userInfo.userId}"; //로그인한 아이디
+			
+		    $(".msg_summary").removeClass("active");
+		    $(element).addClass("active");
+		    
 			$.ajax({
                 url: '/message/ajaxMessageUserList',
                 method: 'post',
