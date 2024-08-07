@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* 계정 탈퇴 모달 */
+/* 계정 비활성화 모달 */
 .check_userinfo_bg {
     position: fixed;
     top: 0;

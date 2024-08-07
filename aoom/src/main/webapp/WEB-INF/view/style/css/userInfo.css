@@ -118,7 +118,7 @@ edit_btn {
     background: #ed5977;
 }
 
-/* 계정 탈퇴 모달 */
+/* 계정 비활성화 모달 */
 .secession_bg {
     position: fixed;
     top: 0;

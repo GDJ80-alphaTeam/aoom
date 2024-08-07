@@ -84,12 +84,12 @@
 	
 	<!-- footer -->
 	<jsp:include page="/WEB-INF/view/layout/footer.jsp"></jsp:include>
-	<!-- 계정 탈퇴 모달 -->
+	<!-- 계정 비활성화 모달 -->
 	<div class="secession_bg" style="display: none;">
 	    <div class="secession">
 	        <div class="secession_t">
 	            <i class="fa-solid fa-xmark" id="closeModal"></i>
-	            <p>계정 탈퇴</p>
+	            <p>계정 비활성화</p>
 	        </div>
 	        <ul class="secession_b">
 	            <li>
@@ -102,7 +102,7 @@
                         </div>
 	                    <div class="c_b_btn">
 	                        <button class="c_btn" type="button" id="cancelSecessionBtn">취소</button>
-	                        <button class="d_btn"  type="button" id="secessionBtn">탈퇴하기</button>
+	                        <button class="d_btn"  type="button" id="secessionBtn">비활성화하기</button>
 	                    </div>
 	                </form>
 	            </li>
@@ -175,7 +175,7 @@
 		}
 	</script>
 	
-	<!-- 계정 탈퇴 -->
+	<!-- 계정 비활성화 -->
 	<script type="text/javascript">
 		$('#secessionBtn').on('click', function() {
 			$.ajax({
