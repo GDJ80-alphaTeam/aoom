@@ -235,6 +235,12 @@
 	                end: endDate
 	            },
 	            events: events,	// 달력의 event - 해당 onedayPrice의 상태, 가격 표시
+	            selectAllow: function(selectInfo) {
+	                // 오늘 날짜 이전 선택 불가 설정
+	                let today = moment().startOf('day');
+	                let selectedDate = moment(selectInfo.startStr);
+	                return selectedDate.isSameOrAfter(today);
+	            },
 	            select: function(info) {
 	                // 선택한 날짜(cell) 요소들을 배열로 가져오기
 	                let selectedCells = $('.selected-date').toArray();

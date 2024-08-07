@@ -38,6 +38,11 @@
 	color: blue;
 }
 
+.fc-day-past {
+    background-color: #e0e0e0;
+	cursor: not-allowed;
+}
+
 .inner {
     width: 1120px;
     position: relative;
