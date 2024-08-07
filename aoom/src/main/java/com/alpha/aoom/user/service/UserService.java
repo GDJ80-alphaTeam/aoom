@@ -122,7 +122,7 @@ public class UserService {
 		if(beforeImg.equals("/image/etc/userDefault.png") || beforeImg == "/image/etc/userDefault.png") {
 		
 		} else {
-			log.info(imageFolderPath + beforeImg);
+			log.info(imageFolderPath + beforeImg + "이미지삭제");
 			imageRemove.remove(folderCreation.BASE_FOLDER_PATH, beforeImg);
 		}
 			// 유저 프로필 업데이트

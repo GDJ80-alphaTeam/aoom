@@ -181,12 +181,11 @@ public class UserController extends BaseController {
 		param.put("profileImage", image.get("profileImage"));
 		param.put("deleteImage", param.get("deleteImage"));
 		// 이미지가 널이 아니면 업데이트 널이면
-		if(image.get("profileImage") != null) {
-			
+		if(image.get("profileImage").isEmpty()) {
+			return getFailResult(model);
+		} else {
 			model.put("data",userService.updateProfileImg(param));
 			return getSuccessResult(model);
-		} else {
-			return getFailResult(model);
 		}
 		
 	}

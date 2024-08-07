@@ -26,7 +26,28 @@ $(document).ready(function () {
 	});
 
 });
+// 이미지 모달 호출버튼
+$('#imgModalBtn').on('click', function(event) {
+	$('#imgUpdateModal').addClass('on'); // 모달 호출
+});
 
+// 이미지 모달 의 값이 바뀌면 그값 가져와서 보여줌
+$('#ImageModalFile').on('change', function() {
+			const imageSrc = URL.createObjectURL(this.files[0]);
+			$('#modalImg').attr('src', imageSrc);
+});
+
+// 프로필 이미지변경 버튼 눌렀을떄
+$('#profileImgUpdateBtn').click(function(){
+	//ajax
+	profileImgUpdate();
+});
+
+// 이미지 지우기		
+$('#profileImageRemove').click(function() {
+	$('#ImageModalFile').val("");
+	$('#modalImg').attr('src', "/image/etc/userDefault.png");
+});
 
 // 모달버튼 누를씨 데이터 호출후 업데이트 
 function contentCall(){
@@ -130,7 +151,9 @@ const imageMap = {
 			             } 
 			             
 			             if (value == response.data.code.codeKey && value == "pfi09"){
-			            	 $('#introductionContent').text(response.data.profile.content);		
+								console.log("test");
+							 $('#pfi09').empty();
+			            	 $('#pfi09').append('<li>'+response.data.profile.content+'</li>');		
 			            	 
 			             }
 			             
@@ -143,6 +166,41 @@ const imageMap = {
 
 				}
 			});
-		}; 			
+		};
 		
-				
+// 프로필 이미지 업데이트
+		function profileImgUpdate(){
+			
+			let formData = new FormData($('#profileImgUpdate')[0]);
+			
+			$.ajax({
+		        url: "/user/ajaxUserImageUpdate", // 파일 업로드를 처리할 서버 엔드포인트
+		        method: "POST",
+		        data: formData,
+		        contentType: false, // 기본 콘텐츠 타입을 자동으로 설정합니다.
+		        processData: false, // 데이터가 URL 인코딩되지 않도록 설정합니다.
+		        success: function(response){
+					if(response.code == '00'){
+		            console.log("프로필 이미지 업데이트 성공:", response);
+		            // 추가적인 성공 처리 로직을 여기에 추가할 수 있습니다.
+		            $('#imgUpdateModal').removeClass('on');
+		            alert("변경사항은 재접속후 적용됩니다.");
+		            $('#modalImg').attr('src', response.data);
+		            $('#outsideImg').attr('src', response.data);
+		            } 
+		            if(response.code == '01'){
+						alert('이미지를선택해주세요')
+					}
+		            
+		        }
+		      
+		    });
+		}		 			
+// 모달창에서 엔터키를 누르면 오류가 발생, 엔터키 입력하면 제출버튼 클릭되게변경
+$('#updateModal').on('keydown', 'input, textarea', function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        $('#profileUpdateBtn').click(); // 엔터키 입력 시 버튼 클릭
+    }
+});		
+		

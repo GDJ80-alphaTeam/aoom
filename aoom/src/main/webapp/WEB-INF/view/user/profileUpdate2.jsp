@@ -30,10 +30,10 @@
         <div class="u_m_left">
             <div class="profile_t">
                 <div class="pro_pic">
-                    <img src="${userInfo.userImage}" alt="프로필 사진">
-                    <div class="pic_icon">
+                    <img src="${userInfo.userImage}" alt="프로필 사진" id="outsideImg">
+                    <div class="pic_icon" id="imgModalBtn">
                         <i class="fas fa-camera"></i>
-                        <p>추가</p>
+                        <p>추가</p> 
                     </div><!-- //pic_icon -->
                 </div><!-- //pro_pic -->
             </div><!-- //profile_t -->
@@ -157,26 +157,35 @@
                 	
                 	<c:otherwise>
                 		<c:forEach var="p" items="${profile}">
-				                <c:if test="${p.codeKey == 'pfi09'}">
-				                
-				                    <c:if test="${p.content != null && p.content != ''}">
-										<ul class="a_me" id="pfi09" data-value="pfi09">
-						                    <li> 
-						                    	<i class="fas fa-plus"></i>
-						                    </li>
-						                </ul><!-- //a_me -->
-				                    </c:if>
-				                    
-				                    <c:if test="${p.content == null || p.content == ''}">
-				                        <span class="gray">자유롭게 작성해보세요.</span>
-										<ul class="a_me" id="pfi09" data-value="pfi09">
-						                    <li> 
-						                    	<i class="fas fa-plus"></i>
-						                    </li>
-						                </ul><!-- //a_me -->
-				                    </c:if>
-				                </c:if>
-				            </c:forEach>
+			                <c:if test="${p.codeKey == 'pfi09'}">
+			                 	<c:set var="pfi09Ck" value="true" />
+			                    <c:if test="${p.content != null && p.content != ''}">
+			                    	
+									<ul class="a_me" id="pfi09" data-value="pfi09">
+										<li> 
+						                	${p.content}    
+					                    </li>
+					                </ul><!-- //a_me -->
+			                    </c:if>
+			                    
+			                    <c:if test="${p.content == null || p.content == ''}">
+			                        <span class="gray">자유롭게 작성해보세요.</span>
+									<ul class="a_me" id="pfi09" data-value="pfi09">
+					                    <li> 
+					                    	<i class="fas fa-plus"></i>
+					                    </li>
+					                </ul><!-- //a_me -->
+			                    </c:if>
+			                </c:if>
+			            </c:forEach> 
+			            <c:if test="${!pfi09Ck}">
+						    <span class="gray">자유롭게 작성해보세요.</span>
+						    <ul class="a_me" id="pfi09" data-value="pfi09">
+						        <li> 
+						            <i class="fas fa-plus"></i>
+						        </li>
+						    </ul><!-- //a_me -->
+						</c:if>
                 	</c:otherwise>
                 </c:choose>
 				<form id="updateProfileContent">
@@ -201,15 +210,43 @@
 					</div>
 					<input type="hidden" name="codeKey" id="codeKey">
 				</form>
-              
-                <div class="bottom_btn">
-                    <button type="button" class="navy" id="profileUpdateBtn">
-                        수정 완료
-                    </button><!-- //navy -->
 
-                </div>
+				<form id="profileImgUpdate" enctype="multipart/form-data">
+					<div class="u_modal" id="imgUpdateModal">
+						<div class="m_bg">
+							<div class="m_top">
+								<i class="fas fa-times"></i>
+							</div>
 
-            </div><!-- //aboutme -->
+							<div class="m_contents" id="updateContent">
+								<div class="title">
+									<h2>프로필 사진 변경하기</h2>
+								</div>
+								<div style="display: flex;justify-content: flex-end;">
+								<i class="fas fa-times" style="font-size: 16px;" id="profileImageRemove"></i>
+								</div>
+								<div class="con" style="align-items: center">
+									<label for="ImageModalFile">
+										
+										<img src="${userInfo.userImage}" style="width: 100%; height: 300px; display: block;" id="modalImg">
+	 									<input type="file" id="ImageModalFile" name="profileImage" accept="image/*" style="display: none;"> 
+									</label>
+					            </div>
+									
+							</div>
+
+							<div class="m_bottom">
+								<button type="button" class="navy" id="profileImgUpdateBtn">이미지 변경</button>
+								<input type="hidden" name="userId" value="${userInfo.userId}">
+	                    		<input type="hidden" name="deleteImage" value="${userInfo.userImage}">
+							</div>
+						</div>
+					</div>
+					<input type="hidden" name="codeKey" id="codeKey">
+				</form>
+
+
+			</div><!-- //aboutme -->
         </div><!-- //u_m_right -->
     </div><!-- //user_maibn -->
     

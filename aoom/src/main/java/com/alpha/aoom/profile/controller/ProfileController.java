@@ -100,7 +100,7 @@ public class ProfileController extends BaseController{
         }
         System.out.println(introduceContent);
         // 
-        
+        System.out.println(profileService.selectListByuserId(param));
         // 해당유저가 보유한 프로필정보
         modelMap.put("profile", profileService.selectListByuserId(param));
         // 해당 유저의 정보
