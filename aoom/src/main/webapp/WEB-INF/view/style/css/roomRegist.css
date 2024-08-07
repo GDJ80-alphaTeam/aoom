@@ -603,6 +603,7 @@ button.pink span {
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 30px;
 }
 
 .pagenation_box button {
