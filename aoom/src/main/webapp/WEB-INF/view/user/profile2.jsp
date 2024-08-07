@@ -16,8 +16,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://kit.fontawesome.com/82b4a4fcad.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <script src="js/common.js"></script>
-    <script src="js/profile.js" defer></script>
+    
+    <script src="/style/js/profile.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="/style/css/common.css">
     <link rel="stylesheet" href="/style/css/userCommon.css">
@@ -86,7 +86,7 @@
         </div><!-- //u_m_left -->
 
         <div class="u_m_right">
-            <h2>쿵야양파 님 소개</h2>
+            <h2>${userInfo.userName} 님에 대한 후기</h2>
             <ul class="u_list">
             
 	            <c:forEach var="p" items="${profile}">
@@ -193,79 +193,26 @@
             </div><!-- //aboutme -->
 
             <div class="review">
-                <h2>쿵야양파 님에 대한 후기</h2>
+                <h2>${userInfo.userName} 님에 대한 후기</h2>
                 <div class="slide_r swiper">
                     <ul class="swiper-wrapper">
-                        <li class="swiper-slide">
-                            <p>안녕하세요 양파농장에서 잘 쉬다갑니다 <br>
-                                제 최종학력은 피자스쿨 입니다.
-                            </p>
-                            <div class="u_pro">
-                                <div class="u_pic">
-                                    <!-- 이미지 자리!~ -->
-                                </div><!-- //u_pic -->
-                                <div class="u_date">
-                                    <span>이름</span>
-                                    <p>날짜</p>
-                                </div><!-- //u_date -->
-                            </div>
-                        </li>
-                        <li class="swiper-slide">
-                            <p>안녕하세요 양파농장에서 잘 쉬다갑니다 <br>
-                                제 최종학력은 피자스쿨 입니다.
-                            </p>
-                            <div class="u_pro">
-                                <div class="u_pic">
-                                    <!-- 이미지 자리!~ -->
-                                </div><!-- //u_pic -->
-                                <div class="u_date">
-                                    <span>이름</span>
-                                    <p>날짜</p>
-                                </div><!-- //u_date -->
-                            </div>
-                        </li>
-                        <li class="swiper-slide" >
-                            <p>안녕하세요 양파농장에서 잘 쉬다갑니다 <br>
-                                제 최종학력은 피자스쿨 입니다.
-                            </p>
-                            <div class="u_pro">
-                                <div class="u_pic">
-                                    <!-- 이미지 자리!~ -->
-                                </div><!-- //u_pic -->
-                                <div class="u_date">
-                                    <span>이름</span>
-                                    <p>날짜</p>
-                                </div><!-- //u_date -->
-                            </div>
-                        </li>
-                        <li class="swiper-slide">
-                            <p>안녕하세요 양파농장에서 잘 쉬다갑니다 <br>
-                                제 최종학력은 피자스쿨 입니다.
-                            </p>
-                            <div class="u_pro">
-                                <div class="u_pic">
-                                    <!-- 이미지 자리!~ -->
-                                </div><!-- //u_pic -->
-                                <div class="u_date">
-                                    <span>이름</span>
-                                    <p>날짜</p>
-                                </div><!-- //u_date -->
-                            </div>
-                        </li>
-                        <li  class="swiper-slide">
-                            <p>안녕하세요 양파농장에서 잘 쉬다갑니다 <br>
-                                제 최종학력은 피자스쿨 입니다.
-                            </p>
-                            <div class="u_pro">
-                                <div class="u_pic">
-                                    <!-- 이미지 자리!~ -->
-                                </div><!-- //u_pic -->
-                                <div class="u_date">
-                                    <span>이름</span>
-                                    <p>날짜</p>
-                                </div><!-- //u_date -->
-                            </div>
-                        </li>
+	                    <c:forEach var="r" items="${reviewList.review}" varStatus="status">
+	                        <li class="swiper-slide">
+	                            <p>
+	                            	${r.reviewContent}
+	                            </p>
+	                            <div class="u_pro">
+	                                <div class="u_pic">
+	                                	<img id="userImg${status.count}"  src="${r.userImage}" style="height: 100% ; width: 100% ;border-radius:50%">
+	                                    <!-- 이미지 자리!~ -->
+	                                </div><!-- //u_pic -->
+	                                <div class="u_date">
+	                                    <span>${r.userName}</span>
+	                                    
+	                                </div><!-- //u_date -->
+	                            </div>
+	                        </li>
+	                    </c:forEach>    
                     </ul>
                     <div class="swiper-pagination"></div>
                 </div><!-- //slide_r -->

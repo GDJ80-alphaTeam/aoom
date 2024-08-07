@@ -22,6 +22,7 @@ $(document).ready(function () {
 		console.log("실행test");
 		//ajax
 		updateContent();
+		$('#updateModal').removeClass('on');
 	});
 
 });
@@ -78,7 +79,23 @@ function inputTypeSelect(codeKey, dataContent) {
     } else {
         return `<input type="text" name="content" value="${dataContent}">`;
     }
+}
+
+function updateImage(proitemCode) {
+    return imageMap[proitemCode] || '/style/img/default.png'; 
 }		
+
+const imageMap = {
+	'pfi01': '/style/img/pu_3.png',
+    'pfi02': '/style/img/pu_4.png',
+    'pfi03': '/style/img/pu_5.png',
+    'pfi04': '/style/img/pu_6.png',
+    'pfi05': '/style/img/pu_7.png',
+    'pfi06': '/style/img/pu_8.png',
+    'pfi07': '/style/img/pu_9.png',
+    'pfi08': '/style/img/pu_10.png',
+    // 다른 proitemCode에 대한 매핑 추가
+};
 		
 // 모달버튼 에서 폼 제출시		
 		function updateContent(){
@@ -95,12 +112,21 @@ function inputTypeSelect(codeKey, dataContent) {
 					$('[id^="pfi"]').each(function() {
 			             // 현재 요소의 값 
 			             let value = this.id;
-			             
+			             let imgSrc = updateImage(response.data.code.codeKey);
 			             // 값확인 + 소개글이 아닐경우실행
 			             if (value == response.data.code.codeKey && value != "pfi09") {
+							let text = 	    `<div class="l_left" >
+						                        <img src="${imgSrc}" alt="">
+						                        <p>${response.data.code.codeName}</p>
+						                        <p class="sb"> : ${response.data.profile.content}</p>
+						                    </div>
+						                    <i class="fas fa-chevron-right"></i>`;
+						                    
+						                    
+							 $('#'+`${response.data.code.codeKey}`).empty();
 			                 // 내용 채워넣기
-			                 $('#'+`${response.data.code.codeKey}`).value();
-			            	 $(this).text(response.data.code.codeName+":"+response.data.profile.content);
+			                 $('#'+`${response.data.code.codeKey}`).append(text);
+			            	 
 			             } 
 			             
 			             if (value == response.data.code.codeKey && value == "pfi09"){

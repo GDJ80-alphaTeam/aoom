@@ -61,7 +61,7 @@
 		            <c:choose>
 		            	<c:when test="${p.proitemCode == 'pfi02'}">
 		            		<li id="${p.proitemCode}" data-value="${p.proitemCode}">
-			                    <div class="l_left" id="${p.proitemCode}">
+			                    <div class="l_left" >
 			                        <img src="/style/img/pu_4.png" alt="출신학교">
 			                        <p>${p.codeName}</p>
 			                        <p class="sb"> : ${p.content}</p>
@@ -72,9 +72,9 @@
 		            	
 		            	<c:when test="${p.proitemCode == 'pfi03'}">
 		            		<li id="${p.proitemCode}" data-value="${p.proitemCode}">
-			                    <div class="l_left" id="${p.proitemCode}">
-			                        <img src="/style/img/pu_5.png" alt="직업">
-			                        <p>${p.codeName}</p>
+			                    <div class="l_left" >
+ 			                        <img src="/style/img/pu_5.png" alt="직업"> 
+ 			                        <p>${p.codeName}</p> 
 			                        <p class="sb"> : ${p.content}</p>
 			                    </div>
 			                    <i class="fas fa-chevron-right"></i>
@@ -84,7 +84,7 @@
 		            	
 		            	<c:when test="${p.proitemCode == 'pfi04'}">
 		            		<li id="${p.proitemCode}" data-value="${p.proitemCode}">
-			                	<div class="l_left" id="${p.proitemCode}">
+			                	<div class="l_left" >
 			                    	<img src="/style/img/pu_6.png" alt="거주지">
 			                    	<p>${p.codeName}</p>
 			                        <p class="sb"> : ${p.content}</p>
@@ -95,7 +95,7 @@
 		            	
 		            	<c:when test="${p.proitemCode == 'pfi05'}">
 			                <li id="${p.proitemCode}" data-value="${p.proitemCode}">
-			                    <div class="l_left" id="${p.proitemCode}">
+			                    <div class="l_left" >
 			                        <img src="/style/img/pu_7.png" alt="구사 언어">
 			                        <p>${p.codeName}</p>
 			                        <p class="sb"> : ${p.content}</p>
@@ -106,7 +106,7 @@
 		            	
 		            	<c:when test="${p.proitemCode == 'pfi06'}">
 			                <li id="${p.proitemCode}" data-value="${p.proitemCode}">
-			                    <div class="l_left" id="${p.proitemCode}">
+			                    <div class="l_left" >
 			                        <img src="/style/img/pu_8.png" alt="취미">
 			                        <p>${p.codeName}</p>
 			                        <p class="sb"> : ${p.content}</p>
@@ -117,7 +117,7 @@
 		            	
 		            	<c:when test="${p.proitemCode == 'pfi07'}">
 			                <li id="${p.proitemCode}" data-value="${p.proitemCode}">
-			                    <div class="l_left" id="${p.proitemCode}">
+			                    <div class="l_left" >
 			                        <img src="/style/img/pu_9.png" alt="MBTI">
 			                        <p>${p.codeName}</p>
 			                        <p class="sb"> : ${p.content}</p>
@@ -128,7 +128,7 @@
 		            	
 		            	<c:when test="${p.proitemCode == 'pfi08'}">
 			                <li id="${p.proitemCode}" data-value="${p.proitemCode}">
-			                    <div class="l_left" id="${p.proitemCode}">
+			                    <div class="l_left">
 			                        <img src="/style/img/pu_10.png" alt="성별">
 			                        <p>${p.codeName}</p>
 			                        <p class="sb"> : ${p.content}</p>
