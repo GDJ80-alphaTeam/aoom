@@ -79,6 +79,7 @@
 				</div>
 				
 					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="updateBtn" value="${introduceContent.codeKey}">
+					
 						입력하기
 					</button>
 					
@@ -92,7 +93,6 @@
 		  <div class="modal-dialog">
 		    <div class="modal-content">
 		      <div class="modal-header" id="updateTitle">
-		      
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		      </div>
 		      

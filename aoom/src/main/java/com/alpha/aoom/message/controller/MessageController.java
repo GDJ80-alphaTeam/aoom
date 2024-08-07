@@ -1,5 +1,6 @@
 package com.alpha.aoom.message.controller;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,8 +64,7 @@ public class MessageController extends BaseController {
 				public Map<String, Object> ajaxMessageInsert(@RequestParam Map<String, Object> param, HttpSession session) {
 					ModelMap model = new ModelMap();
 					messageService.insert(param);
-					return getSuccessResult(model, "메시지가 정상적으로 입력되었습니다.");
 					
-	
+					return getSuccessResult(model, "메시지가 정상적으로 입력되었습니다.");
 				}	
 }

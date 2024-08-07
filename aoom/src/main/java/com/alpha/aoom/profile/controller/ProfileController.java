@@ -75,7 +75,7 @@ public class ProfileController extends BaseController{
 		modelMap.put("reviewPagingInfo", reviewService.selectByProfileCnt(param));
 		
 		
-		return "/user/profile";
+		return "/user/profile2";
 	}
 	
 	
@@ -111,7 +111,7 @@ public class ProfileController extends BaseController{
  		// 소개글을 제외한 해당유저의 프로필정보
 		modelMap.put("profileList", profileList);
  		
-		return "/user/profileUpdate";
+		return "/user/profileUpdate2";
 	}
 	
 	// 프로필 수정시 보여줄 내용 호출
@@ -147,29 +147,36 @@ public class ProfileController extends BaseController{
 	}
 	
 	// 프로필 업데이트 ajax 
-	@ResponseBody
 	@RequestMapping("/user/ajaxProfileUpdate")
+	@ResponseBody
 	public Map<String, Object> profileUpdate(@RequestParam Map<String, Object> param){
 		
-		//System.out.println(param);
-		//System.out.println(((BigDecimal)profileService.selectByproitemCode(param).get("cnt")).compareTo(BigDecimal.ZERO) != 0);
-		
-		// 널이 아니면 프로필이 존재하므로 업데이트 , null이나오면 프로필이 없으므로 인서트 
-		if(profileService.selectByproitemCode(param) != null) {
-			profileService.updateByProitemCode(param);
-		} else {
-			System.out.println("결과가없을때");
-			profileService.insertProfile(param);
-		}
-		
-		// 업데이트한 정보 내보내기
 		Map<String, Object> model = new HashMap<String, Object>();
-		Map<String, Object> mergeMap = new HashMap<>();
+		try {
+			System.out.println(param+"profileUpdate param");
+			//System.out.println(((BigDecimal)profileService.selectByproitemCode(param).get("cnt")).compareTo(BigDecimal.ZERO) != 0);
+			
+			// 널이 아니면 프로필이 존재하므로 업데이트 , null이나오면 프로필이 없으므로 인서트 
+			if(profileService.selectByproitemCode(param) != null) {
+				profileService.updateByProitemCode(param);
+			} else {
+				System.out.println("결과가없을때");
+				profileService.insertProfile(param);
+			}
+			
+			// 업데이트한 정보 내보내기
+			
+			Map<String, Object> mergeMap = new HashMap<>();
 			mergeMap.put("code", codeService.selectByCodeKey(param));
 			mergeMap.put("profile", profileService.selectByproitemCode(param));
-			
+				
 			model.put("data", mergeMap);
+			return getSuccessResult(model);	
 			
-		return model;
+		} catch (Exception e) {
+			return getFailResult(model);	
+		}	
+			
+		
 	}
 }

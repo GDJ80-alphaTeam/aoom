@@ -1,0 +1,221 @@
+@charset "utf-8";
+button{height: 48px;border-radius: 8px;color: #fff;font-size: 16px;}
+button.navy{background: #271a3b;}
+button.pink{ background: #df5772;}
+button.red{ background: #FF0000;}
+span.gray{color: #9e9e9e;}
+textarea, input{border: #9e9e9e 1px solid;border-radius: 8px;outline: 0;}
+
+.user_main .u_m_left {
+    width: 342px;
+    height: 200px;
+}
+
+.user_main .u_m_right>p {
+    margin-bottom: 29px;
+}
+
+.user_main .u_m_right .bottom_btn {
+    width: 100%;
+    margin-top: 61px;
+    display: flex;
+    justify-content: end;
+}
+
+.user_main .u_m_right .bottom_btn .navy {
+    width: 136px;
+}
+
+.user_main .u_m_right ul li {
+    width: 338px;
+    height: 73px;
+    padding: 25px 5px 25px;
+    border-bottom: 1px solid #D1D1D1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user_main .u_m_right ul li:hover .fa-chevron-right {
+    animation: move infinite 1s;
+}
+
+@keyframes move {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    100% {
+        transform: translateX(0px);
+    }
+
+}
+
+.user_main .u_m_right ul li {
+    cursor: pointer;
+}
+
+.user_main .u_m_left .profile_t {
+    width: 100%;
+}
+
+.user_main .u_m_left .profile_t .pro_pic {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.user_main .u_m_left .profile_t .pro_pic .pic_icon {
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 84px;
+    height: 36px;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 3px 3px 10px #00000034;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.user_main .u_m_left .profile_t .pro_pic .pic_icon i {
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+
+.user_main .u_m_right .aboutme ul li i {
+    font-size: 50px;
+    color: #d1d1d1;
+}
+
+.user_main .u_m_right .u_modal {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 50;
+    display: none;
+}
+
+.user_main .u_m_right .u_modal.on {
+    display: flex;
+}
+
+.user_main .u_m_right .u_modal .m_bg {
+    border-radius: 15px;
+    position: absolute;
+    width: 568px;
+    background: #fff;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 3px 3px 20px #00000009;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 80;
+
+}
+
+.user_main .u_m_right .u_modal .m_bg .m_top {
+    width: 100%;
+    height: 64px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #D1D1D1;
+}
+
+.user_main .u_m_right .u_modal .m_bg .m_top i {
+    font-size: 20px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+}
+
+.user_main .u_m_right .u_modal .m_bg .m_contents {
+    width: 496px;
+    display: flex;
+    padding: 32px 0;
+    flex-direction: column;
+    /*  justify-content: space-around; */
+
+}
+
+.user_main .u_m_right .u_modal .m_bg .m_contents .title {
+    margin-bottom: 24px;
+}
+
+.user_main .u_m_right .u_modal .m_bg .m_contents h2 {
+    margin-bottom: 7px;
+}
+
+.user_main .u_m_right .u_modal .m_bg .m_contents .con {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.user_main .u_m_right .u_modal .m_bg .m_bottom {
+    width: 100%;
+    height: 81px;
+    padding-right: 34px;
+    border-top: 1px solid #D1D1D1;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.user_main .u_m_right .u_modal input {
+    width: 100%;
+    height: 52px;
+    padding: 15px;
+    margin-bottom: 5px;
+}
+
+.user_main .u_m_right .u_modal textarea {
+    width: 496px;
+    height: 166px;
+}
+
+.user_main .u_m_right .u_modal button {
+    width: 100px;
+}
+
+.user_main .u_m_right .aboutme h2 {
+    margin-bottom: 32px;
+}
+
+
+.user_main .u_m_right .aboutme ul {
+    width: 100%;
+    margin-top: 29px;
+}
+
+.user_main .u_m_right .aboutme ul li {
+    width: 100%;
+    height: 124px;
+    border-radius: 15px;
+    border-bottom: 0;
+    border: 2px dashed #D1D1D1;display: flex;justify-content: center;
+}
+.user_main .u_m_right .aboutme ul li:hover>i{animation: sc 2s infinite;}
+@keyframes sc{
+    0%{transform: scale(1);}
+    50%{transform: scale(1.2);}
+    100%{transform: scale(1);}
+}

@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="/style/css/common.css">
     <link rel="stylesheet" href="/style/css/roominfo.css">
     <link rel="stylesheet" href="/style/css/navSub.css">
+    <link rel="stylesheet" href="/style/css/messageModal.css">
     <!-- 카카오지도 -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f0842831d9c350ed32adefb11b6cd5f6&libraries=services"></script>
     <!-- flat 피커 -->
@@ -30,8 +31,8 @@
 	<!-- 모멘트js -->
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 	<script src="/style/js/navbarSub.js" defer></script>
-	
-	
+	<link>
+	<jsp:include page="/WEB-INF/view/layout/message.jsp"></jsp:include>
 	
 </head>
 
@@ -301,7 +302,7 @@
                     	</c:if>
                     </c:forEach>
                     <div class="talk_btn">
-                        <button class="h_talk">
+                        <button class="h_talk" id="messageStart">
                             <span>대화 하기</span>
                         </button><!-- //h_talk -->
                     </div><!-- //talk_btn -->

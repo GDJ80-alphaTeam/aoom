@@ -88,9 +88,9 @@ public class MemberController extends BaseController{
 		if (row == 1) {
 			// 회원가입 성공 시 인증번호 제거
 			userAuthNoService.delete(param);
-			return getSuccessResult(model,MASSAGE_RESULT_SUCCESS_16);
+			return getSuccessResult(model);
 		} else {
-			return getFailResult(model,CODE_RESULT_FAIL_26,MASSAGE_RESULT_FAIL_26);
+			return getFailResult(model);
 		}
 	}
 }
