@@ -161,8 +161,10 @@
 	                	// 운영일 만큼만 달력을 보여주기 위해 startDate, endDate 가져오기
 	                    let startDate = response.roomData.startDate;
 	                    let endDate = response.roomData.endDate;
+	                    let today = moment().startOf('day').format('YYYY-MM-DD');
+	                    
 	                    // 날짜 선택하지 않았을 때 title 설정
-	                    $('#notSelectedDateTitle').html(startDate + ' ~ ' + endDate + '<br>요금 설정');
+	                    $('#notSelectedDateTitle').html(today + ' ~ ' + endDate + '<br>요금 설정');
 	                    
 	                    // 실제 운영기간보다 1일 더 작게나와 1일 추가
 	                    endDate = moment(endDate).add(1, 'day').format('YYYY-MM-DD');
@@ -171,13 +173,15 @@
 	                    
 	                    // 데이터 잘 가져왔는지 분기
 	                    if (response && response.onedayData && Array.isArray(response.onedayData)) { // 데이터가 비어있지 않다면
-	                    	
 	                    	// 해당 숙소의 onedayPrice 전체 가져와서 배열에 담기 
 	                        let onedayList = response.onedayData;
 	                    
 	                    	// fullcalendar event를 담을 배열
 	                        let events = [];
-	
+	                    	
+	                     	// 현재 날짜 가져오기
+	                        let today = moment().startOf('day');
+	                     	
 	                        // 가져온 onedayPrice들로 event 배열 생성
 	                        onedayList.forEach(function(item) {
 	                        	
@@ -185,13 +189,15 @@
 	                            let oneday = item.oneday;
 								
 	                            if (moment(oneday, 'YYYY-MM-DD', true).isValid()) {
-	                                events.push({
-	                                    title: item.codeName, // 예약 가능 여부
-	                                    description: item.onedayPrice + '원', // onedayPrice 표시
-	                                    start: oneday, // oneday
-	                                    end: moment(oneday).add(1, 'day').format('YYYY-MM-DD'), // ondey + 1 (퇴실날)
-	                                    color: item.onestatCode === 'one01' ? '#ed5977' : '#291B3C'
-	                                });
+// 	                            	if (moment(oneday).isSameOrAfter(today)) {
+		                                events.push({
+		                                    title: item.codeName, // 예약 가능 여부
+		                                    description: item.onedayPrice + '원', // onedayPrice 표시
+		                                    start: oneday, // oneday
+		                                    end: moment(oneday).add(1, 'day').format('YYYY-MM-DD'), // ondey + 1 (퇴실날)
+		                                    color: item.onestatCode === 'one01' ? '#ed5977' : '#291B3C'
+		                                });
+// 	                            	}
 	                            }
 	                        });
 	
@@ -315,7 +321,6 @@
 	        });
 	
 	        friSatList = getFriSatDays(startDate, moment(endDate).subtract(1, 'day'));
-	        console.log(friSatList);
 	        calendar.render();
 	    }
 	</script>
@@ -334,7 +339,6 @@
 						'endDate': $('#endOneDay').val()
 					  },
 				success: function(response) {
-					console.log(response);
 					window.location.href = '/host/calendar?roomId=' + urlRoomId;
 					alert(response.message);
 				}
@@ -413,11 +417,9 @@
 		$('#defaultPrice').blur(function() {
 			// 입력한 금액 가져오기
 			let originalPrice = $('#defaultPrice').val();
-			console.log(originalPrice);
 			
 			// 1원단위 절사(내림)
 			let truncationPrice = Math.floor(originalPrice/10) * 10;
-			console.log(truncationPrice);
 			
 			$('#defaultPrice').val(truncationPrice);
 		});
@@ -425,11 +427,9 @@
 		$('#weekendPrice').blur(function() {
 			// 입력한 금액 가져오기
 			let originalPrice = $('#weekendPrice').val();
-			console.log(originalPrice);
 			
 			// 1원단위 절사(내림)
 			let truncationPrice = Math.floor(originalPrice/10) * 10;
-			console.log(truncationPrice);
 			
 			$('#weekendPrice').val(truncationPrice);
 		});
@@ -437,11 +437,9 @@
 		$('#defaultPriceSelected').blur(function() {
 			// 입력한 금액 가져오기
 			let originalPrice = $('#defaultPriceSelected').val();
-			console.log(originalPrice);
 			
 			// 1원단위 절사(내림)
 			let truncationPrice = Math.floor(originalPrice/10) * 10;
-			console.log(truncationPrice);
 			
 			$('#defaultPriceSelected').val(truncationPrice);
 		});
