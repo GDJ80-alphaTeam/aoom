@@ -346,23 +346,23 @@
 			
 			if (!$('input[name="roomcateCode"]:checked').val()) {
                 alert('카테고리를 선택해 주세요.');
-                return ;
+                return false;
             }
             if (!$('input[name="roomtypeCode"]:checked').val()) {
             	console.log($('input[name="roomtypeCode"]:checked').val());
                 alert('숙소 유형을 선택해 주세요.');
-                return ;
+                return false;
             }
             
 			if ($('#frontAddress').val() == null || $('#frontAddress').val() == '') {
 				alert('기본 주소를 입력해주세요');
 				$('#frontAddress').focus();
-				return ;
+				return false;
 			}
 			if ($('#detailAddress').val() == null || $('#detailAddress').val() == '') {
 				alert('상세 주소를 입력해주세요');
 				$('#detailAddress').focus();
-				return ;
+				return false;
 			}
 			
 		});

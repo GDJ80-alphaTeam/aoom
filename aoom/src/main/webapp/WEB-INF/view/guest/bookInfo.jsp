@@ -14,11 +14,12 @@
     <script src="https://kit.fontawesome.com/82b4a4fcad.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/style/js/bookinfo.js" defer></script>
-
+	<link rel="stylesheet" href="/style/css/messageModal.css">
     <link rel="stylesheet" href="/style/css/common.css">
     <link rel="stylesheet" href="/style/css/bookinfo.css">
     <link rel="stylesheet" href="/style/css/navSub.css">
     <script src="/style/js/navbarSub.js" defer></script>
+    <jsp:include page="/WEB-INF/view/layout/message.jsp"></jsp:include>
 </head>
 <body>
 	
@@ -172,7 +173,7 @@
                     	</c:if>
                     </c:forEach>
                     <div class="talk_btn">
-                        <button class="h_talk">
+                        <button class="h_talk" id="messageStart">
                             <span>대화 하기</span>
                         </button><!-- //h_talk -->
                     </div><!-- //talk_btn -->

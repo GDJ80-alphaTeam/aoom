@@ -31,7 +31,6 @@
 	<!-- 모멘트js -->
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 	<script src="/style/js/navbarSub.js" defer></script>
-	<link>
 	<jsp:include page="/WEB-INF/view/layout/message.jsp"></jsp:include>
 	
 </head>

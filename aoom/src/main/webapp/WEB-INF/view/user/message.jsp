@@ -20,22 +20,6 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     
-    <style type="text/css">
-    	.inputMessageDiv input {
-    		width: 80%;
-    		height: 44px;
-    	}
-    	
-    	.inputMessageDiv button {
-    		background: #ed5977;
-		    width: 18%;
-		    height: 44px;
-		    border-radius: 5px;
-		    border: 0;
-		    margin-right: 0;
-		    color: #FFFFFF;
-    	}
-    </style>
 </head>
 <body>
 	
@@ -72,8 +56,6 @@
 		</div>
 	</div>
 	
-	
-	
 	<!-- 메시지 리스트 보여주기 -->
 	<script type="text/javascript">
 		function ajaxMessage(element, sendUserId){
@@ -104,7 +86,7 @@
 							let content = user.content; // 메시지 내용 추가											
 							let createYmd = user.createYmd;
 							let createTime = user.createTime;
-
+							
 							// 날짜가 바뀌었을 때만 날짜를 표시
 							if (lastDate !== createYmd) {
 								lastDate = createYmd;
@@ -113,7 +95,7 @@
 										+ "</div>";
 							}
 
-							if (sendUserId == sender) {
+							if (sendUserId != sender) {
 								html += " <div style='display:flex; align-items:flex-start; justify-content:flex-end; margin:10px;'>"
 											+ "<div style='display:flex; align-items:center; width:100%;'>"
 												+ "<span style='margin-right:10px;'>"
@@ -143,6 +125,8 @@
 						html2 += '<input type="text" placeholder="메시지를 입력하세요" id="message" name="message" onkeyup="enterkey();">'
 								+ '<button type="button" onclick="inputMessage();">전송</button>';
 						$(".inputMessageDiv").html(html2);
+						
+						scrollToBottom();
 					}
 				},
 				complete : function() {
@@ -160,8 +144,12 @@
 
 		function inputMessage() {
 			let message = $("#message").val();
-			let receiverId = "${userInfo.userId}";
-			let sendId = $("#sendUserId").val();
+			let receiverId =$("#sendUserId").val();
+			let sendId = '${userInfo.userId}';
+			if(message == '') {
+				alert("메시지를 입력해주세요");
+				return false;
+			}
 			$.ajax({
 				url : '/message/ajaxMessageInsert',
 				method : 'post',
@@ -173,13 +161,20 @@
 				dataType : 'json',
 				success : function(response) {
 					if (response.code == '00') {
-						ajaxMessage(sendId);
+						console.log(sendId);
+						ajaxMessage($('.msg_summary.active'), receiverId);
+// 						window.location.href='/message/messageList';
 					}
 				},
 				complete : function() {
 					isInitializing = false; // 초기화 완료 표시
 				}
 			});
+		}
+		
+		function scrollToBottom() {
+		    const messageList = document.querySelector('.messageList');
+		    messageList.scrollTop = messageList.scrollHeight;
 		}
 	</script>
 </body>

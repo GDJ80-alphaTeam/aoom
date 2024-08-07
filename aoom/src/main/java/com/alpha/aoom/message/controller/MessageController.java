@@ -62,9 +62,14 @@ public class MessageController extends BaseController {
 				@RequestMapping("/ajaxMessageInsert")
 				@ResponseBody
 				public Map<String, Object> ajaxMessageInsert(@RequestParam Map<String, Object> param, HttpSession session) {
+					System.out.println("메시지 param=" + param.toString());
 					ModelMap model = new ModelMap();
-					messageService.insert(param);
+					int row = messageService.insert(param);
 					
-					return getSuccessResult(model, "메시지가 정상적으로 입력되었습니다.");
+					if(row == 1) {
+						return getSuccessResult(model, "메시지를 전송했습니다");
+					}else {
+						return getFailResult(model, "메시지 전송에 실패했습니다. 다시 시도해주세요");
+					}
 				}	
 }
