@@ -52,7 +52,7 @@ header .inner {
 
 header .inner ul.nav_menu {
     width: 240px;
-    height: 320px;
+    height: 240px;
     background: #ffffff;
     border-radius: 8px;
     box-shadow: 5px 5px 20px #00000017;
@@ -76,8 +76,7 @@ header .inner ul.nav_menu li {
     cursor: pointer;
 }
 
-header .inner ul.nav_menu li:nth-child(4),
-header .inner ul.nav_menu li:nth-child(6) {
+header .inner ul.nav_menu li:last-child {
     padding-top: 6px;
     margin-top: 6px;
     border-top: 1px solid #C7C7C7;

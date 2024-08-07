@@ -1,7 +1,7 @@
 package com.alpha.aoom.guest.controller;
 
 import java.util.HashMap;
-
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.alpha.aoom.booking.service.BookingService;
 import com.alpha.aoom.code.service.CodeService;
+import com.alpha.aoom.profile.service.ProfileService;
+import com.alpha.aoom.review.service.ReviewService;
+import com.alpha.aoom.room.service.RoomService;
 import com.alpha.aoom.roomPayment.service.RoomPaymentService;
 
 import jakarta.servlet.http.HttpSession;
@@ -30,6 +33,15 @@ public class GuestController {
 	
 	@Autowired
 	RoomPaymentService roomPaymentService;
+	
+	@Autowired
+	RoomService roomService;
+	
+	@Autowired
+	ReviewService reviewService;
+	
+	@Autowired
+	ProfileService profileService;
 	
 	// param: currentPage
 	// 사용자가 예약한 목록 출력
@@ -70,6 +82,19 @@ public class GuestController {
 		param.put("userId", userId);
 		param.put("currentPage" , currentPage);
 		
+		Map<String, Object> hostParam = new HashMap<>();
+		hostParam.put("roomId", (String) bookingService.selectListByGuestId(param).get(0).get("roomId"));
+		
+		// 숙소정보 조회 + 숙소 주인정보 
+		Map<String, Object> roomInfo = roomService.selectOne(hostParam);
+		// 숙소 호스트가 받은 총합 후기수
+		Map<String, Object> hostReviewTotal = reviewService.selectByHostTotalCnt(hostParam);
+		// 호스트 유저 프로필검색
+		List<Map<String, Object>> hostProfile = profileService.selectListByuserId(hostParam);
+		
+		modelMap.put("roomInfo", roomInfo);
+		modelMap.put("hostReview", hostReviewTotal);
+		modelMap.put("hostProfile", hostProfile);
 		// 예약정보
 		modelMap.put("bookingInfo", bookingService.selectListByGuestId(param).get(0));
 		// 결제정보 

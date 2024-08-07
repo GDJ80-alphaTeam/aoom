@@ -1,0 +1,666 @@
+@charset "utf-8";
+
+.inner {
+    width: 1120px;
+}
+
+.fixed {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 50;
+}
+
+i {
+    font-size: 10px;
+}
+
+p {
+    font-size: 14px;
+}
+
+span {
+    font-size: 16px;
+}
+
+b.margin {
+    font-size: 22px;
+    margin-bottom: 18px;
+}
+
+.p_b {
+    padding-bottom: 33px;
+    border-bottom: 1px solid #C7C7C7;
+    padding-top: 32px;
+}
+
+header {
+
+    border-bottom: 1px solid #C7C7C7;
+    background: #fff;
+}
+
+
+header .inner {
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    align-items: center;
+}
+
+header .inner ul.nav_menu {
+    width: 240px;
+    height: 320px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 5px 5px 20px #00000017;
+    position: absolute;
+    right: 0;
+    top: 110px;
+    z-index: 60;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    display: none;
+
+}
+
+header .inner ul.nav_menu.on {
+    display: flex;
+}
+
+header .inner ul.nav_menu li {
+    width: 100%;
+    cursor: pointer;
+}
+
+header .inner ul.nav_menu li:nth-child(4),
+header .inner ul.nav_menu li:nth-child(6) {
+    padding-top: 6px;
+    margin-top: 6px;
+    border-top: 1px solid #C7C7C7;
+}
+
+header .inner ul.nav_menu li p {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+}
+
+header .inner ul.nav_menu li p:hover {
+    background: #f4f4f4;
+}
+
+header .inner ul.search {
+    width: 855px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 17px 34px;
+    border-radius: 33px;
+    border: 1px solid #C7C7C7;
+    box-shadow: 3px 3px 20px #00000017;
+}
+
+header .inner .user {
+    width: 263px;
+    height: 46px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .inner .user a {
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+header .inner .user .profile {
+    padding: 6px 14px 6px 6px;
+    width: 156px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #291B3C;
+    border-radius: 28px;
+}
+
+header .inner .user .profile p {
+    font-weight: 800;
+}
+
+
+
+h2 {
+    font-size: 26px;
+}
+
+h3 {
+    font-size: 24px;
+    margin-bottom: 24px;
+    padding-top: 31px;
+}
+
+h4 {
+    font-size: 22px;
+}
+
+i {
+    font-size: 10px;
+}
+
+p {
+    font-size: 14px;
+}
+
+span {
+    font-size: 16px;
+}
+
+
+/* 컨텐츠 시작 */
+
+/* 후기 모달 */
+.review_modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.review_modal.view {
+    display: flex;
+}
+
+.review_modal .modal_bg {
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.4);
+}
+
+.review_modal .review {
+    width: 466px;
+    background: #fff;
+    border-radius: 15px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.review_modal .review .r_top {
+    width: 100%;
+    height: 75px;
+    border-bottom: 1px solid #9e9e9e;
+    display: flex;
+    align-items: center;
+    padding: 0 36px;
+
+}
+
+.review_modal .review .r_top i,
+.review_modal .review .r_top h6 {
+    font-size: 19px;
+}
+
+.review_modal .review .r_top h6 {
+    margin: auto;
+}
+
+.review_modal .review .r_top i {
+    cursor: pointer;
+}
+
+.review_modal .review .r_con {
+    padding: 27px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.review_modal .review .r_con span {
+    text-align: center;
+    margin-bottom: 15px;
+
+}
+
+.review_modal .review .r_con .star_box {
+    width: 235px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.review_modal .review .r_con .star_box i {
+    font-size: 38px;
+    color: #c7c7c7;
+    cursor: pointer;
+}
+
+.review_modal .review .r_con .star_box i.active {
+    color: #291b3c;
+}
+
+.review_modal .review .r_con textarea {
+    background: #efefef;
+    width: 391px;
+    height: 225px;
+    border-radius: 5px;
+    position: relative;
+    border: 0;
+    padding: 15px;
+    outline: 0;
+    margin: 19px 0;
+}
+
+.review_modal .review .r_con .pic_box {
+    width: 391px;
+    height: 185px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 31px;
+/*     gap: 10px; */
+}
+
+.review_modal .review .r_con .pic_box li {
+    width: 185px;
+    height: 100%;
+    border: 1px solid #c7c7c7;
+    border-radius: 3px;
+}
+
+.review_modal .review .r_con .pic_box li label {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.review_modal .review .r_con .pic_box li img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.review_modal .review .r_con .pic_box li:first-child {
+    background: #c7c7c7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.review_modal .review .r_con .pic_box li:first-child i {
+    font-size: 31px;
+    transform: translate(250%, 240%);
+}
+
+.review_modal .review .r_con .pic_box li:first-child b {
+    font-size: 12px;
+    color: #fff;
+    font-weight: normal;
+    transform: translate(0%, -350%);
+}
+
+.review_modal .review .r_con .pic_box li i {
+    color: #fff;
+}
+
+
+.review_modal .review .r_con .pic_box li.x {
+    position: relative;
+}
+
+.review_modal .review .r_con .pic_box li.x button {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    background: #c7c7c7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.review_modal .review .r_con .pic_box li.x i {
+    width: 15px;
+    height: 15px;
+/*     position: absolute; */
+/*     right: 3px; */
+/*     top: 3px; */
+    background: #c7c7c7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.review_modal .review .r_con p {
+    color: #ff0000;
+}
+
+.review_modal .review .r_bottom {
+    width: 100%;
+    height: 81px;
+    border-top: 1px solid #9e9e9e;
+    display: flex;align-items: center;justify-content: flex-end;
+}
+
+.review_modal .review .r_bottom button {
+    width: 136px;
+    height: 48px;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 8px;
+    background: #ed5977;margin-right: 16px;
+}
+
+/* 페이지 시작  */
+.bookinfo {
+    padding-top: 184px;
+}
+
+.bookinfo button {
+    height: 48px;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+.bookinfo h2 {
+    margin-bottom: 50px;
+}
+
+.bookinfo .r_infomation .r_info_b {
+    padding: 35px;
+    width: 100%;
+    height: 573px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 35px #00000017;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.bookinfo .r_infomation {
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #c7c7c7;
+}
+
+.bookinfo .r_infomation .r_info_b h5 {
+    font-size: 36px;
+    line-height: 1.3;
+}
+
+.bookinfo .r_infomation .r_info_b h5 b {
+    font-size: 38px;
+    font-weight: 600;
+    color: #df5772;
+
+}
+
+.bookinfo .r_infomation .r_info_b .info_b_con {
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.bookinfo .r_infomation .r_info_b .info_b_con .pic_box {
+    width: 370px;
+    height: 370px;
+    border-radius: 8px;
+    background: #ddd;
+}
+
+.bookinfo .r_infomation .r_info_b .info_b_con .pic_box img {
+    width: 100%;
+    height: 100%;
+    object-fit: coverF;
+}
+
+.bookinfo .r_infomation .r_info_b .info_b_con .info_box {
+    width: 266px;
+}
+
+.bookinfo .r_infomation .r_info_b .info_b_con .info_box>div {
+    margin-bottom: 44px;
+}
+
+.bookinfo .r_infomation .r_info_b .info_b_con .info_box h4 {
+    margin-bottom: 18px;
+}
+
+.bookinfo .r_infomation .r_info_b .info_b_con .info_box .date_box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bookinfo .r_infomation .r_info_b .info_b_con .info_box .date_box .chk {
+    width: 124px;
+    height: 78px;
+    border-radius: 5px;
+    border: 1px solid #9e9e9e;
+    padding: 0 12px;
+}
+
+.bookinfo .r_infomation .r_info_b .info_b_con .info_box .price {
+    margin-bottom: 0;
+}
+
+.bookinfo .r_infomation .r_info_b .info_b_con .info_box .price .un_l {
+    text-decoration: underline;
+}
+
+.bookinfo .r_infomation .r_info_b .info_b_con .cute {
+    width: 209px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: end;
+    position: relative;
+}
+
+.bookinfo .r_infomation .r_info_b .info_b_con .cute .gogo {
+    position: absolute;
+    left: 20px;
+    top: 100px;
+    animation: go infinite 1s;
+}
+
+@keyframes go {
+    0% {
+        transform: rotate(15deg);
+    }
+
+    50% {
+        transform: rotate(-10deg);
+    }
+
+    100% {
+        transform: rotate(15deg);
+    }
+}
+
+.bookinfo .more_info {
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #c7c7c7;
+}
+
+.bookinfo .more_info .m_info_con {
+    width: 100%;
+    height: 385px;
+    border-radius: 15px;
+    border: 1px solid #c7c7c7;
+    padding: 35px 10px 10px 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.bookinfo .more_info .m_info_con span {
+    margin-bottom: 8px;
+}
+
+.bookinfo .more_info .m_info_con p {
+    color: #9e9e9e;
+}
+
+.bookinfo .more_info .m_info_con button {
+    width: 136px;
+    align-self: flex-end;
+    background: #f00;
+}
+
+.host_i {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 0;
+    padding: 0;
+}
+
+.host_i .h_flex {
+    display: flex;
+    width: 100%;
+    height: 209px;
+    justify-content: space-between;
+}
+
+.host_i .h_flex .h_left {
+    width: 318px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0 0 28px;
+    box-shadow: 5px 5px 35px #00000017;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.host_i .h_flex .h_left .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.host_i .h_flex .h_left .profile .img_box {
+    position: relative;
+}
+
+.host_i .h_flex .h_left .profile img.u_pic {
+    width: 104px;
+    height: 104px;
+    border-radius: 50%;
+    margin-bottom: 6px;
+}
+
+.host_i .h_flex .h_left .profile b {
+    font-size: 31px;
+}
+
+.host_i .h_flex .h_left .profile p {
+    display: flex;
+    align-items: center;
+}
+
+.host_i .h_flex .h_left .profile p i {
+    margin-right: 3px;
+}
+
+.host_i .h_flex .h_left .profile img.position_a {
+    position: absolute;
+    right: 5px;
+    bottom: 0;
+}
+
+.host_i .h_flex .h_left .h_information {
+    width: 90px;
+}
+
+.host_i .h_flex .h_left .h_information .flex_info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.host_i .h_flex .h_left .h_information .flex_info:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.host_i .h_flex .h_left .h_information .flex_info b {
+    display: flex;
+    font-weight: bold;
+    font-size: 22px;
+    align-items: center;
+}
+
+.host_i .h_flex .h_left .h_information .flex_info b p {
+    margin-left: 3px;
+}
+
+.host_i .h_flex .h_right {
+    width: 786px;
+    height: 100%;
+    border-radius: 10px;
+    border: 1px solid #d9d9d9;
+    padding: 30px;
+    position: relative;
+
+}
+
+.host_i .h_flex .h_right .talk_btn {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+.host_i .h_flex .h_right .talk_btn button {
+    width: 136px;
+    height: 48px;
+    border-radius: 8px;
+    background: #291b3c;
+}
+
+.host_i .h_flex .h_right .talk_btn button span {
+    color: #fff;
+}
+
+.bookinfo .bottom_btn {
+    width: 100%;
+    padding: 72px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.bookinfo .bottom_btn button {
+    width: 136px;
+    background: #9e9e9e;
+
+}
+
+.bookinfo .bottom_btn button.event_btn {
+    background: #df5772;
+    margin-left: 13px;
+}

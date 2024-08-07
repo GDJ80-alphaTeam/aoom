@@ -78,13 +78,6 @@ header .inner ul.nav_menu li {
     cursor: pointer;
 }
 
-header .inner ul.nav_menu li:nth-child(4),
-header .inner ul.nav_menu li:nth-child(6) {
-    padding-top: 6px;
-    margin-top: 6px;
-    border-top: 1px solid #C7C7C7;
-}
-
 header .inner ul.nav_menu li p {
     padding-left: 20px;
     display: flex;
@@ -272,6 +265,10 @@ button {
 	justify-content: flex-end;
 }
 
+.preview .pre_btn span{
+	color: #fff;
+}
+
 .preview .pre_btn .out {
 	background: #ff0000;
 	width: 91px;
@@ -288,9 +285,11 @@ button {
 }
 
 .preview .pre_btn .btn_right .prev {
+	color: #FFFFFF;
 	background: #9E9E9E;
 }
 
 .preview .pre_btn .btn_right .next {
+	color: #FFFFFF;
 	background: #ED5977;
 }
