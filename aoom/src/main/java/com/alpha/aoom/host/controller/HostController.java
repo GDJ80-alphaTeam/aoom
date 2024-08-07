@@ -48,11 +48,11 @@ public class HostController extends BaseController {
 		String userId = (String) userInfo.get("userId");
 		param.put("userId", userId);
 		System.out.println("유저아이디 : "+userId);
-		
+		System.out.println("유저 param =" + param.toString());
 		// 대시보드 출력물 호출
 		List<Map<String, Object>> todayContent = bookingService.selectListBySysdate(param);
 		int todayContentCnt = bookingService.selectListBySysdateCnt(param);
-		
+		System.out.println(todayContent.toString());
 		// 메인 today에 선택메뉴를 선택하지 않으면 오늘 체크아웃을 선택한 것처럼
 		String actionType = param.get("actionType") == null ? "checkOut" : (String) param.get("actionType");
 		

@@ -354,17 +354,14 @@
 		    ,TO_CHAR(b.total_price, '999,999,999') AS total_price
 		FROM 
 		    booking b
-		LEFT JOIN
+		WHERE
+		    b.room_id IN 
 		    (SELECT	
 		        room_id
 		    FROM
 		        room
 		    WHERE
-		        user_id = #{userId}) r
-		ON
-		    r.room_id = b.room_id
-		WHERE
-			1 = 1
+		        user_id = #{userId})
 			<if test='actionType == null or actionType.equals("")'>
 		   	    AND b.check_out = TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
 		   	    AND b.bookstat_code = 'bst02'
@@ -383,7 +380,6 @@
 		        AND b.bookstat_code = 'bst02'
 			</if>
 			<if test='actionType != null and actionType.equals("pendingReview")'>
-		        AND b.check_out >= TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
 		        AND b.bookstat_code = 'bst03'
 			</if>
 	</select>
@@ -394,17 +390,14 @@
 		     count(*) AS cnt
 		FROM 
 		    booking b
-		LEFT JOIN
-		    (SELECT
+		WHERE
+		    b.room_id IN 
+		    (SELECT	
 		        room_id
 		    FROM
 		        room
 		    WHERE
-		        user_id = #{userId}) r
-		ON
-		    r.room_id = b.room_id
-		WHERE
-			1 = 1
+		        user_id = #{userId})
 			<if test='actionType == null or actionType.equals("")'>
 		   	    AND b.check_out = TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
 		   	    AND b.bookstat_code = 'bst02'
@@ -423,7 +416,6 @@
 		        AND b.bookstat_code = 'bst02'
 			</if>
 			<if test='actionType != null and actionType.equals("pendingReview")'>
-		        AND b.check_in > TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
 		        AND b.bookstat_code = 'bst03'
 			</if>
 	</select>
