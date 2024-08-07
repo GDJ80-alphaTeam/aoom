@@ -24,14 +24,14 @@ public class BaseController implements BaseConstant{
 	public Map<String, Object> getSuccessResult(Map<String, Object> model) {
 
 		model.put("result", true);
-		model.put("code", CODE_RESULT_SUCCESS);
-		model.put("message", MASSAGE_RESULT_SUCCESS);
+		model.put("code", CODE_RESULT_SUCCESS_11);
+		model.put("message", MASSAGE_RESULT_SUCCESS_11);
 		return model;
 	}
 	public Map<String, Object> getSuccessResult(Map<String, Object> model, String message) {
 		
 		model.put("result", true);
-		model.put("code", CODE_RESULT_SUCCESS);
+		model.put("code", CODE_RESULT_SUCCESS_11);
 		model.put("message", message);
 		return model;
 	}
@@ -39,13 +39,13 @@ public class BaseController implements BaseConstant{
 	//ajax 성공 결과 (모델반환)
 	public Map<String, Object> getSuccessResult(ModelMap model) {
 		model.put("result", true);
-		model.put("code", CODE_RESULT_SUCCESS);
-		model.put("message", MASSAGE_RESULT_SUCCESS);
+		model.put("code", CODE_RESULT_SUCCESS_11);
+		model.put("message", MASSAGE_RESULT_SUCCESS_11);
 		return model;
 	}
 	public Map<String, Object> getSuccessResult(ModelMap model, String message) {
 		model.put("result", true);
-		model.put("code", CODE_RESULT_SUCCESS);
+		model.put("code", CODE_RESULT_SUCCESS_11);
 		model.put("message", message);
 		return model;
 	}
@@ -54,23 +54,23 @@ public class BaseController implements BaseConstant{
 	//ajax 실패 결과 (맵반환)
 	public Map<String, Object> getFailResult(Map<String, Object> model) {
 		model.put("result", false);
-		model.put("code", CODE_RESULT_FAIL);
-		model.put("message", MASSAGE_RESULT_FAIL);
+		model.put("code", CODE_RESULT_FAIL_21);
+		model.put("message", MASSAGE_RESULT_FAIL_21);
 		return model;
 	}	
 	
 	//ajax 실패 결과 (모델반환)
 	public Map<String, Object> getFailResult(ModelMap model) {
 		model.put("result", false);
-		model.put("code", CODE_RESULT_FAIL);
-		model.put("message", MASSAGE_RESULT_FAIL);
+		model.put("code", CODE_RESULT_FAIL_21);
+		model.put("message", MASSAGE_RESULT_FAIL_21);
 		return model;
 	}	
 	
 	// 메세지를 넣어서 보낼때 (맵반환)
 	public Map<String, Object> getFailResult(Map<String, Object> model, String message) {
 		model.put("result", false);
-		model.put("code", CODE_RESULT_FAIL);
+		model.put("code", CODE_RESULT_FAIL_21);
 		model.put("message", message);
 		return model;
 	}
@@ -79,7 +79,7 @@ public class BaseController implements BaseConstant{
 	// 메세지를 넣어서 보낼때 (모델반환)
 	public Map<String, Object> getFailResult(ModelMap model, String message) {
 		model.put("result", false);
-		model.put("code", CODE_RESULT_FAIL);
+		model.put("code", CODE_RESULT_FAIL_21);
 		model.put("message", message);
 		return model;
 	}

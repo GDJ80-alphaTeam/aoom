@@ -106,7 +106,9 @@
 	                <li><a href="${pageContext.request.contextPath}/guest/bookList">숙소예약목록</a></li>
 	                <li><a href="${pageContext.request.contextPath}/user/wishList">위시리스트</a></li>
 	                <li><a id="signoutBtn">로그아웃</a></li>
-		        </ul>			
+		        </ul>
+		        <input type="hidden" id="signinCall">
+		        <input type="hidden" id="signupCall">
 			</c:if>
 			
 			<!-- 로고 -->	
