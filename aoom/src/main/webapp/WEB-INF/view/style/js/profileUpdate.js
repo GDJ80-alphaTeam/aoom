@@ -185,6 +185,8 @@ const imageMap = {
 		            // 추가적인 성공 처리 로직을 여기에 추가할 수 있습니다.
 		            $('#imgUpdateModal').removeClass('on');
 		            alert("변경사항은 재접속후 적용됩니다.");
+		            $('#deleteImg').val(response.data);
+		            console.log($('#deleteImg').val());
 		            $('#modalImg').attr('src', response.data);
 		            $('#outsideImg').attr('src', response.data);
 		            } 

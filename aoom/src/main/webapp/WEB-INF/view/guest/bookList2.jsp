@@ -31,7 +31,7 @@
 
             <div class="r_m_top">
                 <h4>예약 목록</h4>
-                <div class="t_right">
+                <!-- <div class="t_right">
                     <select>
                         <option>전체 보기</option>
                         <option>운영중 보기</option>
@@ -41,9 +41,9 @@
                     <div class="position_i">
                         <i class="fa-solid fa-table-cells-large view"></i>
                         <i class="fa-solid fa-table-list  "></i>
-                    </div><!-- //position_i -->
+                    </div>//position_i
                     <i class="fa-solid fa-plus"></i>
-                </div><!-- //t_right -->
+                </div>//t_right -->
             </div><!-- //r_m_top 썸네일, 리스트 형식 공통  사용-->
             <div class="view_style">
                 <div class="r_m_list view">

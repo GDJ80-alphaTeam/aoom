@@ -238,7 +238,7 @@
 							<div class="m_bottom">
 								<button type="button" class="navy" id="profileImgUpdateBtn">이미지 변경</button>
 								<input type="hidden" name="userId" value="${userInfo.userId}">
-	                    		<input type="hidden" name="deleteImage" value="${userInfo.userImage}">
+	                    		<input type="hidden" name="deleteImage" id="deleteImg" value="${userInfo.userImage}">
 							</div>
 						</div>
 					</div>
