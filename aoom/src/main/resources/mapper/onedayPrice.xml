@@ -215,13 +215,13 @@
 	
 	<!-- 예약가능한 날짜인지 조회 -->
 	<select id="selectListByDate" parameterType="map" resultType="camelCaseMap">
-		SELECT
-		     onestat_code
-		FROM
-		    oneday_price
-		WHERE
-		    room_id = #{roomId}
-		    AND oneday >= #{startDate}
-		    AND oneday <![CDATA[<]]> #{endDate}
+	    SELECT
+	        onestat_code
+	    FROM
+	        oneday_price
+	    WHERE
+	        room_id = #{roomId}
+	        AND TO_DATE(oneday, 'YY/MM/DD') >= TO_DATE(#{startDate}, 'YY/MM/DD')
+	        AND TO_DATE(oneday, 'YY/MM/DD') <![CDATA[<]]> TO_DATE(#{endDate}, 'YY/MM/DD')
 	</select>
 </mapper>
