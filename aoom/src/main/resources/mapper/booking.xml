@@ -363,20 +363,20 @@
 		    WHERE
 		        user_id = #{userId})
 			<if test='actionType == null or actionType.equals("")'>
-		   	    AND b.check_out = TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
+		   	    AND TRUNC(b.check_out) = TRUNC(SYSDATE)
 		   	    AND b.bookstat_code = 'bst02'
 			</if>
 			<if test='actionType != null and actionType.equals("hosting")'>
-		        AND b.check_in <![CDATA[<=]]> TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
-		        AND b.check_out >= TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
+		        AND TRUNC(b.check_in) <![CDATA[<=]]> TRUNC(SYSDATE)
+		        AND TRUNC(b.check_out) >= TRUNC(SYSDATE)
 		        AND b.bookstat_code = 'bst02'
 			</if>
 			<if test='actionType != null and actionType.equals("checkIn")'>
-		        AND b.check_in = TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
+		        AND TRUNC(b.check_in) = TRUNC(SYSDATE)
 		        AND b.bookstat_code = 'bst02'
 			</if>
 			<if test='actionType != null and actionType.equals("upComing")'>
-		        AND b.check_in > TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
+		        AND TRUNC(b.check_in) > TRUNC(SYSDATE)
 		        AND b.bookstat_code = 'bst02'
 			</if>
 			<if test='actionType != null and actionType.equals("pendingReview")'>
@@ -399,20 +399,20 @@
 		    WHERE
 		        user_id = #{userId})
 			<if test='actionType == null or actionType.equals("")'>
-		   	    AND b.check_out = TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
+		   	    AND TRUNC(b.check_out) = TRUNC(SYSDATE)
 		   	    AND b.bookstat_code = 'bst02'
 			</if>
 			<if test='actionType != null and actionType.equals("hosting")'>
-		        AND b.check_in <![CDATA[<=]]> TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
-		        AND b.check_out >= TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
+		        AND TRUNC(b.check_in) <![CDATA[<=]]> TRUNC(SYSDATE)
+		        AND TRUNC(b.check_out) >= TRUNC(SYSDATE)
 		        AND b.bookstat_code = 'bst02'
 			</if>
 			<if test='actionType != null and actionType.equals("checkIn")'>
-		        AND b.check_in = TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
+		        AND TRUNC(b.check_in) = TRUNC(SYSDATE)
 		        AND b.bookstat_code = 'bst02'
 			</if>
 			<if test='actionType != null and actionType.equals("upComing")'>
-		        AND b.check_in > TO_CHAR(TRUNC(SYSDATE), 'YY/MM/DD')
+		        AND TRUNC(b.check_in) > TRUNC(SYSDATE)
 		        AND b.bookstat_code = 'bst02'
 			</if>
 			<if test='actionType != null and actionType.equals("pendingReview")'>
