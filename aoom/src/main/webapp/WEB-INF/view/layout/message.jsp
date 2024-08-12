@@ -50,7 +50,7 @@
 	            </div>
 	            
 	            <div class="message_modal_b">
-		           	<button type="button" id="submitBtn">대화시작하기</button>
+		           	<button type="button" id="startMsg">대화시작하기</button>
 		            <button class="cancel_button" id="messageModalCloseBtn">취소하기</button>
 	            </div>
 		           	<input type="hidden" name="sendId" value="${sessionScope.userInfo.userId}">
@@ -86,7 +86,7 @@
 	
 </script>
 <script type="text/javascript">
-	$('#submitBtn').click(function() {
+	$('#startMsg').click(function() {
 		
 		if($('#messageContent').val() == '') {
 			alert('메시지를 입력해주세요');
