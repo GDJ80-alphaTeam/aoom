@@ -331,10 +331,10 @@
 				,roomstat_code = #{roomstatCode}
 			</if>
 			<if test='startDate != null and !startDate.equals("")'>
-				,start_date = #{startDate}
+				,start_date = TO_DATE(#{startDate}, 'YYYY-MM-DD')
 			</if>
 			<if test='endDate != null and !endDate.equals("")'>
-				,end_date = #{endDate}
+				,end_date = TO_DATE(#{endDate}, 'YYYY-MM-DD')
 			</if>
 			<if test='address != null and !address.equals("")'>
 				,address = #{address}
