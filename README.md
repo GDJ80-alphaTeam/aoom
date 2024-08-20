@@ -1,12 +1,19 @@
 
 <p align="center">
-	<img src="aoom/src/main/webapp/image/etc/aoomLogo.jpg" style="width=200px;">
+	<img src="aoom/src/main/webapp/image/etc/aoomLogo.jpg" style="width:1000px;">
 </p>
 
 ## 프로젝트 개요
 
-### [프로젝트 데모](http://43.202.86.218/main) 
-### ERD
+### [Aoom 바로가기](http://43.202.86.218/main)
+
+### 테스트 아이디
+<p>id: osy9907@naver.com</p>
+<p> pw: qwer1234!</p>
+
+ 
+
+## ERD
 <p align="center">
 	<img src="aoom/src/main/resources/aoomErdCloud.png">
 </p>
@@ -18,13 +25,13 @@
 <br>
 [통합문서(WBS,  개발현황 ,메뉴구조도, 단위테스트, ERD규칙정의서)](https://docs.google.com/spreadsheets/d/1maEQi0Upb-j2Q-uGQU8IBkkwCRk44afY/edit?pli=1&gid=1798041329#gid=1798041329)
 ### 프로젝트 기능
-- Aoom 은 사용자가 숙소를 검색하고 등록,예약할 수 있는 플랫폼을 제공합니다. 이 프로젝트는 숙소 검색, 예약 관리, 숙소등록 , 사용자 리뷰 작성 등의 기능을 포함하며, 프론트엔드와 백엔드 모두를 다루고있습니다.
+- Aoom 은 사용자가 숙소를 검색하고 등록,예약할 수 있는 플랫폼을 제공합니다. 이 프로젝트는 숙소 검색, 예약 관리, 숙소등록, 사용자 리뷰 작성 등의 기능을 포함하며, 프론트엔드와 백엔드 모두를 다루고있습니다.
 ### 개발기간
 - 2024.06.13 ~ 2024.08.08 (8주)
 ### 개발 인원 및 담당기능
-- 이용훈: 메인페이지 , 숙소예약기능 , 호스트 대시보드 , 호스트 예약관리  
-- 오승엽: 숙소등록 및 수정 , 위시리스트기능 , 숙소수입 차트 , 숙소 캘린더
-- 손지원: 예악상세 , 게스트 예약관리 , 프로필 관리 , 리뷰 작성
+- 이용훈: 메인페이지, 숙소예약기능, 호스트 대시보드, 호스트 예약관리  
+- 오승엽: 숙소등록 및 수정, 위시리스트기능, 숙소수입 차트, 숙소 캘린더
+- 손지원: 예악상세, 게스트 예약관리, 프로필 관리, 리뷰 작성
 ## 구현 기능
 
 ### 유저 등록 및 인증 
@@ -44,20 +51,19 @@
 
 ### 호스트
 - **숙소 등록 및 수정**: 새로운 숙소를 등록하고 기존 숙소 정보를 수정할 수 있는 기능.
-- **호스트 대시보드**:  오늘의 일정을 확인하는 기능 , 각종 정보의 차트를 확인하는 기능.
+- **호스트 대시보드**:  오늘의 일정을 확인하는 기능, 각종 정보의 차트를 확인하는 기능.
 - **호스트 예약 관리**: 예약된 숙소의 예약 내역을 관리하고 조정할 수 있는 기능.
 - **숙소 수입 차트**: 숙소의 수입을 시각적으로 분석할 수 있는 차트 기능.
-- **숙소 캘린더**: 숙소의 날짜별 가격 및 상태(예약 가능,예약 불가)를 설정하는 기능
+- **숙소 캘린더**: 숙소의 날짜별 가격 및 상태(예약 가능, 예약 불가)를 설정하는 기능
 
-### 관리자
-- 
-
+### 관리자(서브 프로젝트)
+- **숙소승인**: 숙소를 승인해주는 기능
 <div align=center><h1>📚 STACKS</h1></div>
 <div align=center> 
   
   
   ### Backend
-  <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"> 
+  <img src="https://img.shields.io/badge/Java 17-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white">
   
   
   ### Frontend
@@ -68,17 +74,16 @@
   
   ### FrameWork
   
-  <img src="https://img.shields.io/badge/spring Boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white">   
+  <img src="https://img.shields.io/badge/spring Boot 3.2.7-6DB33F?style=for-the-badge&logo=spring&logoColor=black">   
 
   ### server
-  <img src="https://img.shields.io/badge/aws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"> 
-  <img src="https://img.shields.io/badge/apache tomcat-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=white">
+  <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonwebservices&logoColor=white"/>
+  <img src="https://img.shields.io/badge/apache tomcat 10.1-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=black">
 
   ### DB
-  <img src="https://img.shields.io/badge/oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white"> 
+  <img src="https://img.shields.io/badge/oracle 11g-F80000?style=for-the-badge&logo=oracle&logoColor=white"> 
 
   ### VersionControl
   <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
-  
   <br>
 </div>
